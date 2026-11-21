@@ -1,0 +1,470 @@
+{
+  "checked_utc_ms": 1794182840957,
+  "mode": "READ_ONLY_SHADOW",
+  "order_routing": false,
+  "minimum_smc_grade": "B+",
+  "service": {
+    "state": "RUNNING",
+    "pid": 3180,
+    "age_ms": 8181,
+    "loop_duration_ms": 1015,
+    "errors": [],
+    "processes": [
+      {
+        "pid": 3180,
+        "ppid": 26896,
+        "name": "python.exe"
+      },
+      {
+        "pid": 17464,
+        "ppid": 3180,
+        "name": "node.exe"
+      },
+      {
+        "pid": 30380,
+        "ppid": 3180,
+        "name": "python.exe"
+      }
+    ]
+  },
+  "forex": {
+    "symbols": 21,
+    "candle_series": 88,
+    "candle_errors": {},
+    "smc_errors": [
+      "STALE_OR_FUTURE_CANDLES_4h"
+    ],
+    "direct_proxy": {
+      "EURUSD": {
+        "state": "DATA_NOT_READY",
+        "trades_60s": 11,
+        "reasons": [
+          "LIVE_FEED_MODE_NOT_DECLARED",
+          "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+        ],
+        "observed_clock": {
+          "state": "UNVERIFIED",
+          "scope": "OBSERVED_TIMESTAMP_ALIGNMENT_NOT_EXCHANGE_LATENCY_OR_ENTITLEMENT_CERTIFICATION",
+          "minimum_trades": 20,
+          "minimum_span_ms": 30000,
+          "raw_feed_label": "UNVERIFIED",
+          "order_routing": false,
+          "reason": "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+        }
+      },
+      "GBPUSD": {
+        "state": "DATA_NOT_READY",
+        "trades_60s": 16,
+        "reasons": [
+          "LIVE_FEED_MODE_NOT_DECLARED",
+          "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+        ],
+        "observed_clock": {
+          "state": "UNVERIFIED",
+          "scope": "OBSERVED_TIMESTAMP_ALIGNMENT_NOT_EXCHANGE_LATENCY_OR_ENTITLEMENT_CERTIFICATION",
+          "minimum_trades": 20,
+          "minimum_span_ms": 30000,
+          "raw_feed_label": "UNVERIFIED",
+          "order_routing": false,
+          "reason": "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+        }
+      },
+      "AUDUSD": {
+        "state": "DATA_NOT_READY",
+        "trades_60s": 56,
+        "reasons": [
+          "TRADES_NOT_FRESH",
+          "LIVE_FEED_MODE_NOT_DECLARED",
+          "RECENT_EXPLICIT_UTC_ANCHORS_MISSING"
+        ],
+        "observed_clock": {
+          "state": "UNVERIFIED",
+          "scope": "OBSERVED_TIMESTAMP_ALIGNMENT_NOT_EXCHANGE_LATENCY_OR_ENTITLEMENT_CERTIFICATION",
+          "minimum_trades": 20,
+          "minimum_span_ms": 30000,
+          "raw_feed_label": "UNVERIFIED",
+          "order_routing": false,
+          "reason": "RECENT_EXPLICIT_UTC_ANCHORS_MISSING"
+        }
+      },
+      "USDCAD": {
+        "state": "DATA_NOT_READY",
+        "trades_60s": 10,
+        "reasons": [
+          "TRADES_NOT_FRESH",
+          "LIVE_FEED_MODE_NOT_DECLARED",
+          "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+        ],
+        "observed_clock": {
+          "state": "UNVERIFIED",
+          "scope": "OBSERVED_TIMESTAMP_ALIGNMENT_NOT_EXCHANGE_LATENCY_OR_ENTITLEMENT_CERTIFICATION",
+          "minimum_trades": 20,
+          "minimum_span_ms": 30000,
+          "raw_feed_label": "UNVERIFIED",
+          "order_routing": false,
+          "reason": "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+        }
+      },
+      "USDJPY": {
+        "state": "DATA_NOT_READY",
+        "trades_60s": 18,
+        "reasons": [
+          "TRADES_NOT_FRESH",
+          "LIVE_FEED_MODE_NOT_DECLARED",
+          "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+        ],
+        "observed_clock": {
+          "state": "UNVERIFIED",
+          "scope": "OBSERVED_TIMESTAMP_ALIGNMENT_NOT_EXCHANGE_LATENCY_OR_ENTITLEMENT_CERTIFICATION",
+          "minimum_trades": 20,
+          "minimum_span_ms": 30000,
+          "raw_feed_label": "UNVERIFIED",
+          "order_routing": false,
+          "reason": "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+        }
+      },
+      "NZDUSD": {
+        "state": "DATA_NOT_READY",
+        "trades_60s": 0,
+        "reasons": [
+          "WAITING_QUANTOWER_DATA",
+          "INSUFFICIENT_TRADES",
+          "TRADES_NOT_FRESH",
+          "LIVE_FEED_MODE_NOT_DECLARED",
+          "CLOCK_VALIDATION_SAMPLE_NOT_READY",
+          "AGGRESSOR_CLASSIFICATION_INCOMPLETE",
+          "PROVIDER_DELAY_NOT_ZERO_OR_UNKNOWN"
+        ],
+        "observed_clock": {
+          "state": "UNVERIFIED",
+          "scope": "OBSERVED_TIMESTAMP_ALIGNMENT_NOT_EXCHANGE_LATENCY_OR_ENTITLEMENT_CERTIFICATION",
+          "minimum_trades": 20,
+          "minimum_span_ms": 30000,
+          "raw_feed_label": "UNVERIFIED",
+          "order_routing": false,
+          "reason": "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+        }
+      },
+      "USDCHF": {
+        "state": "DATA_NOT_READY",
+        "trades_60s": 5,
+        "reasons": [
+          "TRADES_NOT_FRESH",
+          "LIVE_FEED_MODE_NOT_DECLARED",
+          "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+        ],
+        "observed_clock": {
+          "state": "UNVERIFIED",
+          "scope": "OBSERVED_TIMESTAMP_ALIGNMENT_NOT_EXCHANGE_LATENCY_OR_ENTITLEMENT_CERTIFICATION",
+          "minimum_trades": 20,
+          "minimum_span_ms": 30000,
+          "raw_feed_label": "UNVERIFIED",
+          "order_routing": false,
+          "reason": "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+        }
+      }
+    },
+    "cross_context_only": 14
+  },
+  "quantower": {
+    "connection": "Connected",
+    "feed_label": "UNVERIFIED",
+    "counts_in_capped_diagnostic": {
+      "heartbeat": 13153,
+      "quote": 32279,
+      "trade": 843
+    },
+    "resubscription_utc": "2026-11-09T00:01:33Z",
+    "live_entitlement_certified": false,
+    "depth_enabled": false
+  },
+  "crypto": {
+    "BTCUSD": {
+      "state": "RESEARCH_FEATURES_READY",
+      "reasons": [],
+      "faults": {}
+    },
+    "ETHUSD": {
+      "state": "RESEARCH_FEATURES_READY",
+      "reasons": [],
+      "faults": {}
+    },
+    "SOLUSD": {
+      "state": "RESEARCH_FEATURES_READY",
+      "reasons": [],
+      "faults": {}
+    },
+    "XRPUSD": {
+      "state": "RESEARCH_FEATURES_READY",
+      "reasons": [],
+      "faults": {}
+    }
+  },
+  "gold": {
+    "smc_state": "DATA_NOT_READY",
+    "smc_errors": [
+      "STALE_OR_FUTURE_CANDLES_4h"
+    ],
+    "quote_route": "NORMALIZED_MT5_BBO_WORKER_TO_GC_PATTERN_TRACKER"
+  },
+  "telegram": {
+    "state": "READY",
+    "outbox": {
+      "DELIVERED": 1
+    },
+    "last_confirmed_delivery": {
+      "updated_ms": 1794162525992,
+      "message_id": 499,
+      "http_status": 200
+    }
+  },
+  "shadow_ledger": {
+    "total": 0,
+    "open": 0,
+    "closed": 0,
+    "tp": 0,
+    "sl": 0,
+    "be": 0,
+    "unresolved": 0,
+    "gross_r": 0,
+    "gross_profit_r": 0,
+    "gross_loss_r": 0,
+    "commission": null,
+    "slippage": null,
+    "net_pnl": null,
+    "broker_verified": false
+  },
+  "tests": {
+    "python_passed": 99
+  },
+  "code_sha256": {
+    "crypto_feed.py": "a812805ac893d2430223a838a22799f3b25d5b051b63b6722d12c59cf21d091b",
+    "crypto_live.py": "28a24022c001bc0be3a4bd15406c977f7d6ca267388ec8999c408071f8bb50f9",
+    "crypto_report.py": "3304efed6a05ee37a1a7d075f13a97a85464f9ff3d1f62d3c0e629ddbaecfef9",
+    "entry_report.py": "a95fc43da94955934a61b45d5d9ea48e29f58db8dab7c69d799be4e7cdf05733",
+    "entry_tracker.py": "d060adb6b4775edb30ddfd1aff8fce2a656f9ea15e7ce4cb79a09a3cda36c936",
+    "forex_quotes.py": "4c388ccb20372fb650a44ae15a82d4f6b053576348a7b1f79d7eba1b341de7b1",
+    "forex_report.py": "274c1c69762208509253790d11c510d4730adffede7bdb08481cb176af7c183c",
+    "forex_routes.py": "6d5e7fa79705ef7b934ba26e5f2dacfcc588ac2741239eae6aa21b07a0e86828",
+    "manage.py": "ce2ffc938dd0812c00697815cff54639d41a9e4c9e22924ae8498651e99cea34",
+    "mt5_candles.py": "76495494014d85551bae192f538fa080db791e866be999f05a462ef9420f6ce7",
+    "mt5_time.py": "b975da00433f29f2527f18871422ec9e94f4741431e4ae1d0b96498f0ff44f8f",
+    "ninja_feed.py": "4515cf01b25c8d247f827ebd0bb3b7b775eefb1136a46bee062adc77fbcb0d40",
+    "quantower_control.py": "a704cca699f4cb641666f47797cb964dd7b4ba960631572081a964d35301c64f",
+    "quantower_feed.py": "6ca7656ae66e415a339f41db72a64189d3bddfe86a810914fca1d61dc90dc180",
+    "quantower_report.py": "8b43b1135ce8e387bfbf710d8bd05c20a4e8f9805d22a36e40c34c9b4944b02f",
+    "reading_patterns.py": "2927f335b30e41aebc440be5b6c6b185496caf9189b8f549d3f1450bec729f19",
+    "reading_telegram.py": "471fb741c1a059f33403aa89ed5f5f3af151587975b0c20746748846fbe7120e",
+    "service.py": "089663715e3884e3709f19fbe0928915624137f6a685ab3a0f41ba030c99b764",
+    "shadow_ledger.py": "c51f73a7eeaab11b2aa58e0bed4e3002a3b139f2d82ec8be83c0ad05670f0979",
+    "shadow_report.py": "d4854153ba8e7bb4d8f12babb27e906d8a4d8c47f66a2f1696be4cfe367cce5b",
+    "smc_shadow.js": "fa33b2c2979f45a069ab91522cc20b59eb2c3521dd1058db51581817d299e46d",
+    "tape_engine.py": "152a7f8758a828ed8af20acb0b77b9d94dd0120ff3cb1e130099af031d5061f8",
+    "test_crypto_feed.py": "6bb257a07a7bed975a111453075b254c08cd396567d574d2a897d3b349ffe85c",
+    "test_entry_tracker.py": "c5b3582edbc8f939d4a7cdfc9736c126d1e043ab498c2f2b5b75b637da69af26",
+    "test_mt5_time.py": "cb6b4dc29590a2e4772e678d94918ada5aaf9b6c1a6d509d8d24a389ba6ec44e",
+    "test_ninja_feed.py": "9ba29d608c888287d0e58e5f8d2587414570bdd3bec224b5df3be88e5d0191e3",
+    "test_quantower_feed.py": "aeeeb49326d94abc0fd2d6f809f33d5456805fd69aa54f5322452dba0c780171",
+    "test_quantower_observed_clock.py": "2b546c35c244e30f49eae79cef572693085cb5daa790103bb4feb4d5cf5255fe",
+    "test_reading_patterns.py": "52eb20a1ba6822d22b5173e95e236c0b7e8f6153410ccf8d42b77bde038e549d",
+    "test_shadow_ledger.py": "f2dc63d3a43ad2a53a4abc03c762ebb663a73a58aa04f3379b175d12366b2ce1",
+    "test_tape_engine.py": "94f9e0accf351bd9fe00a6774665c88fdf45a50ae0efa1df99c02699d4523216"
+  },
+  "edge_proven": false,
+  "real_net_pnl": null,
+  "remaining_constraints": [
+    "First current closed 4H bar is still unavailable; freshness gate preserved",
+    "NZD 6N trade data not observed",
+    "Low-activity contracts must satisfy per-window sample and freshness gates",
+    "14 crosses have context only, not direct tape",
+    "No L2/MBO verification or actual orders"
+  ],
+  "final_checked_utc_ms": 1794182880644,
+  "final_service": {
+    "state": "RUNNING",
+    "pid": 3180,
+    "status_age_ms": 713,
+    "loop_duration_ms": 1016,
+    "errors": []
+  },
+  "final_forex_tape": {
+    "EURUSD": {
+      "state": "DATA_NOT_READY",
+      "reasons": [
+        "TRADES_NOT_FRESH",
+        "LIVE_FEED_MODE_NOT_DECLARED",
+        "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+      ],
+      "observed_clock": {
+        "state": "UNVERIFIED",
+        "scope": "OBSERVED_TIMESTAMP_ALIGNMENT_NOT_EXCHANGE_LATENCY_OR_ENTITLEMENT_CERTIFICATION",
+        "minimum_trades": 20,
+        "minimum_span_ms": 30000,
+        "raw_feed_label": "UNVERIFIED",
+        "order_routing": false,
+        "reason": "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+      }
+    },
+    "GBPUSD": {
+      "state": "DATA_NOT_READY",
+      "reasons": [
+        "INSUFFICIENT_TRADES",
+        "LIVE_FEED_MODE_NOT_DECLARED",
+        "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+      ],
+      "observed_clock": {
+        "state": "UNVERIFIED",
+        "scope": "OBSERVED_TIMESTAMP_ALIGNMENT_NOT_EXCHANGE_LATENCY_OR_ENTITLEMENT_CERTIFICATION",
+        "minimum_trades": 20,
+        "minimum_span_ms": 30000,
+        "raw_feed_label": "UNVERIFIED",
+        "order_routing": false,
+        "reason": "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+      }
+    },
+    "AUDUSD": {
+      "state": "DATA_NOT_READY",
+      "reasons": [
+        "TRADES_NOT_FRESH"
+      ],
+      "observed_clock": {
+        "state": "OBSERVED_FRESH_RESEARCH",
+        "scope": "OBSERVED_TIMESTAMP_ALIGNMENT_NOT_EXCHANGE_LATENCY_OR_ENTITLEMENT_CERTIFICATION",
+        "minimum_trades": 20,
+        "minimum_span_ms": 30000,
+        "raw_feed_label": "UNVERIFIED",
+        "order_routing": false,
+        "observed_trades": 39,
+        "explicit_utc_anchors": 24,
+        "max_observed_lag_ms": 121.0,
+        "min_observed_lag_ms": 72.0,
+        "unspecified_clock_policy": "NUMERIC_UTC_ALIGNMENT_CORROBORATED_BY_SAME_CONTRACT_EXPLICIT_UTC_EVENTS",
+        "entitlement_verified": false,
+        "exchange_latency_verified": false
+      }
+    },
+    "USDCAD": {
+      "state": "DATA_NOT_READY",
+      "reasons": [
+        "INSUFFICIENT_TRADES",
+        "TRADES_NOT_FRESH",
+        "LIVE_FEED_MODE_NOT_DECLARED",
+        "CLOCK_VALIDATION_SAMPLE_NOT_READY",
+        "AGGRESSOR_CLASSIFICATION_INCOMPLETE"
+      ],
+      "observed_clock": {
+        "state": "UNVERIFIED",
+        "scope": "OBSERVED_TIMESTAMP_ALIGNMENT_NOT_EXCHANGE_LATENCY_OR_ENTITLEMENT_CERTIFICATION",
+        "minimum_trades": 20,
+        "minimum_span_ms": 30000,
+        "raw_feed_label": "UNVERIFIED",
+        "order_routing": false,
+        "reason": "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+      }
+    },
+    "USDJPY": {
+      "state": "DATA_NOT_READY",
+      "reasons": [
+        "TRADES_NOT_FRESH"
+      ],
+      "observed_clock": {
+        "state": "OBSERVED_FRESH_RESEARCH",
+        "scope": "OBSERVED_TIMESTAMP_ALIGNMENT_NOT_EXCHANGE_LATENCY_OR_ENTITLEMENT_CERTIFICATION",
+        "minimum_trades": 20,
+        "minimum_span_ms": 30000,
+        "raw_feed_label": "UNVERIFIED",
+        "order_routing": false,
+        "observed_trades": 45,
+        "explicit_utc_anchors": 30,
+        "max_observed_lag_ms": 132.0,
+        "min_observed_lag_ms": 74.0,
+        "unspecified_clock_policy": "NUMERIC_UTC_ALIGNMENT_CORROBORATED_BY_SAME_CONTRACT_EXPLICIT_UTC_EVENTS",
+        "entitlement_verified": false,
+        "exchange_latency_verified": false
+      }
+    },
+    "NZDUSD": {
+      "state": "DATA_NOT_READY",
+      "reasons": [
+        "WAITING_QUANTOWER_DATA",
+        "INSUFFICIENT_TRADES",
+        "TRADES_NOT_FRESH",
+        "LIVE_FEED_MODE_NOT_DECLARED",
+        "CLOCK_VALIDATION_SAMPLE_NOT_READY",
+        "AGGRESSOR_CLASSIFICATION_INCOMPLETE",
+        "PROVIDER_DELAY_NOT_ZERO_OR_UNKNOWN"
+      ],
+      "observed_clock": {
+        "state": "UNVERIFIED",
+        "scope": "OBSERVED_TIMESTAMP_ALIGNMENT_NOT_EXCHANGE_LATENCY_OR_ENTITLEMENT_CERTIFICATION",
+        "minimum_trades": 20,
+        "minimum_span_ms": 30000,
+        "raw_feed_label": "UNVERIFIED",
+        "order_routing": false,
+        "reason": "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+      }
+    },
+    "USDCHF": {
+      "state": "DATA_NOT_READY",
+      "reasons": [
+        "INSUFFICIENT_TRADES",
+        "TRADES_NOT_FRESH",
+        "LIVE_FEED_MODE_NOT_DECLARED",
+        "CLOCK_VALIDATION_SAMPLE_NOT_READY",
+        "AGGRESSOR_CLASSIFICATION_INCOMPLETE"
+      ],
+      "observed_clock": {
+        "state": "UNVERIFIED",
+        "scope": "OBSERVED_TIMESTAMP_ALIGNMENT_NOT_EXCHANGE_LATENCY_OR_ENTITLEMENT_CERTIFICATION",
+        "minimum_trades": 20,
+        "minimum_span_ms": 30000,
+        "raw_feed_label": "UNVERIFIED",
+        "order_routing": false,
+        "reason": "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+      }
+    }
+  },
+  "final_crypto_states": {
+    "BTCUSD": "DATA_NOT_READY",
+    "ETHUSD": "DATA_NOT_READY",
+    "SOLUSD": "DATA_NOT_READY",
+    "XRPUSD": "DATA_NOT_READY"
+  },
+  "post_check_crypto": {
+    "BTCUSD": {
+      "state": "RESEARCH_FEATURES_READY",
+      "reasons": []
+    },
+    "ETHUSD": {
+      "state": "RESEARCH_FEATURES_READY",
+      "reasons": []
+    },
+    "SOLUSD": {
+      "state": "RESEARCH_FEATURES_READY",
+      "reasons": []
+    },
+    "XRPUSD": {
+      "state": "RESEARCH_FEATURES_READY",
+      "reasons": []
+    }
+  },
+  "post_check_crypto_smc": {
+    "BTCUSD": {
+      "state": "MACRO_BLOCKED",
+      "errors": []
+    },
+    "ETHUSD": {
+      "state": "MACRO_BLOCKED",
+      "errors": []
+    },
+    "SOLUSD": {
+      "state": "MACRO_BLOCKED",
+      "errors": []
+    },
+    "XRPUSD": {
+      "state": "MACRO_BLOCKED",
+      "errors": []
+    }
+  },
+  "post_check_utc_ms": 1794182912176
+}

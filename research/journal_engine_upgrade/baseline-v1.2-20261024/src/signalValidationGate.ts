@@ -1,0 +1,348 @@
+import { NotificationCandidate } from '../server/pipeline';
+import { RuntimeExecutionPipelineResult } from '../server/runtimeExecutionPipeline';
+import { getPipSize, isBoxTooNarrow, isRolloverSpreadWindow } from './assetMetrics';
+
+export const SIGNAL_VALIDATION_GATE_VERSION = 2 as const;
+
+export type SignalValidationStatus = 'PASS' | 'FAIL';
+
+export interface SignalValidationGateDecision {
+  readonly version: typeof SIGNAL_VALIDATION_GATE_VERSION;
+  readonly entryValidation: SignalValidationStatus;
+  readonly confirmationValidation: SignalValidationStatus;
+  readonly htfConsistency: SignalValidationStatus;
+  readonly validationDecision: SignalValidationStatus;
+  readonly rejectionReason: readonly string[];
+  readonly waitReason: string | null;
+}
+
+const ENTRY_MAX_DISTANCE_PIPS = 25;
+const CONFIRMATION_MAX_DISTANCE_PIPS = 15;
+const ZONE_INVALIDATION_TOLERANCE_PIPS = 1;
+const DEFAULT_MAX_MARKET_DATA_AGE_MS = 30 * 60 * 1000;
+const MAX_FUTURE_MARKET_DATA_SKEW_MS = 16 * 60 * 1000;
+const MAX_POI_AGE_MS: Readonly<Record<'15m' | '1h' | '4h', number>> = Object.freeze({
+  '15m': 3 * 24 * 60 * 60 * 1000,
+  '1h': 14 * 24 * 60 * 60 * 1000,
+  '4h': 30 * 24 * 60 * 60 * 1000,
+});
+
+export function evaluateSignalValidationGate(
+  candidate: NotificationCandidate,
+  execution: RuntimeExecutionPipelineResult
+): SignalValidationGateDecision {
+  const rejectionReason: string[] = [];
+
+  const entryValidation = evaluateEntryValidation(candidate, rejectionReason);
+  const confirmationValidation = evaluateConfirmationValidation(candidate, rejectionReason);
+  const htfConsistency = evaluateHtfConsistency(candidate, rejectionReason);
+
+  const validationDecision: SignalValidationStatus =
+    entryValidation === 'PASS' && confirmationValidation === 'PASS' && htfConsistency === 'PASS'
+      ? 'PASS'
+      : 'FAIL';
+
+  const waitReason = validationDecision === 'PASS'
+    ? null
+    : buildWaitReason(candidate, execution, entryValidation, confirmationValidation, htfConsistency);
+
+  return Object.freeze({
+    version: SIGNAL_VALIDATION_GATE_VERSION,
+    entryValidation,
+    confirmationValidation,
+    htfConsistency,
+    validationDecision,
+    rejectionReason: Object.freeze([...new Set(rejectionReason)]),
+    waitReason,
+  });
+}
+
+function evaluateEntryValidation(candidate: NotificationCandidate, rejectionReason: string[]): SignalValidationStatus {
+  const zone = resolveZone(candidate);
+  const currentPrice = candidate.currentPrice;
+  const quality = candidate.signalQualityResult;
+
+  if (candidate.marketDataTimestamp !== undefined) {
+    const dataAgeMs = Date.now() - candidate.marketDataTimestamp;
+    if (dataAgeMs < -MAX_FUTURE_MARKET_DATA_SKEW_MS || dataAgeMs > configuredMaxMarketDataAgeMs()) {
+      rejectionReason.push('market data is stale or timestamp is invalid');
+      return 'FAIL';
+    }
+  }
+
+  // 1. Prop Firm Midnight Rollover Spread Protection (20:50 - 22:15 UTC / 23:50 - 01:15 TSİ)
+  if (isRolloverSpreadWindow(candidate.marketDataTimestamp)) {
+    rejectionReason.push('prop firm midnight rollover spread spike window (20:50 - 22:15 UTC / 23:50 - 01:15 TSİ); execution frozen');
+    return 'FAIL';
+  }
+
+  // 2. Minimum Viable POI Box Width (Dar Kutu Kalkanı - broker spread friction)
+  if (isBoxTooNarrow(candidate.symbol, zone.low, zone.high, candidate.atr15mPips)) {
+    rejectionReason.push('entry zone is too narrow to survive broker spread and execution noise');
+    return 'FAIL';
+  }
+
+  if (!directionMatchesTrade(candidate.tradeDirection, candidate.poi.direction)) {
+    rejectionReason.push('POI direction conflicts with trade direction');
+    return 'FAIL';
+  }
+
+  if (!directionMatchesTrade(candidate.tradeDirection, candidate.poi.relatedEvent.direction)) {
+    rejectionReason.push('structure direction conflicts with trade direction');
+    return 'FAIL';
+  }
+
+  const invalidationTolerance = ZONE_INVALIDATION_TOLERANCE_PIPS * pipSize(candidate.symbol);
+  // A wick/sweep may run beyond the zone. Invalidate only after the analysis
+  // timeframe's completed candle closes beyond the zone by more than one pip.
+  const validationClose = candidate.validationClosePrice ?? currentPrice;
+  const crossedInvalidationSide =
+    (candidate.tradeDirection === 'long' && validationClose < zone.low - invalidationTolerance) ||
+    (candidate.tradeDirection === 'short' && validationClose > zone.high + invalidationTolerance);
+  if (crossedInvalidationSide) {
+    rejectionReason.push('completed candle close crossed the invalidation side of the entry zone');
+    return 'FAIL';
+  }
+
+  if (isAdverseMomentumMarubozu(candidate)) {
+    rejectionReason.push('adverse momentum marubozu candle into entry zone without rejection');
+    return 'FAIL';
+  }
+
+  // 3. Exhaustion Sweep + Shallow FVG Guard (Sığ FVG Tuzağı)
+  if (isExhaustionSweepShallowFvg(candidate)) {
+    rejectionReason.push('exhaustion sweep with premature shallow FVG in HTF opposing territory; deep discount/OTE retracement required');
+    return 'FAIL';
+  }
+
+  if (quality?.status === 'invalid') {
+    rejectionReason.push('setup invalidated by signal quality analysis');
+    return 'FAIL';
+  }
+
+  if (quality?.metrics.invalidationRisk === 'high') {
+    rejectionReason.push('setup invalidation risk is high');
+  }
+
+  if ((quality?.metrics.poiTestCount ?? candidate.poiTestCount) >= 2) {
+    rejectionReason.push('entry zone depleted; POI has already been tested multiple times');
+    return 'FAIL';
+  }
+
+  if (candidate.inducementMagnet?.isActive) {
+    rejectionReason.push('active inducement liquidity cluster exists behind the stop loss');
+    return 'FAIL';
+  }
+
+  if (!candidate.gradeResult.entryAllowed) {
+    rejectionReason.push('grade engine did not permit entry');
+    return 'FAIL';
+  }
+
+  // 5. Strict Macro Gate Alignment (Makro Karşıtı Yönde İşlem Kalkanı)
+  if (candidate.macroEvaluation && candidate.macroEvaluation.allowed === false) {
+    rejectionReason.push(`macro gate vetoed trade: ${candidate.macroEvaluation.gateStatusMessage || 'macro direction mismatch'}`);
+    return 'FAIL';
+  }
+
+  return 'PASS';
+}
+
+function evaluateConfirmationValidation(candidate: NotificationCandidate, rejectionReason: string[]): SignalValidationStatus {
+  const quality = candidate.signalQualityResult;
+
+  if (quality?.status === 'invalid') {
+    rejectionReason.push('manual confirmation window is no longer valid');
+    return 'FAIL';
+  }
+
+  return 'PASS';
+}
+
+function evaluateHtfConsistency(candidate: NotificationCandidate, rejectionReason: string[]): SignalValidationStatus {
+  const direction = candidate.tradeDirection;
+  const bias4H = candidate.bias4H;
+  const bias1H = candidate.bias1H;
+
+  const directionMatches4H =
+    (direction === 'long' && bias4H === 'bullish') ||
+    (direction === 'short' && bias4H === 'bearish');
+
+  const htf1HConflict =
+    (direction === 'long' && bias1H === 'bearish') ||
+    (direction === 'short' && bias1H === 'bullish');
+
+  if (!directionMatches4H) {
+    rejectionReason.push('HTF bias does not match trade direction');
+    return 'FAIL';
+  }
+
+  if (htf1HConflict && candidate.gradeResult.blockReasons.some(r => r.includes('1H bias is not aligned'))) {
+    rejectionReason.push('1H trend conflicts with HTF direction for continuation model');
+    return 'FAIL';
+  }
+
+  const direct4HPdConflict =
+    (direction === 'long' && candidate.pd4H === 'premium') ||
+    (direction === 'short' && candidate.pd4H === 'discount');
+  if (direct4HPdConflict && !candidate.allowTrendContinuationPD) {
+    rejectionReason.push('4H premium/discount context conflicts with the trade');
+    return 'FAIL';
+  }
+
+  const direct1HPdConflict =
+    (direction === 'long' && candidate.pd1H === 'premium') ||
+    (direction === 'short' && candidate.pd1H === 'discount');
+  if (direct1HPdConflict && !candidate.allowTrendContinuationPD) {
+    rejectionReason.push('1H premium/discount context conflicts with the trade');
+    return 'FAIL';
+  }
+
+  const direct15MPdConflict =
+    (direction === 'long' && candidate.pd15M === 'premium' && candidate.pd1H !== 'discount') ||
+    (direction === 'short' && candidate.pd15M === 'discount' && candidate.pd1H !== 'premium');
+  if (direct15MPdConflict) {
+    rejectionReason.push('15M premium/discount context conflicts with the trade');
+    return 'FAIL';
+  }
+
+  return 'PASS';
+}
+
+function buildWaitReason(
+  candidate: NotificationCandidate,
+  execution: RuntimeExecutionPipelineResult,
+  entryValidation: SignalValidationStatus,
+  confirmationValidation: SignalValidationStatus,
+  htfConsistency: SignalValidationStatus
+): string {
+  if (entryValidation === 'FAIL') {
+    return 'WAIT removed: entry is no longer actionable.';
+  }
+  if (confirmationValidation === 'FAIL') {
+    return 'WAIT removed: manual confirmation is no longer reachable.';
+  }
+  if (htfConsistency === 'FAIL') {
+    return 'WAIT removed: HTF context no longer matches the setup.';
+  }
+  if (execution.decisionCalibration.status !== 'ELIGIBLE') {
+    return 'WAIT removed: runtime decision calibration is not eligible.';
+  }
+  return `WAIT confirmed for ${candidate.tradeDirection.toUpperCase()} setup.`;
+}
+
+function resolveZone(candidate: NotificationCandidate): { low: number; high: number } {
+  if (candidate.poiType === 'OB') {
+    const ob = candidate.poi as { low: number; high: number };
+    return { low: ob.low, high: ob.high };
+  }
+  const fvg = candidate.poi as { gapLow: number; gapHigh: number };
+  return { low: fvg.gapLow, high: fvg.gapHigh };
+}
+
+function distanceToZonePips(candidate: NotificationCandidate, low: number, high: number): number {
+  const size = pipSize(candidate.symbol);
+  if (candidate.currentPrice >= low && candidate.currentPrice <= high) return 0;
+  if (candidate.currentPrice > high) return (candidate.currentPrice - high) / size;
+  return (low - candidate.currentPrice) / size;
+}
+
+function pipSize(symbol: string): number {
+  return getPipSize(symbol);
+}
+
+function directionMatchesTrade(tradeDirection: 'long' | 'short', direction: 'bullish' | 'bearish'): boolean {
+  return (tradeDirection === 'long' && direction === 'bullish') ||
+    (tradeDirection === 'short' && direction === 'bearish');
+}
+
+function configuredMaxMarketDataAgeMs(): number {
+  const configuredMinutes = Number(process.env.MAX_SIGNAL_DATA_AGE_MINUTES ?? 30);
+  if (!Number.isFinite(configuredMinutes) || configuredMinutes <= 0) {
+    return DEFAULT_MAX_MARKET_DATA_AGE_MS;
+  }
+  return configuredMinutes * 60 * 1000;
+}
+
+function isAdverseMomentumMarubozu(candidate: NotificationCandidate): boolean {
+  const candle = candidate.triggerCandle;
+  if (!candle) return false;
+
+  const candleRange = candle.high - candle.low;
+  if (candleRange <= 0) return false;
+
+  const zone = resolveZone(candidate);
+  const zoneHeight = Math.max(zone.high - zone.low, pipSize(candidate.symbol));
+
+  const touchesZone = candle.low <= zone.high && candle.high >= zone.low;
+  if (!touchesZone) return false;
+
+  const isBearishCandle = candle.close < candle.open;
+  const isBullishCandle = candle.close > candle.open;
+  if (candidate.tradeDirection === 'long' && !isBearishCandle) return false;
+  if (candidate.tradeDirection === 'short' && !isBullishCandle) return false;
+
+  const body = Math.abs(candle.close - candle.open);
+  const bodyRatio = body / candleRange;
+  if (bodyRatio < 0.80) return false;
+
+  const atrDist = (candidate.atr15mPips ?? 0) * pipSize(candidate.symbol);
+  const isAbnormallyLarge = (atrDist > 0 && body >= 1.6 * atrDist) || body >= 1.75 * zoneHeight;
+  if (!isAbnormallyLarge) return false;
+
+  if (candidate.tradeDirection === 'long') {
+    const deepInAdverseEdge = candle.close <= zone.low + 0.25 * zoneHeight;
+    const lowerWick = Math.max(0, Math.min(candle.open, candle.close) - candle.low);
+    const minimalRejection = lowerWick / candleRange <= 0.12;
+    return deepInAdverseEdge && minimalRejection;
+  } else {
+    const deepInAdverseEdge = candle.close >= zone.high - 0.25 * zoneHeight;
+    const upperWick = Math.max(0, candle.high - Math.max(candle.open, candle.close));
+    const minimalRejection = upperWick / candleRange <= 0.12;
+    return deepInAdverseEdge && minimalRejection;
+  }
+}
+
+export function isExhaustionSweepShallowFvg(candidate: NotificationCandidate): boolean {
+  if (candidate.isExhaustionSweepShallowFvg === true) {
+    return true;
+  }
+  if (candidate.poiType !== 'FVG') {
+    return false;
+  }
+
+  // Long check: Price in HTF Premium + shallow 15M FVG + rejection/exhaustion wick
+  if (candidate.tradeDirection === 'long') {
+    const isHtfPremium = candidate.pd1H === 'premium' || candidate.pd4H === 'premium';
+    const isShallow = candidate.pd15M === 'premium' || candidate.pd15M === 'eq';
+    if (isHtfPremium && isShallow) {
+      if (candidate.triggerCandle) {
+        const c = candidate.triggerCandle;
+        const candleRange = c.high - c.low;
+        const upperWick = c.high - Math.max(c.open, c.close);
+        if (candleRange > 0 && upperWick / candleRange >= 0.35) {
+          return true;
+        }
+      }
+    }
+  }
+
+  // Short check: Price in HTF Discount + shallow 15M FVG + rejection/exhaustion wick
+  if (candidate.tradeDirection === 'short') {
+    const isHtfDiscount = candidate.pd1H === 'discount' || candidate.pd4H === 'discount';
+    const isShallow = candidate.pd15M === 'discount' || candidate.pd15M === 'eq';
+    if (isHtfDiscount && isShallow) {
+      if (candidate.triggerCandle) {
+        const c = candidate.triggerCandle;
+        const candleRange = c.high - c.low;
+        const lowerWick = Math.min(c.open, c.close) - c.low;
+        if (candleRange > 0 && lowerWick / candleRange >= 0.35) {
+          return true;
+        }
+      }
+    }
+  }
+
+  return false;
+}
+

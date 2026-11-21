@@ -1,0 +1,28 @@
+{
+  "checked_utc_ms": 1794057128251,
+  "service_state": "RUNNING",
+  "service_status_age_ms": 220,
+  "service_errors": [],
+  "forex": {
+    "symbols": 21,
+    "feed_provider": "quantower",
+    "bridge_state": "HEARTBEAT_FRESH",
+    "heartbeat_age_ms": 922,
+    "feed_faults": {
+      "CONTRACT_OR_SESSION_CHANGE": 8
+    },
+    "macro_smc_gated": true,
+    "order_routing": false
+  },
+  "smc_state": "DATA_NOT_READY",
+  "unit_tests_passed": 44,
+  "actual_cme_trade_events_observed": 0,
+  "live_verified": false,
+  "order_routing": false,
+  "stop_start_verified": true,
+  "exclusive_lock_read_denied_verified": true,
+  "gui_instance_creation_resolved": false,
+  "background_host_verified": true,
+  "dll_sha256": "5f7e6037a94854c18ee46b6098dd8990c99bd5aa978303d56c4799bc396989cf",
+  "installed_dll_matches": true
+}

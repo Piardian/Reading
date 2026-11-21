@@ -213,8 +213,8 @@ describe('Grade Calculator - Core Grading & Blocks', () => {
     expect(twoTests.poiIntegrity).toEqual({ decision: 'PASS', contributingReasons: [] });
     expect(twoTests.breakdown.poiQuality).toBe(-1); // -1 penalty
     expect(twoTests.totalScore).toBe(7); // 9 - 2 = 7 (poi was 1, now -1)
-    expect(twoTests.grade).toBe('B+'); // Capped at B+ because poiTestCount >= 2
-    expect(twoTests.entryAllowed).toBe(false);
+    expect(twoTests.grade).toBe('A'); // Demoted from A+ to A; permitted with -1 score penalty
+    expect(twoTests.entryAllowed).toBe(true);
 
     const overTestedInput = dummyInput();
     overTestedInput.poiTestCount = 5;

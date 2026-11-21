@@ -3,6 +3,8 @@ import * as path from 'path';
 import { PaperOutcomeTracker } from '../server/paperOutcomeTracker';
 import { FileMacroOutcomeStore } from '../server/macroOutcomeEvidence';
 import { NotificationCandidate } from '../server/pipeline';
+import { FileSignalLedger } from '../server/signalLedger';
+import { JsonlEvidenceStore } from '../server/evidenceStore';
 import { StoredCandle } from '../server/candleStore';
 
 describe('PaperOutcomeTracker Macro Integration Lifecycle', () => {
@@ -26,6 +28,8 @@ describe('PaperOutcomeTracker Macro Integration Lifecycle', () => {
     const macroOutcomeStore = new FileMacroOutcomeStore(macroEvidencePath);
     const tracker = new PaperOutcomeTracker({
       statePath,
+      signalLedger: new FileSignalLedger(path.join(testDir, 'ledger')),
+      evidenceStore: new JsonlEvidenceStore(path.join(testDir, 'evidence')),
       macroOutcomeStore,
       config: {
         entryExpiryMs: 24 * 3600 * 1000,
@@ -68,7 +72,7 @@ describe('PaperOutcomeTracker Macro Integration Lifecycle', () => {
     };
 
     // 1. Register candidate
-    tracker.registerCandidate(candidate, undefined, { isShadowCounterfactual: false });
+    tracker.registerCandidate(candidate, undefined, { isShadowCounterfactual: false, observedAtMs: now });
     const tracked = tracker.get('test_integration_btc_1');
     expect(tracked).toBeDefined();
     expect(tracked?.status).toBe('WAITING_ENTRY');

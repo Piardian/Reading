@@ -92,6 +92,7 @@ export interface RawBar {
 }
 
 export interface RawOiPoint {
+  timestamp?: number;
   sum_open_interest: number;
   sum_open_interest_value: number;
 }
@@ -126,6 +127,8 @@ export interface RawRotationSnapshot {
 }
 
 export interface CoinRotationAssessment {
+  derivatives_data_status?: 'COMPLETE' | 'UNAVAILABLE';
+  derivatives_data_reasons?: readonly string[];
   coin: string;
   spot_symbol: string;
   futures_symbol: string;
@@ -298,6 +301,17 @@ function computeBarMetrics(
   };
 }
 
+export function assessDerivativesData(data: RawCoinRotationInput): string[] {
+  const issues: string[] = [];
+  const history = data.oi_history_1h ?? [];
+  if (typeof data.funding_rate !== 'number' || !Number.isFinite(data.funding_rate)) issues.push('FUNDING_UNAVAILABLE');
+  if (history.length < 25 || history.some(p => !Number.isFinite(p.sum_open_interest) || p.sum_open_interest <= 0)) issues.push('OI_24H_HISTORY_UNAVAILABLE');
+  if (!(Number.isFinite(data.spot_quote_volume_24h) && data.spot_quote_volume_24h! > 0 && Number.isFinite(data.futures_quote_volume_24h) && data.futures_quote_volume_24h! > 0)) issues.push('SPOT_FUTURES_VOLUME_UNAVAILABLE');
+  if (history.some(p => p.timestamp !== undefined) && history.some((p, i) =>
+    !Number.isFinite(p.timestamp) || p.timestamp! <= 0 || (i > 0 && Math.abs(p.timestamp! - history[i - 1].timestamp! - 3600000) > 60000))) issues.push('OI_WINDOW_MISALIGNED');
+  return issues;
+}
+
 function computeOiMetrics(oiHist1h: RawOiPoint[] = []) {
   if (oiHist1h.length === 0) {
     return { oi_value_usd: 0.0, oi_change_4h_pct: 0.0, oi_change_24h_pct: 0.0 };
@@ -305,7 +319,7 @@ function computeOiMetrics(oiHist1h: RawOiPoint[] = []) {
   const currOi = oiHist1h[oiHist1h.length - 1].sum_open_interest ?? 0.0;
   const currVal = oiHist1h[oiHist1h.length - 1].sum_open_interest_value ?? 0.0;
   const oi4hAgo = oiHist1h.length >= 5 ? oiHist1h[oiHist1h.length - 5].sum_open_interest : oiHist1h[0].sum_open_interest;
-  const oi24hAgo = oiHist1h[0].sum_open_interest;
+  const oi24hAgo = oiHist1h[Math.max(0, oiHist1h.length - 25)].sum_open_interest;
   return {
     oi_value_usd: round2(currVal),
     oi_change_4h_pct: pctChange(currOi, oi4hAgo),
@@ -406,6 +420,7 @@ export function evaluateCryptoRotationSnapshot(
     parsedCoins[coin] = {
       ...barM,
       ...oiM,
+      derivatives_data_reasons: assessDerivativesData(data),
       coin,
       spot_symbol: data.spot_symbol ?? meta?.spotSymbol ?? `${coin}USDT`,
       futures_symbol: data.futures_symbol ?? meta?.futuresSymbol ?? `${coin}USDT`,
@@ -592,7 +607,7 @@ export function evaluateCryptoRotationSnapshot(
     const isShortBuildupDistribution =
       (rsBtc24h <= -0.8 || rsBtc4h <= -0.3) &&
       (price4h < 0.0 || price24h < 0.0) &&
-      oi4h >= -1.5 &&
+      oi4h >= 0.5 &&
       rvol >= 1.20 &&
       !isShortSqueezeDanger &&
       !isCapitulationOiFlushed;
@@ -610,6 +625,10 @@ export function evaluateCryptoRotationSnapshot(
     else if (isCapitulationOiFlushed) derivativesRegime = 'CAPITULATION_OI_FLUSHED';
     else if (isShortBuildupDistribution) derivativesRegime = 'SHORT_BUILDUP_DISTRIBUTION';
     else if (isOrganicDistribution) derivativesRegime = 'ORGANIC_DISTRIBUTION_FLUSH';
+    const derivativesDataReasons: string[] = cm.derivatives_data_reasons;
+    if (derivativesDataReasons.length) derivativesRegime = 'UNAVAILABLE_DERIVATIVES';
+    else if (oi4h < 0 && price4h > 0 && !isShortSqueezeDanger) derivativesRegime = 'SHORT_COVERING';
+    else if (oi4h < 0 && price4h < 0 && !isCapitulationOiFlushed) derivativesRegime = 'LONG_LIQUIDATION';
 
     const isStealthAccumulation = rvol >= 2.20 && Math.abs(price4h) >= 0.10 && Math.abs(price4h) <= 3.20 && rsBtc4h >= 0.0;
     const isUnconfirmedSpike = Math.abs(price24h) >= 8.0 && rvol < 1.15;
@@ -695,6 +714,7 @@ export function evaluateCryptoRotationSnapshot(
     else if (derivativesRegime === 'SHORT_BUILDUP_DISTRIBUTION') { derivLongPts = 2; derivShortPts = 15; }
     else if (derivativesRegime === 'ORGANIC_DISTRIBUTION_FLUSH') { derivLongPts = 2; derivShortPts = 12; }
     else if (derivativesRegime === 'CAPITULATION_OI_FLUSHED') { derivLongPts = 4; derivShortPts = 5; }
+    else if (derivativesRegime === 'UNAVAILABLE_DERIVATIVES' || derivativesRegime === 'SHORT_COVERING' || derivativesRegime === 'LONG_LIQUIDATION') { derivLongPts = 0; derivShortPts = 0; }
 
     // 7. Sector Breadth (10 pts)
     let secLongPts = 0;
@@ -729,6 +749,10 @@ export function evaluateCryptoRotationSnapshot(
 
     const vetoReasonsLong: string[] = [];
     const vetoReasonsShort: string[] = [];
+    if (derivativesDataReasons.length) {
+      vetoReasonsLong.push(`DERIVATIVES_DATA_UNAVAILABLE (${derivativesDataReasons.join(', ')})`);
+      vetoReasonsShort.push(`DERIVATIVES_DATA_UNAVAILABLE (${derivativesDataReasons.join(', ')})`);
+    }
 
     if (rsBtc24h < -0.5 && rsBtc4h < -0.25) {
       vetoReasonsLong.push(`RS_UNDERPERFORMING_BTC (ALT/BTC 24s: %${rsBtc24h.toFixed(2)}, 4s: %${rsBtc4h.toFixed(2)})`);
@@ -842,6 +866,8 @@ export function evaluateCryptoRotationSnapshot(
       funding_rate_pct: funding,
       spot_to_futures_vol_ratio: spotFutRatio,
       derivatives_regime: derivativesRegime,
+      derivatives_data_status: derivativesDataReasons.length ? 'UNAVAILABLE' : 'COMPLETE',
+      derivatives_data_reasons: derivativesDataReasons,
       is_single_coin_outlier: isSingleCoinOutlier,
       long_rotation_score: longScore,
       short_rotation_score: shortScore,
@@ -1099,6 +1125,7 @@ export class CryptoRotationEngine {
     const oiRaw = oiRes && oiRes.ok ? ((await oiRes.json()) as any[]) : [];
     const oi_history_1h: RawOiPoint[] = Array.isArray(oiRaw)
       ? oiRaw.map(item => ({
+          timestamp: Number(item.timestamp),
           sum_open_interest: Number(item.sumOpenInterest ?? 0),
           sum_open_interest_value: Number(item.sumOpenInterestValue ?? 0),
         }))
@@ -1145,7 +1172,7 @@ export class CryptoRotationEngine {
         spot_price_change_24h_pct: Number(sp.priceChangePercent ?? ft.priceChangePercent ?? 0),
         spot_quote_volume_24h: Number(sp.quoteVolume ?? 0),
         futures_quote_volume_24h: Number(ft.quoteVolume ?? 0),
-        funding_rate: Number(pr.lastFundingRate ?? 0),
+        funding_rate: pr.lastFundingRate == null ? undefined : Number(pr.lastFundingRate),
       };
     }
 

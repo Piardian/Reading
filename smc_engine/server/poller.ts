@@ -33,7 +33,8 @@ import { MacroGateAdapter } from './macroGateAdapter';
 import { ActivePoiWatchlist } from './activePoiWatchlist';
 import { PaperOutcomeTracker } from './paperOutcomeTracker';
 import { captureMacroSnapshot } from './macroOutcomeEvidence';
-import { calculateTradeExpectancyPlan } from '../src/tradeExpectancyEngine';
+import { applyMacroRiskToPlan } from '../src/tradeExpectancyEngine';
+import { archiveSignalFlowMarket, recordSignalFlowEvent } from './signalFlowMeasurement';
 
 const signalIntelligenceSnapshotWriter = new FileSignalIntelligenceSnapshotWriter();
 const signalRepository = new InMemorySignalRepository();
@@ -74,7 +75,11 @@ export async function pollAndProcess(
       fetchedCount = 0;
     } else {
       const existing = candleStore.getCandles(symbol, timeframe);
-      const outputSize = existing.length === 0 ? 100 : 10;
+      const intervalMs = timeframe === '1m' ? 60_000 : timeframe === '15m' ? 900_000
+        : timeframe === '1h' ? 3_600_000 : 14_400_000;
+      const lastTimestamp = existing[existing.length - 1]?.timestamp;
+      const outputSize = !Number.isFinite(lastTimestamp) ? 100
+        : Math.min(500, Math.max(10, Math.ceil((Date.now() - lastTimestamp) / intervalMs) + 2));
 
       const fetched = await fetchCandles(symbol, timeframe, outputSize);
       fetchedCount = fetched.length;
@@ -99,6 +104,7 @@ export async function pollAndProcess(
 
       try {
         const detectionTimer = telemetryTimer();
+        archiveSignalFlowMarket(symbol, candleStore);
         const candidates = runPipeline(symbol, candleStore, notifiedStore);
         const detectionTimeMs = elapsedMs(detectionTimer);
         const detectionEnd = new Date().toISOString();
@@ -144,23 +150,17 @@ export async function pollAndProcess(
               candidate.gradeResult.totalScore
             );
             candidate.macroEvaluation = macroGate;
-            if (candidate.expectancyPlan) {
-              const poi = candidate.poi as any;
-              const zoneLow = candidate.poiType === 'OB' ? poi.low : poi.gapLow;
-              const zoneHigh = candidate.poiType === 'OB' ? poi.high : poi.gapHigh;
-              candidate.expectancyPlan = calculateTradeExpectancyPlan({
-                symbol: candidate.symbol,
-                direction: candidate.tradeDirection,
-                zoneLow,
-                zoneHigh,
-                currentPrice: candidate.currentPrice,
-                grade: candidate.gradeResult.grade as any,
-                totalScore: candidate.gradeResult.totalScore,
-                atr15mPips: candidate.atr15mPips,
-                liquidityMagnet: candidate.liquidityMagnet,
-                opposingObstacle: candidate.opposingObstacle,
-                macroEvaluation: macroGate,
+            // Register the common SMC population before macro, risk and delivery selection.
+            // Approved and blocked candidates use exactly the same paper execution policy.
+            try {
+              PaperOutcomeTracker.getInstance().registerCandidate(candidate, undefined, {
+                isShadowCounterfactual: !macroGate.allowed,
               });
+            } catch (trackerErr) {
+              console.warn(`[PaperOutcomeTracker] Baseline registration failed for ${signalId}:`, trackerErr);
+            }
+            if (candidate.expectancyPlan) {
+              candidate.expectancyPlan = applyMacroRiskToPlan(candidate.expectancyPlan, macroGate);
             }
             console.log(`[Begonya Score: ${macroGate.begonyaScore}/100 - ${macroGate.scoreTier}] [Signal: ${signalId}] ${symbol} ${candidate.tradeDirection.toUpperCase()} -> ${macroGate.gateStatusMessage}`);
             if (!macroGate.allowed) {
@@ -833,6 +833,8 @@ export async function pollAndProcess(
     pollFailureReason = err instanceof Error ? err.message : String(err);
     console.error(`pollAndProcess failed for ${symbol} (${timeframe}):`, err);
   } finally {
+    recordSignalFlowEvent('POLL', { symbol, timeframe, startedAt: pollTimer.startedAtIso,
+      durationMs: elapsedMs(pollTimer), success: pollSuccess, fetchedCandles: fetchedCount, failureReason: pollFailureReason });
     recordPollingTelemetry({
       type: 'polling',
       symbol,

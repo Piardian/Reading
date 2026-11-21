@@ -148,10 +148,10 @@ function analyzeNarrative(detector: DetectorResult, context: ContextAnalysis): N
       missingPieces,
     },
     reactionLogic: {
-      strength: detector.poi.testCount <= 1 ? 'Coherent' : 'Weak',
-      summary: detector.poi.testCount <= 1
-        ? 'POI is fresh enough for shadow evaluation.'
-        : 'POI has repeated tests and weaker reaction logic.',
+      strength: detector.poi.testCount <= 2 ? 'Coherent' : 'Weak',
+      summary: detector.poi.testCount <= 2
+        ? 'POI is within admissible retest limit (<= 2 touches).'
+        : 'POI has repeated tests (3+) and depleted reaction logic.',
     },
     smcNarrative: {
       strength,
@@ -183,9 +183,8 @@ function analyzeQuality(
 ): QualityAnalysis {
   const poiQuality: QualityLevel =
     detector.poi.testCount === 0 ? 'High' :
-      detector.poi.testCount === 1 ? 'Medium' :
-        detector.poi.testCount === 2 ? 'Low' :
-          'Invalid';
+      detector.poi.testCount <= 2 ? 'Medium' :
+        'Invalid';
 
   const structureQuality: QualityLevel =
     detector.structure.eventType === 'BOS' || detector.structure.eventType === 'CHoCH'

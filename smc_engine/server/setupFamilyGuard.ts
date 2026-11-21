@@ -19,14 +19,14 @@ export interface SetupFamilyGuardOptions {
   readonly cooldownMs?: number;
   /** Max price overlap ratio (0-1) to consider two zones identical family. Default: 0.4 */
   readonly overlapThreshold?: number;
-  /** Cooldown in milliseconds for overlapping price zones on the same symbol (depleted/stale POI). Default: 16 hours */
+  /** Cooldown in milliseconds for overlapping price zones on the same symbol (depleted/stale POI). Default: 3 hours */
   readonly zoneOverlapCooldownMs?: number;
   /** Directory path to persist history. Default: 'data' in non-test mode */
   readonly dataDir?: string;
 }
 
 const DEFAULT_COOLDOWN_MS = 45 * 60 * 1000;
-const DEFAULT_ZONE_OVERLAP_COOLDOWN_MS = 16 * 60 * 60 * 1000; // 16 hours (full intraday session window)
+const DEFAULT_ZONE_OVERLAP_COOLDOWN_MS = 3 * 60 * 60 * 1000; // 3 hours (blocks intra-session churn while allowing London -> NY transitions)
 const DEFAULT_OVERLAP_THRESHOLD = 0.4;
 
 export class SetupFamilyGuard {

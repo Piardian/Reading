@@ -1,0 +1,58 @@
+{
+  "checked_utc_ms": 1794222775612,
+  "state": "RUNNING",
+  "status_age_ms": 70,
+  "pid": 24252,
+  "order_routing": false,
+  "minimum_smc_grade": "B+",
+  "active_policy": {
+    "version": "SHADOW_100USD_HALF_1R_BE_LIQUIDITY_V1",
+    "risk_usd": 100.0,
+    "partial_at_r": 1.0,
+    "partial_fraction": 0.5,
+    "move_remaining_to_entry": true,
+    "minimum_target_rr": 2.0,
+    "require_liquidity_target": true
+  },
+  "policy_since_ms": 1794222743715,
+  "ledger_counts": {},
+  "summary": {
+    "total": 0,
+    "open": 0,
+    "closed": 0,
+    "tp": 0,
+    "sl": 0,
+    "be": 0,
+    "unresolved": 0,
+    "gross_r": 0,
+    "gross_profit_r": 0,
+    "gross_loss_r": 0,
+    "tp1_hits": 0,
+    "partial_realized_r_not_closed": 0,
+    "realized_total_gross_r": 0,
+    "closed_model_gross_usd": 0,
+    "realized_model_gross_usd": 0,
+    "usd_unavailable_records": 0,
+    "commission": null,
+    "slippage": null,
+    "net_pnl": null,
+    "broker_verified": false
+  },
+  "telegram_state": "READY",
+  "runtime_errors": [
+    "RECORDER_MANAGER_START_FAILED",
+    "PAXG_RECORDER_FAILED_OR_NOT_FRESH"
+  ],
+  "python_tests_passed": 118,
+  "edge_proven": false,
+  "net_pnl": null,
+  "code_sha256": {
+    "config.json": "5e20dc505468be42039b44be3508393b494c6cca003212145d159cbba71f7e52",
+    "entry_tracker.py": "ac1b6acad958240adb6a381b98ea0736fc03619658a50fb1082fbf032dfd6bab",
+    "trade_management.py": "bf7cb9d2a5910a2f64b084ddbb2d0cf4d5bb3d9e7dd6d1ddf9f334af55b1aad0",
+    "shadow_ledger.py": "cc7c7d7cc9bb15816152a39d994934e1c67be97f76cfbe3be3797f0e810ada52",
+    "shadow_report.py": "5f94e2ce7aea0500595526ad61190ad08ed87d026e8ed9eebe2e1d553c40f00e",
+    "service.py": "4ec958a246c499f70ca0fd8928a3dabe936db40f583ac18c08d0983b00b74ad1",
+    "test_trade_management.py": "564620b6035242df3dbddad4d8472e14b89ef0451245e6f0ef1842898ac428a7"
+  }
+}

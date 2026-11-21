@@ -80,7 +80,7 @@ export interface SignalEntryPayload {
 export interface SignalExitPayload {
   readonly executionSource: 'PAPER' | 'BROKER_OBSERVED' | 'MANUAL';
   readonly exitTimestamp: number;
-  readonly exitPrice: number;
+  readonly exitPrice: number | null;
   readonly outcome: 'TAKE_PROFIT' | 'STOP_LOSS' | 'BREAK_EVEN' | 'EXPIRED' | 'CANCELLED' | 'UNKNOWN';
   readonly realizedR: number | null;
   readonly holdingTimeMs: number | null;

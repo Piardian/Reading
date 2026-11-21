@@ -53,3 +53,14 @@ smc_engine/tests/temp_*/
 Thumbs.db
 .aider*
 .codex*
+
+.pytest_tmp*/
+macro_engine/gateways/tmp*
+shared/tmp*
+reading/historical_archive/
+reading/runtime/
+reading/baseline_startup_archive/
+research/**/measurements/
+research/**/signal-flow-*/
+research/**/*.jsonl
+*.sqlite3*

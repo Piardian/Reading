@@ -1,0 +1,768 @@
+{
+  "captured_at_utc": "2026-10-23T14:16:24.212202+00:00",
+  "window_start_utc": "2026-10-16T14:16:24.212202+00:00",
+  "deliveries": {
+    "window": {
+      "text_signals": 4,
+      "complete_deliveries": 4,
+      "image_failures_after_text": 0
+    },
+    "monthly": {
+      "2026-08": {
+        "text_signals": 92,
+        "complete_deliveries": 92,
+        "image_failures_after_text": 0
+      },
+      "2026-09": {
+        "text_signals": 59,
+        "complete_deliveries": 59,
+        "image_failures_after_text": 0
+      },
+      "2026-10": {
+        "text_signals": 23,
+        "complete_deliveries": 23,
+        "image_failures_after_text": 0
+      }
+    },
+    "weekly_items": [
+      {
+        "signalId": "GBPUSD_15m_OB_1792160100000_1792166400000",
+        "symbol": "GBPUSD",
+        "state": "SENT",
+        "telegramSentAt": "2026-10-19T07:02:06.854Z",
+        "failureReason": null
+      },
+      {
+        "signalId": "SOLUSD_15m_FVG_1792360800000_1792360800000",
+        "symbol": "SOLUSD",
+        "state": "SENT",
+        "telegramSentAt": "2026-10-19T15:49:36.149Z",
+        "failureReason": null
+      },
+      {
+        "signalId": "IOUSD_15m_OB_1792466100000_1792468800000",
+        "symbol": "IOUSD",
+        "state": "SENT",
+        "telegramSentAt": "2026-10-20T06:02:06.726Z",
+        "failureReason": null
+      },
+      {
+        "signalId": "GBPUSD_15m_FVG_1792662300000_1792662300000",
+        "symbol": "GBPUSD",
+        "state": "SENT",
+        "telegramSentAt": "2026-10-22T12:47:53.972Z",
+        "failureReason": null
+      }
+    ],
+    "queue_snapshot_sha256": "813b0b2cb8d266e23a73c723ca24ac8c9d4b0439c9e805fdf7d54d78e1066e5c",
+    "weekly_event_log_complete": 3,
+    "weekly_event_log_image_failure": 1,
+    "weekly_status_conflicts": [
+      "IOUSD_15m_OB_1792466100000_1792468800000"
+    ]
+  },
+  "provider": {
+    "counts": {
+      "attempts": 6011,
+      "success": 4079,
+      "failed": 1932,
+      "minute_credit_limit": 327,
+      "daily_credit_limit": 1597,
+      "ProviderNetworkError": 8
+    },
+    "most_failed_symbol_timeframes": [
+      [
+        "SOLUSD:15m",
+        104
+      ],
+      [
+        "CADCHF:1h",
+        97
+      ],
+      [
+        "LTCUSD:15m",
+        84
+      ],
+      [
+        "ETHUSD:15m",
+        60
+      ],
+      [
+        "ETHUSD:1h",
+        55
+      ],
+      [
+        "USDCHF:15m",
+        52
+      ],
+      [
+        "BTCUSD:15m",
+        52
+      ],
+      [
+        "EURJPY:15m",
+        48
+      ],
+      [
+        "EURGBP:15m",
+        47
+      ],
+      [
+        "USDCAD:15m",
+        45
+      ]
+    ],
+    "queue_events": {
+      "ENQUEUED": 4692,
+      "STARTED": 4673,
+      "COMPLETED": 4079,
+      "RETRY_WAIT": 1341,
+      "FAILED": 594
+    },
+    "max_queue_length": 74,
+    "queue_wait_seconds": {
+      "n": 4673,
+      "p50": 5.22,
+      "p95": 1294.4,
+      "max": 14508.37
+    },
+    "active_job_seconds": {
+      "n": 4673,
+      "p50": 0.9,
+      "p95": 119.62,
+      "max": 133.09
+    },
+    "waiting_over_15m": 261
+  },
+  "pipeline": {
+    "scans": 20067,
+    "daily": {
+      "2026-10-16": {
+        "scans": 802,
+        "candidate_emissions": 1
+      },
+      "2026-10-17": {
+        "scans": 571,
+        "candidate_emissions": 2
+      },
+      "2026-10-18": {
+        "scans": 616,
+        "candidate_emissions": 0
+      },
+      "2026-10-19": {
+        "scans": 2913,
+        "candidate_emissions": 16
+      },
+      "2026-10-20": {
+        "scans": 4381,
+        "candidate_emissions": 1
+      },
+      "2026-10-21": {
+        "scans": 4700,
+        "candidate_emissions": 0
+      },
+      "2026-10-22": {
+        "scans": 3418,
+        "candidate_emissions": 1
+      },
+      "2026-10-23": {
+        "scans": 2666,
+        "candidate_emissions": 0
+      }
+    },
+    "per_symbol": {
+      "EURJPY": {
+        "scans": 402,
+        "candidate_emissions": 0
+      },
+      "GBPJPY": {
+        "scans": 407,
+        "candidate_emissions": 0
+      },
+      "CADJPY": {
+        "scans": 402,
+        "candidate_emissions": 0
+      },
+      "AUDJPY": {
+        "scans": 400,
+        "candidate_emissions": 0
+      },
+      "EURAUD": {
+        "scans": 400,
+        "candidate_emissions": 0
+      },
+      "NZDCAD": {
+        "scans": 400,
+        "candidate_emissions": 0
+      },
+      "EURCHF": {
+        "scans": 403,
+        "candidate_emissions": 0
+      },
+      "GBPCHF": {
+        "scans": 401,
+        "candidate_emissions": 0
+      },
+      "AUDCHF": {
+        "scans": 407,
+        "candidate_emissions": 0
+      },
+      "CADCHF": {
+        "scans": 405,
+        "candidate_emissions": 0
+      },
+      "NZDCHF": {
+        "scans": 406,
+        "candidate_emissions": 0
+      },
+      "CHFJPY": {
+        "scans": 402,
+        "candidate_emissions": 0
+      },
+      "NAS100": {
+        "scans": 399,
+        "candidate_emissions": 0
+      },
+      "XAUUSD": {
+        "scans": 398,
+        "candidate_emissions": 0
+      },
+      "BTCUSD": {
+        "scans": 619,
+        "candidate_emissions": 0
+      },
+      "ETHUSD": {
+        "scans": 615,
+        "candidate_emissions": 2
+      },
+      "LTCUSD": {
+        "scans": 607,
+        "candidate_emissions": 0
+      },
+      "SOLUSD": {
+        "scans": 603,
+        "candidate_emissions": 7
+      },
+      "RENDERUSD": {
+        "scans": 594,
+        "candidate_emissions": 0
+      },
+      "GALAUSD": {
+        "scans": 573,
+        "candidate_emissions": 0
+      },
+      "EURUSD": {
+        "scans": 406,
+        "candidate_emissions": 0
+      },
+      "GBPUSD": {
+        "scans": 405,
+        "candidate_emissions": 2
+      },
+      "AUDUSD": {
+        "scans": 405,
+        "candidate_emissions": 0
+      },
+      "USDCAD": {
+        "scans": 403,
+        "candidate_emissions": 0
+      },
+      "USDJPY": {
+        "scans": 406,
+        "candidate_emissions": 0
+      },
+      "NZDUSD": {
+        "scans": 405,
+        "candidate_emissions": 0
+      },
+      "USDCHF": {
+        "scans": 401,
+        "candidate_emissions": 1
+      },
+      "AUDCAD": {
+        "scans": 406,
+        "candidate_emissions": 0
+      },
+      "EURGBP": {
+        "scans": 402,
+        "candidate_emissions": 0
+      },
+      "PEPEUSD": {
+        "scans": 169,
+        "candidate_emissions": 0
+      },
+      "XRPUSD": {
+        "scans": 226,
+        "candidate_emissions": 0
+      },
+      "OPUSD": {
+        "scans": 394,
+        "candidate_emissions": 0
+      },
+      "TAOUSD": {
+        "scans": 8,
+        "candidate_emissions": 0
+      },
+      "INJUSD": {
+        "scans": 143,
+        "candidate_emissions": 0
+      },
+      "BCHUSD": {
+        "scans": 238,
+        "candidate_emissions": 0
+      },
+      "SUIUSD": {
+        "scans": 271,
+        "candidate_emissions": 0
+      },
+      "VIRTUALUSD": {
+        "scans": 154,
+        "candidate_emissions": 0
+      },
+      "ARBUSD": {
+        "scans": 408,
+        "candidate_emissions": 0
+      },
+      "NEARUSD": {
+        "scans": 215,
+        "candidate_emissions": 0
+      },
+      "APTUSD": {
+        "scans": 281,
+        "candidate_emissions": 0
+      },
+      "SEIUSD": {
+        "scans": 417,
+        "candidate_emissions": 0
+      },
+      "LINKUSD": {
+        "scans": 401,
+        "candidate_emissions": 0
+      },
+      "SHIBUSD": {
+        "scans": 62,
+        "candidate_emissions": 0
+      },
+      "FLOKIUSD": {
+        "scans": 101,
+        "candidate_emissions": 0
+      },
+      "SANDUSD": {
+        "scans": 3,
+        "candidate_emissions": 0
+      },
+      "DASHUSD": {
+        "scans": 255,
+        "candidate_emissions": 0
+      },
+      "UNIUSD": {
+        "scans": 212,
+        "candidate_emissions": 0
+      },
+      "FETUSD": {
+        "scans": 332,
+        "candidate_emissions": 0
+      },
+      "WLDUSD": {
+        "scans": 360,
+        "candidate_emissions": 8
+      },
+      "CHZUSD": {
+        "scans": 275,
+        "candidate_emissions": 0
+      },
+      "IOUSD": {
+        "scans": 179,
+        "candidate_emissions": 1
+      },
+      "PENDLEUSD": {
+        "scans": 205,
+        "candidate_emissions": 0
+      },
+      "DOTUSD": {
+        "scans": 359,
+        "candidate_emissions": 0
+      },
+      "DOGEUSD": {
+        "scans": 56,
+        "candidate_emissions": 0
+      },
+      "PENGUUSD": {
+        "scans": 224,
+        "candidate_emissions": 0
+      },
+      "WIFUSD": {
+        "scans": 72,
+        "candidate_emissions": 0
+      },
+      "RVNUSD": {
+        "scans": 360,
+        "candidate_emissions": 0
+      },
+      "ARKMUSD": {
+        "scans": 312,
+        "candidate_emissions": 0
+      },
+      "BONKUSD": {
+        "scans": 139,
+        "candidate_emissions": 0
+      },
+      "AAVEUSD": {
+        "scans": 20,
+        "candidate_emissions": 0
+      },
+      "ADAUSD": {
+        "scans": 175,
+        "candidate_emissions": 0
+      },
+      "AVAXUSD": {
+        "scans": 159,
+        "candidate_emissions": 0
+      }
+    },
+    "rejection_events": {
+      "poi_expired_ttl_48h": 379959,
+      "15m_displacement_insufficient": 132279,
+      "inducement_liquidity_trap": 70906,
+      "poi_or_structure_direction_conflict": 249107,
+      "distance_exceeds_threshold": 73698,
+      "symbol_blacklisted": 401,
+      "grade_4h_bias_conflict": 319,
+      "duplicate_poi": 6025,
+      "grade_4h_pd_conflict": 974,
+      "grade_other_block": 4454,
+      "grade_poi_integrity_insufficient": 2009,
+      "4h_bias_not_directional": 370,
+      "v2_grade_cap_b+": 64,
+      "v2_hard_reject_poi_box_too_narrow": 89,
+      "grade_below_A": 59,
+      "INSUFFICIENT_DATA": 20,
+      "insufficient_1h_candles": 20
+    },
+    "grade_stage_single_rule_opportunities_including_repeats": {
+      "4h_pd_conflict": 13
+    }
+  },
+  "lifecycle": {
+    "retained_observations": 8943,
+    "first_block_reason_unique_pois": {
+      "poi_expired_ttl_48h": {
+        "unique_pois": 656,
+        "also_invalidation_observed": 364
+      },
+      "inducement_liquidity_trap": {
+        "unique_pois": 170,
+        "also_invalidation_observed": 72
+      },
+      "poi_or_structure_direction_conflict": {
+        "unique_pois": 136,
+        "also_invalidation_observed": 97
+      },
+      "poi_direction_vs_4h": {
+        "unique_pois": 136,
+        "also_invalidation_observed": 97
+      },
+      "related_event_direction_vs_4h": {
+        "unique_pois": 136,
+        "also_invalidation_observed": 97
+      },
+      "distance_exceeds_threshold": {
+        "unique_pois": 108,
+        "also_invalidation_observed": 52
+      },
+      "15m_displacement_insufficient": {
+        "unique_pois": 64,
+        "also_invalidation_observed": 20
+      },
+      "POI is already tested multiple times; fresh POIs required for entry": {
+        "unique_pois": 9,
+        "also_invalidation_observed": 8
+      },
+      "POI integrity is below the minimum entry standard": {
+        "unique_pois": 6,
+        "also_invalidation_observed": 5
+      },
+      "POI zone is too narrow to survive spread and noise (<7 pips or <%0.35).": {
+        "unique_pois": 4,
+        "also_invalidation_observed": 2
+      },
+      "15M and 1H intraday premium/discount context conflicts with the trade": {
+        "unique_pois": 3,
+        "also_invalidation_observed": 3
+      },
+      "1H bias is not aligned with 4H bias for continuation model": {
+        "unique_pois": 2,
+        "also_invalidation_observed": 2
+      },
+      "4H premium/discount context conflicts with the trade": {
+        "unique_pois": 2,
+        "also_invalidation_observed": 2
+      },
+      "1H and HTF premium/discount context conflicts with the trade": {
+        "unique_pois": 2,
+        "also_invalidation_observed": 2
+      },
+      "Karsi Engel: 13.3 pip asagida 15M Bullish OB mevcut (0.5848 - 0.5852)": {
+        "unique_pois": 1,
+        "also_invalidation_observed": 1
+      },
+      "Karsi Engel: 12.5 pip asagida 15M Bullish OB mevcut (0.5848 - 0.5852)": {
+        "unique_pois": 1,
+        "also_invalidation_observed": 1
+      },
+      "grade_below_A": {
+        "unique_pois": 1,
+        "also_invalidation_observed": 0
+      },
+      "Karsi Engel: 6.6 pip asagida 15M Bullish OB mevcut (0.4645 - 0.4664)": {
+        "unique_pois": 1,
+        "also_invalidation_observed": 1
+      },
+      "Karsi Engel: 7 pip asagida 15M Bullish OB mevcut (0.7983 - 0.7987)": {
+        "unique_pois": 1,
+        "also_invalidation_observed": 1
+      },
+      "Karsi Engel: 14.3 pip asagida 15M Bullish OB mevcut (110.5172 - 110.5651)": {
+        "unique_pois": 1,
+        "also_invalidation_observed": 0
+      }
+    },
+    "distance_rejections_later_candidate_observed": 0,
+    "single_filter_quality_effect_identifiable": false
+  },
+  "polling": {
+    "counts": {
+      "rows": 30414,
+      "success": 29950,
+      "failed": 464
+    },
+    "15m_duration_seconds": {
+      "n": 14708,
+      "p50": 1.52,
+      "p95": 10.3,
+      "max": 3866.89
+    }
+  },
+  "disk_settings_not_attested_runtime_env": {
+    "ENABLE_KILLZONE": "true",
+    "ENABLE_PVP_SIGNAL_ACCELERATION": "true",
+    "ENABLE_PVP_KILLZONE_BYPASS": "true",
+    "CANDLE_DATA_DIR": "C:/Users/piard/.gemini/antigravity/scratch/swing-bos-core/data"
+  },
+  "configured_candle_cache_coverage": [
+    {
+      "symbol": "EURUSD",
+      "timeframe": "15m",
+      "count": 500,
+      "first": "2026-10-18T09:00:00+00:00",
+      "last": "2026-10-23T14:00:00+00:00",
+      "covers_week_start": false
+    },
+    {
+      "symbol": "EURUSD",
+      "timeframe": "1h",
+      "count": 500,
+      "first": "2026-09-28T19:00:00+00:00",
+      "last": "2026-10-23T14:00:00+00:00",
+      "covers_week_start": true
+    },
+    {
+      "symbol": "EURUSD",
+      "timeframe": "4h",
+      "count": 500,
+      "first": "2026-07-02T08:00:00+00:00",
+      "last": "2026-10-23T12:00:00+00:00",
+      "covers_week_start": true
+    },
+    {
+      "symbol": "GBPUSD",
+      "timeframe": "15m",
+      "count": 500,
+      "first": "2026-10-18T09:00:00+00:00",
+      "last": "2026-10-23T14:00:00+00:00",
+      "covers_week_start": false
+    },
+    {
+      "symbol": "GBPUSD",
+      "timeframe": "1h",
+      "count": 500,
+      "first": "2026-09-28T19:00:00+00:00",
+      "last": "2026-10-23T14:00:00+00:00",
+      "covers_week_start": true
+    },
+    {
+      "symbol": "GBPUSD",
+      "timeframe": "4h",
+      "count": 500,
+      "first": "2026-07-02T08:00:00+00:00",
+      "last": "2026-10-23T12:00:00+00:00",
+      "covers_week_start": true
+    },
+    {
+      "symbol": "XAUUSD",
+      "timeframe": "15m",
+      "count": 500,
+      "first": "2026-10-18T09:00:00+00:00",
+      "last": "2026-10-23T14:00:00+00:00",
+      "covers_week_start": false
+    },
+    {
+      "symbol": "XAUUSD",
+      "timeframe": "1h",
+      "count": 500,
+      "first": "2026-09-28T08:00:00+00:00",
+      "last": "2026-10-23T14:00:00+00:00",
+      "covers_week_start": true
+    },
+    {
+      "symbol": "XAUUSD",
+      "timeframe": "4h",
+      "count": 500,
+      "first": "2026-07-02T08:00:00+00:00",
+      "last": "2026-10-23T12:00:00+00:00",
+      "covers_week_start": true
+    },
+    {
+      "symbol": "BTCUSD",
+      "timeframe": "15m",
+      "count": 500,
+      "first": "2026-10-18T09:00:00+00:00",
+      "last": "2026-10-23T14:00:00+00:00",
+      "covers_week_start": false
+    },
+    {
+      "symbol": "BTCUSD",
+      "timeframe": "1h",
+      "count": 500,
+      "first": "2026-10-02T17:00:00+00:00",
+      "last": "2026-10-23T14:00:00+00:00",
+      "covers_week_start": true
+    },
+    {
+      "symbol": "BTCUSD",
+      "timeframe": "4h",
+      "count": 500,
+      "first": "2026-08-01T08:00:00+00:00",
+      "last": "2026-10-23T12:00:00+00:00",
+      "covers_week_start": true
+    },
+    {
+      "symbol": "ETHUSD",
+      "timeframe": "15m",
+      "count": 500,
+      "first": "2026-10-18T08:45:00+00:00",
+      "last": "2026-10-23T14:00:00+00:00",
+      "covers_week_start": false
+    },
+    {
+      "symbol": "ETHUSD",
+      "timeframe": "1h",
+      "count": 500,
+      "first": "2026-10-02T17:00:00+00:00",
+      "last": "2026-10-23T14:00:00+00:00",
+      "covers_week_start": true
+    },
+    {
+      "symbol": "ETHUSD",
+      "timeframe": "4h",
+      "count": 500,
+      "first": "2026-08-01T08:00:00+00:00",
+      "last": "2026-10-23T12:00:00+00:00",
+      "covers_week_start": true
+    },
+    {
+      "symbol": "SOLUSD",
+      "timeframe": "15m",
+      "count": 500,
+      "first": "2026-10-18T09:00:00+00:00",
+      "last": "2026-10-23T14:00:00+00:00",
+      "covers_week_start": false
+    },
+    {
+      "symbol": "SOLUSD",
+      "timeframe": "1h",
+      "count": 500,
+      "first": "2026-10-02T17:00:00+00:00",
+      "last": "2026-10-23T14:00:00+00:00",
+      "covers_week_start": true
+    },
+    {
+      "symbol": "SOLUSD",
+      "timeframe": "4h",
+      "count": 500,
+      "first": "2026-08-01T08:00:00+00:00",
+      "last": "2026-10-23T12:00:00+00:00",
+      "covers_week_start": true
+    }
+  ],
+  "sources": {
+    "delivery-queue.jsonl": {
+      "sha256": "d027406af798a9fd4bcc4d70914ccb94307aeaccc1fe757ff76bc896db01bfe9",
+      "bytes": 60812,
+      "rows": 182,
+      "malformed_lines": 0,
+      "first": "2026-09-05T06:17:04.850000+00:00",
+      "last": "2026-10-22T12:47:54.093000+00:00",
+      "full_week_retained": true
+    },
+    "provider.jsonl": {
+      "sha256": "99b63dd4585751e6e233c95960b8602716dd48ca22944c46c61fc49c362108e9",
+      "bytes": 11781206,
+      "rows": 27849,
+      "malformed_lines": 0,
+      "first": "2026-09-11T11:15:51.460000+00:00",
+      "last": "2026-10-23T14:03:01.497000+00:00",
+      "full_week_retained": true
+    },
+    "provider-queue.jsonl": {
+      "sha256": "0cd5c12fe96a34e03bccb4e9c556098d6a8809ec4c43a14270ddbc1313c3c2c3",
+      "bytes": 21867186,
+      "rows": 56857,
+      "malformed_lines": 0,
+      "first": "2026-09-24T12:16:17.065000+00:00",
+      "last": "2026-10-23T14:03:01.498000+00:00",
+      "full_week_retained": true
+    },
+    "pipeline-filter.jsonl": {
+      "sha256": "bccd0626d6ba5a29d8096af28d028158f2132fd7a8f18f1b6fa3b1c93ae7d4d8",
+      "bytes": 24080867,
+      "rows": 36698,
+      "malformed_lines": 0,
+      "first": "2026-10-09T01:46:21.632000+00:00",
+      "last": "2026-10-23T14:16:22.080000+00:00",
+      "full_week_retained": true
+    },
+    "poi-lifecycle.jsonl": {
+      "sha256": "0ed52ab6fe1a2313f4eba874bb09f870469bc695fa2db6f02f68944981676fdf",
+      "bytes": 21389520,
+      "rows": 8943,
+      "malformed_lines": 0,
+      "first": "2026-10-23T08:32:01.181000+00:00",
+      "last": "2026-10-23T14:16:21.910000+00:00",
+      "full_week_retained": false
+    },
+    "polling.jsonl": {
+      "sha256": "0fb2ebaa7195bc13e3fab7bc5a4cab0f90132893dfe86386c2f76f27bffd1f7a",
+      "bytes": 13890950,
+      "rows": 30415,
+      "malformed_lines": 0,
+      "first": "2026-10-20T04:02:05.076000+00:00",
+      "last": "2026-10-23T14:16:25.834000+00:00",
+      "full_week_retained": false
+    }
+  },
+  "limits": [
+    "Rolling logs have different retention windows; all row counts are retained samples.",
+    "Repeated scans and first-failure lists do not measure unique lost qualified signals.",
+    "Shadow midpoint fills, fixed 2R and retrospective confirmation are not manual hybrid trades.",
+    "Archived-candidate geometry sensitivity is not a full replay or realized PnL.",
+    "Current source rules cannot explain a historical runtime before their deployment."
+  ],
+  "code_fingerprints": {
+    "smc_engine\\server\\pipeline.ts": "9becb992b86c2914e6dbafa6f20aec5b4b520baa5efafaea6289a51b1c9b6ad6",
+    "smc_engine\\server\\providerQueue.ts": "749adcf8081241e1c049eef2a837f3223892189c756bffd67f096fdd10528fa4",
+    "smc_engine\\server\\index.ts": "618239683500768e05e2235e5def3d7a7a001d6a9e399b4805414915011f2a11",
+    "smc_engine\\server\\shadowCohortTracker.ts": "e5506f76e8beb30721f5d06981e18d995b4eaac589d99ddbbbded4c291e16412",
+    "smc_engine\\src\\tradeExpectancyEngine.ts": "2c4522543e19ed46874ae9efbb162aac08507f5947f4f24a908ac985b0939d3f"
+  }
+}

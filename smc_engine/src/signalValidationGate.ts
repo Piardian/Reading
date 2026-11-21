@@ -1,6 +1,7 @@
 import { NotificationCandidate } from '../server/pipeline';
 import { RuntimeExecutionPipelineResult } from '../server/runtimeExecutionPipeline';
 import { getPipSize, isBoxTooNarrow, isRolloverSpreadWindow } from './assetMetrics';
+import { resolveMaxInducementDistancePips } from './liquidityMagnetDetector';
 
 export const SIGNAL_VALIDATION_GATE_VERSION = 2 as const;
 
@@ -124,14 +125,24 @@ function evaluateEntryValidation(candidate: NotificationCandidate, rejectionReas
     rejectionReason.push('setup invalidation risk is high');
   }
 
-  if ((quality?.metrics.poiTestCount ?? candidate.poiTestCount) >= 2) {
-    rejectionReason.push('entry zone depleted; POI has already been tested multiple times');
+  // 4. Over-tested / Depleted POI Guard: Max 2 prior tests allowed (3+ touches is depleted)
+  if ((quality?.metrics.poiTestCount ?? candidate.poiTestCount) >= 3) {
+    rejectionReason.push('entry zone depleted; POI has already been tested 3+ times');
     return 'FAIL';
   }
 
   if (candidate.inducementMagnet?.isActive) {
-    rejectionReason.push('active inducement liquidity cluster exists behind the stop loss');
-    return 'FAIL';
+    const maxInducementDistancePips = resolveMaxInducementDistancePips(
+      candidate.symbol,
+      zone,
+      undefined,
+      undefined,
+      { atr15mPips: candidate.atr15mPips }
+    );
+    if (candidate.inducementMagnet.distancePips <= maxInducementDistancePips) {
+      rejectionReason.push('active inducement liquidity cluster exists behind the stop loss');
+      return 'FAIL';
+    }
   }
 
   if (!candidate.gradeResult.entryAllowed) {
@@ -193,8 +204,10 @@ function evaluateHtfConsistency(candidate: NotificationCandidate, rejectionReaso
   const direct1HPdConflict =
     (direction === 'long' && candidate.pd1H === 'premium') ||
     (direction === 'short' && candidate.pd1H === 'discount');
-  if (direct1HPdConflict && !candidate.allowTrendContinuationPD) {
-    rejectionReason.push('1H premium/discount context conflicts with the trade');
+  const is4HNotIdeal =
+    candidate.pd4H === 'eq' || direct4HPdConflict;
+  if (direct1HPdConflict && is4HNotIdeal && !candidate.allowTrendContinuationPD) {
+    rejectionReason.push('1H and HTF premium/discount context conflicts with the trade');
     return 'FAIL';
   }
 

@@ -1,0 +1,48 @@
+{
+  "verified_utc_ms": 1794044152243,
+  "copy_files": 38314,
+  "copy_bytes": 971587807,
+  "dependency_directories": "INDEPENDENT_NO_JUNCTIONS",
+  "typescript_build": "PASS",
+  "python_tape_tests": {
+    "passed": 6
+  },
+  "typescript_tests": {
+    "passed": 15,
+    "suites": 2
+  },
+  "actual_pipeline_control_parity": "PASS_TAPE_METADATA_REMOVED_MATCHES_CONTROL",
+  "legacy_node_runtime": "BLOCKED_BEFORE_PROVIDER_OR_TELEGRAM_START",
+  "legacy_python_orchestrator": "BLOCKED_BEFORE_PROCESS_MANAGEMENT",
+  "runtime": {
+    "second_instance": "REJECTED",
+    "graceful_stop": "PASS",
+    "restart": "PASS",
+    "active_pid": 26408,
+    "active_smc_pid": 7280,
+    "mode": "READ_ONLY_SHADOW",
+    "order_routing": false,
+    "telegram_enabled": false,
+    "provider_calls_enabled": false
+  },
+  "exact_process_counts": {
+    "reading_service": 1,
+    "reading_smc_worker": 1,
+    "shared_recorder": 1
+  },
+  "original_source_integrity": {
+    "source_code_files_rechecked": 1977,
+    "changed_source_code_files": []
+  },
+  "current_reading_state": "RUNNING",
+  "current_smc_state": "DATA_NOT_READY",
+  "current_xau_confirmation_valid": false,
+  "edge_proven": false,
+  "net_pnl": null,
+  "limitations": [
+    "Initial scope is XAUUSD with Binance PAXG proxy",
+    "Fresh market-open candidate/tape pairs not yet observed",
+    "Existing source candle/macro files are consumed read-only; source daemons are not duplicated",
+    "Tape does not change original candidate admissions"
+  ]
+}

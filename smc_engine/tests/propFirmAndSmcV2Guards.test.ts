@@ -178,11 +178,11 @@ describe('Prop Firm & Advanced SMC Guards (3 Critical Weakness Fixes)', () => {
   });
 
   describe('2. Stale / Depleted POI Filter (Tüketilmiş / Mükerrer Kutu Kalkanı)', () => {
-    it('SetupFamilyGuard blocks duplicate overlapping zone (USDJPY #30 / BTC #25 pattern) within 16-hour session window', () => {
-      const guard = new SetupFamilyGuard({ zoneOverlapCooldownMs: 16 * 60 * 60 * 1000 });
+    it('SetupFamilyGuard default 3h window blocks intra-session churn (2.5h USDJPY #30) while unlocking London -> NY session transitions (5.5h)', () => {
+      const guard = new SetupFamilyGuard({ dataDir: undefined });
       const now = Date.now();
 
-      // Signal 1 at 09:16 (zone: 158.089 - 158.177)
+      // Signal 1 at 09:16 London (zone: 158.089 - 158.177)
       const cand1 = createBaseCandidate({
         symbol: 'USDJPY',
         poi: {
@@ -194,7 +194,7 @@ describe('Prop Firm & Advanced SMC Guards (3 Critical Weakness Fixes)', () => {
       });
       guard.recordNotification(cand1, now);
 
-      // Signal 2 at 11:46 (2.5 hours later, zone: 158.105 - 158.204, >80% overlap from a newer impulse)
+      // Signal 2 at 11:46 (2.5 hours later, intra-session duplicate churn -> still blocked)
       const cand2 = createBaseCandidate({
         symbol: 'USDJPY',
         poi: {
@@ -205,28 +205,43 @@ describe('Prop Firm & Advanced SMC Guards (3 Critical Weakness Fixes)', () => {
         },
       });
 
-      const check = guard.shouldAllow(cand2, now + (2.5 * 60 * 60 * 1000));
-      expect(check.allowed).toBe(false);
-      expect(check.reason).toContain('Duplicate/depleted zone overlap');
-      expect(check.reason).toContain('Institutional orders depleted');
+      const checkIntraSession = guard.shouldAllow(cand2, now + (2.5 * 60 * 60 * 1000));
+      expect(checkIntraSession.allowed).toBe(false);
+      expect(checkIntraSession.reason).toContain('Duplicate/depleted zone overlap');
+
+      // Signal 3 at 14:46 (5.5 hours later in NY session from a new structural break -> unlocked)
+      const cand3 = createBaseCandidate({
+        symbol: 'USDJPY',
+        poi: {
+          ...createBaseCandidate().poi,
+          low: 158.105,
+          high: 158.204,
+          relatedEvent: { ...createBaseCandidate().poi.relatedEvent, breakTimestamp: 9000 },
+        },
+      });
+      const checkNySession = guard.shouldAllow(cand3, now + (5.5 * 60 * 60 * 1000));
+      expect(checkNySession.allowed).toBe(true);
     });
 
-    it('rejects candidate in signalValidationGate when POI has already been tested 2+ times (depleted orders)', () => {
+    it('rejects candidate in signalValidationGate when POI has already been tested 3+ times (depleted orders)', () => {
       const depletedCandidate = createBaseCandidate({
-        poiTestCount: 2,
+        poiTestCount: 3,
       });
 
       const gateResult = evaluateSignalValidationGate(depletedCandidate, executionMock);
       expect(gateResult.entryValidation).toBe('FAIL');
-      expect(gateResult.rejectionReason.join(' ')).toContain('entry zone depleted; POI has already been tested multiple times');
+      expect(gateResult.rejectionReason.join(' ')).toContain('entry zone depleted; POI has already been tested 3+ times');
     });
 
-    it('passes fresh unmitigated POI (0 tests) and first retest (1 test)', () => {
+    it('passes fresh POI (0 tests), first retest (1 test), and second manipulation touch (2 tests)', () => {
       const freshResult = evaluateSignalValidationGate(createBaseCandidate({ poiTestCount: 0 }), executionMock);
       expect(freshResult.entryValidation).toBe('PASS');
 
       const firstRetestResult = evaluateSignalValidationGate(createBaseCandidate({ poiTestCount: 1 }), executionMock);
       expect(firstRetestResult.entryValidation).toBe('PASS');
+
+      const secondTouchResult = evaluateSignalValidationGate(createBaseCandidate({ poiTestCount: 2 }), executionMock);
+      expect(secondTouchResult.entryValidation).toBe('PASS');
     });
   });
 
@@ -274,8 +289,8 @@ describe('Prop Firm & Advanced SMC Guards (3 Critical Weakness Fixes)', () => {
         symbol: 'EURUSD',
         direction: 'long',
         zoneLow: 1.1000,
-        zoneHigh: 1.1010,
-        currentPrice: 1.1005,
+        zoneHigh: 1.1020,
+        currentPrice: 1.1010,
         grade: 'A',
         totalScore: 75,
         atr15mPips: 8, // 8 * 0.35 = 2.8 pips. EURUSD spread 0.8 * 1.5 + 1.0 = 2.2 pips.

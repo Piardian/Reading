@@ -1,5 +1,7 @@
 import { FileMacroOutcomeStore } from '../server/macroOutcomeEvidence';
 import { formatMacroOutcomeReport, generateMacroOutcomeAnalytics } from '../server/macroOutcomeAnalytics';
+import { buildOutcomeReadiness, countSignalCandidates } from '../server/outcomeReadiness';
+import * as path from 'path';
 
 async function main(): Promise<void> {
   const store = new FileMacroOutcomeStore();
@@ -26,9 +28,11 @@ async function main(): Promise<void> {
   }
 
   const summary = generateMacroOutcomeAnalytics(records);
+  const readiness = buildOutcomeReadiness(records, countSignalCandidates(path.join(
+    process.env.EVIDENCE_DIRECTORY ?? 'evidence', 'signals/signal-evidence.jsonl')));
 
   if (isJson) {
-    console.log(JSON.stringify(summary, null, 2));
+    console.log(JSON.stringify({ ...summary, readiness }, null, 2));
   } else {
     console.log(formatMacroOutcomeReport(summary));
   }

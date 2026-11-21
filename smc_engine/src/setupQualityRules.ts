@@ -159,15 +159,15 @@ export const SETUP_QUALITY_RULES: readonly QualityRule[] = [
     id: 'POI_NEUTRAL_OR_WEAK',
     category: 'GradeCap',
     severity: 'Medium',
-    maxGrade: 'B+',
-    message: 'POI quality is neutral or weak.',
-    recommendation: 'Cap the setup until POI quality is confirmed by freshness and reaction logic.',
+    maxGrade: 'A-',
+    message: 'POI quality is neutral or weak (2nd touch).',
+    recommendation: 'Cap at A- because POI has already been tested twice; 3+ tests are capped/rejected.',
     condition: ({ detector }) => {
       // Fresh POIs (testCount === 0) in trend continuation BOS are high quality and not capped
       if (detector.poi.testCount === 0 && detector.structure.eventType === 'BOS') {
         return false;
       }
-      return detector.poi.testCount >= 2;
+      return detector.poi.testCount === 2;
     },
   },
   {

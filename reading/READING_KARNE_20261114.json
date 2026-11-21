@@ -1,0 +1,65 @@
+{
+  "checked_at_tr": "2026-11-14T21:52:20.953000+03:00",
+  "first_observed_reading_runtime_tr": "2026-11-07T12:32:08.611000+03:00",
+  "first_evidence_file": "historical_archive/tape_features_2026-11-07.jsonl",
+  "calendar_elapsed": {
+    "days": 7,
+    "hours": 9,
+    "minutes": 20
+  },
+  "continuous_uptime": "UNVERIFIED_INTERRUPTED_BY_PRIOR_STOPS_AND_DATA_GAPS",
+  "ledger_created_tr": "2026-11-08T21:29:18.457000+03:00",
+  "risk_policy_started_tr": "2026-11-09T14:12:23.715000+03:00",
+  "metrics": {
+    "opened_total": 0,
+    "open": 0,
+    "closed": 0,
+    "tp1": 0,
+    "tp2": 0,
+    "sl": 0,
+    "be": 0,
+    "unresolved": 0,
+    "closed_gross_r": 0,
+    "gross_profit_r": 0,
+    "gross_loss_r": 0,
+    "model_gross_usd": 0,
+    "net_r": null,
+    "net_pnl_usd": null,
+    "commission": null,
+    "slippage": null,
+    "profit_factor": null,
+    "profit_factor_reason": "NO_CLOSED_TRADE_SAMPLE",
+    "win_rate": null
+  },
+  "benchmark": {
+    "records": 84,
+    "unique_market_setups": 24,
+    "by_arm": {
+      "A": 24,
+      "B": 20,
+      "C": 20,
+      "D": 20
+    },
+    "outcomes": {
+      "REJECTED_GATE": 13,
+      "CANCELLED_BY_SMC_OR_MACRO": 44,
+      "EXPIRED_AFTER_TOUCH": 13,
+      "PENDING_RETEST_EXPIRED": 11,
+      "PENDING_RETEST": 3
+    }
+  },
+  "scope": "OBSERVED_BBO_SHADOW_NOT_BROKER_VERIFIED",
+  "order_routing": false,
+  "notes": [
+    "Unentered candidates and rejected/expired setups are not trades or realized losses.",
+    "Benchmark zero-filled realized_r fields for unentered setups are not measured net PnL.",
+    "Calendar time is not continuous usable-market-data coverage."
+  ],
+  "current_service": {
+    "state": "RUNNING",
+    "status_age_s": 0.9,
+    "errors": [
+      "FOREX_BRIDGE_HEARTBEAT_NOT_FRESH"
+    ]
+  }
+}

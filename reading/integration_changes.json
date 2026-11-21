@@ -1,0 +1,62 @@
+[
+  {
+    "path": "smc_engine/server/pipeline.ts",
+    "original_sha256": "c7eeda60b04665e602b7bbe717fe90f9a5f11ae30fe89e7f4061f0e4f198f3b9",
+    "new_sha256": "20a186d86e011fca424d202e563dfaaed8d5bfd781ce794aaec9be22f83d7d46"
+  },
+  {
+    "path": "smc_engine/server/index.ts",
+    "original_sha256": "d45ea0f393baadaa8e473e31b52770fb6e768e07136c873d4a951082b7efa2ba",
+    "new_sha256": "be7679d13663bdb82ee95197e3bf20731c4196cc6cf748a9f6fcc73fcbf40693"
+  },
+  {
+    "path": "orchestrator/start_begonya.py",
+    "original_sha256": "ec0df77ce75c34aec69f5fd174933baffd7920dbea68c58abb35c52fbd50a928",
+    "new_sha256": "d7b2579892c6b892eaebb80c4fa31a77f34b56a145b1e1b1f62c003404262392"
+  },
+  {
+    "path": "BASLAT_READING.cmd",
+    "original_sha256": null,
+    "new_sha256": "ad3fcc0e671abce7f5b04e70292ad5aab036eead7e7561e993e665189c338de1"
+  },
+  {
+    "path": "DURDUR_READING.cmd",
+    "original_sha256": null,
+    "new_sha256": "f2df1fe5025f7aa22a1e9bd4401464b1a1bf3dc8c971df167d595b9ed3f24325"
+  },
+  {
+    "path": "DURUM_READING.cmd",
+    "original_sha256": null,
+    "new_sha256": "64cb5e930867c673248ac0579914cf7373c838c01d08678528cab821e6b43d92"
+  },
+  {
+    "path": "BASLAT_BEGONYA.bat",
+    "original_sha256": "78b50283d37fb7d20cda0df89f5ddf39ed1dadd7e4923a32c95ec221aef867f4",
+    "new_sha256": "462b236b51e5c3027c321a873ffc06569b11b06e3996d68650089cdc25d38e6d"
+  },
+  {
+    "path": "start_begonya.bat",
+    "original_sha256": "9b5664d42b7d66d9613c35cebc0a118cb907a080819a749b31588a3eea34b8c4",
+    "new_sha256": "462b236b51e5c3027c321a873ffc06569b11b06e3996d68650089cdc25d38e6d"
+  },
+  {
+    "path": "start_begonya_task.bat",
+    "original_sha256": "a827cfac5a36e5d4b701b5865c2e6f333e942c6adb7de78c7e0748729b88a85e",
+    "new_sha256": "462b236b51e5c3027c321a873ffc06569b11b06e3996d68650089cdc25d38e6d"
+  },
+  {
+    "path": "smc_engine/start-bot.bat",
+    "original_sha256": "f472d5a310700b37799ec3f5ff8328272117e5ca36f72ce4330f00fdf4e67444",
+    "new_sha256": "0eafce42bd01071b36450924884f23b9c88a0996a144489fe77d80742f10bb78"
+  },
+  {
+    "path": "smc_engine/package.json",
+    "original_sha256": "58b0949ef1cf3fbad7563ea263efa281cb2b8a7347325424131bf848e751b394",
+    "new_sha256": "55ca50310d1467e106f6cde3455dcc5fb16e89d2c454976cc7c9d291ff070d75"
+  },
+  {
+    "path": "smc_engine/tests/pipeline.test.ts",
+    "original_sha256": "e0e833bfb21053e53c285cbd805f74dc71574c4d8b10fbf0217e52cfb4e3c97e",
+    "new_sha256": "00d543e2a284b1230c58894da1d9303bf45da38bd9924bcf34c97669fe7c5d5e"
+  }
+]

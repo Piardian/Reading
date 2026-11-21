@@ -178,9 +178,18 @@ class FredDataIngestion:
         units: Optional[str] = None,
     ) -> Tuple[float, float, dt.date, dt.date]:
         target = as_of - dt.timedelta(days=28)
+        # Quarterly/monthly observations can legitimately be much older than
+        # a daily-series window. A 118-day window dropped the latest GDP value
+        # at the start of a new quarter and aborted the whole morning report.
+        slower_series = {
+            "A191RL1Q225SBEA", "M2SL", "IRLTLT01DEM156N", "CPIAUCSL",
+            "CPILFESL", "PCEPI", "PCEPILFE", "PAYEMS", "UNRATE",
+            "CES0500000003", "INDPRO", "RSAFS", "CP0000EZ19M086NEST",
+        }
+        lookback_days = 365 if series_id in slower_series else 90
         rows = self._get_observations(
             series_id,
-            target - dt.timedelta(days=90),
+            target - dt.timedelta(days=lookback_days),
             as_of,
             realtime_end=as_of,
             units=units,

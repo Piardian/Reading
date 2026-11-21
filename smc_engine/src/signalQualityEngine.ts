@@ -1,4 +1,6 @@
 import { FVG, OrderBlock } from './types';
+import { getPipSize } from './assetMetrics';
+import { assessPoiRisk } from './poiRiskContext';
 
 export const SIGNAL_QUALITY_RESULT_VERSION = 1 as const;
 export const SIGNAL_QUALITY_REASON_SOURCE = 'SignalQualityEngine' as const;
@@ -31,6 +33,8 @@ export interface SignalQualityResult {
     isFresh: boolean;
     isNearPoi: boolean;
     invalidationRisk: InvalidationRisk;
+    distanceAtrMultiple?: number | null;
+    compoundRiskFlags?: readonly string[];
   };
   marketContext: {
     session: SignalQualitySession;
@@ -43,6 +47,9 @@ export interface SignalQualityResult {
 }
 
 export interface SignalQualityInput {
+  symbol?: string;
+  atr15mPips?: number | null;
+  approachAtrMultiple?: number;
   poiType: 'OB' | 'FVG';
   poi: OrderBlock | FVG;
   currentIndex: number;
@@ -51,7 +58,6 @@ export interface SignalQualityInput {
   poiTestCount: number;
 }
 
-const PIP_SIZE = 0.0001;
 const FRESH_BARS_LIMIT = 24;
 const STALE_BARS_LIMIT = 72;
 const NEAR_POI_PIPS = 15;
@@ -61,15 +67,21 @@ export function evaluateSignalQuality(input: SignalQualityInput): SignalQualityR
   const zone = resolvePoiZone(input.poiType, input.poi);
   const barsSinceFormation = Math.max(0, input.currentIndex - zone.formedAtIndex);
   const barsSinceBreak = Math.max(0, input.currentIndex - zone.breakCandleIndex);
-  const distanceToPoiPips = roundToOneDecimal(calculateDistanceToZonePips(input.currentPrice, zone.high, zone.low));
+  const pip = getPipSize(input.symbol ?? 'EURUSD');
+  const distanceToPoiPips = roundToOneDecimal(calculateDistanceToZonePips(input.currentPrice, zone.high, zone.low, pip));
+  const atr = Number.isFinite(input.atr15mPips) && input.atr15mPips! > 0 ? input.atr15mPips! : null;
+  const nearDistance = atr ?? NEAR_POI_PIPS;
+  const farDistance = atr ? atr * 3 : FAR_POI_PIPS;
   const poiRelation = resolvePoiRelation(input.currentPrice, zone.high, zone.low);
   const isFresh = barsSinceFormation <= FRESH_BARS_LIMIT;
-  const isNearPoi = distanceToPoiPips <= NEAR_POI_PIPS;
-  const invalidationRisk = resolveInvalidationRisk(input.poiTestCount, barsSinceFormation, distanceToPoiPips);
+  const isNearPoi = distanceToPoiPips <= nearDistance;
+  const invalidationRisk = resolveInvalidationRisk(input.poiTestCount, barsSinceFormation, distanceToPoiPips, farDistance);
   const marketContext = resolveMarketContext(input.currentTimestamp);
 
   const reasons: SignalQualityReason[] = [];
   const warnings: SignalQualityReason[] = [];
+  const compoundRiskFlags = assessPoiRisk({ ageBars: barsSinceFormation, testCount: input.poiTestCount, approachAtrMultiple: input.approachAtrMultiple ?? 0 });
+  for (const flag of compoundRiskFlags) warnings.push(reason(flag, 'warning', 'POI freshness, retest and approach context requires caution.'));
 
   if (isFresh) {
     reasons.push(reason('FRESH_POI', 'info', 'POI is fresh.', barsSinceFormation));
@@ -81,7 +93,7 @@ export function evaluateSignalQuality(input: SignalQualityInput): SignalQualityR
     reasons.push(reason('PRICE_INSIDE_POI', 'info', 'Current price is inside the POI zone.', true));
   } else if (isNearPoi) {
     reasons.push(reason('PRICE_NEAR_POI', 'info', 'Current price is near the POI zone.', distanceToPoiPips));
-  } else if (distanceToPoiPips >= FAR_POI_PIPS) {
+  } else if (distanceToPoiPips >= farDistance) {
     warnings.push(reason('PRICE_FAR_FROM_POI', 'warning', 'Current price is far from the POI zone.', distanceToPoiPips));
   }
 
@@ -102,7 +114,7 @@ export function evaluateSignalQuality(input: SignalQualityInput): SignalQualityR
   const score = clampScore(
     50 +
       (isFresh ? 15 : barsSinceFormation > STALE_BARS_LIMIT ? -20 : 0) +
-      (isNearPoi ? 10 : distanceToPoiPips >= FAR_POI_PIPS ? -10 : 0) +
+      (isNearPoi ? 10 : distanceToPoiPips >= farDistance ? -10 : 0) +
       (input.poiTestCount === 0 ? 10 : input.poiTestCount === 1 ? 0 : input.poiTestCount === 2 ? -10 : -25) +
       (marketContext.killzone ? 10 : -5)
   );
@@ -129,6 +141,8 @@ export function evaluateSignalQuality(input: SignalQualityInput): SignalQualityR
       isFresh,
       isNearPoi,
       invalidationRisk,
+      distanceAtrMultiple: atr ? distanceToPoiPips / atr : null,
+      compoundRiskFlags,
     },
     marketContext,
     reasons,
@@ -161,10 +175,10 @@ function resolvePoiZone(poiType: 'OB' | 'FVG', poi: OrderBlock | FVG): {
   };
 }
 
-function calculateDistanceToZonePips(price: number, zoneHigh: number, zoneLow: number): number {
+function calculateDistanceToZonePips(price: number, zoneHigh: number, zoneLow: number, pip: number): number {
   if (price >= zoneLow && price <= zoneHigh) return 0;
-  if (price > zoneHigh) return (price - zoneHigh) / PIP_SIZE;
-  return (zoneLow - price) / PIP_SIZE;
+  if (price > zoneHigh) return (price - zoneHigh) / pip;
+  return (zoneLow - price) / pip;
 }
 
 function resolvePoiRelation(price: number, zoneHigh: number, zoneLow: number): PoiRelation {
@@ -175,10 +189,11 @@ function resolvePoiRelation(price: number, zoneHigh: number, zoneLow: number): P
 function resolveInvalidationRisk(
   poiTestCount: number,
   barsSinceFormation: number,
-  distanceToPoiPips: number
+  distanceToPoiPips: number,
+  farDistance = FAR_POI_PIPS,
 ): InvalidationRisk {
   if (poiTestCount >= 3 || barsSinceFormation > STALE_BARS_LIMIT) return 'high';
-  if (poiTestCount === 2 || distanceToPoiPips >= FAR_POI_PIPS || barsSinceFormation > FRESH_BARS_LIMIT) return 'medium';
+  if (poiTestCount === 2 || distanceToPoiPips >= farDistance || barsSinceFormation > FRESH_BARS_LIMIT) return 'medium';
   return 'low';
 }
 

@@ -1,0 +1,75 @@
+{
+  "checked_utc_ms": 1794162836893,
+  "tests_passed": 88,
+  "state": "RUNNING",
+  "errors": [],
+  "crypto_symbols": {
+    "BTCUSD": {
+      "tape_state": "RESEARCH_FEATURES_READY",
+      "reasons": [],
+      "macro_smc_state": "MACRO_BLOCKED",
+      "errors": [],
+      "trade_events_60s": 377
+    },
+    "ETHUSD": {
+      "tape_state": "RESEARCH_FEATURES_READY",
+      "reasons": [],
+      "macro_smc_state": "MACRO_BLOCKED",
+      "errors": [],
+      "trade_events_60s": 408
+    },
+    "SOLUSD": {
+      "tape_state": "RESEARCH_FEATURES_READY",
+      "reasons": [],
+      "macro_smc_state": "MACRO_BLOCKED",
+      "errors": [],
+      "trade_events_60s": 117
+    },
+    "XRPUSD": {
+      "tape_state": "RESEARCH_FEATURES_READY",
+      "reasons": [],
+      "macro_smc_state": "MACRO_BLOCKED",
+      "errors": [],
+      "trade_events_60s": 250
+    }
+  },
+  "closed_candle_series": 16,
+  "telegram": {
+    "state": "READY",
+    "outbox": {
+      "DELIVERED": 1
+    },
+    "last_confirmed_delivery": {
+      "updated_ms": 1794162525992,
+      "message_id": 499,
+      "http_status": 200
+    }
+  },
+  "telegram_destination_type_verified": "private",
+  "shadow_ledger": {
+    "total": 0,
+    "open": 0,
+    "closed": 0,
+    "tp": 0,
+    "sl": 0,
+    "be": 0,
+    "unresolved": 0,
+    "gross_r": 0,
+    "gross_profit_r": 0,
+    "gross_loss_r": 0,
+    "commission": null,
+    "slippage": null,
+    "net_pnl": null,
+    "broker_verified": false
+  },
+  "order_routing": false,
+  "report_mode": "USER_SELECTED_SHADOW_R_NOT_REAL_NET",
+  "code_hashes": {
+    "reading_telegram.py": "471fb741c1a059f33403aa89ed5f5f3af151587975b0c20746748846fbe7120e",
+    "shadow_ledger.py": "c51f73a7eeaab11b2aa58e0bed4e3002a3b139f2d82ec8be83c0ad05670f0979",
+    "crypto_feed.py": "a812805ac893d2430223a838a22799f3b25d5b051b63b6722d12c59cf21d091b",
+    "crypto_live.py": "0b4fa816831deea7bf37d15f8cc79a38d63d26899f0e36344070a4a7f8b9d499",
+    "service.py": "c5663f3164aed631dea001b9845ea0716b2e254249eeb459e837d0ba666d61ea",
+    "config.json": "b36c3b0b1fae5225e6da932e567318ca4506a7ae0ca89a2517c171c1a8e97788"
+  }
+}

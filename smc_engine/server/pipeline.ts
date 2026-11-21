@@ -1,3 +1,4 @@
+import { readReadingTape, ReadingTapeAssessment } from './readingTape';
 import { CandleStore } from './candleStore';
 import { NotifiedStore } from './notifiedStore';
 import { OrderBlock, FVG, Candle, PremiumDiscountState, DisplacementQuality } from '../src/types';
@@ -13,6 +14,7 @@ import { detectSweeps, detectSwingSweeps, mergeSweepEvents, SweepEvent } from '.
 import { determineModel, ModelState } from '../src/modelDeterminer';
 import { countOBTests, countFVGTests } from '../src/poiTestCounter';
 import { calculateGrade, GradeInput, GradeResult } from '../src/gradeCalculator';
+import { acceptsEntryGrade, readingMinimumGrade } from '../src/entryGradePolicy';
 import { evaluateSignalQuality, SignalQualityResult } from '../src/signalQualityEngine';
 import { createSignalContext, createSignalId, SignalContext } from '../src/signalContext';
 import { createStructureSnapshot, formatStructureDebugLog } from '../src/structureSnapshot';
@@ -31,8 +33,13 @@ import { isCryptoSymbol } from './killzone';
 import { ActivePoiWatchlist } from './activePoiWatchlist';
 import { calculateTradeExpectancyPlan, TradeExpectancyPlan } from '../src/tradeExpectancyEngine';
 import { ShadowCohortTracker } from './shadowCohortTracker';
+import type { PoiRiskContext } from '../src/poiRiskContext';
+import { closedCandles } from '../src/closedCandles';
+import { recordSignalFlowPlan } from './signalFlowMeasurement';
+import { getEstimatedSpreadPips } from '../src/assetMetrics';
 
 export interface NotificationCandidate {
+  readingTape?: ReadingTapeAssessment;
   symbol: Symbol;
   tradeDirection: 'long' | 'short';
   poiType: 'OB' | 'FVG';
@@ -69,6 +76,7 @@ export interface NotificationCandidate {
   atr15mPips?: number | null;
   approachVelocity?: ApproachVelocityInfo;
   expectancyPlan?: TradeExpectancyPlan;
+  poiRiskContext?: PoiRiskContext;
   isExhaustionSweepShallowFvg?: boolean;
 }
 
@@ -114,7 +122,8 @@ export function validateCandleData(
 export function runPipeline(
   symbol: Symbol,
   candleStore: CandleStore,
-  notifiedStore: NotifiedStore
+  notifiedStore: NotifiedStore,
+  asOfMs = Date.now()
 ): NotificationCandidate[] {
   const filterMetrics: {
     evaluatedPois: number;
@@ -189,6 +198,13 @@ export function runPipeline(
     }
   };
   const finish = (candidates: NotificationCandidate[]): NotificationCandidate[] => {
+    // READING: append a shadow assessment; original admission/grade/order fields are untouched.
+    if (process.env.READING_TAPE_SHADOW === 'true') {
+      for (const candidate of candidates) {
+        candidate.readingTape = readReadingTape(candidate.symbol, candidate.tradeDirection, asOfMs);
+      }
+    }
+
     recordPipelineFilterTelemetry({
       type: 'pipeline_filter',
       symbol,
@@ -222,9 +238,13 @@ export function runPipeline(
     return finish([]);
   }
 
-  const candles4H = candleStore.getCandles(symbol, '4h');
-  const candles1H = candleStore.getCandles(symbol, '1h');
-  const candles15m = candleStore.getCandles(symbol, '15m');
+  const candles4H = closedCandles(candleStore.getCandles(symbol, '4h'), 4 * 3600000, asOfMs);
+  const candles1H = closedCandles(candleStore.getCandles(symbol, '1h'), 3600000, asOfMs);
+  const candles15m = closedCandles(candleStore.getCandles(symbol, '15m'), 15 * 60000, asOfMs);
+  if ([candles4H, candles1H, candles15m].some(candles => candles.length < 15)) {
+    reject('INSUFFICIENT_CLOSED_CANDLES');
+    return finish([]);
+  }
 
   // Helper typecasts
   const candles4HCast = candles4H as unknown as Candle[];
@@ -242,6 +262,8 @@ export function runPipeline(
   const swings1H = detectSwings(candles1HCast);
   const structureState1H = detectStructure(candles1HCast, swings1H);
   const bias1H = structureState1H.currentTrend;
+  const obs1h = detectAllOrderBlocks(candles1HCast, structureState1H.events);
+  const fvgs1h = detectAllFVGs(candles1HCast, structureState1H.events, symbol, '1h');
   const lastIndex1H = candles1HCast.length - 1;
   const pd1H = calculatePremiumDiscount(candles1HCast, swings1H, lastIndex1H);
 
@@ -366,7 +388,7 @@ export function runPipeline(
     }
 
     const isFatalRejection = blockingRules.some(r =>
-      r === 'poi_expired_ttl_48h' ||
+      r === 'poi_expired_ttl_72h' ||
       r === 'poi_or_structure_direction_conflict' ||
       r === '15m_displacement_insufficient'
     );
@@ -417,8 +439,8 @@ export function runPipeline(
     // 48-Hour POI TTL Filter (Anti-Stale / Anti-Ghost POI with weekend-awareness)
     const poiAgeMs = getEffectiveMarketAgeMs(currentMarketTime, formedTimestamp, symbol);
     if (poiAgeMs > MAX_POI_AGE_MS) {
-      reject('poi_expired_ttl_48h');
-      observePoiLifecycle('OB', ob, formedTimestamp, ['poi_expired_ttl_48h']);
+      reject('poi_expired_ttl_72h');
+      observePoiLifecycle('OB', ob, formedTimestamp, ['poi_expired_ttl_72h']);
       continue;
     }
 
@@ -503,6 +525,11 @@ export function runPipeline(
       entryZone: { low: ob.low, high: ob.high },
       activeOrderBlocks15m: obs,
       activeFVGs15m: fvgs,
+      activeOrderBlocks1h: obs1h,
+      activeFVGs1h: fvgs1h,
+      minClearancePips: 4.5 * ((ob.high - ob.low) / pip + Math.max(2, (atr15m ?? 14) * 0.35, getEstimatedSpreadPips(symbol) * 1.5 + 1)),
+      closedCandles15m: candles15mCast,
+      closedCandles1h: candles1HCast,
     });
 
     const allowTrendContinuationPD = shouldAllowTrendContinuationPD(
@@ -513,7 +540,14 @@ export function runPipeline(
       pd15M,
       modelState,
       dq,
-      pd1H
+      pd1H,
+      {
+        structureEvents4H: structureState4H.events,
+        structureEvents1H: structureState1H.events,
+        currentTrend15m: structureState15m.currentTrend,
+        poiStructureEventType: ob.relatedEvent.type,
+        opposingObstacle,
+      }
     );
 
     const atrPips = averageTrueRangePips(candles15mCast, lastIndex15m, symbol, 14);
@@ -534,7 +568,8 @@ export function runPipeline(
       tradeDirection,
       symbol,
       candles15mCast,
-      lastIndex15m
+      lastIndex15m,
+      { atr15mPips: atrPips }
     );
     if (inducementMagnet && inducementMagnet.isActive) {
       reject('inducement_liquidity_trap');
@@ -563,9 +598,12 @@ export function runPipeline(
       allowTrendContinuationPD,
     };
 
-    const gradeResult = calculateGrade(gradeInput);
+    const gradeResult = calculateGrade(gradeInput, readingMinimumGrade());
     if (productionOrPvpAdmission(gradeResult.entryAllowed, gradeResult.totalScore)) {
       const signalQualityResult = maybeEvaluateSignalQuality({
+        symbol,
+        atr15mPips: atrPips,
+        approachAtrMultiple: approachVelocity.isHighKineticEnergy ? approachVelocity.atrMultiple : 0,
         poiType: 'OB',
         poi: ob,
         currentIndex: lastIndex15m,
@@ -616,7 +654,9 @@ export function runPipeline(
         // Fallback in isolated test environments
       }
 
+      const poiRiskContext = { ageBars: Math.max(0, lastIndex15m - ob.formedAtIndex), testCount: poiTestResult.testCount, approachAtrMultiple: approachVelocity.isHighKineticEnergy ? approachVelocity.atrMultiple : 0 };
       const expectancyPlan = calculateTradeExpectancyPlan({
+        poiContext: poiRiskContext,
         symbol,
         direction: tradeDirection,
         zoneLow: ob.low,
@@ -636,6 +676,10 @@ export function runPipeline(
         currentIndex1h: lastIndex1H,
       });
 
+      recordSignalFlowPlan({ symbol, poiId: dedupeKey ?? uniqueKey, poiType: 'OB',
+        marketDataTimestamp: candles15mCast[lastIndex15m].timestamp, plan: expectancyPlan,
+        zoneLow: ob.low, zoneHigh: ob.high, direction: tradeDirection, grade: gradeResult.grade,
+        macroAllowed: macroEvaluation?.allowed ?? null, macroEvaluation });
       const enableExpectancyFilter = process.env.NODE_ENV !== 'test' || process.env.ENABLE_EXPECTANCY_FILTER === 'true';
       if (enableExpectancyFilter && !expectancyPlan.isAdmissible) {
         reject('insufficient_risk_reward_expectancy');
@@ -698,13 +742,14 @@ export function runPipeline(
         atr15mPips: atr15m,
         approachVelocity,
         expectancyPlan,
+        poiRiskContext,
       });
     } else {
       recordGradeBlockOverlap(gradeResult.blockReasons);
       recordSingleRuleAblation(gradeResult);
       recordGroupAblation(gradeResult);
       recordGradeRejection(gradeResult, reject);
-      observePoiLifecycle('OB', ob, formedTimestamp, gradeResult.blockReasons.length ? gradeResult.blockReasons : ['grade_below_A'], gradeResult.grade, false, gradeResult.poiIntegrity);
+      observePoiLifecycle('OB', ob, formedTimestamp, gradeResult.blockReasons.length ? gradeResult.blockReasons : [`grade_below_${readingMinimumGrade()}`], gradeResult.grade, false, gradeResult.poiIntegrity);
     }
   }
 
@@ -717,8 +762,8 @@ export function runPipeline(
     // 48-Hour POI TTL Filter (Anti-Stale / Anti-Ghost POI with weekend-awareness)
     const poiAgeMs = getEffectiveMarketAgeMs(currentMarketTime, formedTimestamp, symbol);
     if (poiAgeMs > MAX_POI_AGE_MS) {
-      reject('poi_expired_ttl_48h');
-      observePoiLifecycle('FVG', fvg, formedTimestamp, ['poi_expired_ttl_48h']);
+      reject('poi_expired_ttl_72h');
+      observePoiLifecycle('FVG', fvg, formedTimestamp, ['poi_expired_ttl_72h']);
       continue;
     }
 
@@ -803,6 +848,11 @@ export function runPipeline(
       entryZone: { low: fvg.gapLow, high: fvg.gapHigh },
       activeOrderBlocks15m: obs,
       activeFVGs15m: fvgs,
+      activeOrderBlocks1h: obs1h,
+      activeFVGs1h: fvgs1h,
+      minClearancePips: 4.5 * ((fvg.gapHigh - fvg.gapLow) / pip + Math.max(2, (atr15m ?? 14) * 0.35, getEstimatedSpreadPips(symbol) * 1.5 + 1)),
+      closedCandles15m: candles15mCast,
+      closedCandles1h: candles1HCast,
     });
 
     const isExhaustionSweep = evaluateIsExhaustionSweepShallowFvg(
@@ -816,7 +866,7 @@ export function runPipeline(
       pd15M
     );
 
-    let allowTrendContinuationPD = shouldAllowTrendContinuationPD(
+    const allowTrendContinuationPD = shouldAllowTrendContinuationPD(
       symbol,
       tradeDirection,
       bias4H,
@@ -824,11 +874,16 @@ export function runPipeline(
       pd15M,
       modelState,
       dq,
-      pd1H
+      pd1H,
+      {
+        structureEvents4H: structureState4H.events,
+        structureEvents1H: structureState1H.events,
+        currentTrend15m: structureState15m.currentTrend,
+        poiStructureEventType: fvg.relatedEvent.type,
+        opposingObstacle,
+        isExhaustionSweep,
+      }
     );
-    if (isExhaustionSweep) {
-      allowTrendContinuationPD = false;
-    }
 
     const atrPips = averageTrueRangePips(candles15mCast, lastIndex15m, symbol, 14);
     const approachVelocity = evaluateApproachVelocity(
@@ -848,7 +903,8 @@ export function runPipeline(
       tradeDirection,
       symbol,
       candles15mCast,
-      lastIndex15m
+      lastIndex15m,
+      { atr15mPips: atrPips }
     );
     if (inducementMagnet && inducementMagnet.isActive) {
       reject('inducement_liquidity_trap');
@@ -877,9 +933,12 @@ export function runPipeline(
       allowTrendContinuationPD,
     };
 
-    const gradeResult = calculateGrade(gradeInput);
+    const gradeResult = calculateGrade(gradeInput, readingMinimumGrade());
     if (productionOrPvpAdmission(gradeResult.entryAllowed, gradeResult.totalScore)) {
       const signalQualityResult = maybeEvaluateSignalQuality({
+        symbol,
+        atr15mPips: atrPips,
+        approachAtrMultiple: approachVelocity.isHighKineticEnergy ? approachVelocity.atrMultiple : 0,
         poiType: 'FVG',
         poi: fvg,
         currentIndex: lastIndex15m,
@@ -930,7 +989,9 @@ export function runPipeline(
         // Fallback in isolated test environments
       }
 
+      const poiRiskContext = { ageBars: Math.max(0, lastIndex15m - fvg.middleCandleIndex), testCount: poiTestResult.testCount, approachAtrMultiple: approachVelocity.isHighKineticEnergy ? approachVelocity.atrMultiple : 0 };
       const expectancyPlan = calculateTradeExpectancyPlan({
+        poiContext: poiRiskContext,
         symbol,
         direction: tradeDirection,
         zoneLow: fvg.gapLow,
@@ -950,6 +1011,10 @@ export function runPipeline(
         currentIndex1h: lastIndex1H,
       });
 
+      recordSignalFlowPlan({ symbol, poiId: dedupeKey ?? uniqueKey, poiType: 'FVG',
+        marketDataTimestamp: candles15mCast[lastIndex15m].timestamp, plan: expectancyPlan,
+        zoneLow: fvg.gapLow, zoneHigh: fvg.gapHigh, direction: tradeDirection, grade: gradeResult.grade,
+        macroAllowed: macroEvaluation?.allowed ?? null, macroEvaluation });
       const enableExpectancyFilter = process.env.NODE_ENV !== 'test' || process.env.ENABLE_EXPECTANCY_FILTER === 'true';
       if (enableExpectancyFilter && !expectancyPlan.isAdmissible) {
         reject('insufficient_risk_reward_expectancy');
@@ -1012,6 +1077,7 @@ export function runPipeline(
         atr15mPips: atr15m,
         approachVelocity,
         expectancyPlan,
+        poiRiskContext,
         isExhaustionSweepShallowFvg: isExhaustionSweep,
       });
     } else {
@@ -1019,7 +1085,7 @@ export function runPipeline(
       recordSingleRuleAblation(gradeResult);
       recordGroupAblation(gradeResult);
       recordGradeRejection(gradeResult, reject);
-      observePoiLifecycle('FVG', fvg, formedTimestamp, gradeResult.blockReasons.length ? gradeResult.blockReasons : ['grade_below_A'], gradeResult.grade, false, gradeResult.poiIntegrity);
+      observePoiLifecycle('FVG', fvg, formedTimestamp, gradeResult.blockReasons.length ? gradeResult.blockReasons : [`grade_below_${readingMinimumGrade()}`], gradeResult.grade, false, gradeResult.poiIntegrity);
     }
   }
   const consolidatedCandidates = consolidateCandidates(candidates);
@@ -1065,8 +1131,8 @@ export function runPipeline(
 }
 
 function latestCompletedCandle(candles: readonly Candle[]): Candle {
-  const now = Date.now();
-  return [...candles].reverse().find(candle => candle.timestamp <= now) ?? candles[Math.max(0, candles.length - 2)];
+  // runPipeline supplies only fully closed bars at its explicit analysis cutoff.
+  return candles[candles.length - 1];
 }
 
 export const MAX_POI_AGE_MS = 72 * 60 * 60 * 1000; // 72 Hours POI TTL (Extended for swing retracements)
@@ -1129,6 +1195,15 @@ export function getEffectiveMarketAgeMs(currentMarketTime: number, formedTimesta
  * being in 4H discount (for shorts) or 4H premium (for longs) should NOT veto the trade if confirmed by
  * macro directional bias, intraday P/D alignment, or strong institutional displacement.
  */
+export interface TrendContinuationContext {
+  readonly structureEvents4H?: readonly { type: 'BOS' | 'CHoCH'; direction: 'bullish' | 'bearish' }[];
+  readonly structureEvents1H?: readonly { type: 'BOS' | 'CHoCH'; direction: 'bullish' | 'bearish' }[];
+  readonly currentTrend15m?: 'bullish' | 'bearish' | 'range' | 'undefined';
+  readonly poiStructureEventType?: 'BOS' | 'CHoCH';
+  readonly opposingObstacle?: OpposingObstacle | null;
+  readonly isExhaustionSweep?: boolean;
+}
+
 export function shouldAllowTrendContinuationPD(
   symbol: string,
   tradeDirection: 'long' | 'short',
@@ -1137,19 +1212,56 @@ export function shouldAllowTrendContinuationPD(
   pd15M: PremiumDiscountState | undefined,
   modelState: ModelState,
   dq: DisplacementQuality | null,
-  pd1H?: PremiumDiscountState
+  pd1H?: PremiumDiscountState,
+  context?: TrendContinuationContext
 ): boolean {
-  // 1. Must have a valid continuation or sweep-confirmed pullback reversal model
+  // 1. Exhaustion & Immediate Opposing Wall Veto
+  if (context?.isExhaustionSweep) return false;
+  if (context?.opposingObstacle?.hasObstacle && context.opposingObstacle.distancePips <= 15) {
+    return false;
+  }
+
+  // 2. Must have a valid continuation or sweep-confirmed pullback model
   const hasValidModel =
     modelState.model === 'model2_continuation' ||
     (modelState.model === 'model1_reversal' && modelState.triggeringSweep !== null);
   if (!hasValidModel) return false;
 
-  // 2. Both 4H and 1H must align with trade direction
+  // 3. Strict Multi-Timeframe Directional Alignment (4H + 1H aligned, 15M must NOT have broken opposite)
   const expectedBias = tradeDirection === 'long' ? 'bullish' : 'bearish';
+  const oppositeBias = tradeDirection === 'long' ? 'bearish' : 'bullish';
   if (bias4H !== expectedBias || bias1H !== expectedBias) return false;
+  if (context?.currentTrend15m === oppositeBias) return false;
 
-  // 3. Intraday 15M entry must NOT be directly opposite unless 1H is in the ideal zone
+  // 4. Confirmed Institutional Trend Proof (BOS Stair-Stepping, not bare V-spike CHoCH)
+  const hasHtfEventHistory =
+    (context?.structureEvents1H?.length ?? 0) > 0 ||
+    (context?.structureEvents4H?.length ?? 0) > 0;
+  if (hasHtfEventHistory) {
+    const last1HEvent = context?.structureEvents1H?.length
+      ? context.structureEvents1H[context.structureEvents1H.length - 1]
+      : undefined;
+    const last4HEvent = context?.structureEvents4H?.length
+      ? context.structureEvents4H[context.structureEvents4H.length - 1]
+      : undefined;
+    const has1HBos =
+      last1HEvent !== undefined &&
+      last1HEvent.type === 'BOS' &&
+      last1HEvent.direction === expectedBias;
+    const has4HBosWith15mBos =
+      last4HEvent !== undefined &&
+      last4HEvent.type === 'BOS' &&
+      last4HEvent.direction === expectedBias &&
+      context?.poiStructureEventType === 'BOS';
+    if (!has1HBos && !has4HBosWith15mBos) return false;
+  }
+
+  // 5. Mandatory Local Pullback Geometry (Anti-FOMO / Never Chase Double-Premium or Double-Discount)
+  const is1HPDDirectlyOpposite = Boolean(
+    pd1H &&
+    ((tradeDirection === 'long' && pd1H.status === 'premium') ||
+     (tradeDirection === 'short' && pd1H.status === 'discount'))
+  );
   const is15MPDOpposite = Boolean(
     pd15M &&
     ((tradeDirection === 'long' && pd15M.status === 'premium') ||
@@ -1160,29 +1272,44 @@ export function shouldAllowTrendContinuationPD(
     ((tradeDirection === 'long' && pd1H.status === 'discount') ||
      (tradeDirection === 'short' && pd1H.status === 'premium'))
   );
-  if (is15MPDOpposite && !is1HPDInIdealZone) return false;
-
-  // 4. Check Macro Gate alignment
-  try {
-    const macroEval = MacroGateAdapter.getInstance().evaluateCandidate(symbol, tradeDirection, 80);
-    if (macroEval && macroEval.allowed) {
-      return true;
-    }
-  } catch {
-    // If macro gate evaluation fails or in isolated test environments
-  }
-
-  // 5. Intraday 1H/15M P/D alignment with valid displacement, or strong institutional displacement
   const is15MPDInIdealZone = Boolean(
     pd15M &&
     ((tradeDirection === 'long' && pd15M.status === 'discount') ||
      (tradeDirection === 'short' && pd15M.status === 'premium'))
   );
-  if (dq !== null && dq.gradePoints >= 1 && (is1HPDInIdealZone || is15MPDInIdealZone)) {
+  if (is15MPDOpposite && !is1HPDInIdealZone) return false;
+  // When 1H itself is already in Premium (Long) or Discount (Short), 15M MUST have pulled back into its ideal zone
+  if (is1HPDDirectlyOpposite && !is15MPDInIdealZone) return false;
+
+  // 6. Macro Gate Veto Guard & Directional Tailwind Check
+  let hasDirectionalMacroTailwind = false;
+  try {
+    const macroEval = MacroGateAdapter.getInstance().evaluateCandidate(symbol, tradeDirection, 80);
+    if (macroEval) {
+      if (macroEval.allowed === false || macroEval.capitalPreservationMode === true) {
+        return false;
+      }
+      const upperBias = (macroEval.macroBias ?? '').toUpperCase();
+      const directionalMatches = tradeDirection === 'long'
+        ? ['LONG_ONLY', 'FULL_RISK_LONG', 'BULLISH', 'BULLISH_BIAS'].includes(upperBias)
+        : ['SHORT_ONLY', 'FULL_RISK_SHORT', 'BEARISH', 'BEARISH_BIAS'].includes(upperBias);
+      if (macroEval.action === 'PROCEED' && directionalMatches) {
+        hasDirectionalMacroTailwind = true;
+      }
+    }
+  } catch {
+    // Fallback safely in isolated test environments without macro gate file
+  }
+
+  // 7. Institutional Momentum Requirement
+  if (dq === null || dq.gradePoints < 1) return false;
+  if (dq.gradePoints >= 2 && dq.quality === 'güçlü') {
     return true;
   }
 
-  return dq !== null && dq.gradePoints >= 2 && dq.quality === 'güçlü';
+  // Moderate displacement (gradePoints === 1) requires either an active directional macro tailwind or a confirmed sweep
+  return (is1HPDInIdealZone || is15MPDInIdealZone) &&
+    (hasDirectionalMacroTailwind || modelState.triggeringSweep !== null);
 }
 
 export function isDistanceExcessive(
@@ -1244,7 +1371,7 @@ function pipSize(symbol: string): number {
 
 function recordGradeRejection(gradeResult: GradeResult, reject: (reason: string) => void): void {
   if (gradeResult.blockReasons.length === 0) {
-    reject('grade_below_A');
+    reject(`grade_below_${readingMinimumGrade()}`);
     return;
   }
 
@@ -1471,7 +1598,7 @@ function buildSetupAssessmentV2(input: {
 
 function isV2AssessmentAdmissible(assessment: SetupAssessment): boolean {
   if (assessment.decision.hardReject) return false;
-  return assessment.grade.value === 'A+' || assessment.grade.value === 'A' || assessment.grade.value === 'A-';
+  return acceptsEntryGrade(assessment.grade.value, readingMinimumGrade(), true);
 }
 
 function recordV2Rejection(assessment: SetupAssessment, reject: (reason: string) => void): void {

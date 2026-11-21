@@ -79,16 +79,31 @@ export function createSignalDeliveryProcessor(
     }
 
     try {
-      const screenshotsOk = await deliverSignalScreenshots(refreshedCandidate, candleStore);
+      let screenshotsOk = await deliverSignalScreenshots(refreshedCandidate, candleStore);
+      if (!screenshotsOk) {
+        console.warn('[SignalDelivery] First screenshot attempt failed for ' + refreshedCandidate.symbol + ', retrying in 1.5s...');
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        screenshotsOk = await deliverSignalScreenshots(refreshedCandidate, candleStore);
+      }
       return {
         outcome: screenshotsOk ? 'SENT' : 'SCREENSHOT_FAILED',
         failureReason: screenshotsOk ? null : 'one or more screenshots failed',
       };
     } catch (error) {
-      return {
-        outcome: 'SCREENSHOT_FAILED',
-        failureReason: error instanceof Error ? error.message : String(error),
-      };
+      console.warn('[SignalDelivery] Screenshot capture threw error for ' + refreshedCandidate.symbol + ': ' + error + ', retrying in 1.5s...');
+      try {
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        const retryOk = await deliverSignalScreenshots(refreshedCandidate, candleStore);
+        return {
+          outcome: retryOk ? 'SENT' : 'SCREENSHOT_FAILED',
+          failureReason: retryOk ? null : 'retry screenshot failed',
+        };
+      } catch (retryError) {
+        return {
+          outcome: 'SCREENSHOT_FAILED',
+          failureReason: retryError instanceof Error ? retryError.message : String(retryError),
+        };
+      }
     }
   };
 }

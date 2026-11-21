@@ -2,6 +2,7 @@ import { NotificationCandidate } from './pipeline';
 import { OrderBlock, FVG } from '../src/types';
 import { buildCommunicationLayer, renderCommunicationMessage } from './communicationLayer';
 import { recordRuntimeTrace } from './runtimeTrace';
+import { describeEntryRange } from './entryRangeDisplay';
 
 export type ExecutionCardStatus = 'READY' | 'WAITING' | 'BLOCKED' | 'CANCELLED';
 export type ChecklistStatus = 'PASS' | 'FAIL' | 'WAITING' | 'NOT_REQUIRED';
@@ -71,12 +72,8 @@ export function buildDefaultExecutionView(candidate: NotificationCandidate): Exe
           ? 'Fiyat giriş bölgesinde; 1 dakikalık LTF onay mumu bekleniyor.'
           : 'Fiyat giriş bölgesinin dışında; bölgeye geri dönmeden (retest) işlem yapılmaz.')
       : (candidate.gradeResult.blockReasons[0] ?? 'Grade seviyesindeki bildirim politikası bu sinyali engelledi.'),
-    requiredAction: inZone
-      ? `${signal.actionText} - Fiyat giriş bölgesinde; 1 dakikalık manuel onay bekle`
-      : 'Giriş bölgesine geri çekilmeyi (retest) bekle. Bölgeye dönmeden kesinlikle işlem yok.',
-    requiredConfirmation: inZone
-      ? 'Fiyat bölgede. 1 dakikalık LTF onay mumu gerekli (manuel onay / otomatik değil)'
-      : 'Fiyat giriş bölgesinde değil. Önce bölgeye retest, ardından 1 dakikalık manuel onay.',
+    requiredAction: signal.requiredAction,
+    requiredConfirmation: signal.requiredConfirmation,
     checklist: Object.freeze([
       { label: 'HTF Uyumu', status: scoreToChecklist(candidate.gradeResult.breakdown.htfBiasPD) },
       { label: 'Yapı', status: scoreToChecklist(candidate.gradeResult.breakdown.structure) },
@@ -107,12 +104,13 @@ export function extractCandidateDisplay(candidate: NotificationCandidate) {
   const zoneLow = poiType === 'OB' ? (poi as OrderBlock).low : (poi as FVG).gapLow;
   const distInfo = calculateDistance(candidate.symbol, currentPrice, zoneLow, zoneHigh);
   const priceInZone = distInfo.isInZone;
-  const requiredAction = priceInZone
+  const entryRange = describeEntryRange(candidate);
+  const requiredAction = entryRange?.requiredAction ?? (priceInZone
     ? `${actionText} - Fiyat giriş bölgesinde; 1 dakikalık manuel onay bekle`
-    : 'Giriş bölgesine geri çekilmeyi (retest) bekle. Bölgeye dönmeden kesinlikle işlem yok.';
-  const requiredConfirmation = priceInZone
+    : 'Giriş bölgesine geri çekilmeyi (retest) bekle. Bölgeye dönmeden kesinlikle işlem yok.');
+  const requiredConfirmation = entryRange?.requiredConfirmation ?? (priceInZone
     ? 'Fiyat bölgede. 1 dakikalık LTF onay mumu gerekli (manuel onay / otomatik değil)'
-    : 'Fiyat giriş bölgesinde değil. Önce bölgeye retest, ardından 1 dakikalık manuel onay.';
+    : 'Fiyat giriş bölgesinde değil. Önce bölgeye retest, ardından 1 dakikalık manuel onay.');
 
   return Object.freeze({
     signalId,

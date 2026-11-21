@@ -60,32 +60,27 @@ from .macro_gated_3m_backtest import DailyMacroGateTable
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 logger = logging.getLogger("Begonya00.Custom1MBacktest")
 
-# 3. DÜZELTME: Altcoinler (ETH, SOL, LTC, XRP, DOG) ve Gürültülü Çaprazlar/Endeksler (USDCHF, EURJPY, SP500, US30) Çıkarıldı
 SYMBOLS = [
-    # Tier-1 Forex Majörler & Kurumsal Çaprazlar
-    "EURUSD", "GBPUSD", "USDJPY", "USDCAD", "NZDUSD", "EURGBP",
-    # Emtialar & Lider Endeks
-    "XAUUSD", "NAS100",
-    # Kurumsal Kripto (Yalnızca BTC - Altcoinler Tamamen Çıkarıldı)
-    "BTCUSD"
-]
-
-# Altcoinler çıkarılmış tüm geleneksel + BTC evreni (Karşılaştırma / Şeffaflık için)
-ALL_NON_ALTCOIN_SYMBOLS = [
+    # Forex Majörler & Çaprazlar
     "EURUSD", "GBPUSD", "USDJPY", "USDCHF", "USDCAD", "NZDUSD",
     "EURJPY", "EURGBP",
+    # Emtialar & Endeksler
     "XAUUSD", "NAS100", "SP500", "US30",
-    "BTCUSD"
+    # Kriptolar
+    "BTCUSD", "ETHUSD", "SOLUSD", "LTCUSD", "XRPUSD", "DOGUSD"
+]
+
+TIER1_SYMBOLS = [
+    "EURUSD", "GBPUSD", "USDJPY", "USDCAD", "NZDUSD", "EURGBP",
+    "XAUUSD", "NAS100", "BTCUSD"
 ]
 
 FOREX_SYMBOLS = [
-    "EURUSD", "GBPUSD", "USDJPY", "USDCAD", "NZDUSD", "EURGBP"
+    "EURUSD", "GBPUSD", "USDJPY", "USDCHF", "USDCAD", "NZDUSD",
+    "EURJPY", "EURGBP"
 ]
 
-EXCLUDED_SYMBOLS = [
-    "GBPJPY", "AUDUSD",
-    "ETHUSD", "SOLUSD", "LTCUSD", "XRPUSD", "DOGUSD"
-]
+EXCLUDED_SYMBOLS = ["GBPJPY", "AUDUSD"]  # Toksik / sahte iğneli parite filtresi
 
 
 class Custom1MBacktestRunner:
@@ -99,6 +94,9 @@ class Custom1MBacktestRunner:
         require_pro_trend: bool = REQUIRE_PRO_TREND_AAA,
         use_ifvg: bool = USE_IFVG_ENTRY,
         require_breaker: bool = REQUIRE_STRUCTURAL_BREAKER,
+        months: int = 1,
+        start_date: Optional[str] = None,
+        end_date: Optional[str] = None,
     ):
         self.initial_capital = initial_capital
         self.risk_pct = risk_pct
@@ -108,8 +106,26 @@ class Custom1MBacktestRunner:
         self.require_pro_trend = require_pro_trend
         self.use_ifvg = use_ifvg
         self.require_breaker = require_breaker
-        self.utc_to = datetime(2026, 10, 11, 23, 59, tzinfo=timezone.utc)
-        self.utc_from = datetime(2026, 9, 11, 0, 0, tzinfo=timezone.utc)
+        self.months = months
+        if start_date and end_date:
+            self.utc_from = pd.to_datetime(start_date)
+            if self.utc_from.tzinfo is None:
+                self.utc_from = self.utc_from.tz_localize(timezone.utc)
+            self.utc_to = pd.to_datetime(end_date)
+            if self.utc_to.tzinfo is None:
+                self.utc_to = self.utc_to.tz_localize(timezone.utc)
+            if len(str(end_date).strip()) == 10:
+                self.utc_to = self.utc_to.replace(hour=23, minute=59, second=59)
+        else:
+            self.utc_to = datetime(2026, 10, 11, 23, 59, tzinfo=timezone.utc)
+            if months == 3:
+                self.utc_from = datetime(2026, 7, 11, 0, 0, tzinfo=timezone.utc)
+            elif months == 6:
+                self.utc_from = datetime(2026, 4, 11, 0, 0, tzinfo=timezone.utc)
+            elif months == 12:
+                self.utc_from = datetime(2025, 10, 11, 0, 0, tzinfo=timezone.utc)
+            else:
+                self.utc_from = datetime(2026, 9, 11, 0, 0, tzinfo=timezone.utc)
 
         if self.use_macro_gate:
             self.macro_table = DailyMacroGateTable(self.utc_from.date(), self.utc_to.date())
@@ -560,8 +576,12 @@ class Custom1MBacktestRunner:
                                     }
                                     break
 
-            # --- MODEL 2: ORB (1. & 2. Düzeltme Aktifken A+ ORB Devre Dışı, Sadece Saf AAA iFVG+Breaker) ---
-            if orb_session_active and sfp_sig is None and not self.use_ifvg:
+            # Geliştirme 3: Asya Sıkışması (Compression) Kontrolü (ORB İçin)
+            asian_range = max(ash - asl, 0.0) if (ash > 0 and asl > 0) else 0.0
+            asian_exhausted = (asian_range > c_atr * 0.70) if (c_atr > 0 and asian_range > 0) else False
+
+            # --- MODEL 2: ORB (YALNIZCA FOREX PARİTELERİ LONDRA SEANSI) ---
+            if orb_session_active and sfp_sig is None and not asian_exhausted:
                 o_h = orb_high[i]
                 o_l = orb_low[i]
                 vol_ratio = c_vol / max(c_vol_sma, 1e-8)
@@ -672,7 +692,11 @@ class Custom1MBacktestRunner:
 def run_full_portfolio_simulation(
     entry_model: str = ENTRY_MODEL,
     require_reaction: bool = True,
-    use_macro_gate: bool = True
+    use_macro_gate: bool = True,
+    months: int = 1,
+    tier1_only: bool = False,
+    start_date: Optional[str] = None,
+    end_date: Optional[str] = None,
 ) -> Dict[str, Any]:
     runner = Custom1MBacktestRunner(
         initial_capital=10000.0,
@@ -680,9 +704,15 @@ def run_full_portfolio_simulation(
         entry_model=entry_model,
         require_reaction=require_reaction,
         use_macro_gate=use_macro_gate,
+        months=months,
+        start_date=start_date,
+        end_date=end_date,
     )
+    target_symbols = TIER1_SYMBOLS if tier1_only else SYMBOLS
+    period_title = f"{runner.utc_from.strftime('%Y-%m-%d')} - {runner.utc_to.strftime('%Y-%m-%d')}"
     logger.info("=" * 70)
-    logger.info("🌺 BEGONYA 00 - 1 AYLIK KURUMSAL ÖZEL STRATEJİ & PORTFÖY TESTİ 🌺")
+    logger.info(f"🌺 BEGONYA 00 - ÖZEL STRATEJİ & PORTFÖY TESTİ ({period_title}) 🌺")
+    logger.info(f"Evren: {'TIER-1 KURUMSAL (9 Parite)' if tier1_only else 'TAM EVREN (18 Parite)'}")
     logger.info(f"Entry Modeli: {runner.entry_model.upper()} | Reaksiyon Kalkanı: {'AÇIK' if runner.require_reaction else 'KAPALI'}")
     logger.info(f"Makro Kapı Yönetişimi: {'AÇIK (Günlük DXY/Yield/VIX Filtreli)' if runner.use_macro_gate else 'KAPALI'}")
     logger.info(f"Sermaye: ${runner.initial_capital:,.2f} | Risk: %{runner.risk_pct * 100:.1f} ($200 sabit)")
@@ -695,7 +725,7 @@ def run_full_portfolio_simulation(
     all_trades = []
     symbol_stats = {}
 
-    for sym in SYMBOLS:
+    for sym in target_symbols:
         df = runner.fetch_m15_data(sym)
         if df is None:
             continue
@@ -795,6 +825,7 @@ def run_full_portfolio_simulation(
 
     summary = {
         "period": f"{runner.utc_from.strftime('%Y-%m-%d')} - {runner.utc_to.strftime('%Y-%m-%d')}",
+        "universe": "TIER1_CORE_9" if tier1_only else "FULL_UNIVERSE_18",
         "entry_model": runner.entry_model.upper(),
         "macro_gate": "ENABLED" if runner.use_macro_gate else "DISABLED",
         "initial_capital": runner.initial_capital,
@@ -840,21 +871,37 @@ def run_full_portfolio_simulation(
 
     print(json.dumps(summary, indent=2, ensure_ascii=False))
 
-    out_file = Path("data") / "custom_1m_backtest_result.json"
+    if start_date and end_date:
+        out_file = Path("data") / f"custom_{start_date}_{end_date}_backtest_result.json"
+    else:
+        out_file = Path("data") / f"custom_{runner.months}m_backtest_result.json"
     out_file.parent.mkdir(parents=True, exist_ok=True)
     out_file.write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    # Geriye dönük uyumluluk için varsayılan dosyayı da güncelle
+    if runner.months == 1 and not (start_date and end_date):
+        legacy_file = Path("data") / "custom_1m_backtest_result.json"
+        legacy_file.write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
     return summary
 
 
 if __name__ == "__main__":
     import argparse
-    parser = argparse.ArgumentParser(description="Begonya 00 - 1 Aylık Kurumsal Özel Strateji & Portföy Testi")
+    parser = argparse.ArgumentParser(description="Begonya 00 - Kurumsal Özel Strateji & Portföy Testi")
+    parser.add_argument("--months", type=int, default=1, choices=[1, 3, 6, 12], help="Test periyodu (ay sayısı: 1, 3, 6, 12)")
+    parser.add_argument("--start-date", type=str, default=None, help="Özel başlangıç tarihi (YYYY-MM-DD)")
+    parser.add_argument("--end-date", type=str, default=None, help="Özel bitiş tarihi (YYYY-MM-DD)")
     parser.add_argument("--entry-model", choices=["midpoint", "close"], default=ENTRY_MODEL, help="Giriş modeli: midpoint (50% CE) veya close (Market Kapanış)")
+    parser.add_argument("--tier1", action="store_true", help="Yalnızca Tier-1 Kurumsal 9 Parite Evrenini test et")
     parser.add_argument("--no-reaction", action="store_true", help="Reaksiyon kalkanını devre dışı bırak")
     parser.add_argument("--no-macro", action="store_true", help="Makro Kapısı filtresini devre dışı bırak")
     args = parser.parse_args()
     run_full_portfolio_simulation(
         entry_model=args.entry_model,
         require_reaction=not args.no_reaction,
-        use_macro_gate=not args.no_macro
+        use_macro_gate=not args.no_macro,
+        months=args.months,
+        tier1_only=args.tier1,
+        start_date=args.start_date,
+        end_date=args.end_date,
     )

@@ -1,0 +1,30 @@
+{
+  "project": "READİNG",
+  "minimum_smc_grade": "B+",
+  "tracker_config": {
+    "setup_ttl_ms": 28800000,
+    "quote_max_age_ms": 10000,
+    "max_quote_gap_ms": 20000,
+    "context_max_age_ms": 120000,
+    "withdrawn_grace_ms": 14400000,
+    "response_timeout_ms": 600000
+  },
+  "crypto_symbols": {"BTCUSD":"BTCUSDT","ETHUSD":"ETHUSDT","LTCUSD":"LTCUSDT","SOLUSD":"SOLUSDT","BNBUSD":"BNBUSDT","SUIUSD":"SUIUSDT","AVAXUSD":"AVAXUSDT","NEARUSD":"NEARUSDT","APTUSD":"APTUSDT","SEIUSD":"SEIUSDT","ARBUSD":"ARBUSDT","OPUSD":"OPUSDT","XRPUSD":"XRPUSDT","ADAUSD":"ADAUSDT","DASHUSD":"DASHUSDT","BCHUSD":"BCHUSDT","LINKUSD":"LINKUSDT","DOTUSD":"DOTUSDT","FETUSD":"FETUSDT","RENDERUSD":"RENDERUSDT","TAOUSD":"TAOUSDT","VIRTUALUSD":"VIRTUALUSDT","WLDUSD":"WLDUSDT","ARKMUSD":"ARKMUSDT","IOUSD":"IOUSDT","UNIUSD":"UNIUSDT","AAVEUSD":"AAVEUSDT","PENDLEUSD":"PENDLEUSDT","INJUSD":"INJUSDT","CHZUSD":"CHZUSDT","RVNUSD":"RVNUSDT","GALAUSD":"GALAUSDT","SANDUSD":"SANDUSDT","DOGEUSD":"DOGEUSDT","PEPEUSD":"PEPEUSDT","SHIBUSD":"SHIBUSDT","WIFUSD":"WIFUSDT","BONKUSD":"BONKUSDT","FLOKIUSD":"FLOKIUSDT","PENGUUSD":"PENGUUSDT","ZECUSD":"ZECUSDT","ENAUSD":"ENAUSDT","TRXUSD":"TRXUSDT","HBARUSD":"HBARUSDT","ONDOUSD":"ONDOUSDT","FILUSD":"FILUSDT","ZROUSD":"ZROUSDT","ICPUSD":"ICPUSDT","POLUSD":"POLUSDT","CAKEUSD":"CAKEUSDT","STRKUSD":"STRKUSDT","RAYUSD":"RAYUSDT","BLURUSD":"BLURUSDT","TIAUSD":"TIAUSDT","CRVUSD":"CRVUSDT","ALGOUSD":"ALGOUSDT","ATOMUSD":"ATOMUSDT","MANAUSD":"MANAUSDT","AXSUSD":"AXSUSDT","DYDXUSD":"DYDXUSDT","JTOUSD":"JTOUSDT","PYTHUSD":"PYTHUSDT","JUPUSD":"JUPUSDT","RUNEUSD":"RUNEUSDT","KAVAUSD":"KAVAUSDT"},
+  "futures_feed": "quantower",
+  "quantower_feed_directory": "C:\\Users\\piard\\Documents\\Codex\\2026-11-07\\https-youtu-be-j-6bhln-d70\\work\\quantower_feed",
+  "begonya_source": "C:\\Users\\piard\\.gemini\\antigravity\\scratch\\Begonya",
+  "recorder_data": "C:\\Users\\piard\\Documents\\Codex\\2026-11-07\\https-youtu-be-j-6bhln-d70\\work\\mt5_paxg_data",
+  "recorder_manager": "C:\\Users\\piard\\Documents\\Codex\\2026-11-07\\https-youtu-be-j-6bhln-d70\\outputs\\mt5_paxg_observer\\manage.py",
+  "window_ms": 60000,
+  "min_aggregate_trades": 5,
+  "imbalance_threshold": 0.3,
+  "thresholds_status": "PREDECLARED_RESEARCH_SETTINGS_NOT_OPTIMIZED_OR_PROVEN",
+  "order_routing": false,
+  "telegram_enabled": true,
+  "shadow_reporting": {"exit_rule":"HALF_AT_1R_THEN_BE_AND_LIQUIDITY_TP2","break_even_trigger_r":1,"real_net_pnl":null},
+  "trade_management": {"version":"SHADOW_100USD_HALF_1R_BE_LIQUIDITY_V1","risk_usd":100.0,"partial_at_r":1.0,"partial_fraction":0.5,"move_remaining_to_entry":true,"minimum_target_rr":2.0,"require_liquidity_target":true},
+  "automatic_promotion": false,
+  "forex_symbols": ["EURUSD","GBPUSD","AUDUSD","USDCAD","USDJPY","NZDUSD","USDCHF","AUDCAD","EURGBP","EURJPY","GBPJPY","CADJPY","AUDJPY","EURAUD","NZDCAD","EURCHF","GBPCHF","AUDCHF","CADCHF","NZDCHF","CHFJPY"],
+  "ninjatrader_feed_directory": "C:\\Users\\piard\\Documents\\Codex\\2026-11-07\\https-youtu-be-j-6bhln-d70\\work\\ninjatrader_feed",
+  "forex_mt5_terminal": "C:\\Program Files\\Five Percent Online MetaTrader 5\\terminal64.exe"
+}

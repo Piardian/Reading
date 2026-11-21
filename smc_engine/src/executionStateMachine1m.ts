@@ -24,6 +24,14 @@ export interface LtfPoiContext {
   readonly maxMonitoringBars?: number; // max 1M bars to monitor (default 60 = 1 hour)
   readonly targetRR?: number; // default 3.0R
   readonly breakEvenAtR?: number; // default 1.0R
+  /** Optional stop buffer beyond the 1M sweep extreme (pips). Default 1.5 pips. */
+  readonly stopBufferPips?: number;
+  /**
+   * Optional fixed structural target (e.g. the 15M plan target that is already capped
+   * in front of the opposing zone). When set, TP is this price and targetRR is derived
+   * from the 1M entry/stop geometry instead of a fixed R multiple.
+   */
+  readonly targetPrice?: number;
 }
 
 export interface LtfSweepEvent {
@@ -610,13 +618,12 @@ export class LtfExecutionStateMachine {
   ): LtfOrderDetails {
     const isLong = this.context.direction === 'long';
     const pip = this.context.pipSize;
-    const targetRR = this.context.targetRR ?? 3.0;
 
     // Sniper Entry: %50 Consequent Encroachment (fvgMid)
     const entryPrice = fvg.fvgMid;
 
-    // Stop Loss: 1.5 pip beyond the exact 1M sweep wick extreme
-    const buffer = 1.5 * pip;
+    // Stop Loss: buffer (default 1.5 pip) beyond the exact 1M sweep wick extreme
+    const buffer = (this.context.stopBufferPips ?? 1.5) * pip;
     const stopLoss = isLong
       ? sweepExtremePrice - buffer
       : sweepExtremePrice + buffer;
@@ -624,9 +631,17 @@ export class LtfExecutionStateMachine {
     const riskDistance = Math.abs(entryPrice - stopLoss);
     const riskPips = riskDistance / pip;
 
-    const takeProfit = isLong
-      ? entryPrice + riskDistance * targetRR
-      : entryPrice - riskDistance * targetRR;
+    const fixedTarget = this.context.targetPrice;
+    const hasFixedTarget = fixedTarget !== undefined && Number.isFinite(fixedTarget) && riskDistance > 0;
+    const targetRR = hasFixedTarget
+      ? (isLong ? fixedTarget - entryPrice : entryPrice - fixedTarget) / riskDistance
+      : (this.context.targetRR ?? 3.0);
+
+    const takeProfit = hasFixedTarget
+      ? fixedTarget
+      : isLong
+        ? entryPrice + riskDistance * targetRR
+        : entryPrice - riskDistance * targetRR;
 
     return {
       entryPrice: Math.round(entryPrice * 100000) / 100000,

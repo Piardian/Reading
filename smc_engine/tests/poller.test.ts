@@ -97,14 +97,14 @@ describe('Poller', () => {
     expect(stored).toHaveLength(1);
   });
 
-  test('should trigger update with outputsize 10 when candleStore has candles', async () => {
+  test('requests up to 500 bars to recover a long data gap', async () => {
     candleStore.appendCandle('EURUSD', '15m', { timestamp: 500, open: 1, high: 2, low: 0.5, close: 1.5 });
     const mockFetch = jest.spyOn(client, 'fetchCandles').mockResolvedValue([
       { timestamp: 1000, open: 1, high: 2, low: 0.5, close: 1.5 },
     ]);
 
     await pollAndProcess('EURUSD', '15m', candleStore, notifiedStore);
-    expect(mockFetch).toHaveBeenCalledWith('EURUSD', '15m', 10);
+    expect(mockFetch).toHaveBeenCalledWith('EURUSD', '15m', 500);
   });
 
   test('should execute runPipeline and send message on 15m, but not on 1h or 4h', async () => {

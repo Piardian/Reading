@@ -9,6 +9,7 @@ import {
 } from './telegramFormatter';
 import { RuntimeExecutionPipelineResult } from './runtimeExecutionPipeline';
 import { recordRuntimeTrace } from './runtimeTrace';
+import { describeEntryRange } from './entryRangeDisplay';
 
 export function buildRuntimeNotificationMessage(
   candidate: NotificationCandidate,
@@ -71,6 +72,7 @@ function resolveExecutionStatus(
   candidate?: NotificationCandidate
 ): ExecutionCardStatus {
   if (candidate?.macroEvaluation && !candidate.macroEvaluation.allowed) return 'BLOCKED';
+  if (candidate?.expectancyPlan?.isAdmissible === false) return 'BLOCKED';
   if (execution.signalOutcome.outcomeType === 'CANCELLED') return 'CANCELLED';
   if (!riskAccepted) return 'BLOCKED';
   if (!executionReady) return 'WAITING';
@@ -80,6 +82,7 @@ function resolveExecutionStatus(
   if (execution.decisionCalibration.status === 'FILTERED' || execution.decisionCalibration.status === 'NOT_ELIGIBLE') {
     return 'BLOCKED';
   }
+  if (candidate && describeEntryRange(candidate)?.inRange === false) return 'WAITING';
   return 'READY';
 }
 
@@ -91,6 +94,9 @@ function reasonForExecution(
   if (candidate?.macroEvaluation && !candidate.macroEvaluation.allowed) {
     return candidate.macroEvaluation.gateStatusMessage;
   }
+  if (candidate?.expectancyPlan?.isAdmissible === false) {
+    return candidate.expectancyPlan.rejectionReason ?? 'Net R:R koşulu sağlanmadı.';
+  }
   const prefix = candidate?.macroEvaluation
     ? `[Begonya Skor: ${candidate.macroEvaluation.begonyaScore}/100 - ${candidate.macroEvaluation.scoreTier}] ${candidate.macroEvaluation.tierRationale}. `
     : '';
@@ -100,6 +106,8 @@ function reasonForExecution(
   if (execution.decisionCalibration.status !== 'ELIGIBLE') {
     return prefix + execution.decisionCalibration.reason.message;
   }
+  if (candidate && describeEntryRange(candidate)?.inRange === false)
+    return prefix + 'Kutu geçerli; net R:R sağlayan giriş aralığı bekleniyor. Giriş kararı kullanıcıya aittir.';
   return prefix + 'Execution eligibility and policy-level risk gates passed. Manual execution confirmation is still required.';
 }
 

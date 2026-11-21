@@ -1598,6 +1598,178 @@ Bu bölüm, sistemin erken döneminde üretilen ve loglardan çıkarılan işlem
 
 ---
 
+### 90. [2026-10-13 22:01 TSİ / 19:01 UTC] — BTCUSD (15M OB - SAT)
+
+- **Kaynak:** Telegram Sinyali (`signalId: BTCUSD_15m_OB_1791801900000_1791802800000`)
+- **Giriş Bölgesi:** 83928.66 - 84035.66 | **Midpoint:** 83982.16 | **Stop:** 84036.66 üstü (-1.0R / 54.5 USD risk) | **Hedef (2R):** 83873.16 | **Mıknatıs:** 82979.93 EQL (18.0R) | **Önerilen Risk:** Defansif Risk (%0.5R)
+- **Kullanıcı Sonucu:** ✅ **+2.32 R TAKE PROFIT (Kademeli Kâr Alımı: 1R'de %50 TP, nihai +2.32R TP)**
+  - Operatör bildirimi: *"13 ekim btcusd işlemi 1r %50 tp 2.32 R tp"*.
+  - Sinyal 13 Ekim 22:01 TSİ'de (19:01 UTC) iletildi. Fiyat 83928.66 - 84035.66 düşüş OB kutusuna retest verdiğinde 1 dakikalık grafikte kurumsal satıcı teyidi (1M CHoCH / teyit) oluştu. Kullanıcı teyitle birlikte SAT işlemine girdi. Fiyat hedeflenen satış yönünde aktı; 1.0R seviyesinde pozisyonun %50'si kârla kapatılıp stop başabaşa (BE) çekildi, kalan %50 pozisyon ise +2.32R seviyesinde nihai kâr ile kapatıldı. Harika bir işlem yönetimiyle net kazanç kasaya yazıldı.
+- **Botun Benchmark Takibi:** ⏳ **EXPIRED (0 R / Tetiklenmedi)**
+  - Bot mekanik kuralı gereği tam orta noktaya (`83982.16`) limit satış emri kurmuştu. Fiyat kutu tabanından ve 1M teyidinden dönüp aşağı aktığı için botun 16 barlık (4 saat) penceresi içinde midpoint limit emri dolmadı ve kural gereği zaman aşımına (`EXPIRED`) uğrayarak iptal edildi.
+- **SMC Otopsisi & Çıkarılan Ders:**
+  - 🎯 **Kullanıcı Esnekliği ve Kademeli Çıkış Başarısı:**
+    - Kutu derinliğinin ortasına kadar sarkmayıp kutu sınırından 1M onayıyla dönen işlemlerde robotun katı limit kuralı emri kaçırırken, kullanıcının 1M teyidiyle manuel dahil olması tam isabet sağlamıştır.
+    - 1R'de %50 kâr alıp stopu maliyete çekmek riski tamamen sıfırlamış, kalan pozisyonu +2.32R'ye sürmek ise kasaya güçlü bir ivme kazandırmıştır.
+
+---
+
+### 91. [2026-10-14 22:16 TSİ / 19:16 UTC] — GBPUSD (15M FVG - SAT)
+
+- **Kaynak:** Telegram Sinyali (`signalId: GBPUSD_15m_FVG_1791981000000_1791981000000`)
+- **Giriş Bölgesi:** 1.32197 - 1.32669 | **Midpoint:** 1.32433 | **Stop:** 1.32679 üstü (-1.0R / 24.6 pip risk) | **Hedef (2R):** 1.31941 | **Mıknatıs:** 1.31392 EQL (50.7 pip) | **Önerilen Risk:** Defansif Risk (%0.5R)
+- **Kullanıcı Sonucu:** 🎯 **+0.5 R KÂR (Kademeli Kâr Alımı: 1R'de %50 TP, kalan BE ile Kapatıldı)**
+  - Operatör bildirimi: *"gbpusd 22.16 14 ekim işlemi 1r %50 tp sonra BE"*.
+  - Sinyal 14 Ekim 22:16 TSİ'de (19:16 UTC) iletildi. Fiyat `1.32197 - 1.32669` düşüş FVG bölgesine retest verip 1M LTF dönüş teyidi (CHoCH / FVG) oluşturduğunda kullanıcı kurallara uygun olarak SAT işlemine girdi. Fiyat hedeflenen düşüş yönünde ilerleyerek +1.0R seviyesine (`1.32187`) ulaştı. Kullanıcı kurala harfiyen uyarak pozisyonun %50'sini kârla kapattı (+0.5R) ve stop seviyesini derhal maliyete (BE) çekti. Ardından parite 2.0R hedefine ulaşamadan toparlanıp giriş seviyesine döndü ve kalan %50 pozisyon sıfır riskle (BE) kapandı. Mükemmel bir işlem yönetimiyle olası bir zarar engellendi ve net kâr kasaya yazıldı.
+- **Botun Benchmark Takibi:** ⏳ **EXPIRED (0 R / Tetiklenmedi)**
+  - Bot mekanik kuralı gereği tam FVG orta noktasına (`1.32433`) limit satış emri kurmuştu. Fiyat FVG kutusunun alt tabanına temas edip 1M onayıyla doğrudan düştüğü için botun midpoint limiti dolmadı ve 16 bar sonunda zaman aşımına (`EXPIRED`) uğrayarak iptal edildi.
+- **SMC Otopsisi & Çıkarılan Ders:**
+  - 🛡️ **1R'de %50 TP + BE Kuralının Hayati Önemi:** Piyasa her zaman 2.0R veya mıknatıs hedefine kadar akmayabilir. 1.0R seviyesinde %50 kâr realize edip stopu başabaşa (BE) çekmek, geri dönen piyasalarda kârı garantiye almanın ve kasanın erimesini önlemenin en profesyonel yöntemidir.
+
+---
+
+### 92. [2026-10-16 18:01 TSİ / 15:01 UTC] — BTCUSD (15M OB - AL)
+
+- **Kaynak:** Telegram Sinyali (`signalId: BTCUSD_15m_OB_1792071900000_1792074600000`)
+- **Giriş Bölgesi:** 79800.00 - 80772.98 | **Midpoint:** 80286.49 | **Stop:** 79799.00 altı (-1.0R / 487.5 USD risk) | **Hedef (2R):** 81261.47 | **Mıknatıs:** 82503.61 EQH (529.2 pip) | **Önerilen Risk:** Defansif Risk (%0.5R)
+- **Kullanıcı Sonucu:** 🎯 **+0.5 R KÂR (Kademeli Kâr Alımı: 1R'de %50 TP, sonrasında BE ile Kapatıldı)**
+  - Operatör bildirimi: *"btc 16 ekim 18.01 işlemi 1r %50 tp sonrasında BE"*.
+  - Sinyal 16 Ekim 18:01 TSİ'de (15:01 UTC) iletildi. Fiyat `79800.00 - 80772.98` yükseliş OB bölgesine retest verip 1M LTF dönüş teyidi (CHoCH / alıcı reaksiyonu) oluşturduğunda kullanıcı kurallara uygun olarak AL (Long) işlemine girdi. Fiyat hedeflenen yükseliş yönünde ilerleyerek +1.0R seviyesine (`80773.98`) ulaştı. Kullanıcı kurala harfiyen uyarak pozisyonun %50'sini kârla kapattı (+0.5R) ve stop seviyesini derhal maliyete (BE) çekti. Ardından parite 2.0R hedefine ulaşamadan düzeltmeye girip giriş seviyesine geri döndü ve kalan %50 pozisyon sıfır riskle (BE) kapandı. Mükemmel bir işlem yönetimiyle olası bir zarar engellendi ve net kâr kasaya yazıldı.
+- **Botun Benchmark Takibi:** ⏳ **EXPIRED (0 R / Tetiklenmedi)**
+  - Bot mekanik kuralı gereği tam OB orta noktasına (`80286.49`) limit alış emri kurmuştu. Fiyat kutu tavanından 1M onayıyla dönüp doğrudan 1R hedefine gittiği için botun midpoint limiti dolmadı ve 16 bar sonunda zaman aşımına (`EXPIRED`) uğrayarak iptal edildi.
+- **SMC Otopsisi & Çıkarılan Ders:**
+  - 🛡️ **Kademeli Çıkış Disiplininin Sürekliliği:** Üst üste iki işlemde de (#91 GBPUSD ve #92 BTCUSD) 1R'de %50 kâr alıp stopu maliyete çekme disiplini olası bir stop veya kayıp riskini tamamen sıfırlamış ve kasaya tertemiz ekstra kâr eklemiştir.
+
+---
+
+### 93. [2026-10-18 23:15 TSİ / 20:15 UTC] — GBPJPY (15M OB - SAT)
+
+- **Kaynak:** Telegram Sinyali (`signalId: GBPJPY_15m_OB_1792339200000_1792341900000`)
+- **Giriş Bölgesi:** 210.55761 - 210.72763 | **Midpoint:** 210.64262 | **Stop:** 210.73763 üstü (-1.0R / 9.5 pip risk) | **Hedef (2R):** 210.45260 | **Mıknatıs:** 209.94831 EQL (55 pip) | **Önerilen Risk:** Defansif Risk (%0.5R)
+- **Kullanıcı Sonucu:** 🛡️ **GİRİLMEDİ / PAS (Grafik/Mum Veri Bozukluğu Nedeniyle İptal — 0 R)**
+  - Operatör bildirimi: *"23.15 18 ekim gbpusd işlemi bu işlemde mumlarda sıkıntı vardı sistemsel hata olarak görerek girmedim işleme"*. *(Not: Sinyal veritabanında 23:15 TSİ saatli kayıt GBPJPY paritesine aittir).*
+  - Sinyal 18 Ekim Pazar gecesi 23:15 TSİ'de (haftalık forex piyasa açılış saatinde) iletildi. Pazar gecesi açılışında veri sağlayıcı (broker/feed) kaynaklı mumlarda uyumsuzluk, gap ve bozulma gözlendi. Kullanıcı son derece profesyonel bir risk refleksi göstererek grafik anomalisi olan belirsiz bir ortamda işlem açmadı ve sinyali sistemsel hata kabul ederek pas geçti (0 R).
+- **Botun Benchmark Takibi:** ⏳ **EXPIRED (0 R / Tetiklenmedi)**
+  - Bot mekanik kuralı gereği tam OB orta noktasına (`210.64262`) limit satış emri kurmuştu. Fiyat 16 barlık pencerede midpoint limitine ulaşmadığı için emir zaman aşımına (`EXPIRED`) uğrayarak iptal edildi.
+- **SMC Otopsisi & Çıkarılan Ders:**
+  - 🛡️ **Pazar Açılışı ve Veri Kalitesi Disiplini:** Pazar gecesi 23:00 - 00:00 seans açılışlarında spreadlerin genişlemesi, düşük likidite ve broker veri gecikmeleri mumlarda deformasyon yaratabilir. Grafikte bozukluk veya güven vermeyen mum yapısı görüldüğünde pozisyona girmeyip pas geçmek sermaye koruma disiplininin altın kuralıdır.
+
+---
+
+### 94. [2026-10-19 11:16 TSİ / 08:16 UTC] — USDCHF (15M OB - AL)
+
+- **Kaynak:** Telegram Sinyali (`signalId: USDCHF_15m_OB_1792392300000_1792395000000`)
+- **Giriş Bölgesi:** 0.82334 - 0.82411 | **Midpoint:** 0.82373 | **Stop:** 0.82324 altı (-1.0R / 4.85 pip risk) | **Hedef (2R):** 0.82470 | **Mıknatıs:** 0.82500 EQH (10.3 pip) | **Önerilen Risk:** Defansif Risk (%0.5R)
+- **Kullanıcı Sonucu:** ✅ **+1.50 R KÂR (Kademeli Kâr Alımı: 1R'de %50 TP, kalan +2.0R'de Kapatıldı)**
+  - Operatör bildirimi: *"usdchf 19 ekim işlemi 1r %50 tp sonrası 2r da kapatıldı işlem"*.
+  - Sinyal 19 Ekim 11:16 TSİ'de (08:16 UTC) iletildi. Fiyat `0.82334 - 0.82411` yükseliş OB bölgesine geri çekilip 1M LTF dönüş teyidi (CHoCH / alıcı reaksiyonu) oluşturduğunda kullanıcı kurallara uygun olarak AL (Long) işlemine girdi. Fiyat hedeflenen yukarı yönde ilerleyerek +1.0R seviyesine (`0.82421`) ulaştı. Kullanıcı kurala harfiyen uyarak pozisyonun %50'sini kârla kapattı (+0.5R) ve stop seviyesini derhal maliyete (BE) çekti. Ardından yükseliş devam ederek +2.0R ana hedefine (`0.82470`) ulaştı ve kalan %50 pozisyon da +2.0R seviyesinde kapatıldı (+1.0R). İki parçalı çıkışla toplam **+1.50 R Net Kâr** kasaya eklendi.
+- **Botun Benchmark Takibi:** ⏳ **EXPIRED (0 R / Tetiklenmedi)**
+  - Bot mekanik kuralı gereği tam OB orta noktasına (`0.82373`) limit alış emri kurmuştu. Fiyat kutu tavanına dokunup 1M onayıyla doğrudan 2R hedefine fırladığı için botun midpoint limiti dolmadı ve 16 bar sonunda zaman aşımına (`EXPIRED`) uğrayarak kapandı.
+- **SMC Otopsisi & Çıkarılan Ders:**
+  - 🎯 **Manuel Giriş Esnekliği ve Tam Hedef Disiplini:**
+    - Kutu derinliğine tam sarkmadan kutu tavanından 1M onayıyla dönen işlemlerde katı mekanik limit emri dışarıda kalırken, canlı kullanıcının 1M teyidiyle pozisyona girmesi tam isabet sağlamıştır.
+    - 1R'de %50 TP ve 2R'de tam kapanış planı harfiyen uygulanmış, kusursuz bir kâr realizasyonu gerçekleştirilmiştir.
+
+---
+
+### 95. [2026-10-19 14:16 TSİ / 11:16 UTC] — SOLUSD (15M FVG - AL)
+
+- **Kaynak:** Telegram Sinyali (`signalId: SOLUSD_15m_FVG_1792360800000_1792360800000`)
+- **Giriş Bölgesi:** 102.17 — 103.04 | **Midpoint:** 102.61 | **Stop:** 102.16 altı (-1.0R / 0.45 USD risk) | **Hedef (2R):** 103.50 | **Mıknatıs:** 105.87 EQH (13.7 pip) | **Önerilen Risk:** Defansif Risk (%0.5R)
+- **Kullanıcı Sonucu:** 🛡️ **GİRİLMEDİ / KORUNDU (1M Onay Vermedi / Deldi Geçti)**
+  - Operatör bildirimi: *"sol usd işlemi 19 ekim ltf confirme vermedi deldi geçti"*.
+  - Sinyal 19 Ekim 14:16 TSİ'de iletildi. Fiyat 102.17 — 103.04 FVG bölgesine indiğinde 1 dakikalık grafikte hiçbir kurumsal alıcı teyidi (1M CHoCH / teyit) oluşmadı; fiyat FVG kutusunu ve stop seviyesini (102.16) dikey kırarak aşağı delip geçti. Kullanıcı kurala sadık kalarak işleme girmedi ve kesin bir -1.0R zarardan sermayesini korudu (Averted Loss: +1.0R Kurtarıldı).
+- **Botun Benchmark Takibi:** ⏳ **EXPIRED (0 R / Tetiklenmedi)**
+  - Bot mekanik kuralı gereği tam orta noktaya (`102.605`) limit alış kurmuştu. 16 barlık sürede limit emri tetiklenmedi ve emir zaman aşımına (`EXPIRED`) uğrayarak iptal edildi.
+- **SMC Otopsisi & Çıkarılan Ders:**
+  - 🛡️ **1M Filtresinin Koruma Kalkanı:** Düşüş momentumunun dikey devam ettiği ve kurumsal alıcı tepkisinin gelmediği anlarda körü körüne kutuya limit koymak yerine 1M onayını beklemek, gereksiz -1.0R stopları kusursuz şekilde süzer.
+
+---
+
+### 96. [2026-10-22 11:46 TSİ / 08:46 UTC] — AUDJPY (15M FVG - SAT)
+
+- **Kaynak:** Telegram Sinyali (`signalId: AUDJPY_15m_FVG_1792638000000_1792638000000`)
+- **Giriş Bölgesi:** 110.71 — 110.79 | **Midpoint:** 110.75 | **Stop:** 110.80 üstü (-1.0R / 5.0 pip risk) | **Hedef (2R):** 110.65 | **Mıknatıs:** 109.87 EQL (36.3 pip) | **Önerilen Risk:** Standart Risk (%1.0R)
+- **Kullanıcı Sonucu:** 🎯 **+0.50R KÂR (1R %50 TP Sonrası BE)**
+  - Operatör bildirimi: *"aud jpy işlrmi 22 ekim 11.46 1r %50 tp sonrası BE"*.
+  - Sinyal 22 Ekim 11:46 TSİ'de iletildi. Fiyat 110.71 — 110.79 FVG kutusuna temas ettikten sonra 1M onay/reaksiyon ile manuel satış pozisyonu açıldı. Fiyat 1R mesafesine ulaştığında disiplinli kısmi kâr alma kuralı işletilerek pozisyonun %50'si kapatıldı (+0.50R kâr kasaya alındı) ve kalan kısım için stop başabaş (BE) noktasına çekildi. Ardından fiyat geri çekilerek BE seviyesinde kapandı. Net sonuç: **+0.50R**.
+- **Botun Benchmark Takibi:** ⏳ **EXPIRED (0 R / Tetiklenmedi)**
+  - Bot mekanik kuralı gereği tam orta noktaya (`110.748`) limit emir koymuştu. 16 barlık sürede limit emri doldurulmadı ve süre aşımı (`EXPIRED`) ile emir iptal edildi.
+- **SMC Otopsisi & Çıkarılan Ders:**
+  - ⚡ **1M Giriş Esnekliği & Kısmi Kâr:** Bot kutu ortasında milimetrik limit bekleyip işlemi kaçırırken, kullanıcı 1M tetiklenmesi ile bölge temasında oyuna dahil oldu. 1R'de %50 TP alıp kalanı BE'ye çekmek, tam hedefe gidemeyen geri dönüşlerde sıfır riskle net +0.50R kâr yazmayı sağladı.
+
+---
+
+### 97. [2026-10-22 15:48 TSİ / 12:48 UTC] — GBPUSD (15M FVG - SAT)
+
+- **Kaynak:** Telegram Sinyali (`signalId: GBPUSD_15m_FVG_1792662300000_1792662300000`)
+- **Giriş Bölgesi:** 1.3395 — 1.3406 | **Midpoint:** 1.3400 | **Stop:** 1.3407 üstü (-1.0R / 6.6 pip risk) | **Hedef (2R):** 1.3387 | **Mıknatıs:** 1.3338 EQL (35.6 pip) | **Önerilen Risk:** Standart Risk (%1.0R)
+- **Kullanıcı Sonucu:** ✅ **+1.62R KÂR (1R %50 TP, Kalan %50 2.24R TP)**
+  - Operatör bildirimi: *"22 ekim gbpusd 15.45 işemi 1R%50 tp sonra 2. tp ise 2.24R tp alındı"*.
+  - Sinyal 22 Ekim 15:48 TSİ'de iletildi. 1.3395 — 1.3406 FVG bölgesine temas sonrası 1M grafikte teyit alınarak manuel satış açıldı. Fiyat hedefe doğru akarken 1R mesafesinde pozisyonun %50'si realize edildi (+0.50R), kalan %50 pozisyon ise trend yönünde sürülerek nihai olarak 2.24R hedefinde kapatıldı (+1.12R). Toplam net kazanç: **+1.62R** (`0.50R + 1.12R`).
+- **Botun Benchmark Takibi:** ⏳ **EXPIRED (0 R / Tetiklenmedi)**
+  - Bot mekanik kuralı gereği tam FVG ortasına (`1.340025`) limit emir kurmuştu. 16 barlık sürede limit emri doldurulmadı ve emir zaman aşımı (`EXPIRED`) ile iptal edildi.
+- **SMC Otopsisi & Çıkarılan Ders:**
+  - 🚀 **Kâr Büyütme (Runner) Disiplini:** 1M teyidi ile bölge kenarından erken oyuna dahil olmak hem botun kaçırdığı mükemmel bir hareketi yakalattı hem de 1R'de risk sıfırlanıp kalan yarım pozisyonun 2.24R'a kadar sürülmesiyle tek işlemde +1.62R net kâr üretti.
+
+---
+
+### 98. [2026-10-26 15:46 TSİ / 12:46 UTC] — CADJPY (15M OB - AL)
+
+- **Kaynak:** Telegram Sinyali (`signalId: CADJPY_15m_OB_1792971000000_1792972800000`)
+- **Giriş Bölgesi:** 111.87 — 111.95 | **Midpoint:** 111.91 | **Stop:** 111.84 altı (-1.0R / 6.4 pip risk) | **Hedef (2R):** 112.04 | **Mıknatıs:** 112.41 EQH (14.1 pip) | **Önerilen Risk:** Standart Risk (%1.0R)
+- **Kullanıcı Sonucu:** ⏳ **GİRİLMEDİ (0 R / Kutuya Gelmedi)**
+  - Operatör bildirimi: *"cadjpy 26 ekim 15.45 işlemi kutucuğa gelmedi"*.
+  - Sinyal 26 Ekim 15:46 TSİ'de iletildi. Fiyat beklenen 111.87 — 111.95 Order Block bölgesine geri çekilme (pullback) yapmadı ve doğrudan yukarı akışına devam etti. Kutuya temas gerçekleşmediği için kullanıcı işleme girmedi (0 R).
+- **Botun Benchmark Takibi:** ⏳ **EXPIRED (0 R / Tetiklenmedi)**
+  - Bot kuralı gereği kutu orta noktasına (`111.909`) kurulan limit alış emri 16 bar boyunca fiyat bölgeye inmediği için dolmadı ve zaman aşımı (`EXPIRED`) ile iptal edildi.
+- **SMC Otopsisi & Çıkarılan Ders:**
+  - 🎯 **Kullanıcı & Bot Tam Uyumu:** Fiyatın POI bölgesini test etmeden hareket ettiği senaryolarda hem manuel operatör hem de mekanik bot disiplini koruyarak fomo yapmamış, sermaye risksiz şekilde muhafaza edilmiştir.
+
+---
+
+### 99. [2026-10-29 14:02 TSİ / 11:02 UTC] — LTCUSD (15M FVG - SAT)
+
+- **Kaynak:** Telegram Sinyali (`signalId: LTCUSD_15m_FVG_1793238300000_1793238300000`)
+- **Giriş Bölgesi:** 58.69 — 59.08 | **Midpoint:** 58.89 | **Stop:** 59.14 üstü (-1.0R / 0.255 USD risk) | **Hedef (2R):** 58.38 | **Mıknatıs:** 57.32 EQL (62.3 pip) | **Önerilen Risk:** Standart Risk (%1.0R)
+- **Kullanıcı Sonucu:** ✅ **+1.50R NET KÂR (1R %50 TP + 2.0R %50 TP)**
+  - Operatör bildirimi: *"29 ekim 14.01 ltcusd işlemi 1r %50 tp 2.tp ise 2R"*.
+  - Sinyal 29 Ekim 14:02 TSİ'de iletildi. 58.69 — 59.08 FVG kutusuna temas sonrası 1M grafikte teyit alınarak manuel kısa (short) pozisyon açıldı. Fiyat hedefe doğru akarken 1R mesafesinde pozisyonun %50'si realize edildi (+0.50R), kalan %50 pozisyon ise 2.0R ana hedefinde tam olarak kapatıldı (+1.00R). Toplam net gerçekleşen kazanç: **+1.50R**.
+- **Botun Benchmark Takibi:** ⏳ **EXPIRED (0 R / Tetiklenmedi)**
+  - Bot mekanik kuralı gereği tam orta noktaya (`58.885`) limit satış emri kurmuştu. 16 barlık sürede limit emri doldurulmadı ve emir zaman aşımı (`EXPIRED`) ile iptal edildi.
+- **SMC Otopsisi & Çıkarılan Ders:**
+  - 💎 **Mükemmel Hedef Ulaşımı (Full TP):** 1M teyidi ile bölgeye temas anında erken oyuna dahil olunarak hem botun kaçırdığı kusursuz bir düşüş yakalandı hem de 1R kısmi kâr + 2R nihai hedef disipliniyle sıfır stresle +1.50R net kâr yazıldı.
+
+---
+
+### 100. [2026-10-30 16:32 TSİ / 13:32 UTC] — EURUSD (15M OB - AL)
+
+- **Kaynak:** Telegram Sinyali (`signalId: EURUSD_15m_OB_1793280600000_1793283300000`)
+- **Giriş Bölgesi:** 1.1121 — 1.1131 | **Midpoint:** 1.1126 | **Stop:** 1.1119 altı (-1.0R / 6.9 pip risk) | **Hedef (2R):** 1.1140 | **Mıknatıs:** 1.1214 EQH (51.0 pip) | **Önerilen Risk:** Standart Risk (%1.0R)
+- **Kullanıcı Sonucu:** ⏳ **GİRİLMEDİ (0 R / Kutuya Gelmedi)**
+  - Operatör bildirimi: *"30 ekim eurusd 16.30 işlemi kutucuğa gelmedi fiyat henüz"*.
+  - Sinyal 30 Ekim 16:32 TSİ'de iletildi. Fiyat beklenen 1.1121 — 1.1131 Order Block bölgesine geri çekilme (pullback) yapmadı. Bölgeye temas gerçekleşmediği için kullanıcı kuralına bağlı kalarak işleme girmedi (0 R).
+- **Botun Benchmark Takibi:** ⏳ **EXPIRED (0 R / Tetiklenmedi)**
+  - Bot mekanik kuralı gereği tam orta noktaya (`1.112605`) kurulan limit alış emri 16 bar boyunca fiyat bölgeye inmediği için doldurulmadı ve zaman aşımı (`EXPIRED`) ile iptal edildi.
+- **SMC Otopsisi & Çıkarılan Ders:**
+  - 🏁 **100. İşlemde Tam Disiplin:** 100 işlemlik büyük serüvenin son işleminde de fomo yapılmamış, kutuya temas olmadan işlem açılmayarak sıfır riskle portföy korunmuştur.
+
+---
+
+### 101. [2026-10-31 03:31 TSİ / 00:31 UTC] — EURJPY (15M OB - AL)
+
+- **Kaynak:** Telegram Sinyali (`signalId: EURJPY_15m_OB_1793372400000_1793375100000`)
+- **Giriş Bölgesi:** 175.26 — 175.51 | **Midpoint:** 175.38 | **Stop:** 175.22 altı (-1.0R / 16.1 pip risk) | **Hedef (2R):** 175.70 | **Mıknatıs:** 177.77 EQH (180.8 pip) | **Önerilen Risk:** Standart Risk (%1.0R)
+- **Kullanıcı Sonucu:** ⏳ **GİRİLMEDİ (0 R / Kutuya Gelmedi)**
+  - Operatör bildirimi: *"eujpy 31 ekim 03.30 işlemi kutucuğa gelmedi"*.
+  - Sinyal 31 Ekim 03:31 TSİ'de iletildi. Fiyat beklenen 175.26 — 175.51 Order Block bölgesine geri çekilme (re-test/pullback) yapmadı ve doğrudan yukarı hareketine devam etti. Bölgeye temas gerçekleşmediği için kullanıcı kurallara sadık kalarak işleme girmedi (0 R).
+- **Botun Benchmark Takibi:** ⏳ **EXPIRED (0 R / Tetiklenmedi)**
+  - Bot mekanik kuralı gereği tam orta noktaya (`175.383`) kurulan limit alış emri 16 bar boyunca fiyat bölgeye inmediği için doldurulmadı ve zaman aşımı (`EXPIRED`) ile iptal edildi.
+- **SMC Otopsisi & Çıkarılan Ders:**
+  - 🎯 **Kullanıcı & Bot Tam Uyumu:** Fiyatın POI bölgesini test etmeden hızla uzaklaştığı senaryolarda kovalama/FOMO yapmamak, plansız risk alımını önlemenin temel taşıdır.
+
+---
+
 ## 📋 STANDART 1M BENCHMARK DOĞRULAMA ANKETİ (HAFTALIK DEĞERLENDİRME ŞABLONU)
 
 Her yeni canlı sinyal hafta sonu incelenirken aşağıdaki 5 standart soru üzerinden kodlanacaktır:

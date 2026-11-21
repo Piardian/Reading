@@ -24,14 +24,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.0990099009893894,
       "maeR": 0.4257425742574083,
       "exitTs": 1775002500000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRProd": -0.36633663366322144,
+    "netRProd": 0.13366336633677856,
     "structSl": 1.32646,
     "structRisk": 0.0013350000000000861,
     "structCostDict": {
@@ -46,14 +46,14 @@
     },
     "resStruct": {
       "outcome": "TP",
-      "grossR": 2,
+      "grossR": 1.5,
       "mfeR": 2,
       "maeR": 0.21348314606746993,
       "exitTs": 1775007000000,
       "exitBar": 5,
       "reason": "TAKE_PROFIT_HIT"
     },
-    "netRStruct": 1.8614232209737918
+    "netRStruct": 1.3614232209737918
   },
   {
     "signalId": "SOLUSD_15m_OB_1775078100000_1775079000000",
@@ -62,12 +62,12 @@
     "poiType": "OB",
     "signalTs": 1775090700000,
     "signalDt": "2026-04-02 00:45",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1775435400000,
+    "entryDt": "2026-04-06 00:30",
+    "status": "FILLED",
     "entryP": 82.885,
     "prodSl": 83.19000000000001,
     "prodRisk": 0.3050000000000068,
-    "structSl": 86.75,
-    "structRisk": 3.864999999999995,
     "prodCostDict": {
       "commUsd": 0.0414425,
       "sprdUsd": 0.0248655,
@@ -78,6 +78,18 @@
       "sprdR": 0.0815262295081949,
       "slipR": 0.09511393442622738
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.426229508196697,
+      "maeR": 0.2786885245901372,
+      "exitTs": 1775435400000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.18748278688525288,
+    "structSl": 86.75,
+    "structRisk": 3.864999999999995,
     "structCostDict": {
       "commUsd": 0.0414425,
       "sprdUsd": 0.0248655,
@@ -87,7 +99,17 @@
       "commR": 0.01072250970245797,
       "sprdR": 0.006433505821474781,
       "slipR": 0.007505756791720579
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.165588615782669,
+      "maeR": 0.09184993531694444,
+      "exitTs": 1775595600000,
+      "exitBar": 178,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.4753382276843467
   },
   {
     "signalId": "BTCUSD_15m_OB_1774971900000_1774974600000",
@@ -114,14 +136,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 2.730028955885074,
       "maeR": 0.1358655538522362,
       "exitTs": 1775095200000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRProd": -0.2468118974621157,
+    "netRProd": 0.25318810253788426,
     "structSl": 66417.53,
     "structRisk": 460.8999999999942,
     "structCostDict": {
@@ -136,14 +158,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.043263180733385,
       "maeR": 0.05192015621608444,
       "exitTs": 1775095200000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRStruct": -0.09431759492297798
+    "netRStruct": 0.405682405077022
   },
   {
     "signalId": "XAUUSD_15m_OB_1775018700000_1775021400000",
@@ -170,14 +192,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 6.272513247243778,
       "maeR": 0.19700659976174703,
       "exitTs": 1775095200000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRProd": -0.10604866219610076,
+    "netRProd": 0.39395133780389924,
     "structSl": 4668.21444,
     "structRisk": 9.571395000000848,
     "structCostDict": {
@@ -192,14 +214,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 2.7808250521472835,
       "maeR": 0.08733993320724312,
       "exitTs": 1775095200000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRStruct": -0.04701509027680501
+    "netRStruct": 0.452984909723195
   },
   {
     "signalId": "ETHUSD_15m_OB_1775139300000_1775140200000",
@@ -208,12 +230,12 @@
     "poiType": "OB",
     "signalTs": 1775145600000,
     "signalDt": "2026-04-02 16:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1775183400000,
+    "entryDt": "2026-04-03 02:30",
+    "status": "FILLED",
     "entryP": 2043.2400000000002,
     "prodSl": 2037.1000000000001,
     "prodRisk": 6.1400000000001,
-    "structSl": 2016.04,
-    "structRisk": 27.200000000000273,
     "prodCostDict": {
       "commUsd": 0.8172960000000001,
       "sprdUsd": 0.30648600000000004,
@@ -224,6 +246,18 @@
       "sprdR": 0.04991628664495033,
       "slipR": 0.06655504885993378
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.100977198697012,
+      "maeR": 0.420195439739432,
+      "exitTs": 1775183400000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.2504185667752483,
+    "structSl": 2016.04,
+    "structRisk": 27.200000000000273,
     "structCostDict": {
       "commUsd": 0.8172960000000001,
       "sprdUsd": 0.30648600000000004,
@@ -233,7 +267,17 @@
       "commR": 0.03004764705882323,
       "sprdR": 0.011267867647058711,
       "slipR": 0.015023823529411616
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.4161764705882205,
+      "maeR": 0.09485294117647532,
+      "exitTs": 1775221200000,
+      "exitBar": 42,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.4436606617647064
   },
   {
     "signalId": "SOLUSD_15m_FVG_1775091600000_1775091600000",
@@ -242,12 +286,12 @@
     "poiType": "FVG",
     "signalTs": 1775179800000,
     "signalDt": "2026-04-03 01:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1775219400000,
+    "entryDt": "2026-04-03 12:30",
+    "status": "FILLED",
     "entryP": 80.87,
     "prodSl": 81.43,
     "prodRisk": 0.5600000000000023,
-    "structSl": 86.75,
-    "structRisk": 5.8799999999999955,
     "prodCostDict": {
       "commUsd": 0.040435000000000006,
       "sprdUsd": 0.024260999999999998,
@@ -258,6 +302,18 @@
       "sprdR": 0.043323214285714104,
       "slipR": 0.0505437499999998
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.0714285714285823,
+      "maeR": 0.07142857142855692,
+      "exitTs": 1775219400000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.33392767857142924,
+    "structSl": 86.75,
+    "structRisk": 5.8799999999999955,
     "structCostDict": {
       "commUsd": 0.040435000000000006,
       "sprdUsd": 0.024260999999999998,
@@ -267,7 +323,17 @@
       "commR": 0.006876700680272115,
       "sprdR": 0.004126020408163268,
       "slipR": 0.00481369047619048
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.4234693877551039,
+      "maeR": 1.0425170068027212,
+      "exitTs": 1775603700000,
+      "exitBar": 427,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0158164115646258
   },
   {
     "signalId": "BTCUSD_15m_FVG_1775091600000_1775092500000",
@@ -276,12 +342,12 @@
     "poiType": "FVG",
     "signalTs": 1775204100000,
     "signalDt": "2026-04-03 08:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1775433600000,
+    "entryDt": "2026-04-06 00:00",
+    "status": "FILLED",
     "entryP": 68138.37,
     "prodSl": 68434.62,
     "prodRisk": 296.25,
-    "structSl": 68663.38,
-    "structRisk": 525.0100000000093,
     "prodCostDict": {
       "commUsd": 27.255347999999998,
       "sprdUsd": 6.8138369999999995,
@@ -292,6 +358,18 @@
       "sprdR": 0.023000293670886074,
       "slipR": 0.03450044050632911
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0,
+      "maeR": 4.893265822784826,
+      "exitTs": 1775433600000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.1495019088607594,
+    "structSl": 68663.38,
+    "structRisk": 525.0100000000093,
     "structCostDict": {
       "commUsd": 27.255347999999998,
       "sprdUsd": 6.8138369999999995,
@@ -301,7 +379,17 @@
       "commR": 0.05191395973409938,
       "sprdR": 0.012978489933524845,
       "slipR": 0.019467734900287265
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0,
+      "maeR": 2.7611474067160224,
+      "exitTs": 1775433600000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0843601845679114
   },
   {
     "signalId": "SOLUSD_15m_OB_1775313000000_1775313900000",
@@ -310,12 +398,12 @@
     "poiType": "OB",
     "signalTs": 1775347200000,
     "signalDt": "2026-04-05 00:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1775516400000,
+    "entryDt": "2026-04-06 23:00",
+    "status": "FILLED",
     "entryP": 79.78,
     "prodSl": 79.55999999999999,
     "prodRisk": 0.22000000000001307,
-    "structSl": 79.47,
-    "structRisk": 0.3100000000000023,
     "prodCostDict": {
       "commUsd": 0.03989,
       "sprdUsd": 0.023933999999999997,
@@ -326,6 +414,18 @@
       "sprdR": 0.10879090909090261,
       "slipR": 0.12692272727271972
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.818181818181736,
+      "maeR": 0.8181818181818006,
+      "exitTs": 1775516400000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.08296818181820664,
+    "structSl": 79.47,
+    "structRisk": 0.3100000000000023,
     "structCostDict": {
       "commUsd": 0.03989,
       "sprdUsd": 0.023933999999999997,
@@ -335,7 +435,17 @@
       "commR": 0.12867741935483779,
       "sprdR": 0.07720645161290265,
       "slipR": 0.09007419354838643
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.2903225806451701,
+      "maeR": 0.5806451612903403,
+      "exitTs": 1775516400000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.20404193548387317
   },
   {
     "signalId": "ETHUSD_15m_OB_1775313000000_1775314800000",
@@ -344,12 +454,12 @@
     "poiType": "OB",
     "signalTs": 1775358900000,
     "signalDt": "2026-04-05 03:15",
-    "entryTs": 1775367900000,
-    "entryDt": "2026-04-05 05:45",
-    "status": "FILLED",
+    "status": "EXPIRED_UNFILLED",
     "entryP": 2048.3500000000004,
     "prodSl": 2044.5300000000002,
     "prodRisk": 3.8200000000001637,
+    "structSl": 2043.63,
+    "structRisk": 4.720000000000255,
     "prodCostDict": {
       "commUsd": 0.8193400000000002,
       "sprdUsd": 0.30725250000000004,
@@ -360,18 +470,6 @@
       "sprdR": 0.0804325916230332,
       "slipR": 0.10724345549737763
     },
-    "resProd": {
-      "outcome": "BE",
-      "grossR": 0,
-      "mfeR": 1.3324607329841551,
-      "maeR": 0.29842931937180067,
-      "exitTs": 1775367900000,
-      "exitBar": 0,
-      "reason": "STOP_LOSS_HIT"
-    },
-    "netRProd": -0.4021629581151661,
-    "structSl": 2043.63,
-    "structRisk": 4.720000000000255,
     "structCostDict": {
       "commUsd": 0.8193400000000002,
       "sprdUsd": 0.30725250000000004,
@@ -381,17 +479,7 @@
       "commR": 0.17358898305083814,
       "sprdR": 0.06509586864406429,
       "slipR": 0.08679449152541907
-    },
-    "resStruct": {
-      "outcome": "BE",
-      "grossR": 0,
-      "mfeR": 1.0783898305083508,
-      "maeR": 0.2415254237288699,
-      "exitTs": 1775367900000,
-      "exitBar": 0,
-      "reason": "STOP_LOSS_HIT"
-    },
-    "netRStruct": -0.3254793432203215
+    }
   },
   {
     "signalId": "XAUUSD_15m_OB_1775429100000_1775430900000",
@@ -418,14 +506,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.2843790035235914,
       "maeR": 0.17368950940305464,
       "exitTs": 1775437200000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRProd": -0.033547127937191494,
+    "netRProd": 0.4664528720628085,
     "structSl": 4678.00691,
     "structRisk": 38.325754999999845,
     "structCostDict": {
@@ -490,12 +578,12 @@
     "poiType": "OB",
     "signalTs": 1775758500000,
     "signalDt": "2026-04-09 18:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1775775600000,
+    "entryDt": "2026-04-09 23:00",
+    "status": "FILLED",
     "entryP": 2189.21,
     "prodSl": 2183.9700000000003,
     "prodRisk": 5.239999999999782,
-    "structSl": 2156.31,
-    "structRisk": 32.90000000000009,
     "prodCostDict": {
       "commUsd": 0.875684,
       "sprdUsd": 0.3283815,
@@ -506,6 +594,18 @@
       "sprdR": 0.06266822519084231,
       "slipR": 0.08355763358778974
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.267175572519199,
+      "maeR": 0.49618320610687355,
+      "exitTs": 1775775600000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.18665887404578846,
+    "structSl": 2156.31,
+    "structRisk": 32.90000000000009,
     "structCostDict": {
       "commUsd": 0.875684,
       "sprdUsd": 0.3283815,
@@ -515,7 +615,17 @@
       "commR": 0.02661653495440722,
       "sprdR": 0.009981200607902708,
       "slipR": 0.01330826747720361
-    }
+    },
+    "resStruct": {
+      "outcome": "TP",
+      "grossR": 1.5,
+      "mfeR": 2,
+      "maeR": 0.398480243161097,
+      "exitTs": 1775834100000,
+      "exitBar": 65,
+      "reason": "TAKE_PROFIT_HIT"
+    },
+    "netRStruct": 1.4500939969604865
   },
   {
     "signalId": "BTCUSD_15m_OB_1775744100000_1775748600000",
@@ -524,12 +634,12 @@
     "poiType": "OB",
     "signalTs": 1775760300000,
     "signalDt": "2026-04-09 18:45",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1776038400000,
+    "entryDt": "2026-04-13 00:00",
+    "status": "FILLED",
     "entryP": 70673.38500000001,
     "prodSl": 70521.77,
     "prodRisk": 151.61500000000524,
-    "structSl": 70512.77,
-    "structRisk": 160.61500000000524,
     "prodCostDict": {
       "commUsd": 28.269354000000003,
       "sprdUsd": 7.067338500000001,
@@ -540,6 +650,18 @@
       "sprdR": 0.04661371566137754,
       "slipR": 0.06992057349206632
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.606536292583113,
+      "maeR": 0.3831085314777852,
+      "exitTs": 1776038400000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.19701084820104597,
+    "structSl": 70512.77,
+    "structRisk": 160.61500000000524,
     "structCostDict": {
       "commUsd": 28.269354000000003,
       "sprdUsd": 7.067338500000001,
@@ -549,7 +671,17 @@
       "commR": 0.17600693584035787,
       "sprdR": 0.04400173396008947,
       "slipR": 0.0660026009401342
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.516514646826194,
+      "maeR": 0.36164119166954833,
+      "exitTs": 1776038400000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.21398872925941842
   },
   {
     "signalId": "BTCUSD_15m_OB_1775827800000_1775829600000",
@@ -558,8 +690,8 @@
     "poiType": "OB",
     "signalTs": 1775948400000,
     "signalDt": "2026-04-11 23:00",
-    "entryTs": 1775957400000,
-    "entryDt": "2026-04-12 01:30",
+    "entryTs": 1776038400000,
+    "entryDt": "2026-04-13 00:00",
     "status": "FILLED",
     "entryP": 72154.45999999999,
     "prodSl": 71898.51,
@@ -575,15 +707,15 @@
       "slipR": 0.04228626294198133
     },
     "resProd": {
-      "outcome": "BE",
-      "grossR": 0,
-      "mfeR": 3.3723774174644006,
-      "maeR": 2.342098066028516,
-      "exitTs": 1775957400000,
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0,
+      "maeR": 6.013518265286214,
+      "exitTs": 1776038400000,
       "exitBar": 0,
-      "reason": "CONFLICT_SL_FIRST"
+      "reason": "STOP_LOSS_HIT"
     },
-    "netRProd": -0.18324047274858576,
+    "netRProd": -1.1832404727485857,
     "structSl": 71889.51,
     "structRisk": 264.9499999999971,
     "structCostDict": {
@@ -597,15 +729,15 @@
       "slipR": 0.04084985468956451
     },
     "resStruct": {
-      "outcome": "BE",
-      "grossR": 0,
-      "mfeR": 3.257822230609598,
-      "maeR": 2.2625401019060143,
-      "exitTs": 1775957400000,
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0,
+      "maeR": 5.8092470277411055,
+      "exitTs": 1776038400000,
       "exitBar": 0,
-      "reason": "CONFLICT_SL_FIRST"
+      "reason": "STOP_LOSS_HIT"
     },
-    "netRStruct": -0.17701603698811288
+    "netRStruct": -1.1770160369881129
   },
   {
     "signalId": "ETHUSD_15m_FVG_1775957400000_1775957400000",
@@ -614,12 +746,12 @@
     "poiType": "FVG",
     "signalTs": 1775993400000,
     "signalDt": "2026-04-12 11:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1776091500000,
+    "entryDt": "2026-04-13 14:45",
+    "status": "FILLED",
     "entryP": 2227.83,
     "prodSl": 2282.75,
     "prodRisk": 54.92000000000007,
-    "structSl": 2330.93,
-    "structRisk": 103.09999999999991,
     "prodCostDict": {
       "commUsd": 0.891132,
       "sprdUsd": 0.3341745,
@@ -630,6 +762,18 @@
       "sprdR": 0.0060847505462490814,
       "slipR": 0.008113000728332109
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.5154770575382358,
+      "maeR": 1.4071376547705772,
+      "exitTs": 1776117600000,
+      "exitBar": 29,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.0304237527312454,
+    "structSl": 2330.93,
+    "structRisk": 103.09999999999991,
     "structCostDict": {
       "commUsd": 0.891132,
       "sprdUsd": 0.3341745,
@@ -639,7 +783,17 @@
       "commR": 0.008643375363724547,
       "sprdR": 0.003241265761396705,
       "slipR": 0.0043216876818622735
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.2745877788554798,
+      "maeR": 1.0608147429679922,
+      "exitTs": 1776118500000,
+      "exitBar": 30,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0162063288069836
   },
   {
     "signalId": "ETHUSD_15m_OB_1776366000000_1776367800000",
@@ -666,14 +820,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 2.067722075637682,
       "maeR": 0.7027264731750096,
       "exitTs": 1776374100000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRProd": -0.3087394459102932,
+    "netRProd": 0.19126055408970682,
     "structSl": 2284.1,
     "structRisk": 56.14499999999998,
     "structCostDict": {
@@ -688,14 +842,14 @@
     },
     "resStruct": {
       "outcome": "TP",
-      "grossR": 2,
+      "grossR": 1.5,
       "mfeR": 2,
       "maeR": 0.4063585359337441,
       "exitTs": 1776436200000,
       "exitBar": 69,
       "reason": "TAKE_PROFIT_HIT"
     },
-    "netRStruct": 1.9687383783061716
+    "netRStruct": 1.4687383783061716
   },
   {
     "signalId": "GBPUSD_15m_OB_1776449700000_1776451500000",
@@ -738,12 +892,12 @@
     "poiType": "OB",
     "signalTs": 1776640500000,
     "signalDt": "2026-04-19 23:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1776669300000,
+    "entryDt": "2026-04-20 07:15",
+    "status": "FILLED",
     "entryP": 1.17699,
     "prodSl": 1.17814,
     "prodRisk": 0.0011499999999999844,
-    "structSl": 1.17814,
-    "structRisk": 0.0011499999999999844,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -754,6 +908,18 @@
       "sprdR": 0.05217391304347897,
       "slipR": 0.021739130434782906
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.3043478260870236,
+      "maeR": 0.19130434782618433,
+      "exitTs": 1776681900000,
+      "exitBar": 14,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.37391304347825915,
+    "structSl": 1.17814,
+    "structRisk": 0.0011499999999999844,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -763,7 +929,17 @@
       "commR": 0.05217391304347897,
       "sprdR": 0.05217391304347897,
       "slipR": 0.021739130434782906
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.3043478260870236,
+      "maeR": 0.19130434782618433,
+      "exitTs": 1776681900000,
+      "exitBar": 14,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.37391304347825915
   },
   {
     "signalId": "BTCUSD_15m_FVG_1776666600000_1776669300000",
@@ -806,12 +982,12 @@
     "poiType": "OB",
     "signalTs": 1776846600000,
     "signalDt": "2026-04-22 08:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1776903300000,
+    "entryDt": "2026-04-23 00:15",
+    "status": "FILLED",
     "entryP": 86.27000000000001,
     "prodSl": 86.08,
     "prodRisk": 0.19000000000001194,
-    "structSl": 84.21000000000001,
-    "structRisk": 2.0600000000000023,
     "prodCostDict": {
       "commUsd": 0.04313500000000001,
       "sprdUsd": 0.025881,
@@ -822,6 +998,18 @@
       "sprdR": 0.13621578947367566,
       "slipR": 0.1589184210526216
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 4.263157894736511,
+      "maeR": 1.5789473684210134,
+      "exitTs": 1776903300000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": -0.022160526315756712,
+    "structSl": 84.21000000000001,
+    "structRisk": 2.0600000000000023,
     "structCostDict": {
       "commUsd": 0.04313500000000001,
       "sprdUsd": 0.025881,
@@ -831,7 +1019,17 @@
       "commR": 0.020939320388349496,
       "sprdR": 0.012563592233009695,
       "slipR": 0.014657524271844646
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.8786407766990224,
+      "maeR": 1.2815533980582583,
+      "exitTs": 1777302900000,
+      "exitBar": 444,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0481604368932038
   },
   {
     "signalId": "GBPUSD_15m_OB_1776902400000_1776905100000",
@@ -880,14 +1078,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.111111111109946,
       "maeR": 0.2500000000003084,
       "exitTs": 1776910500000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRStruct": -0.5138888888886919
+    "netRStruct": -0.013888888888691886
   },
   {
     "signalId": "BTCUSD_15m_OB_1776952800000_1776955500000",
@@ -896,12 +1094,12 @@
     "poiType": "OB",
     "signalTs": 1776967200000,
     "signalDt": "2026-04-23 18:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1777005000000,
+    "entryDt": "2026-04-24 04:30",
+    "status": "FILLED",
     "entryP": 77531.9,
     "prodSl": 77413,
     "prodRisk": 118.89999999999418,
-    "structSl": 77164.01,
-    "structRisk": 367.8899999999994,
     "prodCostDict": {
       "commUsd": 31.01276,
       "sprdUsd": 7.75319,
@@ -912,6 +1110,18 @@
       "sprdR": 0.0652076534903312,
       "slipR": 0.09781148023549678
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.1273338940287192,
+      "maeR": 0.41555929352389703,
+      "exitTs": 1777005000000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.07615025231284717,
+    "structSl": 77164.01,
+    "structRisk": 367.8899999999994,
     "structCostDict": {
       "commUsd": 31.01276,
       "sprdUsd": 7.75319,
@@ -921,7 +1131,17 @@
       "commR": 0.08429900241920152,
       "sprdR": 0.02107475060480038,
       "slipR": 0.03161212590720057
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.4290956535921087,
+      "maeR": 0.3530674930006242,
+      "exitTs": 1777021200000,
+      "exitBar": 18,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.3630141210687975
   },
   {
     "signalId": "BTCUSD_15m_OB_1777026600000_1777028400000",
@@ -948,14 +1168,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 9.051045211473161,
       "maeR": 2.1407389402040273,
       "exitTs": 1777042800000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRProd": -1.2270889280505763,
+    "netRProd": -0.7270889280505763,
     "structSl": 77392.01,
     "structRisk": 273.27999999999884,
     "structCostDict": {
@@ -970,14 +1190,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.3625585480093756,
       "maeR": 0.32227019906320553,
       "exitTs": 1777042800000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRStruct": -0.1847278926375886
+    "netRStruct": 0.3152721073624114
   },
   {
     "signalId": "SOLUSD_15m_OB_1777042800000_1777044600000",
@@ -986,12 +1206,12 @@
     "poiType": "OB",
     "signalTs": 1777067100000,
     "signalDt": "2026-04-24 21:45",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1777269600000,
+    "entryDt": "2026-04-27 06:00",
+    "status": "FILLED",
     "entryP": 85.795,
     "prodSl": 85.52,
     "prodRisk": 0.2750000000000057,
-    "structSl": 85.43,
-    "structRisk": 0.3649999999999949,
     "prodCostDict": {
       "commUsd": 0.042897500000000005,
       "sprdUsd": 0.025738499999999997,
@@ -1002,6 +1222,18 @@
       "sprdR": 0.09359454545454352,
       "slipR": 0.1091936363636341
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.9636363636363457,
+      "maeR": 1.3636363636363356,
+      "exitTs": 1777271400000,
+      "exitBar": 2,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.3587790909090836,
+    "structSl": 85.43,
+    "structRisk": 0.3649999999999949,
     "structCostDict": {
       "commUsd": 0.042897500000000005,
       "sprdUsd": 0.025738499999999997,
@@ -1011,7 +1243,17 @@
       "commR": 0.11752739726027564,
       "sprdR": 0.07051643835616536,
       "slipR": 0.08226917808219293
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.7260273972602858,
+      "maeR": 1.027397260273987,
+      "exitTs": 1777271400000,
+      "exitBar": 2,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.270313013698634
   },
   {
     "signalId": "BTCUSD_15m_OB_1777076100000_1777078800000",
@@ -1020,12 +1262,12 @@
     "poiType": "OB",
     "signalTs": 1777116600000,
     "signalDt": "2026-04-25 11:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1777302000000,
+    "entryDt": "2026-04-27 15:00",
+    "status": "FILLED",
     "entryP": 77377.04999999999,
     "prodSl": 77308.92,
     "prodRisk": 68.1299999999901,
-    "structSl": 77254.08,
-    "structRisk": 122.96999999998661,
     "prodCostDict": {
       "commUsd": 30.950819999999997,
       "sprdUsd": 7.737704999999999,
@@ -1036,6 +1278,18 @@
       "sprdR": 0.11357265521798214,
       "slipR": 0.17035898282697318
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 6.6067811536778995,
+      "maeR": 1.047115808013978,
+      "exitTs": 1777302000000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": -0.23822225891688387,
+    "structSl": 77254.08,
+    "structRisk": 122.96999999998661,
     "structCostDict": {
       "commUsd": 30.950819999999997,
       "sprdUsd": 7.737704999999999,
@@ -1045,7 +1299,17 @@
       "commR": 0.2516940717248383,
       "sprdR": 0.06292351793120958,
       "slipR": 0.09438527689681435
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 3.6604049768240947,
+      "maeR": 0.5801414979262399,
+      "exitTs": 1777302000000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRStruct": 0.09099713344713778
   },
   {
     "signalId": "BTCUSD_15m_OB_1777145400000_1777148100000",
@@ -1054,12 +1318,12 @@
     "poiType": "OB",
     "signalTs": 1777194900000,
     "signalDt": "2026-04-26 09:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1777302900000,
+    "entryDt": "2026-04-27 15:15",
+    "status": "FILLED",
     "entryP": 77224.745,
     "prodSl": 77192.79,
     "prodRisk": 31.955000000001746,
-    "structSl": 77183.79,
-    "structRisk": 40.955000000001746,
     "prodCostDict": {
       "commUsd": 30.889898,
       "sprdUsd": 7.7224745,
@@ -1070,6 +1334,18 @@
       "sprdR": 0.24166717258643647,
       "slipR": 0.3625007588796547
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 4.721483335940909,
+      "maeR": 20.667031763415977,
+      "exitTs": 1777302900000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": -1.070836621811837,
+    "structSl": 77183.79,
+    "structRisk": 40.955000000001746,
     "structCostDict": {
       "commUsd": 30.889898,
       "sprdUsd": 7.7224745,
@@ -1079,7 +1355,17 @@
       "commR": 0.7542399706995161,
       "sprdR": 0.18855999267487902,
       "slipR": 0.28283998901231855
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 3.6839213771210737,
+      "maeR": 16.125381516297534,
+      "exitTs": 1777302900000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRStruct": -0.7256399523867136
   },
   {
     "signalId": "GBPUSD_15m_OB_1777228200000_1777230900000",
@@ -1088,12 +1374,12 @@
     "poiType": "OB",
     "signalTs": 1777233600000,
     "signalDt": "2026-04-26 20:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1777251600000,
+    "entryDt": "2026-04-27 01:00",
+    "status": "FILLED",
     "entryP": 1.352555,
     "prodSl": 1.35334,
     "prodRisk": 0.0007850000000000357,
-    "structSl": 1.35411,
-    "structRisk": 0.001554999999999973,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -1104,6 +1390,18 @@
       "sprdR": 0.12101910828024928,
       "slipR": 0.038216560509552404
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.554140127388463,
+      "maeR": 1.0891719745223074,
+      "exitTs": 1777252500000,
+      "exitBar": 1,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.2356687898089065,
+    "structSl": 1.35411,
+    "structRisk": 0.001554999999999973,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -1113,7 +1411,17 @@
       "commR": 0.0385852090032161,
       "sprdR": 0.0610932475884255,
       "slipR": 0.01929260450160805
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.27974276527329306,
+      "maeR": 1.1672025723473656,
+      "exitTs": 1777258800000,
+      "exitBar": 8,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.1189710610932497
   },
   {
     "signalId": "SOLUSD_15m_FVG_1777302000000_1777302900000",
@@ -1122,12 +1430,12 @@
     "poiType": "FVG",
     "signalTs": 1777392900000,
     "signalDt": "2026-04-28 16:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1777437000000,
+    "entryDt": "2026-04-29 04:30",
+    "status": "FILLED",
     "entryP": 84.76,
     "prodSl": 85.19000000000001,
     "prodRisk": 0.4300000000000068,
-    "structSl": 85.03,
-    "structRisk": 0.269999999999996,
     "prodCostDict": {
       "commUsd": 0.04238,
       "sprdUsd": 0.025428,
@@ -1138,6 +1446,18 @@
       "sprdR": 0.059134883720929295,
       "slipR": 0.06899069767441751
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 3.627906976744134,
+      "maeR": 1.8604651162790335,
+      "exitTs": 1777455900000,
+      "exitBar": 21,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.273316279069771,
+    "structSl": 85.03,
+    "structRisk": 0.269999999999996,
     "structCostDict": {
       "commUsd": 0.04238,
       "sprdUsd": 0.025428,
@@ -1147,7 +1467,17 @@
       "commR": 0.15696296296296527,
       "sprdR": 0.09417777777777916,
       "slipR": 0.10987407407407569
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.5925925925926413,
+      "maeR": 1.111111111111117,
+      "exitTs": 1777437000000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.3610148148148202
   },
   {
     "signalId": "BTCUSD_15m_OB_1777336200000_1777339800000",
@@ -1156,12 +1486,12 @@
     "poiType": "OB",
     "signalTs": 1777406400000,
     "signalDt": "2026-04-28 20:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1777437000000,
+    "entryDt": "2026-04-29 04:30",
+    "status": "FILLED",
     "entryP": 77344.45999999999,
     "prodSl": 77479,
     "prodRisk": 134.54000000000815,
-    "structSl": 77488,
-    "structRisk": 143.54000000000815,
     "prodCostDict": {
       "commUsd": 30.937783999999997,
       "sprdUsd": 7.734445999999999,
@@ -1172,6 +1502,18 @@
       "sprdR": 0.05748807789504631,
       "slipR": 0.08623211684256946
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.4061988999552275,
+      "maeR": 0.8268916307418449,
+      "exitTs": 1777437000000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.12632749368219892,
+    "structSl": 77488,
+    "structRisk": 143.54000000000815,
     "structCostDict": {
       "commUsd": 30.937783999999997,
       "sprdUsd": 7.734445999999999,
@@ -1181,7 +1523,17 @@
       "commR": 0.21553423435974808,
       "sprdR": 0.05388355858993702,
       "slipR": 0.08082533788490552
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.2553295248709597,
+      "maeR": 0.7750452835447139,
+      "exitTs": 1777437000000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRStruct": 0.1497568691654093
   },
   {
     "signalId": "EURUSD_15m_OB_1777559400000_1777560300000",
@@ -1190,12 +1542,12 @@
     "poiType": "OB",
     "signalTs": 1777658400000,
     "signalDt": "2026-05-01 18:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1777888800000,
+    "entryDt": "2026-05-04 10:00",
+    "status": "FILLED",
     "entryP": 1.1710850000000002,
     "prodSl": 1.1706,
     "prodRisk": 0.0004850000000000687,
-    "structSl": 1.16827,
-    "structRisk": 0.002815000000000234,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -1206,6 +1558,18 @@
       "sprdR": 0.12371134020616804,
       "slipR": 0.05154639175257002
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.5567010309272828,
+      "maeR": 3.2474226804121256,
+      "exitTs": 1777888800000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.2010309278350939,
+    "structSl": 1.16827,
+    "structRisk": 0.002815000000000234,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -1215,7 +1579,17 @@
       "commR": 0.0213143872113659,
       "sprdR": 0.0213143872113659,
       "slipR": 0.00888099467140246
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.2682060390762971,
+      "maeR": 1.0319715808170216,
+      "exitTs": 1777913100000,
+      "exitBar": 27,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0515097690941342
   },
   {
     "signalId": "XAUUSD_15m_OB_1777641300000_1777644000000",
@@ -1224,12 +1598,12 @@
     "poiType": "OB",
     "signalTs": 1777764600000,
     "signalDt": "2026-05-02 23:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1777874400000,
+    "entryDt": "2026-05-04 06:00",
+    "status": "FILLED",
     "entryP": 4591.7693,
     "prodSl": 4588.69499,
     "prodRisk": 3.0743099999999686,
-    "structSl": 4561.246359999999,
-    "structRisk": 30.522940000000744,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -1240,6 +1614,18 @@
       "sprdR": 0.048791436127131466,
       "slipR": 0.03252762408475431
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.8927466651055114,
+      "maeR": 0.8064964170821058,
+      "exitTs": 1777874400000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.35362569161860563,
+    "structSl": 4561.246359999999,
+    "structRisk": 30.522940000000744,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -1249,7 +1635,17 @@
       "commR": 0.0065524487483838425,
       "sprdR": 0.004914336561287882,
       "slipR": 0.0032762243741919213
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.29136118604565014,
+      "maeR": 1.7134371721727593,
+      "exitTs": 1777888800000,
+      "exitBar": 16,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0147430096838637
   },
   {
     "signalId": "BTCUSD_15m_OB_1777788900000_1777790700000",
@@ -1310,14 +1706,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.4000000000000488,
       "maeR": 2.0857142857142903,
       "exitTs": 1777889700000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRProd": -0.5493385714285803,
+    "netRProd": -0.049338571428580336,
     "structSl": 83.25,
     "structRisk": 0.34499999999999886,
     "structCostDict": {
@@ -1348,12 +1744,12 @@
     "poiType": "OB",
     "signalTs": 1778225400000,
     "signalDt": "2026-05-08 07:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1778457600000,
+    "entryDt": "2026-05-11 00:00",
+    "status": "FILLED",
     "entryP": 4684.8339049999995,
     "prodSl": 4681.478679999999,
     "prodRisk": 3.355225000000246,
-    "structSl": 4670.9249899999995,
-    "structRisk": 13.908914999999979,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -1364,6 +1760,18 @@
       "sprdR": 0.044706390778558515,
       "slipR": 0.029804260519039016
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.5959913269600774,
+      "maeR": 0.9801324799378861,
+      "exitTs": 1778457600000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.36588082766432445,
+    "structSl": 4670.9249899999995,
+    "structRisk": 13.908914999999979,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -1373,7 +1781,17 @@
       "commR": 0.01437926682275363,
       "sprdR": 0.010784450117065221,
       "slipR": 0.007189633411376815
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.4093741316271453,
+      "maeR": 0.7105964052551546,
+      "exitTs": 1778463900000,
+      "exitBar": 7,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.4676466496488043
   },
   {
     "signalId": "ETHUSD_15m_OB_1778162400000_1778164200000",
@@ -1382,12 +1800,12 @@
     "poiType": "OB",
     "signalTs": 1778233500000,
     "signalDt": "2026-05-08 09:45",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1778261400000,
+    "entryDt": "2026-05-08 17:30",
+    "status": "FILLED",
     "entryP": 2313.255,
     "prodSl": 2318.85,
     "prodRisk": 5.5949999999998,
-    "structSl": 2338.13,
-    "structRisk": 24.875,
     "prodCostDict": {
       "commUsd": 0.9253020000000001,
       "sprdUsd": 0.34698825,
@@ -1398,6 +1816,18 @@
       "sprdR": 0.062017560321718034,
       "slipR": 0.08269008042895738
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.079535299374555,
+      "maeR": 0.3118856121537003,
+      "exitTs": 1778261400000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.18991219839140977,
+    "structSl": 2338.13,
+    "structRisk": 24.875,
     "structCostDict": {
       "commUsd": 0.9253020000000001,
       "sprdUsd": 0.34698825,
@@ -1407,7 +1837,17 @@
       "commR": 0.037198070351758795,
       "sprdR": 0.013949276381909547,
       "slipR": 0.018599035175879398
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.5328643216080445,
+      "maeR": 1.0096482412060215,
+      "exitTs": 1778350500000,
+      "exitBar": 99,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0697463819095478
   },
   {
     "signalId": "EURUSD_15m_FVG_1778228100000_1778228100000",
@@ -1416,12 +1856,12 @@
     "poiType": "FVG",
     "signalTs": 1778337000000,
     "signalDt": "2026-05-09 14:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1778473800000,
+    "entryDt": "2026-05-11 04:30",
+    "status": "FILLED",
     "entryP": 1.17535,
     "prodSl": 1.17454,
     "prodRisk": 0.0008099999999999774,
-    "structSl": 1.17238,
-    "structRisk": 0.002969999999999917,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -1432,6 +1872,18 @@
       "sprdR": 0.07407407407407614,
       "slipR": 0.03086419753086506
     },
+    "resProd": {
+      "outcome": "TP",
+      "grossR": 1.5,
+      "mfeR": 2,
+      "maeR": 0.5308641975307932,
+      "exitTs": 1778483700000,
+      "exitBar": 11,
+      "reason": "TAKE_PROFIT_HIT"
+    },
+    "netRProd": 1.3209876543209826,
+    "structSl": 1.17238,
+    "structRisk": 0.002969999999999917,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -1441,7 +1893,17 @@
       "commR": 0.020202020202020766,
       "sprdR": 0.020202020202020766,
       "slipR": 0.008417508417508653
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.1717171717172548,
+      "maeR": 0.1447811447811254,
+      "exitTs": 1778562900000,
+      "exitBar": 99,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.4511784511784498
   },
   {
     "signalId": "ETHUSD_15m_OB_1778338800000_1778341500000",
@@ -1450,12 +1912,12 @@
     "poiType": "OB",
     "signalTs": 1778386500000,
     "signalDt": "2026-05-10 04:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1778509800000,
+    "entryDt": "2026-05-11 14:30",
+    "status": "FILLED",
     "entryP": 2304.84,
     "prodSl": 2299.9,
     "prodRisk": 4.940000000000055,
-    "structSl": 2299,
-    "structRisk": 5.8400000000001455,
     "prodCostDict": {
       "commUsd": 0.9219360000000001,
       "sprdUsd": 0.345726,
@@ -1466,6 +1928,18 @@
       "sprdR": 0.0699850202429142,
       "slipR": 0.09331336032388562
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.57894736842098,
+      "maeR": 0.1700404858299871,
+      "exitTs": 1778509800000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.15007489878542896,
+    "structSl": 2299,
+    "structRisk": 5.8400000000001455,
     "structCostDict": {
       "commUsd": 0.9219360000000001,
       "sprdUsd": 0.345726,
@@ -1475,7 +1949,17 @@
       "commR": 0.15786575342465362,
       "sprdR": 0.059199657534245095,
       "slipR": 0.07893287671232681
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.1815068493149767,
+      "maeR": 0.1438356164383775,
+      "exitTs": 1778509800000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRStruct": 0.20400171232877445
   },
   {
     "signalId": "BTCUSD_15m_OB_1778338800000_1778340600000",
@@ -1484,12 +1968,12 @@
     "poiType": "OB",
     "signalTs": 1778447700000,
     "signalDt": "2026-05-10 21:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1778598900000,
+    "entryDt": "2026-05-12 15:15",
+    "status": "FILLED",
     "entryP": 80291.7,
     "prodSl": 80233,
     "prodRisk": 58.69999999999709,
-    "structSl": 80224,
-    "structRisk": 67.69999999999709,
     "prodCostDict": {
       "commUsd": 32.11668,
       "sprdUsd": 8.02917,
@@ -1500,6 +1984,18 @@
       "sprdR": 0.1367831345826303,
       "slipR": 0.20517470187394543
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 5.544293015332423,
+      "maeR": 1.7555366269166612,
+      "exitTs": 1778598900000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": -0.38909037478709685,
+    "structSl": 80224,
+    "structRisk": 67.69999999999709,
     "structCostDict": {
       "commUsd": 32.11668,
       "sprdUsd": 8.02917,
@@ -1509,7 +2005,17 @@
       "commR": 0.47439704579027153,
       "sprdR": 0.11859926144756788,
       "slipR": 0.1778988921713518
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 4.807237813884949,
+      "maeR": 1.5221565731167996,
+      "exitTs": 1778598900000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRStruct": -0.27089519940919116
   },
   {
     "signalId": "SOLUSD_15m_OB_1778509800000_1778512500000",
@@ -1518,12 +2024,12 @@
     "poiType": "OB",
     "signalTs": 1778550300000,
     "signalDt": "2026-05-12 01:45",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1778584500000,
+    "entryDt": "2026-05-12 11:15",
+    "status": "FILLED",
     "entryP": 94.66,
     "prodSl": 94.28999999999999,
     "prodRisk": 0.37000000000000455,
-    "structSl": 94.2,
-    "structRisk": 0.45999999999999375,
     "prodCostDict": {
       "commUsd": 0.04733,
       "sprdUsd": 0.028397999999999996,
@@ -1534,6 +2040,18 @@
       "sprdR": 0.0767513513513504,
       "slipR": 0.08954324324324214
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.432432432432418,
+      "maeR": 0.72972972972971,
+      "exitTs": 1778589000000,
+      "exitBar": 5,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.20578648648649017,
+    "structSl": 94.2,
+    "structRisk": 0.45999999999999375,
     "structCostDict": {
       "commUsd": 0.04733,
       "sprdUsd": 0.028397999999999996,
@@ -1543,7 +2061,17 @@
       "commR": 0.10289130434782748,
       "sprdR": 0.061734782608696484,
       "slipR": 0.07202391304347924
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.9565217391304737,
+      "maeR": 0.5869565217391297,
+      "exitTs": 1778589000000,
+      "exitBar": 5,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.2633499999999968
   },
   {
     "signalId": "XAUUSD_15m_OB_1778663700000_1778666400000",
@@ -1570,14 +2098,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.0830331112666747,
       "maeR": 0.09557788916704668,
       "exitTs": 1778670000000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRProd": -0.0835885104806133,
+    "netRProd": 0.41641148951938667,
     "structSl": 4688.4640899999995,
     "structRisk": 3.5138950000000477,
     "structCostDict": {
@@ -1592,14 +2120,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.659276956198244,
       "maeR": 0.1464315239923452,
       "exitTs": 1778670000000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRStruct": -0.12806301838842477
+    "netRStruct": 0.37193698161157523
   },
   {
     "signalId": "BTCUSD_15m_FVG_1778668200000_1778668200000",
@@ -1608,12 +2136,12 @@
     "poiType": "FVG",
     "signalTs": 1778678100000,
     "signalDt": "2026-05-13 13:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1778769900000,
+    "entryDt": "2026-05-14 14:45",
+    "status": "FILLED",
     "entryP": 80880.53,
     "prodSl": 80975,
     "prodRisk": 94.47000000000116,
-    "structSl": 81334.64,
-    "structRisk": 454.1100000000006,
     "prodCostDict": {
       "commUsd": 32.352212,
       "sprdUsd": 8.088053,
@@ -1624,6 +2152,18 @@
       "sprdR": 0.08561504181221447,
       "slipR": 0.12842256271832167
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 5.742987191700931,
+      "maeR": 1.476341695776431,
+      "exitTs": 1778769900000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": -0.05649777177939397,
+    "structSl": 81334.64,
+    "structRisk": 454.1100000000006,
     "structCostDict": {
       "commUsd": 32.352212,
       "sprdUsd": 8.088053,
@@ -1633,7 +2173,17 @@
       "commR": 0.07124311730637943,
       "sprdR": 0.017810779326594858,
       "slipR": 0.026716168989892278
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.1947325537865119,
+      "maeR": 0.307128228843234,
+      "exitTs": 1778769900000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.38422993437713343
   },
   {
     "signalId": "ETHUSD_15m_FVG_1778679000000_1778679900000",
@@ -1642,12 +2192,12 @@
     "poiType": "FVG",
     "signalTs": 1778684400000,
     "signalDt": "2026-05-13 15:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1778737500000,
+    "entryDt": "2026-05-14 05:45",
+    "status": "FILLED",
     "entryP": 2270.62,
     "prodSl": 2279.74,
     "prodRisk": 9.11999999999989,
-    "structSl": 2324.36,
-    "structRisk": 53.74000000000024,
     "prodCostDict": {
       "commUsd": 0.908248,
       "sprdUsd": 0.340593,
@@ -1658,6 +2208,18 @@
       "sprdR": 0.03734572368421097,
       "slipR": 0.049794298245614634
     },
+    "resProd": {
+      "outcome": "TP",
+      "grossR": 1.5,
+      "mfeR": 2,
+      "maeR": 0.5021929824561384,
+      "exitTs": 1778760000000,
+      "exitBar": 25,
+      "reason": "TAKE_PROFIT_HIT"
+    },
+    "netRProd": 1.3132713815789452,
+    "structSl": 2324.36,
+    "structRisk": 53.74000000000024,
     "structCostDict": {
       "commUsd": 0.908248,
       "sprdUsd": 0.340593,
@@ -1667,7 +2229,17 @@
       "commR": 0.016900781540751694,
       "sprdR": 0.006337793077781885,
       "slipR": 0.008450390770375847
-    }
+    },
+    "resStruct": {
+      "outcome": "TP",
+      "grossR": 1.5,
+      "mfeR": 2,
+      "maeR": 0.9064011909192374,
+      "exitTs": 1778922900000,
+      "exitBar": 206,
+      "reason": "TAKE_PROFIT_HIT"
+    },
+    "netRStruct": 1.4683110346110906
   },
   {
     "signalId": "GBPUSD_15m_OB_1778854500000_1778858100000",
@@ -1676,12 +2248,12 @@
     "poiType": "OB",
     "signalTs": 1778920200000,
     "signalDt": "2026-05-16 08:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1779086700000,
+    "entryDt": "2026-05-18 06:45",
+    "status": "FILLED",
     "entryP": 1.3354249999999999,
     "prodSl": 1.33632,
     "prodRisk": 0.0008950000000000902,
-    "structSl": 1.33632,
-    "structRisk": 0.0008950000000000902,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -1692,6 +2264,18 @@
       "sprdR": 0.10614525139663736,
       "slipR": 0.033519553072622325
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.3463687150835522,
+      "maeR": 0.5754189944133982,
+      "exitTs": 1779089400000,
+      "exitBar": 3,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.2932960893854957,
+    "structSl": 1.33632,
+    "structRisk": 0.0008950000000000902,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -1701,7 +2285,17 @@
       "commR": 0.06703910614524465,
       "sprdR": 0.10614525139663736,
       "slipR": 0.033519553072622325
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.3463687150835522,
+      "maeR": 0.5754189944133982,
+      "exitTs": 1779089400000,
+      "exitBar": 3,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.2932960893854957
   },
   {
     "signalId": "SOLUSD_15m_OB_1779149700000_1779153300000",
@@ -1710,12 +2304,12 @@
     "poiType": "OB",
     "signalTs": 1779156000000,
     "signalDt": "2026-05-19 02:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1779288300000,
+    "entryDt": "2026-05-20 14:45",
+    "status": "FILLED",
     "entryP": 85.72999999999999,
     "prodSl": 85.98,
     "prodRisk": 0.2500000000000142,
-    "structSl": 85.89999999999999,
-    "structRisk": 0.1700000000000017,
     "prodCostDict": {
       "commUsd": 0.04286499999999999,
       "sprdUsd": 0.025718999999999995,
@@ -1726,6 +2320,18 @@
       "sprdR": 0.10287599999999414,
       "slipR": 0.12002199999999316
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.7199999999999295,
+      "maeR": 1.7199999999999296,
+      "exitTs": 1779288300000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.3943579999999776,
+    "structSl": 85.89999999999999,
+    "structRisk": 0.1700000000000017,
     "structCostDict": {
       "commUsd": 0.04286499999999999,
       "sprdUsd": 0.025718999999999995,
@@ -1735,7 +2341,17 @@
       "commR": 0.25214705882352684,
       "sprdR": 0.1512882352941161,
       "slipR": 0.1765029411764688
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.0588235294117105,
+      "maeR": 2.529411764705897,
+      "exitTs": 1779288300000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -0.07993823529411181
   },
   {
     "signalId": "BTCUSD_15m_OB_1779179400000_1779182100000",
@@ -1744,12 +2360,12 @@
     "poiType": "OB",
     "signalTs": 1779183000000,
     "signalDt": "2026-05-19 09:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1779253200000,
+    "entryDt": "2026-05-20 05:00",
+    "status": "FILLED",
     "entryP": 77167.41500000001,
     "prodSl": 77318.02,
     "prodRisk": 150.60499999999593,
-    "structSl": 77424.62,
-    "structRisk": 257.2049999999872,
     "prodCostDict": {
       "commUsd": 30.866966000000005,
       "sprdUsd": 7.716741500000001,
@@ -1760,6 +2376,18 @@
       "sprdR": 0.051238282261546496,
       "slipR": 0.07685742339231973
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.569934597125084,
+      "maeR": 0.728163075595077,
+      "exitTs": 1779253200000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.1669511652999478,
+    "structSl": 77424.62,
+    "structRisk": 257.2049999999872,
     "structCostDict": {
       "commUsd": 30.866966000000005,
       "sprdUsd": 7.716741500000001,
@@ -1769,7 +2397,17 @@
       "commR": 0.12000919888805249,
       "sprdR": 0.030002299722013123,
       "slipR": 0.045003449583019675
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.504811337260287,
+      "maeR": 0.4263719601096365,
+      "exitTs": 1779253200000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.3049850518069147
   },
   {
     "signalId": "XAUUSD_15m_OB_1779327000000_1779330600000",
@@ -1778,12 +2416,12 @@
     "poiType": "OB",
     "signalTs": 1779337800000,
     "signalDt": "2026-05-21 04:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1779667200000,
+    "entryDt": "2026-05-25 00:00",
+    "status": "FILLED",
     "entryP": 4566.7353650000005,
     "prodSl": 4571.1106500000005,
     "prodRisk": 4.375285000000076,
-    "structSl": 4571.1106500000005,
-    "structRisk": 4.375285000000076,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -1794,6 +2432,18 @@
       "sprdR": 0.03428348096181103,
       "slipR": 0.02285565397454069
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.3582840889223012,
+      "maeR": 2.22024965230826,
+      "exitTs": 1779667200000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.102850442885433,
+    "structSl": 4571.1106500000005,
+    "structRisk": 4.375285000000076,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -1803,7 +2453,17 @@
       "commR": 0.04571130794908138,
       "sprdR": 0.03428348096181103,
       "slipR": 0.02285565397454069
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.3582840889223012,
+      "maeR": 2.22024965230826,
+      "exitTs": 1779667200000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.102850442885433
   },
   {
     "signalId": "SOLUSD_15m_OB_1779381000000_1779383700000",
@@ -1830,14 +2490,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.9545454545453047,
       "maeR": 0.18181818181819945,
       "exitTs": 1779462900000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRProd": -0.4511659090908823,
+    "netRProd": 0.04883409090911772,
     "structSl": 85.22,
     "structRisk": 1.0900000000000034,
     "structCostDict": {
@@ -1868,12 +2528,12 @@
     "poiType": "OB",
     "signalTs": 1779730200000,
     "signalDt": "2026-05-25 17:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1779810300000,
+    "entryDt": "2026-05-26 15:45",
+    "status": "FILLED",
     "entryP": 76352.565,
     "prodSl": 76125.71,
     "prodRisk": 226.85499999999593,
-    "structSl": 76098,
-    "structRisk": 254.56500000000233,
     "prodCostDict": {
       "commUsd": 30.541026000000002,
       "sprdUsd": 7.635256500000001,
@@ -1884,6 +2544,18 @@
       "sprdR": 0.03365699014789243,
       "slipR": 0.05048548522183864
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.5756540521478426,
+      "maeR": 1.3024398845077332,
+      "exitTs": 1779815700000,
+      "exitBar": 6,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.28122956403869925,
+    "structSl": 76098,
+    "structRisk": 254.56500000000233,
     "structCostDict": {
       "commUsd": 30.541026000000002,
       "sprdUsd": 7.635256500000001,
@@ -1893,7 +2565,17 @@
       "commR": 0.11997338990041727,
       "sprdR": 0.029993347475104317,
       "slipR": 0.04499002121265647
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.4041403963623795,
+      "maeR": 1.160666234556965,
+      "exitTs": 1779815700000,
+      "exitBar": 6,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.30504324141182193
   },
   {
     "signalId": "GBPUSD_15m_OB_1779658200000_1779660900000",
@@ -1902,12 +2584,12 @@
     "poiType": "OB",
     "signalTs": 1779759900000,
     "signalDt": "2026-05-26 01:45",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1779806700000,
+    "entryDt": "2026-05-26 14:45",
+    "status": "FILLED",
     "entryP": 1.3455050000000002,
     "prodSl": 1.34471,
     "prodRisk": 0.0007950000000001012,
-    "structSl": 1.34249,
-    "structRisk": 0.003015000000000212,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -1918,6 +2600,18 @@
       "sprdR": 0.11949685534589674,
       "slipR": 0.03773584905659897
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.0880503144651366,
+      "maeR": 0.48427672955978707,
+      "exitTs": 1779806700000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.2672955974843063,
+    "structSl": 1.34249,
+    "structRisk": 0.003015000000000212,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -1927,7 +2621,17 @@
       "commR": 0.019900497512436412,
       "sprdR": 0.031509121061357656,
       "slipR": 0.009950248756218206
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.2868988391375897,
+      "maeR": 1.1658374792702852,
+      "exitTs": 1779893100000,
+      "exitBar": 96,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0613598673300122
   },
   {
     "signalId": "GBPUSD_15m_OB_1779805800000_1779806700000",
@@ -1936,12 +2640,12 @@
     "poiType": "OB",
     "signalTs": 1779906600000,
     "signalDt": "2026-05-27 18:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1780065900000,
+    "entryDt": "2026-05-29 14:45",
+    "status": "FILLED",
     "entryP": 1.3463500000000002,
     "prodSl": 1.34694,
     "prodRisk": 0.0005899999999998684,
-    "structSl": 1.34909,
-    "structRisk": 0.0027399999999997426,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -1952,6 +2656,18 @@
       "sprdR": 0.1610169491525783,
       "slipR": 0.050847457627129986
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 4.66101694915401,
+      "maeR": 2.7966101694920296,
+      "exitTs": 1780065900000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.18644067796603175,
+    "structSl": 1.34909,
+    "structRisk": 0.0027399999999997426,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -1961,7 +2677,17 @@
       "commR": 0.02189781021898016,
       "sprdR": 0.03467153284671859,
       "slipR": 0.01094890510949008
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.0036496350366826,
+      "maeR": 0.6021897810219285,
+      "exitTs": 1780065900000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.4324817518248112
   },
   {
     "signalId": "EURUSD_15m_OB_1779892200000_1779893100000",
@@ -1970,12 +2696,12 @@
     "poiType": "OB",
     "signalTs": 1779951600000,
     "signalDt": "2026-05-28 07:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1779976800000,
+    "entryDt": "2026-05-28 14:00",
+    "status": "FILLED",
     "entryP": 1.1647150000000002,
     "prodSl": 1.16521,
     "prodRisk": 0.0004949999999999122,
-    "structSl": 1.16624,
-    "structRisk": 0.0015249999999997765,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -1986,6 +2712,18 @@
       "sprdR": 0.12121212121214273,
       "slipR": 0.05050505050505947
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 6.03030303030458,
+      "maeR": 0.7979797979797844,
+      "exitTs": 1779976800000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.2070707070706551,
+    "structSl": 1.16624,
+    "structRisk": 0.0015249999999997765,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -1995,7 +2733,17 @@
       "commR": 0.03934426229508774,
       "sprdR": 0.03934426229508774,
       "slipR": 0.01639344262295322
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.9573770491807705,
+      "maeR": 0.2590163934426105,
+      "exitTs": 1779976800000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.40491803278687133
   },
   {
     "signalId": "XAUUSD_15m_FVG_1779876900000_1779877800000",
@@ -2022,14 +2770,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 2.043019083696408,
       "maeR": 0.12916732184985885,
       "exitTs": 1779979500000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRProd": -0.06432706740046343,
+    "netRProd": 0.43567293259953654,
     "structSl": 4516.780720000001,
     "structRisk": 38.60163000000102,
     "structCostDict": {
@@ -2060,12 +2808,12 @@
     "poiType": "OB",
     "signalTs": 1780081200000,
     "signalDt": "2026-05-29 19:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1780294500000,
+    "entryDt": "2026-06-01 06:15",
+    "status": "FILLED",
     "entryP": 1988.5549999999998,
     "prodSl": 1983.22,
     "prodRisk": 5.334999999999809,
-    "structSl": 1975.48,
-    "structRisk": 13.074999999999818,
     "prodCostDict": {
       "commUsd": 0.795422,
       "sprdUsd": 0.29828324999999994,
@@ -2076,6 +2824,18 @@
       "sprdR": 0.05591063730084548,
       "slipR": 0.07454751640112732
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.9119025304593085,
+      "maeR": 1.2061855670103423,
+      "exitTs": 1780295400000,
+      "exitBar": 1,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.2795531865042276,
+    "structSl": 1975.48,
+    "structRisk": 13.074999999999818,
     "structCostDict": {
       "commUsd": 0.795422,
       "sprdUsd": 0.29828324999999994,
@@ -2085,7 +2845,17 @@
       "commR": 0.060835334608031436,
       "sprdR": 0.022813250478011787,
       "slipR": 0.030417667304015718
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.3720841300191437,
+      "maeR": 1.2891013384321244,
+      "exitTs": 1780299900000,
+      "exitBar": 6,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.1140662523900589
   },
   {
     "signalId": "EURUSD_15m_OB_1780065000000_1780065900000",
@@ -2094,12 +2864,12 @@
     "poiType": "OB",
     "signalTs": 1780091100000,
     "signalDt": "2026-05-29 21:45",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1780274700000,
+    "entryDt": "2026-06-01 00:45",
+    "status": "FILLED",
     "entryP": 1.164495,
     "prodSl": 1.16399,
     "prodRisk": 0.0005049999999999777,
-    "structSl": 1.16399,
-    "structRisk": 0.0005049999999999777,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -2110,6 +2880,18 @@
       "sprdR": 0.11881188118812407,
       "slipR": 0.04950495049505169
     },
+    "resProd": {
+      "outcome": "TP",
+      "grossR": 1.5,
+      "mfeR": 2,
+      "maeR": 0.6435643564359309,
+      "exitTs": 1780293600000,
+      "exitBar": 21,
+      "reason": "TAKE_PROFIT_HIT"
+    },
+    "netRProd": 1.2128712871287002,
+    "structSl": 1.16399,
+    "structRisk": 0.0005049999999999777,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -2119,7 +2901,17 @@
       "commR": 0.11881188118812407,
       "sprdR": 0.11881188118812407,
       "slipR": 0.04950495049505169
-    }
+    },
+    "resStruct": {
+      "outcome": "TP",
+      "grossR": 1.5,
+      "mfeR": 2,
+      "maeR": 0.6435643564359309,
+      "exitTs": 1780293600000,
+      "exitBar": 21,
+      "reason": "TAKE_PROFIT_HIT"
+    },
+    "netRStruct": 1.2128712871287002
   },
   {
     "signalId": "GBPUSD_15m_OB_1780065000000_1780065900000",
@@ -2128,12 +2920,12 @@
     "poiType": "OB",
     "signalTs": 1780179300000,
     "signalDt": "2026-05-30 22:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1780319700000,
+    "entryDt": "2026-06-01 13:15",
+    "status": "FILLED",
     "entryP": 1.34349,
     "prodSl": 1.34276,
     "prodRisk": 0.0007300000000001194,
-    "structSl": 1.34077,
-    "structRisk": 0.0027200000000000557,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -2144,6 +2936,18 @@
       "sprdR": 0.13013698630134857,
       "slipR": 0.04109589041095218
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.2328767123284297,
+      "maeR": 0.19178082191781656,
+      "exitTs": 1780319700000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.24657534246579488,
+    "structSl": 1.34077,
+    "structRisk": 0.0027200000000000557,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -2153,7 +2957,17 @@
       "commR": 0.022058823529411315,
       "sprdR": 0.03492647058823458,
       "slipR": 0.011029411764705658
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.7132352941175701,
+      "maeR": 0.9669117647059111,
+      "exitTs": 1780489800000,
+      "exitBar": 189,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.43198529411764847
   },
   {
     "signalId": "XAUUSD_15m_OB_1780057800000_1780062300000",
@@ -2162,12 +2976,12 @@
     "poiType": "OB",
     "signalTs": 1780179300000,
     "signalDt": "2026-05-30 22:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1780282800000,
+    "entryDt": "2026-06-01 03:00",
+    "status": "FILLED",
     "entryP": 4518.33121,
     "prodSl": 4513.75754,
     "prodRisk": 4.573670000000675,
-    "structSl": 4513.4581499999995,
-    "structRisk": 4.873060000000805,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -2178,6 +2992,18 @@
       "sprdR": 0.03279641950555634,
       "slipR": 0.021864279670370895
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.4781171356916032,
+      "maeR": 0.5616758533082268,
+      "exitTs": 1780282800000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.401610741483331,
+    "structSl": 4513.4581499999995,
+    "structRisk": 4.873060000000805,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -2187,7 +3013,17 @@
       "commR": 0.041041973626420966,
       "sprdR": 0.03078148021981572,
       "slipR": 0.020520986813210483
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.3873048967175645,
+      "maeR": 0.5271677344420533,
+      "exitTs": 1780282800000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.40765555934055286
   },
   {
     "signalId": "XAUUSD_15m_FVG_1780065900000_1780066800000",
@@ -2196,8 +3032,8 @@
     "poiType": "FVG",
     "signalTs": 1780190100000,
     "signalDt": "2026-05-31 01:15",
-    "entryTs": 1780190100000,
-    "entryDt": "2026-05-31 01:15",
+    "entryTs": 1780272000000,
+    "entryDt": "2026-06-01 00:00",
     "status": "FILLED",
     "entryP": 4566.45969,
     "prodSl": 4539.2589499999995,
@@ -2216,9 +3052,9 @@
       "outcome": "SL",
       "grossR": -1,
       "mfeR": 0,
-      "maeR": 1.0149396670825754,
-      "exitTs": 1780263000000,
-      "exitBar": 81,
+      "maeR": 1.0679393281211846,
+      "exitTs": 1780272000000,
+      "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
     "netRProd": -1.0165436675619852,
@@ -2238,9 +3074,9 @@
       "outcome": "SL",
       "grossR": -1,
       "mfeR": 0,
-      "maeR": 1.0145598522039097,
-      "exitTs": 1780261200000,
-      "exitBar": 79,
+      "maeR": 1.2021982351543523,
+      "exitTs": 1780272000000,
+      "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
     "netRStruct": -1.018623499877085
@@ -2252,8 +3088,8 @@
     "poiType": "OB",
     "signalTs": 1780780500000,
     "signalDt": "2026-06-06 21:15",
-    "entryTs": 1780794000000,
-    "entryDt": "2026-06-07 01:00",
+    "entryTs": 1780876800000,
+    "entryDt": "2026-06-08 00:00",
     "status": "FILLED",
     "entryP": 1582.1750000000002,
     "prodSl": 1587.74,
@@ -2269,15 +3105,15 @@
       "slipR": 0.05686163522012756
     },
     "resProd": {
-      "outcome": "BE",
-      "grossR": 0,
-      "mfeR": 3.237196765498771,
-      "maeR": 0.9892183288409798,
-      "exitTs": 1780794000000,
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0,
+      "maeR": 19.706199460917006,
+      "exitTs": 1780876800000,
       "exitBar": 0,
-      "reason": "CONFLICT_SL_FIRST"
+      "reason": "STOP_LOSS_HIT"
     },
-    "netRProd": -0.21323113207547836,
+    "netRProd": -1.2132311320754783,
     "structSl": 1594.04,
     "structRisk": 11.864999999999782,
     "structCostDict": {
@@ -2291,15 +3127,15 @@
       "slipR": 0.026669616519174537
     },
     "resStruct": {
-      "outcome": "BE",
-      "grossR": 0,
-      "mfeR": 1.5183312262958644,
-      "maeR": 0.46396965865992273,
-      "exitTs": 1780794000000,
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0,
+      "maeR": 9.242730720606975,
+      "exitTs": 1780876800000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRStruct": -0.10001106194690451
+    "netRStruct": -1.1000110619469046
   },
   {
     "signalId": "XAUUSD_15m_OB_1780681500000_1780684200000",
@@ -2308,12 +3144,12 @@
     "poiType": "OB",
     "signalTs": 1780794900000,
     "signalDt": "2026-06-07 01:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1780876800000,
+    "entryDt": "2026-06-08 00:00",
+    "status": "FILLED",
     "entryP": 4341.122125,
     "prodSl": 4343.393950000001,
     "prodRisk": 2.2718250000007174,
-    "structSl": 4476.496260000001,
-    "structRisk": 135.37413500000093,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -2324,6 +3160,18 @@
       "sprdR": 0.06602621240630446,
       "slipR": 0.044017474937536306
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0,
+      "maeR": 2.285477534580633,
+      "exitTs": 1780876800000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.1980786372189134,
+    "structSl": 4476.496260000001,
+    "structRisk": 135.37413500000093,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -2333,7 +3181,17 @@
       "commR": 0.0014773870946617582,
       "sprdR": 0.0011080403209963185,
       "slipR": 0.0007386935473308791
-    }
+    },
+    "resStruct": {
+      "outcome": "TP",
+      "grossR": 1.5,
+      "mfeR": 2,
+      "maeR": 0.13914042737927546,
+      "exitTs": 1781121600000,
+      "exitBar": 272,
+      "reason": "TAKE_PROFIT_HIT"
+    },
+    "netRStruct": 1.496675879037011
   },
   {
     "signalId": "BTCUSD_15m_OB_1780831800000_1780833600000",
@@ -2342,8 +3200,8 @@
     "poiType": "OB",
     "signalTs": 1780868700000,
     "signalDt": "2026-06-07 21:45",
-    "entryTs": 1780869600000,
-    "entryDt": "2026-06-07 22:00",
+    "entryTs": 1780876800000,
+    "entryDt": "2026-06-08 00:00",
     "status": "FILLED",
     "entryP": 62564,
     "prodSl": 62681,
@@ -2359,15 +3217,15 @@
       "slipR": 0.0802102564102564
     },
     "resProd": {
-      "outcome": "BE",
-      "grossR": 0,
-      "mfeR": 7.144358974358969,
-      "maeR": 10.034102564102547,
-      "exitTs": 1780869600000,
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0,
+      "maeR": 6.666666666666667,
+      "exitTs": 1780876800000,
       "exitBar": 0,
-      "reason": "CONFLICT_SL_FIRST"
+      "reason": "STOP_LOSS_HIT"
     },
-    "netRProd": -0.3475777777777778,
+    "netRProd": -1.3475777777777778,
     "structSl": 62970,
     "structRisk": 406,
     "structCostDict": {
@@ -2381,15 +3239,15 @@
       "slipR": 0.02311477832512315
     },
     "resStruct": {
-      "outcome": "BE",
-      "grossR": 0,
-      "mfeR": 2.058842364532018,
-      "maeR": 2.89160098522167,
-      "exitTs": 1780869600000,
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0,
+      "maeR": 1.9211822660098523,
+      "exitTs": 1780876800000,
       "exitBar": 0,
-      "reason": "CONFLICT_SL_FIRST"
+      "reason": "STOP_LOSS_HIT"
     },
-    "netRStruct": -0.100164039408867
+    "netRStruct": -1.100164039408867
   },
   {
     "signalId": "XAUUSD_15m_OB_1780925400000_1780927200000",
@@ -2416,14 +3274,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.1012197078358426,
       "maeR": 0.0712038886607493,
       "exitTs": 1780932600000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRProd": -0.060921086209424144,
+    "netRProd": 0.43907891379057584,
     "structSl": 4353.03606,
     "structRisk": 14.95265500000096,
     "structCostDict": {
@@ -2438,14 +3296,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.6312651499013002,
       "maeR": 0.5354403615946282,
       "exitTs": 1780968600000,
       "exitBar": 40,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRStruct": -0.03009498981953179
+    "netRStruct": 0.4699050101804682
   },
   {
     "signalId": "XAUUSD_15m_OB_1781071200000_1781078400000",
@@ -2454,12 +3312,12 @@
     "poiType": "OB",
     "signalTs": 1781100000000,
     "signalDt": "2026-06-10 14:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1781206200000,
+    "entryDt": "2026-06-11 19:30",
+    "status": "FILLED",
     "entryP": 4213.345975,
     "prodSl": 4224.036160000001,
     "prodRisk": 10.690185000000383,
-    "structSl": 4224.036160000001,
-    "structRisk": 10.690185000000383,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -2470,6 +3328,18 @@
       "sprdR": 0.014031562596904976,
       "slipR": 0.009354375064603317
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.6366391227092132,
+      "maeR": 0.43399763427851623,
+      "exitTs": 1781206200000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.4579053122092851,
+    "structSl": 4224.036160000001,
+    "structRisk": 10.690185000000383,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -2479,7 +3349,17 @@
       "commR": 0.018708750129206635,
       "sprdR": 0.014031562596904976,
       "slipR": 0.009354375064603317
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.6366391227092132,
+      "maeR": 0.43399763427851623,
+      "exitTs": 1781206200000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.4579053122092851
   },
   {
     "signalId": "ETHUSD_15m_OB_1781178300000_1781180100000",
@@ -2506,14 +3386,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 2.454706927175884,
       "maeR": 2.5399644760213596,
       "exitTs": 1781199000000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRProd": -0.2221984902309105,
+    "netRProd": 0.27780150976908946,
     "structSl": 1674.5,
     "structRisk": 6.529999999999973,
     "structCostDict": {
@@ -2528,14 +3408,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 2.1163859111791723,
       "maeR": 2.189892802450232,
       "exitTs": 1781199000000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRStruct": -0.19157388973966388
+    "netRStruct": 0.3084261102603361
   },
   {
     "signalId": "XAUUSD_15m_OB_1781099100000_1781102700000",
@@ -2562,14 +3442,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 2.603551561992155,
       "maeR": 1.3572133782708982,
       "exitTs": 1781204400000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRProd": -0.06757157519102282,
+    "netRProd": 0.4324284248089772,
     "structSl": 4184.9008,
     "structRisk": 6.659604999999829,
     "structCostDict": {
@@ -2584,14 +3464,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 2.603551561992155,
       "maeR": 1.3572133782708982,
       "exitTs": 1781204400000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRStruct": -0.06757157519102282
+    "netRStruct": 0.4324284248089772
   },
   {
     "signalId": "EURUSD_15m_FVG_1781199000000_1781199000000",
@@ -2668,12 +3548,12 @@
     "poiType": "OB",
     "signalTs": 1781485200000,
     "signalDt": "2026-06-15 01:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1781719200000,
+    "entryDt": "2026-06-17 18:00",
+    "status": "FILLED",
     "entryP": 1.1565249999999998,
     "prodSl": 1.15566,
     "prodRisk": 0.0008649999999998936,
-    "structSl": 1.15566,
-    "structRisk": 0.0008649999999998936,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -2684,6 +3564,18 @@
       "sprdR": 0.06936416184971951,
       "slipR": 0.0289017341040498
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 4.861271676301449,
+      "maeR": 2.456647398843898,
+      "exitTs": 1781719200000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.33236994219651117,
+    "structSl": 1.15566,
+    "structRisk": 0.0008649999999998936,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -2693,7 +3585,17 @@
       "commR": 0.06936416184971951,
       "sprdR": 0.06936416184971951,
       "slipR": 0.0289017341040498
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 4.861271676301449,
+      "maeR": 2.456647398843898,
+      "exitTs": 1781719200000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRStruct": 0.33236994219651117
   },
   {
     "signalId": "BTCUSD_15m_OB_1781658900000_1781660700000",
@@ -2742,14 +3644,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.0747305651295704,
       "maeR": 0.642978281087495,
       "exitTs": 1781677800000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRStruct": -0.46684071065162086
+    "netRStruct": 0.03315928934837914
   },
   {
     "signalId": "XAUUSD_15m_FVG_1781719200000_1781719200000",
@@ -2776,14 +3678,14 @@
     },
     "resProd": {
       "outcome": "TP",
-      "grossR": 2,
+      "grossR": 1.5,
       "mfeR": 2,
       "maeR": 0.3477248491715235,
       "exitTs": 1781838000000,
       "exitBar": 106,
       "reason": "TAKE_PROFIT_HIT"
     },
-    "netRProd": 1.993392122881845,
+    "netRProd": 1.493392122881845,
     "structSl": 4383.7180100000005,
     "structRisk": 77.45671000000038,
     "structCostDict": {
@@ -2798,14 +3700,14 @@
     },
     "resStruct": {
       "outcome": "TP",
-      "grossR": 2,
+      "grossR": 1.5,
       "mfeR": 2,
       "maeR": 0.3057223835094379,
       "exitTs": 1781840700000,
       "exitBar": 109,
       "reason": "TAKE_PROFIT_HIT"
     },
-    "netRStruct": 1.9941903032029118
+    "netRStruct": 1.4941903032029118
   },
   {
     "signalId": "ETHUSD_15m_OB_1781964000000_1781966700000",
@@ -2814,8 +3716,8 @@
     "poiType": "OB",
     "signalTs": 1782074700000,
     "signalDt": "2026-06-21 20:45",
-    "entryTs": 1782075600000,
-    "entryDt": "2026-06-21 21:00",
+    "entryTs": 1782086400000,
+    "entryDt": "2026-06-22 00:00",
     "status": "FILLED",
     "entryP": 1712.835,
     "prodSl": 1708.01,
@@ -2831,15 +3733,15 @@
       "slipR": 0.07099834196891125
     },
     "resProd": {
-      "outcome": "BE",
-      "grossR": 0,
-      "mfeR": 1.9782383419689082,
-      "maeR": 2.245595854922266,
-      "exitTs": 1782075600000,
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.5896373056994819,
+      "maeR": 1.2217616580310728,
+      "exitTs": 1782086400000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRProd": -0.26624378238341717,
+    "netRProd": -1.2662437823834172,
     "structSl": 1707.11,
     "structRisk": 5.725000000000136,
     "structCostDict": {
@@ -2853,15 +3755,15 @@
       "slipR": 0.05983703056768416
     },
     "resStruct": {
-      "outcome": "BE",
-      "grossR": 0,
-      "mfeR": 1.6672489082969162,
-      "maeR": 1.8925764192139352,
-      "exitTs": 1782075600000,
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.49694323144104097,
+      "maeR": 1.0296943231440772,
+      "exitTs": 1782086400000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRStruct": -0.22438886462881563
+    "netRStruct": -1.2243888646288157
   },
   {
     "signalId": "XAUUSD_15m_OB_1782082800000_1782085500000",
@@ -2910,14 +3812,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 5.563051702371273,
       "maeR": 29.51674022686423,
       "exitTs": 1782087300000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRStruct": -1.4186633039032959
+    "netRStruct": -0.9186633039032959
   },
   {
     "signalId": "XAUUSD_15m_FVG_1782086400000_1782088200000",
@@ -2926,12 +3828,12 @@
     "poiType": "FVG",
     "signalTs": 1782098100000,
     "signalDt": "2026-06-22 03:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1782178200000,
+    "entryDt": "2026-06-23 01:30",
+    "status": "FILLED",
     "entryP": 4158.49284,
     "prodSl": 4151.40043,
     "prodRisk": 7.0924100000002,
-    "structSl": 4135.36633,
-    "structRisk": 23.126510000000053,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -2942,6 +3844,18 @@
       "sprdR": 0.021149369537293496,
       "slipR": 0.014099579691528998
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.9976411403175676,
+      "maeR": 0.41737011819671294,
+      "exitTs": 1782178200000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.4365518913881195,
+    "structSl": 4135.36633,
+    "structRisk": 23.126510000000053,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -2951,7 +3865,17 @@
       "commR": 0.008648083952139755,
       "sprdR": 0.006486062964104815,
       "slipR": 0.0043240419760698775
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.91931294432235,
+      "maeR": 1.1773600945408387,
+      "exitTs": 1782184500000,
+      "exitBar": 7,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0194581888923144
   },
   {
     "signalId": "XAUUSD_15m_OB_1782114300000_1782120600000",
@@ -2978,14 +3902,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 3.2120439838114185,
       "maeR": 0.498983556015004,
       "exitTs": 1782135900000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRProd": -0.121487328871563,
+    "netRProd": 0.378512671128437,
     "structSl": 4187.62624,
     "structRisk": 5.336880000000747,
     "structCostDict": {
@@ -3000,14 +3924,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 2.2293362413990696,
       "maeR": 0.3463221957398143,
       "exitTs": 1782135900000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRStruct": -0.08431892791292608
+    "netRStruct": 0.41568107208707394
   },
   {
     "signalId": "BTCUSD_15m_FVG_1782087300000_1782088200000",
@@ -3016,12 +3940,12 @@
     "poiType": "FVG",
     "signalTs": 1782146700000,
     "signalDt": "2026-06-22 16:45",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1782189900000,
+    "entryDt": "2026-06-23 04:45",
+    "status": "FILLED",
     "entryP": 63700.01,
     "prodSl": 63589,
     "prodRisk": 111.01000000000204,
-    "structSl": 63260,
-    "structRisk": 440.01000000000204,
     "prodCostDict": {
       "commUsd": 25.480004,
       "sprdUsd": 6.370001,
@@ -3032,6 +3956,18 @@
       "sprdR": 0.05738222682641098,
       "slipR": 0.08607334023961646
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.4411314296008737,
+      "maeR": 0.7872263760021423,
+      "exitTs": 1782189900000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.12701552562832863,
+    "structSl": 63260,
+    "structRisk": 440.01000000000204,
     "structCostDict": {
       "commUsd": 25.480004,
       "sprdUsd": 6.370001,
@@ -3041,7 +3977,17 @@
       "commR": 0.05790778391400169,
       "sprdR": 0.014476945978500423,
       "slipR": 0.02171541896775063
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.36358264584894706,
+      "maeR": 1.3375150564759923,
+      "exitTs": 1782194400000,
+      "exitBar": 5,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0941001488602526
   },
   {
     "signalId": "GBPUSD_15m_OB_1782117000000_1782118800000",
@@ -3050,12 +3996,12 @@
     "poiType": "OB",
     "signalTs": 1782150300000,
     "signalDt": "2026-06-22 17:45",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1782225000000,
+    "entryDt": "2026-06-23 14:30",
+    "status": "FILLED",
     "entryP": 1.3198850000000002,
     "prodSl": 1.3188900000000001,
     "prodRisk": 0.0009950000000000792,
-    "structSl": 1.31826,
-    "structRisk": 0.0016250000000002096,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -3066,6 +4012,18 @@
       "sprdR": 0.09547738693466577,
       "slipR": 0.030150753768841822
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.7587939698490241,
+      "maeR": 1.170854271356997,
+      "exitTs": 1782228600000,
+      "exitBar": 4,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.1859296482411912,
+    "structSl": 1.31826,
+    "structRisk": 0.0016250000000002096,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -3075,7 +4033,17 @@
       "commR": 0.03692307692307216,
       "sprdR": 0.058461538461530925,
       "slipR": 0.01846153846153608
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.46461538461522567,
+      "maeR": 1.024615384615406,
+      "exitTs": 1782239400000,
+      "exitBar": 16,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.113846153846139
   },
   {
     "signalId": "EURUSD_15m_OB_1782221400000_1782224100000",
@@ -3084,12 +4052,12 @@
     "poiType": "OB",
     "signalTs": 1782281700000,
     "signalDt": "2026-06-24 06:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1782460800000,
+    "entryDt": "2026-06-26 08:00",
+    "status": "FILLED",
     "entryP": 1.13951,
     "prodSl": 1.1401,
     "prodRisk": 0.0005899999999998684,
-    "structSl": 1.14396,
-    "structRisk": 0.004450000000000065,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -3100,6 +4068,18 @@
       "sprdR": 0.10169491525425997,
       "slipR": 0.04237288135594166
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.9491525423732896,
+      "maeR": 0.5084745762712438,
+      "exitTs": 1782460800000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.25423728813553836,
+    "structSl": 1.14396,
+    "structRisk": 0.004450000000000065,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -3109,7 +4089,17 @@
       "commR": 0.013483146067415533,
       "sprdR": 0.013483146067415533,
       "slipR": 0.005617977528089806
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.7685393258426806,
+      "maeR": 1.6651685393257996,
+      "exitTs": 1782995400000,
+      "exitBar": 594,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0325842696629208
   },
   {
     "signalId": "ETHUSD_15m_OB_1782317700000_1782319500000",
@@ -3118,12 +4108,12 @@
     "poiType": "OB",
     "signalTs": 1782345600000,
     "signalDt": "2026-06-25 00:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1782362700000,
+    "entryDt": "2026-06-25 04:45",
+    "status": "FILLED",
     "entryP": 1630.75,
     "prodSl": 1636.1799999999998,
     "prodRisk": 5.429999999999836,
-    "structSl": 1694.67,
-    "structRisk": 63.92000000000007,
     "prodCostDict": {
       "commUsd": 0.6523,
       "sprdUsd": 0.24461249999999998,
@@ -3134,6 +4124,18 @@
       "sprdR": 0.045048342541437816,
       "slipR": 0.0600644567219171
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.5285451197053783,
+      "maeR": 1.0626151012891631,
+      "exitTs": 1782362700000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.27475828729281093,
+    "structSl": 1694.67,
+    "structRisk": 63.92000000000007,
     "structCostDict": {
       "commUsd": 0.6523,
       "sprdUsd": 0.24461249999999998,
@@ -3143,7 +4145,17 @@
       "commR": 0.010204943679599487,
       "sprdR": 0.0038268538798498074,
       "slipR": 0.0051024718397997436
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.8577909887359179,
+      "maeR": 0.46605131414267725,
+      "exitTs": 1782753300000,
+      "exitBar": 434,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.48086573060075094
   },
   {
     "signalId": "SOLUSD_15m_OB_1782392400000_1782394200000",
@@ -3170,14 +4182,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 6.111111111110848,
       "maeR": 1.2222222222221697,
       "exitTs": 1782429300000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRProd": -0.4362333333333169,
+    "netRProd": 0.06376666666668312,
     "structSl": 69.02,
     "structRisk": 0.7399999999999949,
     "structCostDict": {
@@ -3192,14 +4204,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.486486486486489,
       "maeR": 0.2972972972972978,
       "exitTs": 1782429300000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRStruct": -0.10611081081081156
+    "netRStruct": 0.39388918918918847
   },
   {
     "signalId": "SOLUSD_15m_FVG_1782481500000_1782481500000",
@@ -3242,12 +4254,12 @@
     "poiType": "OB",
     "signalTs": 1782599400000,
     "signalDt": "2026-06-27 22:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1782692100000,
+    "entryDt": "2026-06-29 00:15",
+    "status": "FILLED",
     "entryP": 4053.1993249999996,
     "prodSl": 4043.73517,
     "prodRisk": 9.464154999999664,
-    "structSl": 4035.94364,
-    "structRisk": 17.25568499999963,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -3258,6 +4270,18 @@
       "sprdR": 0.01584927550320185,
       "slipR": 0.010566183668801235
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.616728064999031,
+      "maeR": 0.4531292017089465,
+      "exitTs": 1782693000000,
+      "exitBar": 1,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.45245217349039446,
+    "structSl": 4035.94364,
+    "structRisk": 17.25568499999963,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -3267,7 +4291,17 @@
       "commR": 0.01159038311142121,
       "sprdR": 0.008692787333565906,
       "slipR": 0.005795191555710605
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.252587480589781,
+      "maeR": 0.24852592058789172,
+      "exitTs": 1782708300000,
+      "exitBar": 18,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.47392163799930226
   },
   {
     "signalId": "BTCUSD_15m_OB_1782738000000_1782739800000",
@@ -3294,14 +4328,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.2837669438722785,
       "maeR": 1.7247526766867625,
       "exitTs": 1782752400000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRProd": -0.19884467205819187,
+    "netRProd": 0.3011553279418081,
     "structSl": 60790.57,
     "structRisk": 646.1749999999956,
     "structCostDict": {
@@ -3316,14 +4350,14 @@
     },
     "resStruct": {
       "outcome": "TP",
-      "grossR": 2,
+      "grossR": 1.5,
       "mfeR": 2,
       "maeR": 0.8348280264634133,
       "exitTs": 1782821700000,
       "exitBar": 77,
       "reason": "TAKE_PROFIT_HIT"
     },
-    "netRStruct": 1.9394995833172124
+    "netRStruct": 1.4394995833172124
   },
   {
     "signalId": "SOLUSD_15m_OB_1782867600000_1782869400000",
@@ -3468,12 +4502,12 @@
     "poiType": "OB",
     "signalTs": 1783393200000,
     "signalDt": "2026-07-07 03:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1783476900000,
+    "entryDt": "2026-07-08 02:15",
+    "status": "FILLED",
     "entryP": 1749.49,
     "prodSl": 1745.45,
     "prodRisk": 4.039999999999964,
-    "structSl": 1727.95,
-    "structRisk": 21.539999999999964,
     "prodCostDict": {
       "commUsd": 0.6997960000000001,
       "sprdUsd": 0.2624235,
@@ -3484,6 +4518,18 @@
       "sprdR": 0.0649563118811887,
       "slipR": 0.08660841584158495
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.4975247524752497,
+      "maeR": 0.02722772277225271,
+      "exitTs": 1783476900000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.17521844059405645,
+    "structSl": 1727.95,
+    "structRisk": 21.539999999999964,
     "structCostDict": {
       "commUsd": 0.6997960000000001,
       "sprdUsd": 0.2624235,
@@ -3493,7 +4539,17 @@
       "commR": 0.03248820798514398,
       "sprdR": 0.01218307799442899,
       "slipR": 0.01624410399257199
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.6675951717734404,
+      "maeR": 1.1285979572887646,
+      "exitTs": 1783499400000,
+      "exitBar": 25,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0609153899721449
   },
   {
     "signalId": "BTCUSD_15m_OB_1783434600000_1783435500000",
@@ -3502,12 +4558,12 @@
     "poiType": "OB",
     "signalTs": 1783448100000,
     "signalDt": "2026-07-07 18:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1783474200000,
+    "entryDt": "2026-07-08 01:30",
+    "status": "FILLED",
     "entryP": 62955.325,
     "prodSl": 62670.39,
     "prodRisk": 284.9349999999977,
-    "structSl": 62661.39,
-    "structRisk": 293.9349999999977,
     "prodCostDict": {
       "commUsd": 25.18213,
       "sprdUsd": 6.2955325,
@@ -3518,6 +4574,18 @@
       "sprdR": 0.02209462684471915,
       "slipR": 0.03314194026707872
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.743081755488111,
+      "maeR": 0.11772860476950367,
+      "exitTs": 1783474200000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.35638492550932555,
+    "structSl": 62661.39,
+    "structRisk": 293.9349999999977,
     "structCostDict": {
       "commUsd": 25.18213,
       "sprdUsd": 6.2955325,
@@ -3527,7 +4595,17 @@
       "commR": 0.08567244458808988,
       "sprdR": 0.02141811114702247,
       "slipR": 0.0321271667205337
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.68971031010259,
+      "maeR": 0.11412387092383867,
+      "exitTs": 1783474200000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.360782277544354
   },
   {
     "signalId": "GBPUSD_15m_OB_1783514700000_1783517400000",
@@ -3570,12 +4648,12 @@
     "poiType": "OB",
     "signalTs": 1783578600000,
     "signalDt": "2026-07-09 06:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1783671300000,
+    "entryDt": "2026-07-10 08:15",
+    "status": "FILLED",
     "entryP": 1781.15,
     "prodSl": 1785.1,
     "prodRisk": 3.949999999999818,
-    "structSl": 1786,
-    "structRisk": 4.849999999999909,
     "prodCostDict": {
       "commUsd": 0.7124600000000001,
       "sprdUsd": 0.2671725,
@@ -3586,6 +4664,18 @@
       "sprdR": 0.06763860759493982,
       "slipR": 0.09018481012658644
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.2810126582279509,
+      "maeR": 2.136708860759548,
+      "exitTs": 1783671300000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.16180696202530082,
+    "structSl": 1786,
+    "structRisk": 4.849999999999909,
     "structCostDict": {
       "commUsd": 0.7124600000000001,
       "sprdUsd": 0.2671725,
@@ -3595,7 +4685,17 @@
       "commR": 0.14689896907216773,
       "sprdR": 0.05508711340206288,
       "slipR": 0.07344948453608387
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.04329896907222,
+      "maeR": 1.7402061855670072,
+      "exitTs": 1783671300000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.22456443298968554
   },
   {
     "signalId": "BTCUSD_15m_FVG_1783646100000_1783647900000",
@@ -3604,12 +4704,12 @@
     "poiType": "FVG",
     "signalTs": 1783738800000,
     "signalDt": "2026-07-11 03:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1783908000000,
+    "entryDt": "2026-07-13 02:00",
+    "status": "FILLED",
     "entryP": 63330.64,
     "prodSl": 63127.72,
     "prodRisk": 202.91999999999825,
-    "structSl": 62916.01,
-    "structRisk": 414.6299999999974,
     "prodCostDict": {
       "commUsd": 25.332256,
       "sprdUsd": 6.333064,
@@ -3620,6 +4720,18 @@
       "sprdR": 0.031209658978908213,
       "slipR": 0.04681448846836231
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.0412970628819471,
+      "maeR": 2.1584368223930697,
+      "exitTs": 1783911600000,
+      "exitBar": 4,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.29713721663709664,
+    "structSl": 62916.01,
+    "structRisk": 414.6299999999974,
     "structCostDict": {
       "commUsd": 25.332256,
       "sprdUsd": 6.333064,
@@ -3629,7 +4741,17 @@
       "commR": 0.061096051901695876,
       "sprdR": 0.015274012975423969,
       "slipR": 0.022911019463135947
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.5096109784627361,
+      "maeR": 1.0563393869232827,
+      "exitTs": 1783911600000,
+      "exitBar": 4,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0992810843402558
   },
   {
     "signalId": "SOLUSD_15m_OB_1783903500000_1783907100000",
@@ -3638,12 +4760,12 @@
     "poiType": "OB",
     "signalTs": 1783940400000,
     "signalDt": "2026-07-13 11:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1784034900000,
+    "entryDt": "2026-07-14 13:15",
+    "status": "FILLED",
     "entryP": 77.38499999999999,
     "prodSl": 77.61,
     "prodRisk": 0.22500000000000853,
-    "structSl": 78.3,
-    "structRisk": 0.9150000000000063,
     "prodCostDict": {
       "commUsd": 0.0386925,
       "sprdUsd": 0.023215499999999997,
@@ -3654,6 +4776,18 @@
       "sprdR": 0.10317999999999608,
       "slipR": 0.1203766666666621
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 3.533333333333144,
+      "maeR": 1.5333333333333334,
+      "exitTs": 1784034900000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.10447666666668176,
+    "structSl": 78.3,
+    "structRisk": 0.9150000000000063,
     "structCostDict": {
       "commUsd": 0.0386925,
       "sprdUsd": 0.023215499999999997,
@@ -3663,7 +4797,17 @@
       "commR": 0.04228688524590135,
       "sprdR": 0.025372131147540805,
       "slipR": 0.02960081967213094
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.8688524590163739,
+      "maeR": 1.0327868852459026,
+      "exitTs": 1784094300000,
+      "exitBar": 66,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.097259836065573
   },
   {
     "signalId": "BTCUSD_15m_OB_1783903500000_1783907100000",
@@ -3672,12 +4816,12 @@
     "poiType": "OB",
     "signalTs": 1783942200000,
     "signalDt": "2026-07-13 11:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1784033100000,
+    "entryDt": "2026-07-14 12:45",
+    "status": "FILLED",
     "entryP": 63948.82,
     "prodSl": 64118.64,
     "prodRisk": 169.8199999999997,
-    "structSl": 64435,
-    "structRisk": 486.1800000000003,
     "prodCostDict": {
       "commUsd": 25.579528,
       "sprdUsd": 6.394882,
@@ -3688,6 +4832,18 @@
       "sprdR": 0.037656824873395424,
       "slipR": 0.056485237310093125
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.3236956777764766,
+      "maeR": 0.23978329996467573,
+      "exitTs": 1784033100000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.25523063832292975,
+    "structSl": 64435,
+    "structRisk": 486.1800000000003,
     "structCostDict": {
       "commUsd": 25.579528,
       "sprdUsd": 6.394882,
@@ -3697,7 +4853,17 @@
       "commR": 0.05261328725986257,
       "sprdR": 0.013153321814965643,
       "slipR": 0.019729982722448462
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.8116541198732987,
+      "maeR": 1.2448681558270658,
+      "exitTs": 1784042100000,
+      "exitBar": 10,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0854965917972768
   },
   {
     "signalId": "ETHUSD_15m_FVG_1783911600000_1783911600000",
@@ -3706,12 +4872,12 @@
     "poiType": "FVG",
     "signalTs": 1783987200000,
     "signalDt": "2026-07-14 00:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1784025900000,
+    "entryDt": "2026-07-14 10:45",
+    "status": "FILLED",
     "entryP": 1795.61,
     "prodSl": 1806.61,
     "prodRisk": 11,
-    "structSl": 1847,
-    "structRisk": 51.3900000000001,
     "prodCostDict": {
       "commUsd": 0.718244,
       "sprdUsd": 0.26934149999999996,
@@ -3722,6 +4888,18 @@
       "sprdR": 0.024485590909090905,
       "slipR": 0.03264745454545454
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.16545454545453966,
+      "maeR": 1.1700000000000108,
+      "exitTs": 1784031300000,
+      "exitBar": 6,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.1224279545454545,
+    "structSl": 1847,
+    "structRisk": 51.3900000000001,
     "structCostDict": {
       "commUsd": 0.718244,
       "sprdUsd": 0.26934149999999996,
@@ -3731,7 +4909,17 @@
       "commR": 0.013976337808912212,
       "sprdR": 0.005241126678342079,
       "slipR": 0.006988168904456106
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.03541545047674514,
+      "maeR": 1.402996691963417,
+      "exitTs": 1784033100000,
+      "exitBar": 8,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0262056333917104
   },
   {
     "signalId": "XAUUSD_15m_OB_1784041200000_1784043000000",
@@ -3774,12 +4962,12 @@
     "poiType": "OB",
     "signalTs": 1784301300000,
     "signalDt": "2026-07-17 15:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1784547000000,
+    "entryDt": "2026-07-20 11:30",
+    "status": "FILLED",
     "entryP": 4035.96267,
     "prodSl": 4043.1787999999997,
     "prodRisk": 7.216129999999794,
-    "structSl": 4045.94468,
-    "structRisk": 9.982010000000173,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -3790,6 +4978,18 @@
       "sprdR": 0.020786765205172895,
       "slipR": 0.013857843470115264
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.9960823876510272,
+      "maeR": 0.4797751703475741,
+      "exitTs": 1784547000000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.4376397043844813,
+    "structSl": 4045.94468,
+    "structRisk": 9.982010000000173,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -3799,7 +4999,17 @@
       "commR": 0.020036044844675225,
       "sprdR": 0.015027033633506418,
       "slipR": 0.010018022422337612
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.4429949479112467,
+      "maeR": 0.34683595788824906,
+      "exitTs": 1784547000000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.45491889909948074
   },
   {
     "signalId": "EURUSD_15m_OB_1784202300000_1784205000000",
@@ -3898,12 +5108,12 @@
     "poiType": "OB",
     "signalTs": 1784674800000,
     "signalDt": "2026-07-21 23:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1784809800000,
+    "entryDt": "2026-07-23 12:30",
+    "status": "FILLED",
     "entryP": 4069.59182,
     "prodSl": 4066.75916,
     "prodRisk": 2.8326600000000326,
-    "structSl": 4044.38998,
-    "structRisk": 25.201840000000175,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -3914,6 +5124,18 @@
       "sprdR": 0.05295376077608971,
       "slipR": 0.035302507184059806
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.419358482839411,
+      "maeR": 1.6403451173102783,
+      "exitTs": 1784809800000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.3411387176717309,
+    "structSl": 4044.38998,
+    "structRisk": 25.201840000000175,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -3923,7 +5145,17 @@
       "commR": 0.007935928487761156,
       "sprdR": 0.005951946365820867,
       "slipR": 0.003967964243880578
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.27193331915447116,
+      "maeR": 1.1128044618964381,
+      "exitTs": 1784811600000,
+      "exitBar": 2,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0178558390974626
   },
   {
     "signalId": "BTCUSD_15m_OB_1784694600000_1784697300000",
@@ -4000,12 +5232,12 @@
     "poiType": "FVG",
     "signalTs": 1785115800000,
     "signalDt": "2026-07-27 01:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1785154500000,
+    "entryDt": "2026-07-27 12:15",
+    "status": "FILLED",
     "entryP": 4084.01518,
     "prodSl": 4056.01218,
     "prodRisk": 28.0029999999997,
-    "structSl": 4012.16194,
-    "structRisk": 71.85323999999991,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -4016,6 +5248,18 @@
       "sprdR": 0.005356568939042302,
       "slipR": 0.003571045959361535
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.378175909723962,
+      "maeR": 1.0484023140377865,
+      "exitTs": 1785200400000,
+      "exitBar": 51,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.016069706817127,
+    "structSl": 4012.16194,
+    "structRisk": 71.85323999999991,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -4025,7 +5269,17 @@
       "commR": 0.002783451379506342,
       "sprdR": 0.002087588534629756,
       "slipR": 0.001391725689753171
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.14738458558027456,
+      "maeR": 1.0330124292237892,
+      "exitTs": 1785286800000,
+      "exitBar": 147,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0062627656038892
   },
   {
     "signalId": "XAUUSD_15m_OB_1785248100000_1785251700000",
@@ -4034,12 +5288,12 @@
     "poiType": "OB",
     "signalTs": 1785260700000,
     "signalDt": "2026-07-28 17:45",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1785276900000,
+    "entryDt": "2026-07-28 22:15",
+    "status": "FILLED",
     "entryP": 4021.229745,
     "prodSl": 4012.3489400000003,
     "prodRisk": 8.880804999999782,
-    "structSl": 4012.3489400000003,
-    "structRisk": 8.880804999999782,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -4050,6 +5304,18 @@
       "sprdR": 0.01689036072743447,
       "slipR": 0.011260240484956314
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.7114991264868317,
+      "maeR": 1.288155184130308,
+      "exitTs": 1785286800000,
+      "exitBar": 11,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.0506710821823033,
+    "structSl": 4012.3489400000003,
+    "structRisk": 8.880804999999782,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -4059,7 +5325,17 @@
       "commR": 0.02252048096991263,
       "sprdR": 0.01689036072743447,
       "slipR": 0.011260240484956314
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.7114991264868317,
+      "maeR": 1.288155184130308,
+      "exitTs": 1785286800000,
+      "exitBar": 11,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0506710821823033
   },
   {
     "signalId": "ETHUSD_15m_OB_1785245400000_1785251700000",
@@ -4068,12 +5344,12 @@
     "poiType": "OB",
     "signalTs": 1785262500000,
     "signalDt": "2026-07-28 18:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1785358800000,
+    "entryDt": "2026-07-29 21:00",
+    "status": "FILLED",
     "entryP": 1873.775,
     "prodSl": 1860.27,
     "prodRisk": 13.50500000000011,
-    "structSl": 1855.88,
-    "structRisk": 17.894999999999982,
     "prodCostDict": {
       "commUsd": 0.7495100000000001,
       "sprdUsd": 0.28106624999999996,
@@ -4084,6 +5360,18 @@
       "sprdR": 0.020812014068863214,
       "slipR": 0.027749352091817624
     },
+    "resProd": {
+      "outcome": "TP",
+      "grossR": 1.5,
+      "mfeR": 2,
+      "maeR": 0.13143280266568505,
+      "exitTs": 1785362400000,
+      "exitBar": 4,
+      "reason": "TAKE_PROFIT_HIT"
+    },
+    "netRProd": 1.3959399296556838,
+    "structSl": 1855.88,
+    "structRisk": 17.894999999999982,
     "structCostDict": {
       "commUsd": 0.7495100000000001,
       "sprdUsd": 0.28106624999999996,
@@ -4093,7 +5381,17 @@
       "commR": 0.04188376641519983,
       "sprdR": 0.01570641240569993,
       "slipR": 0.020941883207599914
-    }
+    },
+    "resStruct": {
+      "outcome": "TP",
+      "grossR": 1.5,
+      "mfeR": 2,
+      "maeR": 0.09918971779827286,
+      "exitTs": 1785362400000,
+      "exitBar": 4,
+      "reason": "TAKE_PROFIT_HIT"
+    },
+    "netRStruct": 1.4214679379715003
   },
   {
     "signalId": "XAUUSD_15m_FVG_1785343500000_1785343500000",
@@ -4102,12 +5400,12 @@
     "poiType": "FVG",
     "signalTs": 1785386700000,
     "signalDt": "2026-07-30 04:45",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1785504600000,
+    "entryDt": "2026-07-31 13:30",
+    "status": "FILLED",
     "entryP": 4026.73754,
     "prodSl": 4019.1233700000003,
     "prodRisk": 7.614169999999831,
-    "structSl": 3996.22338,
-    "structRisk": 30.514160000000174,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -4118,6 +5416,18 @@
       "sprdR": 0.019700111765301186,
       "slipR": 0.013133407843534124
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.1381411237206893,
+      "maeR": 0.5530990245818036,
+      "exitTs": 1785504600000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.4408996647040965,
+    "structSl": 3996.22338,
+    "structRisk": 30.514160000000174,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -4127,7 +5437,17 @@
       "commR": 0.006554334118979479,
       "sprdR": 0.004915750589234609,
       "slipR": 0.0032771670594897396
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.023226266100701,
+      "maeR": 0.18572131757846974,
+      "exitTs": 1785708000000,
+      "exitBar": 226,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRStruct": 0.4852527482322962
   },
   {
     "signalId": "EURUSD_15m_FVG_1785418200000_1785418200000",
@@ -4136,12 +5456,12 @@
     "poiType": "FVG",
     "signalTs": 1785424500000,
     "signalDt": "2026-07-30 15:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1785495600000,
+    "entryDt": "2026-07-31 11:00",
+    "status": "FILLED",
     "entryP": 1.14985,
     "prodSl": 1.14801,
     "prodRisk": 0.0018400000000000638,
-    "structSl": 1.1434,
-    "structRisk": 0.006450000000000067,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -4152,6 +5472,18 @@
       "sprdR": 0.03260869565217278,
       "slipR": 0.01358695652173866
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.25543478260867075,
+      "maeR": 2.2826086956520846,
+      "exitTs": 1785504600000,
+      "exitBar": 10,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.0788043478260843,
+    "structSl": 1.1434,
+    "structRisk": 0.006450000000000067,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.00006,
@@ -4161,7 +5493,17 @@
       "commR": 0.009302325581395253,
       "sprdR": 0.009302325581395253,
       "slipR": 0.003875968992248022
-    }
+    },
+    "resStruct": {
+      "outcome": "TP",
+      "grossR": 1.5,
+      "mfeR": 2,
+      "maeR": 0.6511627906976648,
+      "exitTs": 1787142600000,
+      "exitBar": 1830,
+      "reason": "TAKE_PROFIT_HIT"
+    },
+    "netRStruct": 1.4775193798449615
   },
   {
     "signalId": "GBPUSD_15m_OB_1785423600000_1785425400000",
@@ -4170,12 +5512,12 @@
     "poiType": "OB",
     "signalTs": 1785462300000,
     "signalDt": "2026-07-31 01:45",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1785497400000,
+    "entryDt": "2026-07-31 11:30",
+    "status": "FILLED",
     "entryP": 1.342875,
     "prodSl": 1.34216,
     "prodRisk": 0.0007150000000000212,
-    "structSl": 1.33678,
-    "structRisk": 0.0060949999999999616,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -4186,6 +5528,18 @@
       "sprdR": 0.13286713286712895,
       "slipR": 0.04195804195804072
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.2377622377622355,
+      "maeR": 0.7062937062936542,
+      "exitTs": 1785497400000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.2412587412587489,
+    "structSl": 1.33678,
+    "structRisk": 0.0060949999999999616,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -4195,7 +5549,17 @@
       "commR": 0.009844134536505395,
       "sprdR": 0.015586546349466875,
       "slipR": 0.004922067268252697
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.2756357670221352,
+      "maeR": 0.453650533223978,
+      "exitTs": 1785769200000,
+      "exitBar": 302,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.46964725184577505
   },
   {
     "signalId": "EURUSD_15m_OB_1785504600000_1785509100000",
@@ -4238,12 +5602,12 @@
     "poiType": "FVG",
     "signalTs": 1785528900000,
     "signalDt": "2026-07-31 20:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1785768300000,
+    "entryDt": "2026-08-03 14:45",
+    "status": "FILLED",
     "entryP": 1.34426,
     "prodSl": 1.3422,
     "prodRisk": 0.0020599999999999508,
-    "structSl": 1.34001,
-    "structRisk": 0.004250000000000087,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -4254,6 +5618,18 @@
       "sprdR": 0.046116504854370036,
       "slipR": 0.014563106796116854
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.3106796116504802,
+      "maeR": 1.1262135922330851,
+      "exitTs": 1785779100000,
+      "exitBar": 12,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.0898058252427205,
+    "structSl": 1.34001,
+    "structRisk": 0.004250000000000087,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -4263,7 +5639,17 @@
       "commR": 0.01411764705882324,
       "sprdR": 0.02235294117647013,
       "slipR": 0.00705882352941162
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.0305882352941085,
+      "maeR": 0.5717647058823253,
+      "exitTs": 1786093200000,
+      "exitBar": 361,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.456470588235295
   },
   {
     "signalId": "BTCUSD_15m_OB_1785631500000_1785632400000",
@@ -4272,12 +5658,12 @@
     "poiType": "OB",
     "signalTs": 1785651300000,
     "signalDt": "2026-08-02 06:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1785728700000,
+    "entryDt": "2026-08-03 03:45",
+    "status": "FILLED",
     "entryP": 62834,
     "prodSl": 62805.58,
     "prodRisk": 28.419999999998254,
-    "structSl": 62265,
-    "structRisk": 569,
     "prodCostDict": {
       "commUsd": 25.1336,
       "sprdUsd": 6.2834,
@@ -4288,6 +5674,18 @@
       "sprdR": 0.22109078114005581,
       "slipR": 0.3316361717100837
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 8.1593947924002,
+      "maeR": 1.6875439831105585,
+      "exitTs": 1785728700000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": -0.9370900774103628,
+    "structSl": 62265,
+    "structRisk": 569,
     "structCostDict": {
       "commUsd": 25.1336,
       "sprdUsd": 6.2834,
@@ -4297,7 +5695,17 @@
       "commR": 0.04417152899824253,
       "sprdR": 0.011042882249560633,
       "slipR": 0.016564323374340946
-    }
+    },
+    "resStruct": {
+      "outcome": "TP",
+      "grossR": 1.5,
+      "mfeR": 2,
+      "maeR": 0.9384885764499121,
+      "exitTs": 1785768300000,
+      "exitBar": 44,
+      "reason": "TAKE_PROFIT_HIT"
+    },
+    "netRStruct": 1.4282212653778559
   },
   {
     "signalId": "SOLUSD_15m_FVG_1785632400000_1785632400000",
@@ -4306,12 +5714,12 @@
     "poiType": "FVG",
     "signalTs": 1785716100000,
     "signalDt": "2026-08-03 00:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1785741300000,
+    "entryDt": "2026-08-03 07:15",
+    "status": "FILLED",
     "entryP": 72.43,
     "prodSl": 72.11,
     "prodRisk": 0.3200000000000074,
-    "structSl": 70.48,
-    "structRisk": 1.9500000000000028,
     "prodCostDict": {
       "commUsd": 0.036215000000000004,
       "sprdUsd": 0.021729000000000002,
@@ -4322,6 +5730,18 @@
       "sprdR": 0.06790312499999844,
       "slipR": 0.07922031249999817
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.8124999999999528,
+      "maeR": 1.3437499999999902,
+      "exitTs": 1785744900000,
+      "exitBar": 4,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.260295312499994,
+    "structSl": 70.48,
+    "structRisk": 1.9500000000000028,
     "structCostDict": {
       "commUsd": 0.036215000000000004,
       "sprdUsd": 0.021729000000000002,
@@ -4331,7 +5751,17 @@
       "commR": 0.018571794871794847,
       "sprdR": 0.011143076923076908,
       "slipR": 0.013000256410256391
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.2307692307692246,
+      "maeR": 0.2307692307692319,
+      "exitTs": 1786058100000,
+      "exitBar": 352,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.45728487179487187
   },
   {
     "signalId": "GBPUSD_15m_OB_1785717000000_1785719700000",
@@ -4392,14 +5822,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.5543331200290484,
       "maeR": 3.6737270317212056,
       "exitTs": 1785762000000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRProd": -0.20568607733795077,
+    "netRProd": 0.29431392266204925,
     "structSl": 4045.4646700000003,
     "structRisk": 2.6702900000000227,
     "structCostDict": {
@@ -4414,14 +5844,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.2734834044241485,
       "maeR": 3.0099277606552635,
       "exitTs": 1785762000000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRStruct": -0.16852102206127278
+    "netRStruct": 0.3314789779387272
   },
   {
     "signalId": "BTCUSD_15m_FVG_1785746700000_1785750300000",
@@ -4532,12 +5962,12 @@
     "poiType": "OB",
     "signalTs": 1786223700000,
     "signalDt": "2026-08-08 21:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1786368600000,
+    "entryDt": "2026-08-10 13:30",
+    "status": "FILLED",
     "entryP": 64783.555,
     "prodSl": 64726.26,
     "prodRisk": 57.294999999998254,
-    "structSl": 64515,
-    "structRisk": 268.5550000000003,
     "prodCostDict": {
       "commUsd": 25.913422,
       "sprdUsd": 6.4783555,
@@ -4548,6 +5978,18 @@
       "sprdR": 0.11307017191727371,
       "slipR": 0.16960525787591055
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.7359280914565347,
+      "maeR": 3.0769700671961537,
+      "exitTs": 1786368600000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": -0.2349561174622793,
+    "structSl": 64515,
+    "structRisk": 268.5550000000003,
     "structCostDict": {
       "commUsd": 25.913422,
       "sprdUsd": 6.4783555,
@@ -4557,7 +5999,17 @@
       "commR": 0.09649204818379838,
       "sprdR": 0.024123012045949594,
       "slipR": 0.036184518068924386
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.5836979389696606,
+      "maeR": 1.7633445662899585,
+      "exitTs": 1786374900000,
+      "exitBar": 7,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.1567995782986724
   },
   {
     "signalId": "BTCUSD_15m_OB_1786541400000_1786544100000",
@@ -4584,14 +6036,14 @@
     },
     "resProd": {
       "outcome": "TP",
-      "grossR": 2,
+      "grossR": 1.5,
       "mfeR": 2,
       "maeR": 0.9199785177228937,
       "exitTs": 1786602600000,
       "exitBar": 5,
       "reason": "TAKE_PROFIT_HIT"
     },
-    "netRProd": 1.4419715091299918,
+    "netRProd": 0.9419715091299918,
     "structSl": 64510,
     "structRisk": 568.5200000000041,
     "structCostDict": {
@@ -4606,14 +6058,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.0403855625131775,
       "maeR": 0.1205234644339752,
       "exitTs": 1786631400000,
       "exitBar": 37,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRStruct": -0.07310554070217354
+    "netRStruct": 0.42689445929782643
   },
   {
     "signalId": "ETHUSD_15m_OB_1786718700000_1786720500000",
@@ -4712,12 +6164,12 @@
     "poiType": "OB",
     "signalTs": 1786936500000,
     "signalDt": "2026-08-17 03:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1787064300000,
+    "entryDt": "2026-08-18 14:45",
+    "status": "FILLED",
     "entryP": 4371.516515,
     "prodSl": 4367.29807,
     "prodRisk": 4.218445000000429,
-    "structSl": 4367.29807,
-    "structRisk": 4.218445000000429,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -4728,6 +6180,18 @@
       "sprdR": 0.03555812627638496,
       "slipR": 0.023705417517589974
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 3.9725574234102203,
+      "maeR": 1.0891489636584608,
+      "exitTs": 1787064300000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.39332562117084513,
+    "structSl": 4367.29807,
+    "structRisk": 4.218445000000429,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -4737,7 +6201,17 @@
       "commR": 0.04741083503517995,
       "sprdR": 0.03555812627638496,
       "slipR": 0.023705417517589974
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 3.9725574234102203,
+      "maeR": 1.0891489636584608,
+      "exitTs": 1787064300000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRStruct": 0.39332562117084513
   },
   {
     "signalId": "XAUUSD_15m_OB_1787062500000_1787063400000",
@@ -4764,14 +6238,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 5.181252545500538,
       "maeR": 3.3944950889601095,
       "exitTs": 1787142600000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRProd": -0.077495150095191,
+    "netRProd": 0.42250484990480897,
     "structSl": 4404.80422,
     "structRisk": 5.806814999999915,
     "structCostDict": {
@@ -4786,14 +6260,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 5.181252545500538,
       "maeR": 3.3944950889601095,
       "exitTs": 1787142600000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRStruct": -0.077495150095191
+    "netRStruct": 0.42250484990480897
   },
   {
     "signalId": "BTCUSD_15m_OB_1787373000000_1787374800000",
@@ -4802,12 +6276,12 @@
     "poiType": "OB",
     "signalTs": 1787491800000,
     "signalDt": "2026-08-23 13:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1787574600000,
+    "entryDt": "2026-08-24 12:30",
+    "status": "FILLED",
     "entryP": 78670,
     "prodSl": 78819,
     "prodRisk": 149,
-    "structSl": 78838.15,
-    "structRisk": 168.14999999999418,
     "prodCostDict": {
       "commUsd": 31.468,
       "sprdUsd": 7.867,
@@ -4818,6 +6292,18 @@
       "sprdR": 0.052798657718120805,
       "slipR": 0.0791979865771812
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.9463087248322148,
+      "maeR": 1.4228187919463087,
+      "exitTs": 1787574600000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.15680872483221475,
+    "structSl": 78838.15,
+    "structRisk": 168.14999999999418,
     "structCostDict": {
       "commUsd": 31.468,
       "sprdUsd": 7.867,
@@ -4827,7 +6313,17 @@
       "commR": 0.1871424323520731,
       "sprdR": 0.04678560808801827,
       "slipR": 0.0701784121320274
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.7246506095748442,
+      "maeR": 1.2607790663098861,
+      "exitTs": 1787574600000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.19589354742788123
   },
   {
     "signalId": "BTCUSD_15m_OB_1787471100000_1787473800000",
@@ -4870,12 +6366,12 @@
     "poiType": "OB",
     "signalTs": 1787547600000,
     "signalDt": "2026-08-24 05:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1787663700000,
+    "entryDt": "2026-08-25 13:15",
+    "status": "FILLED",
     "entryP": 4612.978835,
     "prodSl": 4607.13336,
     "prodRisk": 5.845475000000079,
-    "structSl": 4596.755749999999,
-    "structRisk": 16.223085000000538,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -4886,6 +6382,18 @@
       "sprdR": 0.025660874437064222,
       "slipR": 0.017107249624709484
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 3.1151078398247645,
+      "maeR": 0.6153383600135462,
+      "exitTs": 1787663700000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.42301737668880734,
+    "structSl": 4596.755749999999,
+    "structRisk": 16.223085000000538,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -4895,7 +6403,17 @@
       "commR": 0.012328111453523999,
       "sprdR": 0.009246083590142999,
       "slipR": 0.006164055726761999
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.122430474844908,
+      "maeR": 0.22171769426099372,
+      "exitTs": 1787663700000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.472261749229571
   },
   {
     "signalId": "BTCUSD_15m_OB_1787709600000_1787710500000",
@@ -4922,14 +6440,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 2.283277995773805,
       "maeR": 0.34923030485980555,
       "exitTs": 1787719500000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRProd": -0.7731509658918322,
+    "netRProd": -0.2731509658918322,
     "structSl": 78302,
     "structRisk": 511.820000000007,
     "structCostDict": {
@@ -4960,12 +6478,12 @@
     "poiType": "OB",
     "signalTs": 1787792400000,
     "signalDt": "2026-08-27 01:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1787931900000,
+    "entryDt": "2026-08-28 15:45",
+    "status": "FILLED",
     "entryP": 78329.89,
     "prodSl": 78199,
     "prodRisk": 130.88999999999942,
-    "structSl": 78190,
-    "structRisk": 139.88999999999942,
     "prodCostDict": {
       "commUsd": 31.331956,
       "sprdUsd": 7.832989,
@@ -4976,6 +6494,18 @@
       "sprdR": 0.05984405989762423,
       "slipR": 0.08976608984643633
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 4.424172969669221,
+      "maeR": 0.13179005271602168,
+      "exitTs": 1787931900000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.11101361066544252,
+    "structSl": 78190,
+    "structRisk": 139.88999999999942,
     "structCostDict": {
       "commUsd": 31.331956,
       "sprdUsd": 7.832989,
@@ -4985,7 +6515,17 @@
       "commR": 0.22397566659518287,
       "sprdR": 0.055993916648795716,
       "slipR": 0.08399087497319356
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 4.139538208592495,
+      "maeR": 0.12331117306455124,
+      "exitTs": 1787931900000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRStruct": 0.13603954178282784
   },
   {
     "signalId": "GBPUSD_15m_FVG_1787747400000_1787747400000",
@@ -5028,12 +6568,12 @@
     "poiType": "FVG",
     "signalTs": 1788337800000,
     "signalDt": "2026-09-02 08:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1788438600000,
+    "entryDt": "2026-09-03 12:30",
+    "status": "FILLED",
     "entryP": 78338.5,
     "prodSl": 78595,
     "prodRisk": 256.5,
-    "structSl": 78434,
-    "structRisk": 95.5,
     "prodCostDict": {
       "commUsd": 31.3354,
       "sprdUsd": 7.83385,
@@ -5044,6 +6584,18 @@
       "sprdR": 0.03054132553606238,
       "slipR": 0.04581198830409356
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.43629629629631,
+      "maeR": 0.4212085769980257,
+      "exitTs": 1788438600000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.30148138401559454,
+    "structSl": 78434,
+    "structRisk": 95.5,
     "structCostDict": {
       "commUsd": 31.3354,
       "sprdUsd": 7.83385,
@@ -5053,7 +6605,17 @@
       "commR": 0.3281193717277487,
       "sprdR": 0.08202984293193717,
       "slipR": 0.12304476439790575
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 3.8576963350785705,
+      "maeR": 1.131308900523493,
+      "exitTs": 1788438600000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRStruct": -0.03319397905759158
   },
   {
     "signalId": "BTCUSD_15m_OB_1788748200000_1788750000000",
@@ -5096,12 +6658,12 @@
     "poiType": "OB",
     "signalTs": 1788904800000,
     "signalDt": "2026-09-08 22:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1788941700000,
+    "entryDt": "2026-09-09 08:15",
+    "status": "FILLED",
     "entryP": 79610.7,
     "prodSl": 79644.22,
     "prodRisk": 33.520000000004075,
-    "structSl": 79653.5,
-    "structRisk": 42.80000000000291,
     "prodCostDict": {
       "commUsd": 31.84428,
       "sprdUsd": 7.96107,
@@ -5112,6 +6674,18 @@
       "sprdR": 0.2375020883054604,
       "slipR": 0.35625313245819057
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 6.28579952267218,
+      "maeR": 2.903639618138124,
+      "exitTs": 1788941700000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": -1.0437635739854925,
+    "structSl": 79653.5,
+    "structRisk": 42.80000000000291,
     "structCostDict": {
       "commUsd": 31.84428,
       "sprdUsd": 7.96107,
@@ -5121,7 +6695,17 @@
       "commR": 0.7440252336448092,
       "sprdR": 0.1860063084112023,
       "slipR": 0.2790094626168034
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 4.922897196261279,
+      "maeR": 2.2740654205606337,
+      "exitTs": 1788941700000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRStruct": -0.7090410046728151
   },
   {
     "signalId": "GBPUSD_15m_OB_1788865200000_1788867000000",
@@ -5130,12 +6714,12 @@
     "poiType": "OB",
     "signalTs": 1788944400000,
     "signalDt": "2026-09-09 09:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1789041600000,
+    "entryDt": "2026-09-10 12:00",
+    "status": "FILLED",
     "entryP": 1.35264,
     "prodSl": 1.35217,
     "prodRisk": 0.00046999999999997044,
-    "structSl": 1.35213,
-    "structRisk": 0.0005100000000000104,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -5146,6 +6730,18 @@
       "sprdR": 0.2021276595744808,
       "slipR": 0.06382978723404657
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.8723404255320154,
+      "maeR": 1.4893617021280616,
+      "exitTs": 1789041600000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.3936170212766206,
+    "structSl": 1.35213,
+    "structRisk": 0.0005100000000000104,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -5155,7 +6751,17 @@
       "commR": 0.11764705882352701,
       "sprdR": 0.18627450980391777,
       "slipR": 0.058823529411763505
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.8039215686274765,
+      "maeR": 1.3725490196080992,
+      "exitTs": 1789041600000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.3627450980392082
   },
   {
     "signalId": "ETHUSD_15m_OB_1789022700000_1789024500000",
@@ -5164,12 +6770,12 @@
     "poiType": "OB",
     "signalTs": 1789086600000,
     "signalDt": "2026-09-11 00:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1789115400000,
+    "entryDt": "2026-09-11 08:30",
+    "status": "FILLED",
     "entryP": 2480.025,
     "prodSl": 2484.86,
     "prodRisk": 4.835000000000036,
-    "structSl": 2485.76,
-    "structRisk": 5.735000000000127,
     "prodCostDict": {
       "commUsd": 0.9920100000000001,
       "sprdUsd": 0.37200374999999997,
@@ -5180,6 +6786,18 @@
       "sprdR": 0.07693976215098183,
       "slipR": 0.10258634953464246
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.14891416752849,
+      "maeR": 0.9503619441571386,
+      "exitTs": 1789115400000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.11530118924509081,
+    "structSl": 2485.76,
+    "structRisk": 5.735000000000127,
     "structCostDict": {
       "commUsd": 0.9920100000000001,
       "sprdUsd": 0.37200374999999997,
@@ -5189,7 +6807,17 @@
       "commR": 0.17297471665213218,
       "sprdR": 0.06486551874454956,
       "slipR": 0.08648735832606609
-    }
+    },
+    "resStruct": {
+      "outcome": "TP",
+      "grossR": 1.5,
+      "mfeR": 2,
+      "maeR": 0.8012205754140711,
+      "exitTs": 1789119000000,
+      "exitBar": 4,
+      "reason": "TAKE_PROFIT_HIT"
+    },
+    "netRStruct": 1.1756724062772521
   },
   {
     "signalId": "BTCUSD_15m_OB_1789019100000_1789020900000",
@@ -5198,12 +6826,12 @@
     "poiType": "OB",
     "signalTs": 1789106400000,
     "signalDt": "2026-09-11 06:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1789134300000,
+    "entryDt": "2026-09-11 13:45",
+    "status": "FILLED",
     "entryP": 78486.515,
     "prodSl": 78565.39,
     "prodRisk": 78.875,
-    "structSl": 78574.39,
-    "structRisk": 87.875,
     "prodCostDict": {
       "commUsd": 31.394606,
       "sprdUsd": 7.8486515,
@@ -5214,6 +6842,18 @@
       "sprdR": 0.0995074675118859,
       "slipR": 0.14926120126782882
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 9.236323296354986,
+      "maeR": 10.73198098256736,
+      "exitTs": 1789134300000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": -0.14679853882725824,
+    "structSl": 78574.39,
+    "structRisk": 87.875,
     "structCostDict": {
       "commUsd": 31.394606,
       "sprdUsd": 7.8486515,
@@ -5223,7 +6863,17 @@
       "commR": 0.35726436415362733,
       "sprdR": 0.08931609103840683,
       "slipR": 0.13397413655761023
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 8.290355618776665,
+      "maeR": 9.632830725462311,
+      "exitTs": 1789134300000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRStruct": -0.0805545917496443
   },
   {
     "signalId": "BTCUSD_15m_OB_1789334100000_1789336800000",
@@ -5250,14 +6900,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 2.836547085201306,
       "maeR": 5.835426008968057,
       "exitTs": 1789352100000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRProd": -1.1281201793720501,
+    "netRProd": -0.6281201793720501,
     "structSl": 77460,
     "structRisk": 53.60000000000582,
     "structCostDict": {
@@ -5272,14 +6922,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 2.360261194029497,
       "maeR": 4.85559701492502,
       "exitTs": 1789352100000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRStruct": -0.9386970149252712
+    "netRStruct": -0.43869701492527124
   },
   {
     "signalId": "BTCUSD_15m_OB_1789349400000_1789350300000",
@@ -5288,12 +6938,12 @@
     "poiType": "OB",
     "signalTs": 1789369200000,
     "signalDt": "2026-09-14 07:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1789459200000,
+    "entryDt": "2026-09-15 08:00",
+    "status": "FILLED",
     "entryP": 76799.82500000001,
     "prodSl": 76635.41,
     "prodRisk": 164.41500000000815,
-    "structSl": 76378.72,
-    "structRisk": 421.1050000000105,
     "prodCostDict": {
       "commUsd": 30.719930000000005,
       "sprdUsd": 7.679982500000001,
@@ -5304,6 +6954,18 @@
       "sprdR": 0.046710960070550867,
       "slipR": 0.07006644010582629
     },
+    "resProd": {
+      "outcome": "TP",
+      "grossR": 1.5,
+      "mfeR": 2,
+      "maeR": 0.5853176413344912,
+      "exitTs": 1789469100000,
+      "exitBar": 11,
+      "reason": "TAKE_PROFIT_HIT"
+    },
+    "netRProd": 1.1963787595414193,
+    "structSl": 76378.72,
+    "structRisk": 421.1050000000105,
     "structCostDict": {
       "commUsd": 30.719930000000005,
       "sprdUsd": 7.679982500000001,
@@ -5313,7 +6975,17 @@
       "commR": 0.07295076049916112,
       "sprdR": 0.01823769012479028,
       "slipR": 0.027356535187185414
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.005675544104166,
+      "maeR": 1.606262096151783,
+      "exitTs": 1789479000000,
+      "exitBar": 22,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.3814550141888632
   },
   {
     "signalId": "SOLUSD_15m_OB_1789349400000_1789350300000",
@@ -5322,12 +6994,12 @@
     "poiType": "OB",
     "signalTs": 1789449300000,
     "signalDt": "2026-09-15 05:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1789482600000,
+    "entryDt": "2026-09-15 14:30",
+    "status": "FILLED",
     "entryP": 99.45,
     "prodSl": 99.17,
     "prodRisk": 0.28000000000000114,
-    "structSl": 98.9,
-    "structRisk": 0.5499999999999972,
     "prodCostDict": {
       "commUsd": 0.049725000000000005,
       "sprdUsd": 0.029834999999999997,
@@ -5338,6 +7010,18 @@
       "sprdR": 0.10655357142857098,
       "slipR": 0.12431249999999949
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.9642857142856962,
+      "maeR": 3.3571428571428354,
+      "exitTs": 1789482600000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.09154464285714448,
+    "structSl": 98.9,
+    "structRisk": 0.5499999999999972,
     "structCostDict": {
       "commUsd": 0.049725000000000005,
       "sprdUsd": 0.029834999999999997,
@@ -5347,7 +7031,17 @@
       "commR": 0.09040909090909138,
       "sprdR": 0.05424545454545482,
       "slipR": 0.06328636363636396
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1,
+      "maeR": 1.7090909090909139,
+      "exitTs": 1789482600000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.2920590909090898
   },
   {
     "signalId": "SOLUSD_15m_FVG_1789497000000_1789497000000",
@@ -5356,12 +7050,12 @@
     "poiType": "FVG",
     "signalTs": 1789542000000,
     "signalDt": "2026-09-16 07:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1789581600000,
+    "entryDt": "2026-09-16 18:00",
+    "status": "FILLED",
     "entryP": 98.41,
     "prodSl": 99.39,
     "prodRisk": 0.980000000000004,
-    "structSl": 100.80999999999999,
-    "structRisk": 2.3999999999999915,
     "prodCostDict": {
       "commUsd": 0.049205,
       "sprdUsd": 0.029522999999999997,
@@ -5372,6 +7066,18 @@
       "sprdR": 0.030125510204081506,
       "slipR": 0.03514642857142843
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.1734693877550884,
+      "maeR": 0.5408163265306112,
+      "exitTs": 1789581600000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.3845188775510209,
+    "structSl": 100.80999999999999,
+    "structRisk": 2.3999999999999915,
     "structCostDict": {
       "commUsd": 0.049205,
       "sprdUsd": 0.029522999999999997,
@@ -5381,7 +7087,17 @@
       "commR": 0.020502083333333407,
       "sprdR": 0.012301250000000043,
       "slipR": 0.014351458333333384
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.8875000000000013,
+      "maeR": 1.0208333333333381,
+      "exitTs": 1789636500000,
+      "exitBar": 61,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0471547916666668
   },
   {
     "signalId": "XAUUSD_15m_OB_1789523100000_1789524900000",
@@ -5408,14 +7124,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 5.574462538373543,
       "maeR": 5.282891572763227,
       "exitTs": 1789584300000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRProd": -0.10113223151639181,
+    "netRProd": 0.39886776848360816,
     "structSl": 4275.779759999999,
     "structRisk": 9.575040000000627,
     "structCostDict": {
@@ -5430,14 +7146,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 2.5905103268495857,
       "maeR": 2.4550142871464637,
       "exitTs": 1789584300000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRStruct": -0.046997192701019576
+    "netRStruct": 0.4530028072989804
   },
   {
     "signalId": "XAUUSD_15m_OB_1789644600000_1789645500000",
@@ -5446,12 +7162,12 @@
     "poiType": "OB",
     "signalTs": 1789746300000,
     "signalDt": "2026-09-18 15:45",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1789999200000,
+    "entryDt": "2026-09-21 14:00",
+    "status": "FILLED",
     "entryP": 4325.6360700000005,
     "prodSl": 4322.35521,
     "prodRisk": 3.2808600000007573,
-    "structSl": 4305.08649,
-    "structRisk": 20.549580000000788,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -5462,6 +7178,18 @@
       "sprdR": 0.045719719829546326,
       "slipR": 0.030479813219697557
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 7.1340959382583815,
+      "maeR": 1.342379741896646,
+      "exitTs": 1789999200000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.362840840511361,
+    "structSl": 4305.08649,
+    "structRisk": 20.549580000000788,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -5471,7 +7199,17 @@
       "commR": 0.00973255901093805,
       "sprdR": 0.007299419258203537,
       "slipR": 0.004866279505469025
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.1389999211662185,
+      "maeR": 0.2143187354680669,
+      "exitTs": 1789999200000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.47810174222538937
   },
   {
     "signalId": "ETHUSD_15m_OB_1789745400000_1789748100000",
@@ -5514,12 +7252,12 @@
     "poiType": "OB",
     "signalTs": 1789865100000,
     "signalDt": "2026-09-20 00:45",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1789949700000,
+    "entryDt": "2026-09-21 00:15",
+    "status": "FILLED",
     "entryP": 112.735,
     "prodSl": 112.99000000000001,
     "prodRisk": 0.25500000000000966,
-    "structSl": 114.19,
-    "structRisk": 1.4549999999999983,
     "prodCostDict": {
       "commUsd": 0.0563675,
       "sprdUsd": 0.033820499999999996,
@@ -5530,6 +7268,18 @@
       "sprdR": 0.13262941176470083,
       "slipR": 0.15473431372548432
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.96078431372536,
+      "maeR": 0.3333333333332962,
+      "exitTs": 1789949700000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": -0.008412745098019925,
+    "structSl": 114.19,
+    "structRisk": 1.4549999999999983,
     "structCostDict": {
       "commUsd": 0.0563675,
       "sprdUsd": 0.033820499999999996,
@@ -5539,7 +7289,17 @@
       "commR": 0.03874054982817874,
       "sprdR": 0.02324432989690724,
       "slipR": 0.027118384879725118
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.4054982817869444,
+      "maeR": 0.47079037800687495,
+      "exitTs": 1789977600000,
+      "exitBar": 31,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.4108967353951889
   },
   {
     "signalId": "XAUUSD_15m_OB_1790064900000_1790066700000",
@@ -5548,12 +7308,12 @@
     "poiType": "OB",
     "signalTs": 1790132400000,
     "signalDt": "2026-09-23 03:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1790162100000,
+    "entryDt": "2026-09-23 11:15",
+    "status": "FILLED",
     "entryP": 4305.75298,
     "prodSl": 4300.28663,
     "prodRisk": 5.4663500000006024,
-    "structSl": 4290.28053,
-    "structRisk": 15.472450000000208,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -5564,6 +7324,18 @@
       "sprdR": 0.02744061393799948,
       "slipR": 0.01829374262533299
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.8269082660273075,
+      "maeR": 0.2667666724596434,
+      "exitTs": 1790162100000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.41767815818600157,
+    "structSl": 4290.28053,
+    "structRisk": 15.472450000000208,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -5573,7 +7345,17 @@
       "commR": 0.012926201086447028,
       "sprdR": 0.00969465081483527,
       "slipR": 0.006463100543223514
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.8261244987057205,
+      "maeR": 1.1961609182773425,
+      "exitTs": 1790170200000,
+      "exitBar": 9,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.029083952444506
   },
   {
     "signalId": "BTCUSD_15m_OB_1790150400000_1790153100000",
@@ -5634,14 +7416,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.2941176470588038,
       "maeR": 1.9411764705882057,
       "exitTs": 1790266500000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRProd": -0.3952617647058784,
+    "netRProd": 0.10473823529412157,
     "structSl": 119.86999999999999,
     "structRisk": 3.009999999999991,
     "structCostDict": {
@@ -5672,12 +7454,12 @@
     "poiType": "OB",
     "signalTs": 1790289900000,
     "signalDt": "2026-09-24 22:45",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1790328600000,
+    "entryDt": "2026-09-25 09:30",
+    "status": "FILLED",
     "entryP": 2717.6099999999997,
     "prodSl": 2723.8399999999997,
     "prodRisk": 6.230000000000018,
-    "structSl": 2790,
-    "structRisk": 72.39000000000033,
     "prodCostDict": {
       "commUsd": 1.087044,
       "sprdUsd": 0.40764149999999993,
@@ -5688,6 +7470,18 @@
       "sprdR": 0.0654320224719099,
       "slipR": 0.08724269662921322
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.024077046548898,
+      "maeR": 0.06260032102733969,
+      "exitTs": 1790328600000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.17283988764045038,
+    "structSl": 2790,
+    "structRisk": 72.39000000000033,
     "structCostDict": {
       "commUsd": 1.087044,
       "sprdUsd": 0.40764149999999993,
@@ -5697,7 +7491,17 @@
       "commR": 0.015016493990882649,
       "sprdR": 0.005631185246580993,
       "slipR": 0.0075082469954413245
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.1316480176819899,
+      "maeR": 0.3507390523553006,
+      "exitTs": 1790614800000,
+      "exitBar": 318,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.47184407376709503
   },
   {
     "signalId": "XAUUSD_15m_OB_1790226000000_1790228700000",
@@ -5746,14 +7550,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.5622970864774504,
       "maeR": 1.1821558576625482,
       "exitTs": 1790325900000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRStruct": -0.1807022087832763
+    "netRStruct": 0.3192977912167237
   },
   {
     "signalId": "BTCUSD_15m_OB_1790334000000_1790337600000",
@@ -5762,12 +7566,12 @@
     "poiType": "OB",
     "signalTs": 1790338500000,
     "signalDt": "2026-09-25 12:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1790554500000,
+    "entryDt": "2026-09-28 00:15",
+    "status": "FILLED",
     "entryP": 84964.75,
     "prodSl": 85223,
     "prodRisk": 258.25,
-    "structSl": 85950.32,
-    "structRisk": 985.570000000007,
     "prodCostDict": {
       "commUsd": 33.9859,
       "sprdUsd": 8.496475,
@@ -5778,6 +7582,18 @@
       "sprdR": 0.03290019361084221,
       "slipR": 0.04935029041626331
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.101645692158761,
+      "maeR": 0.13262342691190707,
+      "exitTs": 1790554500000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.28614874152952563,
+    "structSl": 85950.32,
+    "structRisk": 985.570000000007,
     "structCostDict": {
       "commUsd": 33.9859,
       "sprdUsd": 8.496475,
@@ -5787,7 +7603,17 @@
       "commR": 0.03448349685968501,
       "sprdR": 0.008620874214921253,
       "slipR": 0.012931311322381879
-    }
+    },
+    "resStruct": {
+      "outcome": "TP",
+      "grossR": 1.5,
+      "mfeR": 2,
+      "maeR": 0.034751463620036886,
+      "exitTs": 1790573400000,
+      "exitBar": 21,
+      "reason": "TAKE_PROFIT_HIT"
+    },
+    "netRStruct": 1.443964317603012
   },
   {
     "signalId": "ETHUSD_15m_OB_1790253000000_1790254800000",
@@ -5796,12 +7622,12 @@
     "poiType": "OB",
     "signalTs": 1790345700000,
     "signalDt": "2026-09-25 14:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1790565300000,
+    "entryDt": "2026-09-28 03:15",
+    "status": "FILLED",
     "entryP": 2644.43,
     "prodSl": 2639.27,
     "prodRisk": 5.1599999999998545,
-    "structSl": 2599.15,
-    "structRisk": 45.279999999999745,
     "prodCostDict": {
       "commUsd": 1.057772,
       "sprdUsd": 0.3966644999999999,
@@ -5812,6 +7638,18 @@
       "sprdR": 0.07687296511628122,
       "slipR": 0.1024972868217083
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.6337209302326605,
+      "maeR": 0.4709302325581211,
+      "exitTs": 1790565300000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.11563517441859383,
+    "structSl": 2599.15,
+    "structRisk": 45.279999999999745,
     "structCostDict": {
       "commUsd": 1.057772,
       "sprdUsd": 0.3966644999999999,
@@ -5821,7 +7659,17 @@
       "commR": 0.023360689045936526,
       "sprdR": 0.008760258392226196,
       "slipR": 0.011680344522968263
-    }
+    },
+    "resStruct": {
+      "outcome": "TP",
+      "grossR": 1.5,
+      "mfeR": 2,
+      "maeR": 0.19302120141342383,
+      "exitTs": 1790669700000,
+      "exitBar": 116,
+      "reason": "TAKE_PROFIT_HIT"
+    },
+    "netRStruct": 1.456198708038869
   },
   {
     "signalId": "SOLUSD_15m_OB_1790358300000_1790359200000",
@@ -5830,8 +7678,8 @@
     "poiType": "OB",
     "signalTs": 1790385300000,
     "signalDt": "2026-09-26 01:15",
-    "entryTs": 1790391600000,
-    "entryDt": "2026-09-26 03:00",
+    "entryTs": 1790559900000,
+    "entryDt": "2026-09-28 01:45",
     "status": "FILLED",
     "entryP": 120.83500000000001,
     "prodSl": 120.61,
@@ -5848,14 +7696,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
-      "mfeR": 3.444444444444276,
-      "maeR": 0.9111111111111322,
-      "exitTs": 1790391600000,
+      "grossR": 0.5,
+      "mfeR": 2.111111111111006,
+      "maeR": 2.2444444444444023,
+      "exitTs": 1790559900000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRProd": -0.6176011111110877,
+    "netRProd": -0.11760111111108773,
     "structSl": 120.72,
     "structRisk": 0.1150000000000091,
     "structCostDict": {
@@ -5870,14 +7718,14 @@
     },
     "resStruct": {
       "outcome": "BE",
-      "grossR": 0,
-      "mfeR": 6.739130434782002,
-      "maeR": 1.7826086956521416,
-      "exitTs": 1790391600000,
+      "grossR": 0.5,
+      "mfeR": 4.13043478260832,
+      "maeR": 4.391304347825824,
+      "exitTs": 1790559900000,
       "exitBar": 0,
       "reason": "CONFLICT_SL_FIRST"
     },
-    "netRStruct": -1.2083499999999046
+    "netRStruct": -0.7083499999999046
   },
   {
     "signalId": "ETHUSD_15m_OB_1790454600000_1790457300000",
@@ -5886,12 +7734,12 @@
     "poiType": "OB",
     "signalTs": 1790470800000,
     "signalDt": "2026-09-27 01:00",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1790555400000,
+    "entryDt": "2026-09-28 00:30",
+    "status": "FILLED",
     "entryP": 2676.175,
     "prodSl": 2667.69,
     "prodRisk": 8.485000000000127,
-    "structSl": 2663.79,
-    "structRisk": 12.385000000000218,
     "prodCostDict": {
       "commUsd": 1.07047,
       "sprdUsd": 0.40142625,
@@ -5902,6 +7750,18 @@
       "sprdR": 0.04731010606953376,
       "slipR": 0.06308014142604502
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.9817324690629756,
+      "maeR": 0.49204478491456916,
+      "exitTs": 1790555400000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": 0.2634494696523312,
+    "structSl": 2663.79,
+    "structRisk": 12.385000000000218,
     "structCostDict": {
       "commUsd": 1.07047,
       "sprdUsd": 0.40142625,
@@ -5911,7 +7771,17 @@
       "commR": 0.08643278159063231,
       "sprdR": 0.03241229309648711,
       "slipR": 0.043216390795316154
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 1.3576907549454424,
+      "maeR": 0.33710133225677097,
+      "exitTs": 1790555400000,
+      "exitBar": 0,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": 0.3379385345175644
   },
   {
     "signalId": "XAUUSD_15m_OB_1790603100000_1790605800000",
@@ -5920,12 +7790,12 @@
     "poiType": "OB",
     "signalTs": 1790615700000,
     "signalDt": "2026-09-28 17:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1790678700000,
+    "entryDt": "2026-09-29 10:45",
+    "status": "FILLED",
     "entryP": 4153.457565000001,
     "prodSl": 4160.352940000001,
     "prodRisk": 6.895375000000058,
-    "structSl": 4171.28545,
-    "structRisk": 17.827884999999696,
     "prodCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -5936,6 +7806,18 @@
       "sprdR": 0.021753711727063245,
       "slipR": 0.014502474484708832
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.6507209542629554,
+      "maeR": 1.0859170095897162,
+      "exitTs": 1790680500000,
+      "exitBar": 2,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.0652611351811898,
+    "structSl": 4171.28545,
+    "structRisk": 17.827884999999696,
     "structCostDict": {
       "commUsd": 0.2,
       "sprdUsd": 0.15,
@@ -5945,7 +7827,17 @@
       "commR": 0.011218380643581861,
       "sprdR": 0.008413785482686396,
       "slipR": 0.005609190321790931
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.2919967792029678,
+      "maeR": 1.2484086025907926,
+      "exitTs": 1790691300000,
+      "exitBar": 14,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0252413564480591
   },
   {
     "signalId": "BTCUSD_15m_OB_1790554500000_1790557200000",
@@ -5954,12 +7846,12 @@
     "poiType": "OB",
     "signalTs": 1790652600000,
     "signalDt": "2026-09-29 03:30",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1790771400000,
+    "entryDt": "2026-09-30 12:30",
+    "status": "FILLED",
     "entryP": 84710.5,
     "prodSl": 85000,
     "prodRisk": 289.5,
-    "structSl": 85009,
-    "structRisk": 298.5,
     "prodCostDict": {
       "commUsd": 33.8842,
       "sprdUsd": 8.47105,
@@ -5970,6 +7862,18 @@
       "sprdR": 0.02926096718480138,
       "slipR": 0.04389145077720207
     },
+    "resProd": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.8894645941278068,
+      "maeR": 1.248739205526752,
+      "exitTs": 1790771400000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRProd": 0.30980371329879103,
+    "structSl": 85009,
+    "structRisk": 298.5,
     "structCostDict": {
       "commUsd": 33.8842,
       "sprdUsd": 8.47105,
@@ -5979,7 +7883,17 @@
       "commR": 0.11351490787269682,
       "sprdR": 0.028378726968174204,
       "slipR": 0.0425680904522613
-    }
+    },
+    "resStruct": {
+      "outcome": "BE",
+      "grossR": 0.5,
+      "mfeR": 2.8023450586264658,
+      "maeR": 1.211088777219413,
+      "exitTs": 1790771400000,
+      "exitBar": 0,
+      "reason": "CONFLICT_SL_FIRST"
+    },
+    "netRStruct": 0.3155382747068677
   },
   {
     "signalId": "SOLUSD_15m_FVG_1790694000000_1790694900000",
@@ -6006,14 +7920,14 @@
     },
     "resProd": {
       "outcome": "BE",
-      "grossR": 0,
+      "grossR": 0.5,
       "mfeR": 1.258620689655183,
       "maeR": 0.017241379310329197,
       "exitTs": 1790719200000,
       "exitBar": 0,
       "reason": "STOP_LOSS_HIT"
     },
-    "netRProd": -0.23711810344827655,
+    "netRProd": 0.26288189655172345,
     "structSl": 121.78999999999999,
     "structRisk": 2.1999999999999886,
     "structCostDict": {
@@ -6044,12 +7958,12 @@
     "poiType": "FVG",
     "signalTs": 1790784900000,
     "signalDt": "2026-09-30 16:15",
-    "status": "EXPIRED_UNFILLED",
+    "entryTs": 1790843400000,
+    "entryDt": "2026-10-01 08:30",
+    "status": "FILLED",
     "entryP": 1.32228,
     "prodSl": 1.32113,
     "prodRisk": 0.0011499999999999844,
-    "structSl": 1.3198,
-    "structRisk": 0.0024799999999998157,
     "prodCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -6060,6 +7974,18 @@
       "sprdR": 0.08260869565217505,
       "slipR": 0.026086956521739486
     },
+    "resProd": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.41739130434786303,
+      "maeR": 1.0173913043477472,
+      "exitTs": 1790844300000,
+      "exitBar": 1,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRProd": -1.1608695652173935,
+    "structSl": 1.3198,
+    "structRisk": 0.0024799999999998157,
     "structCostDict": {
       "commUsd": 0.00006,
       "sprdUsd": 0.000095,
@@ -6069,6 +7995,16 @@
       "commR": 0.024193548387098574,
       "sprdR": 0.03830645161290607,
       "slipR": 0.012096774193549287
-    }
+    },
+    "resStruct": {
+      "outcome": "SL",
+      "grossR": -1,
+      "mfeR": 0.19354838709680308,
+      "maeR": 1.1895161290323497,
+      "exitTs": 1790848800000,
+      "exitBar": 6,
+      "reason": "STOP_LOSS_HIT"
+    },
+    "netRStruct": -1.0745967741935538
   }
 ]

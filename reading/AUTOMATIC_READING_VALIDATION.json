@@ -1,0 +1,45 @@
+{
+  "checked_utc_ms": 1794058321437,
+  "unit_tests_passed": 64,
+  "new_pattern_tests": 20,
+  "actual_market_detection_validation": false,
+  "edge_proven": false,
+  "order_routing": false,
+  "entry_rule": "AUTOMATIC_PATTERNS_V1",
+  "human_confirmation_required": false,
+  "control_preserved": true,
+  "service_state": "RUNNING",
+  "service_errors": [],
+  "forex_status": {
+    "symbols": 21,
+    "feed_provider": "quantower",
+    "bridge_state": "HEARTBEAT_FRESH",
+    "heartbeat_age_ms": 116,
+    "feed_faults": {
+      "CONTRACT_OR_SESSION_CHANGE": 8
+    },
+    "entry_rule": "AUTOMATIC_PATTERNS_V1",
+    "human_confirmation_required": false,
+    "macro_smc_gated": true,
+    "order_routing": false
+  },
+  "gold_entry": {
+    "states": {},
+    "total_setups": 0,
+    "entry_rule": "AUTOMATIC_PATTERNS_V1",
+    "pattern_gates": {},
+    "quote_rejections": {},
+    "order_routing": false,
+    "execution_permissions": false,
+    "net_pnl": null
+  },
+  "eurusd_source_usable": false,
+  "eurusd_depth_state": "UNAVAILABLE_NO_LEVEL2",
+  "code_hashes": {
+    "reading_patterns.py": "78418e6544ebaa199bce6045d32baad2026c31c7d2b99d96d3948071ad1fa57b",
+    "entry_tracker.py": "e1dbc546eef4830caff8f0256d399ef8297f955ce1dc06c2d69fe312ccd94e20",
+    "service.py": "b28af7c2dc9102fc41a86f5b39c39455c7e6aa06c0b68e571ceeecf544de52fd",
+    "ninja_feed.py": "1246e6376163417db4bb5f9d59d582bd648d2ea8180b21c003485524106657fe",
+    "test_reading_patterns.py": "52eb20a1ba6822d22b5173e95e236c0b7e8f6153410ccf8d42b77bde038e549d"
+  }
+}

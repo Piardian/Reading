@@ -1,4 +1,2 @@
 @echo off
-chcp 65001 > nul
-cd /d "%~dp0"
-python orchestrator\start_begonya.py
+call "%~dp0BASLAT_READING.cmd"

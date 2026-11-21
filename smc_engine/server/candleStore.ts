@@ -50,7 +50,13 @@ export class CandleStore {
     if (age >= maxAgeMs) return false;
 
     const candles = this.getCandles(symbol, timeframe);
-    return candles.length >= minCandles;
+    const intervalMs = timeframe === '1m' ? 60_000 : timeframe === '15m' ? 900_000
+      : timeframe === '1h' ? 3_600_000 : 14_400_000;
+    const last = candles[candles.length - 1];
+    const requiredClosedBar = Math.floor(now / intervalMs) * intervalMs - intervalMs;
+    // A recently rewritten file can still contain yesterday's bars.
+    return candles.length >= minCandles && Number.isFinite(last?.timestamp)
+      && last.timestamp >= requiredClosedBar && last.timestamp <= now;
   }
 
   appendCandle(symbol: Symbol, timeframe: Timeframe, candle: StoredCandle): void {

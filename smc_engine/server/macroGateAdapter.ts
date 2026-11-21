@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { NewsGuard } from './newsGuard';
+import { evaluateRelativePolicyContext, RelativePolicyContext } from './relativePolicyContext';
 import {
   CoinRotationAssessment,
   CRYPTO_ROTATION_UNIVERSE_META,
@@ -9,6 +10,7 @@ import {
 } from './cryptoRotationEngine';
 
 export interface MacroGatePayload {
+  policy_expectations?: { relative_repricing?: unknown };
   timestamp?: string;
   primary_regime?: string;
   volatility_risk_score?: number;
@@ -65,6 +67,7 @@ export interface MacroGatePayload {
 export type BegonyaScoreTier = 'A+' | 'A' | 'B' | 'C' | 'D';
 
 export interface MacroGateEvaluation {
+  relativePolicyContext?: RelativePolicyContext;
   allowed: boolean;
   action: 'PROCEED' | 'VETO' | 'DEFENSIVE_REDUCE' | 'NEUTRAL_CAUTION';
   symbol: string;
@@ -1027,7 +1030,12 @@ export class MacroGateAdapter {
     }
 
     // Nihai Risk = Taban SMC Riski * Makro Risk Çarpanı * Hafta Sonu Kripto Koruma Çarpanı
-    const effectiveMacroMultiplier = Math.round(macroMultiplier * weekendCryptoPenalty * 100) / 100;
+    const relativePolicyContext = evaluateRelativePolicyContext(payload.policy_expectations?.relative_repricing, cleanSym, tradeDirection, Date.now());
+    if (relativePolicyContext.status === 'CONFLICT') {
+      action = 'NEUTRAL_CAUTION';
+      tierRationale += ` [Göreli faiz beklentisi değişimi ters yönde: ${relativePolicyContext.relativeRepriceBps} bp; 0.75x risk]`;
+    }
+    const effectiveMacroMultiplier = Math.round(macroMultiplier * weekendCryptoPenalty * relativePolicyContext.riskMultiplier * 100) / 100;
     const finalRiskMultiplier = Math.round(baseRisk * effectiveMacroMultiplier * 100) / 100;
     const weekendSuffix = weekendCryptoPenalty < 1.0 ? ' [Hafta Sonu Kripto Koruması: %50 Risk İndirimi]' : '';
     const gateStatusMessage = (coinRotation
@@ -1057,6 +1065,7 @@ export class MacroGateAdapter {
       scoreTier,
       tierRationale: `${tierRationale} [Makro Çarpan: ${effectiveMacroMultiplier}x${weekendCryptoPenalty < 1.0 ? ', Hafta Sonu Kripto İndirimi 0.50x' : ''}]`,
       ...(coinRotation ? { cryptoRotationAssessment: coinRotation } : {}),
+      relativePolicyContext,
     };
   }
 }

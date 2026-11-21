@@ -66,7 +66,7 @@ export function calibrateDecision(input: DecisionCalibrationInput): DecisionCali
       input.tradeDirection,
       input.pd1H,
       false,
-      false,
+      Boolean(input.allowTrendContinuationPD),
       true
     ),
     ...(input.pd15M

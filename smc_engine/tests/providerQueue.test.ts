@@ -18,7 +18,7 @@ describe('DeterministicProviderQueue', () => {
     process.env = originalEnv;
   });
 
-  test('orders a simultaneous batch by timeframe priority, stable symbol order, then FIFO', async () => {
+  test('orders a simultaneous batch by timeframe then FIFO, and coalesces identical requests', async () => {
     const order: string[] = [];
     const queue = new DeterministicProviderQueue({
       creditsPerMinute: 100,
@@ -39,13 +39,13 @@ describe('DeterministicProviderQueue', () => {
     ]);
 
     expect(order).toEqual([
-      '15m:EURUSD',
-      '15m:EURUSD',
       '15m:AUDUSD',
+      '15m:EURUSD',
       '1h:EURUSD',
       '4h:GBPUSD',
       '1m:USDCAD',
     ]);
+    expect(queue.getMetrics().coalescedRequests).toBe(1);
   });
 
   test('enforces global concurrency one', async () => {

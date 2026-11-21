@@ -48,7 +48,7 @@ describe('Shared Candle Cache & Smart Deduplication', () => {
     it('returns false when candle file exists but has fewer than minimum candles', () => {
       for (let i = 0; i < 5; i++) {
         candleStore.appendCandle('EURUSD', '15m', {
-          timestamp: 1000 + i * 900_000,
+          timestamp: Math.floor(Date.now() / 900_000) * 900_000 - (25 - i) * 900_000,
           open: 1.1,
           high: 1.2,
           low: 1.0,
@@ -61,7 +61,7 @@ describe('Shared Candle Cache & Smart Deduplication', () => {
     it('returns true when candle file is fresh and has sufficient candles', () => {
       for (let i = 0; i < 25; i++) {
         candleStore.appendCandle('EURUSD', '15m', {
-          timestamp: 1000 + i * 900_000,
+          timestamp: Math.floor(Date.now() / 900_000) * 900_000 - (25 - i) * 900_000,
           open: 1.1,
           high: 1.2,
           low: 1.0,
@@ -74,7 +74,7 @@ describe('Shared Candle Cache & Smart Deduplication', () => {
     it('returns false when candle file mtime is older than maxAgeMs', () => {
       for (let i = 0; i < 25; i++) {
         candleStore.appendCandle('EURUSD', '15m', {
-          timestamp: 1000 + i * 900_000,
+          timestamp: Math.floor(Date.now() / 900_000) * 900_000 - (25 - i) * 900_000,
           open: 1.1,
           high: 1.2,
           low: 1.0,
@@ -105,7 +105,7 @@ describe('Shared Candle Cache & Smart Deduplication', () => {
     it('skips fetchCandles when shared cache is fresh', async () => {
       for (let i = 0; i < 25; i++) {
         candleStore.appendCandle('EURUSD', '15m', {
-          timestamp: 1000 + i * 900_000,
+          timestamp: Math.floor(Date.now() / 900_000) * 900_000 - (25 - i) * 900_000,
           open: 1.1,
           high: 1.2,
           low: 1.0,
@@ -137,7 +137,7 @@ describe('Shared Candle Cache & Smart Deduplication', () => {
     it('forces poll if FORCE_POLL=true even if cache is fresh', async () => {
       for (let i = 0; i < 25; i++) {
         candleStore.appendCandle('AUDUSD', '15m', {
-          timestamp: 1000 + i * 900_000,
+          timestamp: Math.floor(Date.now() / 900_000) * 900_000 - (25 - i) * 900_000,
           open: 1.1,
           high: 1.2,
           low: 1.0,

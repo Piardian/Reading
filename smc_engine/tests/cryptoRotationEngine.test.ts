@@ -35,13 +35,13 @@ function makeBars(baseClose: number, change4hPct: number, change24hPct: number, 
 
 function makeOiHist(change4hPct: number, change24hPct: number): RawOiPoint[] {
   const baseOi = 100_000.0;
-  const oi4hAgo = baseOi * (1.0 + (change24hPct - change4hPct) / 100.0);
-  const oiNow = oi4hAgo * (1.0 + change4hPct / 100.0);
+  const oiNow = baseOi * (1 + change24hPct / 100);
+  const oi4hAgo = oiNow / (1 + change4hPct / 100);
   const hist: RawOiPoint[] = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 25; i++) {
     let val = baseOi;
-    if (i === 5) val = oi4hAgo;
-    else if (i === 9) val = oiNow;
+    if (i === 20) val = oi4hAgo;
+    else if (i === 24) val = oiNow;
     hist.push({ sum_open_interest: val, sum_open_interest_value: val * 10.0 });
   }
   return hist;
@@ -257,5 +257,32 @@ describe('8-Factor Crypto Rotation & On-Demand SMC Engine Bridge', () => {
     expect(taoEval.action).toBe('PROCEED');
     expect(taoEval.riskMultiplier).toBe(0.50);
     expect(taoEval.gateStatusMessage).toContain('Hafta Sonu Kripto Koruması: %50 Risk İndirimi');
+  });
+});
+
+
+describe('Derivative position flow interpretation', () => {
+  test('does not label rising price with declining OI as fresh organic inflow', () => {
+    const snap = buildBaseSnapshot();
+    setCoin(snap, 'TAO', { chg24: 4, chg4: 1.5, rvol: 1.5, oi4: -2, oi24: -3, fundingPct: 0.01 });
+    const coin = evaluateCryptoRotationSnapshot(snap, 'LONG_ONLY').coin_assessments.TAO;
+    expect(coin.derivatives_regime).toBe('SHORT_COVERING');
+    expect(coin.score_breakdown.oi_and_funding).toBe(0);
+  });
+  test('does not label falling price with declining OI as new short buildup', () => {
+    const snap = buildBaseSnapshot();
+    setCoin(snap, 'TAO', { chg24: -4, chg4: -1.5, rvol: 1.5, oi4: -2, oi24: -3, fundingPct: 0.01 });
+    const coin = evaluateCryptoRotationSnapshot(snap, 'SHORT_ONLY').coin_assessments.TAO;
+    expect(coin.derivatives_regime).toBe('LONG_LIQUIDATION');
+    expect(coin.score_breakdown.oi_and_funding).toBe(0);
+  });
+  test('missing funding cannot pass as healthy neutral funding', () => {
+    const snap = buildBaseSnapshot();
+    setCoin(snap, 'TAO', { chg24: 6, chg4: 2, rvol: 2, oi4: 2, oi24: 4 });
+    delete snap.coins.TAO.funding_rate;
+    const coin = evaluateCryptoRotationSnapshot(snap, 'LONG_ONLY').coin_assessments.TAO;
+    expect(coin.derivatives_data_status).toBe('UNAVAILABLE');
+    expect(coin.smc_handoff_allowed).toBe(false);
+    expect(coin.veto_reasons_long.join()).toContain('DERIVATIVES_DATA_UNAVAILABLE');
   });
 });

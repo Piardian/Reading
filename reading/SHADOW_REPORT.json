@@ -1,0 +1,23 @@
+{
+  "scope": "OBSERVED_BBO_SHADOW_NOT_BROKER_VERIFIED",
+  "total": 0,
+  "open": 0,
+  "closed": 0,
+  "tp": 0,
+  "sl": 0,
+  "be": 0,
+  "unresolved": 0,
+  "gross_r": 0,
+  "gross_profit_r": 0,
+  "gross_loss_r": 0,
+  "tp1_hits": 0,
+  "partial_realized_r_not_closed": 0,
+  "realized_total_gross_r": 0,
+  "closed_model_gross_usd": 0,
+  "realized_model_gross_usd": 0,
+  "usd_unavailable_records": 0,
+  "commission": null,
+  "slippage": null,
+  "net_pnl": null,
+  "broker_verified": false
+}

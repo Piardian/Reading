@@ -198,7 +198,7 @@ function simulateTrade(direction, entryP, slP, tpP, candles) {
       if (hitSl && hitTp) {
         return {
           outcome: (beArmed && effectiveSl === entryP) ? 'BE' : 'SL',
-          grossR: (beArmed && effectiveSl === entryP) ? 0.0 : -1.0,
+          grossR: (beArmed && effectiveSl === entryP) ? 0.50 : -1.0,
           mfeR: (mfeP - entryP) / riskDist,
           maeR: (entryP - maeP) / riskDist,
           exitTs: ts,
@@ -208,7 +208,7 @@ function simulateTrade(direction, entryP, slP, tpP, candles) {
       } else if (hitSl) {
         return {
           outcome: (beArmed && effectiveSl === entryP) ? 'BE' : 'SL',
-          grossR: (beArmed && effectiveSl === entryP) ? 0.0 : -1.0,
+          grossR: (beArmed && effectiveSl === entryP) ? 0.50 : -1.0,
           mfeR: (mfeP - entryP) / riskDist,
           maeR: (entryP - maeP) / riskDist,
           exitTs: ts,
@@ -218,7 +218,7 @@ function simulateTrade(direction, entryP, slP, tpP, candles) {
       } else if (hitTp) {
         return {
           outcome: 'TP',
-          grossR: 2.0,
+          grossR: 1.50,
           mfeR: (tpP - entryP) / riskDist,
           maeR: (entryP - maeP) / riskDist,
           exitTs: ts,
@@ -241,7 +241,7 @@ function simulateTrade(direction, entryP, slP, tpP, candles) {
       if (hitSl && hitTp) {
         return {
           outcome: (beArmed && effectiveSl === entryP) ? 'BE' : 'SL',
-          grossR: (beArmed && effectiveSl === entryP) ? 0.0 : -1.0,
+          grossR: (beArmed && effectiveSl === entryP) ? 0.50 : -1.0,
           mfeR: (entryP - mfeP) / riskDist,
           maeR: (maeP - entryP) / riskDist,
           exitTs: ts,
@@ -251,7 +251,7 @@ function simulateTrade(direction, entryP, slP, tpP, candles) {
       } else if (hitSl) {
         return {
           outcome: (beArmed && effectiveSl === entryP) ? 'BE' : 'SL',
-          grossR: (beArmed && effectiveSl === entryP) ? 0.0 : -1.0,
+          grossR: (beArmed && effectiveSl === entryP) ? 0.50 : -1.0,
           mfeR: (entryP - mfeP) / riskDist,
           maeR: (maeP - entryP) / riskDist,
           exitTs: ts,
@@ -261,7 +261,7 @@ function simulateTrade(direction, entryP, slP, tpP, candles) {
       } else if (hitTp) {
         return {
           outcome: 'TP',
-          grossR: 2.0,
+          grossR: 1.50,
           mfeR: (entryP - tpP) / riskDist,
           maeR: (maeP - entryP) / riskDist,
           exitTs: ts,
@@ -428,7 +428,11 @@ async function runProductionParityReplay() {
     let entryBarIdx = null;
     let entryTs = null;
 
-    for (let idx = 0; idx < Math.min(16, fwdCandles.length); idx++) {
+    let marketBarsCount = 0;
+    for (let idx = 0; idx < fwdCandles.length; idx++) {
+      if (new Date(fwdCandles[idx].timestamp).getUTCDay() === 0 || new Date(fwdCandles[idx].timestamp).getUTCDay() === 6) continue;
+      marketBarsCount++;
+      if (marketBarsCount > 288) break; // 72 market hours (288 * 15m), weekends excluded
       const c = fwdCandles[idx];
       if (direction === 'long' && c.low <= entryP) {
         entryFilled = true;
@@ -490,7 +494,7 @@ async function runProductionParityReplay() {
   console.log('PRODUCTION-PARITY REPLAY SUMMARY');
   console.log('='.repeat(100));
   console.log(`Total Detected Signals:       ${tradeRecords.length}`);
-  console.log(`Expired Unfilled (16 bars):   ${expired.length}`);
+  console.log(`Expired Unfilled (72h market time): ${expired.length}`);
   console.log(`Valid Filled Trades:          ${filled.length}`);
 
   function calcStats(trades, type) {
@@ -539,6 +543,7 @@ async function runProductionParityReplay() {
   console.log(`  TP/SL/BE/Open: ${sProdAll.tp} / ${sProdAll.sl} / ${sProdAll.be} / ${sProdAll.openTimeout} (Win Rate: ${sProdAll.winRate.toFixed(1)}%)`);
   console.log(`  Gross PnL:     ${sProdAll.gross.toFixed(2)}R | Net PnL: ${sProdAll.net.toFixed(2)}R | Total Costs: ${sProdAll.cost.toFixed(2)}R`);
   console.log(`  Expectancy:    ${sProdAll.exp.toFixed(3)}R/trade | Profit Factor: ${sProdAll.pf.toFixed(2)} | Max Drawdown: ${sProdAll.maxDd.toFixed(2)}R`);
+  console.log(`  Account Return (at %1.5 Risk/Trade): ${(sProdAll.net * 1.5).toFixed(2)}% (Gross: ${(sProdAll.gross * 1.5).toFixed(2)}%)`);
 
   console.log('\n  Per Symbol Breakdown (Production 15M Stop):');
   for (const sym of symbols) {
@@ -559,6 +564,7 @@ async function runProductionParityReplay() {
   console.log(`  TP/SL/BE/Open: ${sStructAll.tp} / ${sStructAll.sl} / ${sStructAll.be} / ${sStructAll.openTimeout} (Win Rate: ${sStructAll.winRate.toFixed(1)}%)`);
   console.log(`  Gross PnL:     ${sStructAll.gross.toFixed(2)}R | Net PnL: ${sStructAll.net.toFixed(2)}R | Total Costs: ${sStructAll.cost.toFixed(2)}R`);
   console.log(`  Expectancy:    ${sStructAll.exp.toFixed(3)}R/trade | Profit Factor: ${sStructAll.pf.toFixed(2)} | Max Drawdown: ${sStructAll.maxDd.toFixed(2)}R`);
+  console.log(`  Account Return (at %1.5 Risk/Trade): ${(sStructAll.net * 1.5).toFixed(2)}% (Gross: ${(sStructAll.gross * 1.5).toFixed(2)}%)`);
 
   console.log('\n  Per Symbol Breakdown (Research 1H Structural Stop):');
   for (const sym of symbols) {

@@ -1,0 +1,175 @@
+{
+  "checked_utc_ms": 1794215132545,
+  "state": "REPAIRED_AND_RECEIVING_MARKET_EVENTS",
+  "order_routing": false,
+  "minimum_smc_grade": "B+",
+  "service": {
+    "state": "RUNNING",
+    "pid": 29344,
+    "smc_pid": 30280,
+    "mt5_candles_pid": 27996,
+    "age_ms": 919,
+    "loop_duration_ms": 1172,
+    "errors": []
+  },
+  "bridge": {
+    "version": "1.0.3",
+    "heartbeat_age_ms": 580,
+    "storage_mode": "ROTATING_64MIB_OR_5MIN",
+    "trade_events": 1775,
+    "quote_callbacks": 52968,
+    "quote_exports": 4466,
+    "dropped_total": 0,
+    "roots_with_trade_events": [
+      "6E",
+      "6B",
+      "6A",
+      "6J",
+      "6C",
+      "6S",
+      "GC"
+    ],
+    "raw_feed_label": "UNVERIFIED"
+  },
+  "rotation": {
+    "observed_production_fragments": [
+      {
+        "name": "2026-11-09.part00000000.jsonl",
+        "bytes": 3311515
+      },
+      {
+        "name": "2026-11-09.part00000001.jsonl",
+        "bytes": 767032
+      }
+    ],
+    "observed_no_sequence_faults": true,
+    "limits": {
+      "fragment_bytes": 67108864,
+      "fragment_seconds": 300,
+      "free_disk_min_bytes": 2147483648,
+      "raw_budget_bytes": 4294967296,
+      "archive_budget_bytes": 8589934592
+    }
+  },
+  "archives": {
+    "receipts": [
+      {
+        "source": "2026-11-07.jsonl",
+        "archive": "2026-11-07.jsonl.gz",
+        "sha256": "0493b6e3aee2065b676e3944b52e8bd357345ac670531a4836c9056e82dd28b7",
+        "raw_bytes": 25153021,
+        "compressed_bytes": 352734,
+        "verified_utc_ms": 1794214801108
+      },
+      {
+        "source": "2026-11-08.jsonl",
+        "archive": "2026-11-08.jsonl.gz",
+        "sha256": "021d7f7c818c3be9d8ce12a41c1b8af607b4c55837738d2ce70bffc4686ae7cd",
+        "raw_bytes": 55576915,
+        "compressed_bytes": 756162,
+        "verified_utc_ms": 1794214802739
+      },
+      {
+        "source": "2026-11-09.jsonl",
+        "archive": "2026-11-09.jsonl.gz",
+        "sha256": "3ee3c34305e2aaeda190ef7d9deb4d717d6d4219bb0e6d9a4d313e28b49974c7",
+        "raw_bytes": 537934825,
+        "compressed_bytes": 20040439,
+        "verified_utc_ms": 1794214819019
+      }
+    ],
+    "raw_bytes_preserved": 618664761,
+    "compressed_bytes": 21149335,
+    "automatic_deletion_of_archives": false,
+    "maintenance": {
+      "state": "READY",
+      "archived": 0,
+      "bytes_saved": 0,
+      "archive_bytes": 21149335,
+      "archive_budget_bytes": 8589934592,
+      "retention": "LOSSLESS_ARCHIVES_NOT_AUTO_DELETED",
+      "updated_utc_ms": 1794215101388
+    }
+  },
+  "forex": {
+    "EURUSD": {
+      "tape": "DATA_NOT_READY",
+      "reasons": [
+        "TRADES_NOT_FRESH"
+      ]
+    },
+    "GBPUSD": {
+      "tape": "DATA_NOT_READY",
+      "reasons": [
+        "TRADES_NOT_FRESH"
+      ]
+    },
+    "AUDUSD": {
+      "tape": "RESEARCH_FEATURES_READY",
+      "reasons": []
+    },
+    "USDCAD": {
+      "tape": "DATA_NOT_READY",
+      "reasons": [
+        "TRADES_NOT_FRESH",
+        "LIVE_FEED_MODE_NOT_DECLARED",
+        "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+      ]
+    },
+    "USDJPY": {
+      "tape": "DATA_NOT_READY",
+      "reasons": [
+        "TRADES_NOT_FRESH"
+      ]
+    },
+    "NZDUSD": {
+      "tape": "DATA_NOT_READY",
+      "reasons": [
+        "WAITING_QUANTOWER_DATA",
+        "INSUFFICIENT_TRADES",
+        "TRADES_NOT_FRESH",
+        "LIVE_FEED_MODE_NOT_DECLARED",
+        "CLOCK_VALIDATION_SAMPLE_NOT_READY",
+        "AGGRESSOR_CLASSIFICATION_INCOMPLETE",
+        "PROVIDER_DELAY_NOT_ZERO_OR_UNKNOWN"
+      ]
+    },
+    "USDCHF": {
+      "tape": "DATA_NOT_READY",
+      "reasons": [
+        "TRADES_NOT_FRESH",
+        "LIVE_FEED_MODE_NOT_DECLARED",
+        "CLOCK_VALIDATION_SAMPLE_NOT_READY"
+      ]
+    }
+  },
+  "shadow_ledger": {
+    "total": 0,
+    "open": 0,
+    "closed": 0,
+    "tp": 0,
+    "sl": 0,
+    "be": 0,
+    "unresolved": 0,
+    "gross_r": 0,
+    "gross_profit_r": 0,
+    "gross_loss_r": 0,
+    "commission": null,
+    "slippage": null,
+    "net_pnl": null,
+    "broker_verified": false
+  },
+  "tests": {
+    "python_passed": 106,
+    "compiled_csharp_sink": "PASS size/time/day rotation; legacy preservation; archive-aware restart; exact events"
+  },
+  "installed_dll_sha256": "2516656ab59521b899f00487c48cc4c3e0a8c4ae212a3d171a8fe674aed145e7",
+  "changed_source_sha256": {
+    "service.py": "937041cb34dfe611410f5a0f51b7ccce59d1cfa28067850a07763dc215be21f2",
+    "storage_maintenance.py": "9bc12de96cae0aa72eb78fbb5ded0e46be492763f15dc729c2bb84a0dd354717",
+    "tape_engine.py": "3ec63aa81b29cc3a31e4118fd13daf9e52b122658811c3c00c3f72535a207983",
+    "test_storage_maintenance.py": "e401fdc375773277cebcf53d096fd16300d1d13b11869ef4c3be56ba8d0ddab6"
+  },
+  "edge_proven": false,
+  "net_pnl": null
+}

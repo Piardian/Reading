@@ -29,8 +29,10 @@ describe('TradeExpectancyEngine', () => {
     expect(plan.tp3.price).toBeGreaterThan(plan.tp2.price);
 
     // Expectancy
-    expect(plan.winProbability).toBeGreaterThanOrEqual(0.55);
-    expect(plan.expectedValueR).toBeGreaterThan(0.50);
+    expect(plan.winProbability).toBeNull();
+    expect(plan.expectedValueR).toBeNull();
+    expect(plan.kellyFraction).toBeNull();
+    expect(plan.netRewardR).toBeGreaterThan(2);
     expect(plan.isAdmissible).toBe(true);
     expect(plan.rejectionReason).toBeUndefined();
   });
@@ -104,7 +106,7 @@ describe('TradeExpectancyEngine', () => {
     expect(plan.isAdmissible).toBe(true);
   });
 
-  it('should dynamically select nearest liquidity pool >= 2.0R when closer magnet is < 2.0R', () => {
+  it('does not skip a nearer liquidity pool to fabricate a larger RR', () => {
     // Risk is (1.1010 - 1.0990) = ~20 pips. 2.0R = 40 pips.
     // Near cluster at 1.1030 (20 pips away = 1.0R)
     // Far cluster at 1.1060 (50 pips away = 2.5R)
@@ -127,15 +129,17 @@ describe('TradeExpectancyEngine', () => {
       swings15m: swings,
     });
 
-    // The nearest pool >= 2.0R (40 pips) must be selected (1.10605, ~50 pips)
-    expect(plan.tp2.rr).toBeGreaterThanOrEqual(2.0);
-    expect(plan.tp2.pips).toBeGreaterThanOrEqual(40);
-    expect(plan.tp2.price).toBeCloseTo(1.10605, 3);
+    // Keep the nearer target; only a better entry inside the original box can rescue the ratio.
+    expect(plan.referenceNetRiskRewardRatio).toBeLessThan(2);
+    expect(plan.admissionBasis).toBe('CONDITIONAL_ENTRY');
+    expect(plan.netRiskRewardRatio).toBeGreaterThanOrEqual(2);
+    expect(plan.entryRange!.high).toBeLessThan(1.1010);
+    expect(plan.tp2.price).toBeCloseTo(1.10305, 4);
     expect(plan.resolvedLiquidityMagnet).toBeDefined();
-    expect(plan.resolvedLiquidityMagnet?.priceLevel).toBeCloseTo(1.10605, 3);
+    expect(plan.resolvedLiquidityMagnet?.priceLevel).toBeCloseTo(1.10305, 4);
   });
 
-  it('should enhance win probability and risk sizing when macroEvaluation has high begonya score', () => {
+  it('does not manufacture probabilities or Kelly sizing from a high macro score', () => {
     const basePlan = calculateTradeExpectancyPlan({
       symbol: 'EURUSD',
       direction: 'long',
@@ -165,8 +169,9 @@ describe('TradeExpectancyEngine', () => {
       } as any,
     });
 
-    expect(macroEnhancedPlan.winProbability).toBeGreaterThan(basePlan.winProbability);
-    expect(macroEnhancedPlan.expectedValueR).toBeGreaterThan(basePlan.expectedValueR);
+    expect(macroEnhancedPlan.winProbability).toBeNull();
+    expect(basePlan.winProbability).toBeNull();
+    expect(macroEnhancedPlan.expectedValueR).toBeNull();
     expect(macroEnhancedPlan.recommendedRiskPct).toBeGreaterThanOrEqual(basePlan.recommendedRiskPct);
   });
 });

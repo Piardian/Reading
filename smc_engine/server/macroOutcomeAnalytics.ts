@@ -1,4 +1,5 @@
 import { MacroOutcomeEvidenceRecord } from './macroOutcomeEvidence';
+import { weeklyBootstrap, holmAdjusted } from './outcomeStatistics';
 
 export interface GroupPerformanceMetrics {
   readonly groupKey: string;
@@ -26,15 +27,22 @@ export interface GroupPerformanceMetrics {
   readonly avgHoldingTimeHours: number;
 
   // Statistical Rigor & Uncertainty Bounds (95% Confidence Intervals)
-  readonly winRateLower95: number;
-  readonly winRateUpper95: number;
-  readonly netExpectancyLower95: number;
-  readonly netExpectancyUpper95: number;
+  readonly winRateLower95: number | null;
+  readonly winRateUpper95: number | null;
+  readonly netExpectancyLower95: number | null;
+  readonly netExpectancyUpper95: number | null;
   readonly sampleAdequacy: 'INSUFFICIENT' | 'LOW' | 'ADEQUATE' | 'ROBUST';
-  readonly pValueWinRate: number;
-  readonly pValueExpectancy: number;
+  readonly pValueWinRate: number | null;
+  readonly pValueExpectancy: number | null;
 
-  // Causal edge attribution (if applicable)
+  readonly resolvedTradesCount: number;
+  readonly unresolvedFilledCount: number;
+  readonly netMeasuredCount: number;
+  readonly independentWeeks: number;
+  readonly inferenceMethod: 'WEEK_CLUSTER_BOOTSTRAP';
+  readonly exploratory: true;
+  readonly adjustedPValueExpectancy?: number | null;
+  // Descriptive attribution; causal claims require a separately frozen holdout.
   readonly avoidedLossR?: number;
 }
 
@@ -59,220 +67,63 @@ export interface AnalyticsFilterOptions {
   readonly requireEntryConfirmed?: boolean;
 }
 
-function standardNormalCdf(z: number): number {
-  const t = 1 / (1 + 0.2316419 * Math.abs(z));
-  const d = 0.3989423 * Math.exp((-z * z) / 2);
-  const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
-  return z > 0 ? 1 - p : p;
-}
-
-function computeWilsonScoreInterval(p: number, n: number): [number, number] {
-  if (n <= 0) return [0, 0];
-  const z = 1.95996; // 95% Confidence level
-  const z2 = z * z;
-  const center = (p + z2 / (2 * n)) / (1 + z2 / n);
-  const margin = (z * Math.sqrt((p * (1 - p)) / n + z2 / (4 * n * n))) / (1 + z2 / n);
-  return [
-    Math.max(0, Math.round((center - margin) * 1000) / 10),
-    Math.min(100, Math.round((center + margin) * 1000) / 10),
-  ];
-}
-
-function computeExpectancyInterval(values: readonly number[]): [number, number] {
-  const n = values.length;
-  if (n <= 1) return [0, 0];
-  const mean = values.reduce((sum, v) => sum + v, 0) / n;
-  const variance = values.reduce((sum, v) => sum + (v - mean) ** 2, 0) / (n - 1);
-  const stdError = Math.sqrt(variance / n);
-  const margin = 1.96 * stdError;
-  return [
-    Math.round((mean - margin) * 100) / 100,
-    Math.round((mean + margin) * 100) / 100,
-  ];
-}
+const finite = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
+const round = (v: number, digits = 2): number => Number(v.toFixed(digits));
 
 export function computeGroupMetrics(
   groupKey: string,
   records: readonly MacroOutcomeEvidenceRecord[]
 ): GroupPerformanceMetrics {
-  const candidateCount = records.length;
-  if (candidateCount === 0) {
-    return {
-      groupKey,
-      candidateCount: 0,
-      filledTradesCount: 0,
-      fillRatePct: 0,
-      expiredCount: 0,
-      cancelledCount: 0,
-      totalTrades: 0,
-      tpCount: 0,
-      slCount: 0,
-      beCount: 0,
-      winRatePct: 0,
-      winRateExcludingBePct: 0,
-      stopOutRatePct: 0,
-      totalRealizedR: 0,
-      expectancyR: 0,
-      totalNetRealizedR: 0,
-      netExpectancyR: 0,
-      avgCostR: 0,
-      avgMfeR: 0,
-      avgMaeR: 0,
-      avgHoldingTimeHours: 0,
-      winRateLower95: 0,
-      winRateUpper95: 0,
-      netExpectancyLower95: 0,
-      netExpectancyUpper95: 0,
-      sampleAdequacy: 'INSUFFICIENT',
-      pValueWinRate: 0.5,
-      pValueExpectancy: 0.5,
-    };
-  }
-
-  // 1. Candidate vs Filled Trade Separation
-  const filledRecords = records.filter(r => r.entryConfirmed === true);
-  const filledTradesCount = filledRecords.length;
-  const fillRatePct = Math.round((filledTradesCount / candidateCount) * 1000) / 10;
-
-  const expiredCount = records.filter(r => r.outcome === 'EXPIRED').length;
-  const cancelledCount = records.filter(r => r.outcome === 'CANCELLED' || (!r.entryConfirmed && r.outcome !== 'EXPIRED')).length;
-
-  if (filledTradesCount === 0) {
-    return {
-      groupKey,
-      candidateCount,
-      filledTradesCount: 0,
-      fillRatePct,
-      expiredCount,
-      cancelledCount,
-      totalTrades: 0,
-      tpCount: 0,
-      slCount: 0,
-      beCount: 0,
-      winRatePct: 0,
-      winRateExcludingBePct: 0,
-      stopOutRatePct: 0,
-      totalRealizedR: 0,
-      expectancyR: 0,
-      totalNetRealizedR: 0,
-      netExpectancyR: 0,
-      avgCostR: 0,
-      avgMfeR: 0,
-      avgMaeR: 0,
-      avgHoldingTimeHours: 0,
-      winRateLower95: 0,
-      winRateUpper95: 0,
-      netExpectancyLower95: 0,
-      netExpectancyUpper95: 0,
-      sampleAdequacy: 'INSUFFICIENT',
-      pValueWinRate: 0.5,
-      pValueExpectancy: 0.5,
-    };
-  }
-
-  // 2. Performance metrics strictly on confirmed filled trades
-  let tpCount = 0;
-  let slCount = 0;
-  let beCount = 0;
-  let sumGrossR = 0;
-  let sumNetR = 0;
-  let sumCostR = 0;
-  let sumMfe = 0;
-  let sumMae = 0;
-  let sumHoldingHours = 0;
-  let holdingCount = 0;
-  const netRList: number[] = [];
-
-  for (const r of filledRecords) {
-    if (r.outcome === 'TP') tpCount++;
-    else if (r.outcome === 'SL') slCount++;
-    else if (r.outcome === 'BE') beCount++;
-
-    const grossR = typeof r.realizedR === 'number' ? r.realizedR : 0;
-    const netR = typeof r.netRealizedR === 'number' ? r.netRealizedR : grossR;
-    const costR = typeof r.totalCostR === 'number' ? r.totalCostR : 0;
-
-    sumGrossR += grossR;
-    sumNetR += netR;
-    sumCostR += costR;
-    netRList.push(netR);
-
-    sumMfe += r.maximumFavorableExcursion ?? 0;
-    sumMae += r.maximumAdverseExcursion ?? 0;
-
-    if (r.holdingTimeMs !== null && r.holdingTimeMs > 0) {
-      sumHoldingHours += r.holdingTimeMs / (3600 * 1000);
-      holdingCount++;
-    }
-  }
-
-  const finishedTrades = tpCount + slCount + beCount;
-  const winRatePct = finishedTrades > 0 ? (tpCount / finishedTrades) * 100 : 0;
-  const winLossTotal = tpCount + slCount;
-  const winRateExcludingBePct = winLossTotal > 0 ? (tpCount / winLossTotal) * 100 : 0;
-  const stopOutRatePct = (slCount / filledTradesCount) * 100;
-
-  const totalRealizedR = Math.round(sumGrossR * 100) / 100;
-  const expectancyR = Math.round((sumGrossR / filledTradesCount) * 100) / 100;
-  const totalNetRealizedR = Math.round(sumNetR * 100) / 100;
-  const netExpectancyR = Math.round((sumNetR / filledTradesCount) * 100) / 100;
-  const avgCostR = Math.round((sumCostR / filledTradesCount) * 1000) / 1000;
-  const avgMfeR = Math.round((sumMfe / filledTradesCount) * 100) / 100;
-  const avgMaeR = Math.round((sumMae / filledTradesCount) * 100) / 100;
-  const avgHoldingTimeHours = holdingCount > 0 ? Math.round((sumHoldingHours / holdingCount) * 10) / 10 : 0;
-
-  // 3. Statistical Rigor (Confidence Intervals & p-values)
-  const [winRateLower95, winRateUpper95] = computeWilsonScoreInterval(winRatePct / 100, finishedTrades);
-  const [netExpectancyLower95, netExpectancyUpper95] = computeExpectancyInterval(netRList);
-
-  const sampleAdequacy: 'INSUFFICIENT' | 'LOW' | 'ADEQUATE' | 'ROBUST' =
-    filledTradesCount < 10 ? 'INSUFFICIENT'
-    : filledTradesCount < 30 ? 'LOW'
-    : filledTradesCount < 100 ? 'ADEQUATE'
-    : 'ROBUST';
-
-  // p-value test against H0: Win Rate <= 50%
-  const seWin = Math.sqrt(0.25 / Math.max(1, finishedTrades));
-  const zWin = (winRatePct / 100 - 0.50) / seWin;
-  const pValueWinRate = Math.round((1 - standardNormalCdf(zWin)) * 1000) / 1000;
-
-  // p-value test against H0: Expectancy <= 0
-  const varNet = netRList.length > 1
-    ? netRList.reduce((s, v) => s + (v - netExpectancyR) ** 2, 0) / (netRList.length - 1)
-    : 1;
-  const seExp = Math.sqrt(varNet / Math.max(1, filledTradesCount));
-  const zExp = netExpectancyR / (seExp > 0 ? seExp : 1);
-  const pValueExpectancy = Math.round((1 - standardNormalCdf(zExp)) * 1000) / 1000;
-
+  const filled = records.filter(r => r.entryConfirmed === true);
+  // Unknown and timed-out positions remain censored, even if legacy rows contain placeholder zeros.
+  const resolved = filled.filter(r => ['TP', 'SL', 'BE'].includes(r.outcome) && finite(r.realizedR));
+  const netMeasured = resolved.filter(r => finite(r.netRealizedR) && finite(r.totalCostR) &&
+    r.costModel !== 'UNKNOWN' && !r.dataQualityIssues?.includes('INCONSISTENT_GROSS_NET_COST'));
+  const tpCount = resolved.filter(r => r.outcome === 'TP').length;
+  const slCount = resolved.filter(r => r.outcome === 'SL').length;
+  const beCount = resolved.filter(r => r.outcome === 'BE').length;
+  const totalRealizedR = resolved.reduce((s, r) => s + r.realizedR!, 0);
+  const totalNetRealizedR = netMeasured.reduce((s, r) => s + r.netRealizedR!, 0);
+  const netStats = weeklyBootstrap(netMeasured.map(r => ({ signalTimestamp: r.signalTimestamp, value: r.netRealizedR! })));
+  const winStats = weeklyBootstrap(resolved.map(r => ({ signalTimestamp: r.signalTimestamp, value: r.outcome === 'TP' ? 1 : 0 })));
+  const winNull = weeklyBootstrap(resolved.map(r => ({ signalTimestamp: r.signalTimestamp, value: (r.outcome === 'TP' ? 1 : 0) - 0.5 })));
+  const avg = (values: number[]): number => values.length ? values.reduce((s, v) => s + v, 0) / values.length : 0;
+  const n = netMeasured.length, weeks = netStats.weeks;
+  // These labels describe coverage only; they never certify positive edge.
+  const sampleAdequacy = n < 10 || weeks < 4 ? 'INSUFFICIENT'
+    : n < 50 || weeks < 12 ? 'LOW' : n < 200 || weeks < 40 ? 'ADEQUATE' : 'ROBUST';
   return {
     groupKey,
-    candidateCount,
-    filledTradesCount,
-    fillRatePct,
-    expiredCount,
-    cancelledCount,
-    totalTrades: filledTradesCount,
-    tpCount,
-    slCount,
-    beCount,
-    winRatePct: Math.round(winRatePct * 10) / 10,
-    winRateExcludingBePct: Math.round(winRateExcludingBePct * 10) / 10,
-    stopOutRatePct: Math.round(stopOutRatePct * 10) / 10,
-    totalRealizedR,
-    expectancyR,
-    totalNetRealizedR,
-    netExpectancyR,
-    avgCostR,
-    avgMfeR,
-    avgMaeR,
-    avgHoldingTimeHours,
-    winRateLower95,
-    winRateUpper95,
-    netExpectancyLower95,
-    netExpectancyUpper95,
+    candidateCount: records.length,
+    filledTradesCount: filled.length,
+    fillRatePct: records.length ? round(filled.length / records.length * 100, 1) : 0,
+    expiredCount: records.filter(r => r.outcome === 'EXPIRED').length,
+    cancelledCount: records.filter(r => r.outcome === 'CANCELLED').length,
+    totalTrades: filled.length,
+    resolvedTradesCount: resolved.length,
+    unresolvedFilledCount: filled.length - resolved.length,
+    netMeasuredCount: n,
+    tpCount, slCount, beCount,
+    winRatePct: resolved.length ? round(tpCount / resolved.length * 100, 1) : 0,
+    winRateExcludingBePct: tpCount + slCount ? round(tpCount / (tpCount + slCount) * 100, 1) : 0,
+    stopOutRatePct: resolved.length ? round(slCount / resolved.length * 100, 1) : 0,
+    totalRealizedR: round(totalRealizedR),
+    expectancyR: resolved.length ? round(totalRealizedR / resolved.length) : 0,
+    totalNetRealizedR: round(totalNetRealizedR),
+    netExpectancyR: n ? round(totalNetRealizedR / n) : 0,
+    avgCostR: round(avg(netMeasured.map(r => r.totalCostR)), 3),
+    avgMfeR: round(avg(resolved.map(r => r.maximumFavorableExcursion).filter(finite))),
+    avgMaeR: round(avg(resolved.map(r => r.maximumAdverseExcursion).filter(finite))),
+    avgHoldingTimeHours: round(avg(resolved.map(r => r.holdingTimeMs).filter(finite).map(v => v / 3600000)), 1),
+    winRateLower95: winStats.lower === null ? null : round(winStats.lower * 100, 1),
+    winRateUpper95: winStats.upper === null ? null : round(winStats.upper * 100, 1),
+    netExpectancyLower95: netStats.lower === null ? null : round(netStats.lower),
+    netExpectancyUpper95: netStats.upper === null ? null : round(netStats.upper),
     sampleAdequacy,
-    pValueWinRate,
-    pValueExpectancy,
+    pValueWinRate: weeks >= 12 ? winNull.pValue : null,
+    pValueExpectancy: weeks >= 12 && n >= 50 ? netStats.pValue : null,
+    independentWeeks: weeks,
+    inferenceMethod: 'WEEK_CLUSTER_BOOTSTRAP', exploratory: true,
   };
 }
 
@@ -284,7 +135,8 @@ export function generateMacroOutcomeAnalytics(
 
   // Strict filtering: Exclude test fixtures, legacy unverified records, and demo signals
   const validRecords = records.filter(r => {
-    if (!r.executionSource) return false;
+    if (typeof r.signalId !== 'string' || !r.signalId) return false;
+    if (r.executionSource === 'UNVERIFIED' || !r.executionSource) return false;
     if (!allowedSources.includes(r.executionSource)) return false;
     if (r.signalId.startsWith('test_') || r.signalId.includes('demo')) return false;
     if (options?.requireEntryConfirmed && !r.entryConfirmed) return false;
@@ -301,23 +153,31 @@ export function generateMacroOutcomeAnalytics(
   macroMap.set('ALL_SMC_BASELINE (Tüm SMC Sinyal Adayları)', []);
   macroMap.set('MACRO_APPROVED (Makro Onaylı SMC)', []);
   macroMap.set('MACRO_BLOCKED (Makro Tarafından Engellenen / Shadow)', []);
-  macroMap.set('MACRO_ONLY (Yalnızca Makro Yön Eğilimi)', []);
+  macroMap.set('DIRECTION_ALIGNED_SMC (Makro Yönüyle Uyumlu SMC)', []);
 
   for (const r of effectiveRecords) {
-    macroMap.get('ALL_SMC_BASELINE (Tüm SMC Sinyal Adayları)')!.push(r);
+    // Legacy records lack policy parity and cannot support macro ablation.
+    if (r.measurementVersion !== 3 || !r.executionPolicyId || r.executionSource !== 'PAPER') continue;
+    const policyKey = `POLICY:${r.executionPolicyId} | `;
+    const add = (label: string) => {
+      const key = label + " | " + policyKey;
+      if (!macroMap.has(key)) macroMap.set(key, []);
+      macroMap.get(key)!.push(r);
+    };
+    add('ALL_SMC_BASELINE');
 
     const cohort = r.macroGatingCohort ?? (r.macroSnapshot?.macroAction === 'PROCEED' ? 'MACRO_APPROVED' : 'MACRO_BLOCKED');
     if (cohort === 'MACRO_APPROVED' || (cohort as string) === 'MACRO_PLUS_SMC') {
-      macroMap.get('MACRO_APPROVED (Makro Onaylı SMC)')!.push(r);
-    } else {
-      macroMap.get('MACRO_BLOCKED (Makro Tarafından Engellenen / Shadow)')!.push(r);
+      add('MACRO_APPROVED');
+    } else if (cohort === 'MACRO_BLOCKED') {
+      add('MACRO_BLOCKED');
     }
 
     const dir = r.direction;
     const mb = r.macroSnapshot?.macroBias;
     if ((dir === 'long' && (mb === 'LONG_ONLY' || mb === 'Bullish')) ||
         (dir === 'short' && (mb === 'SHORT_ONLY' || mb === 'Bearish'))) {
-      macroMap.get('MACRO_ONLY (Yalnızca Makro Yön Eğilimi)')!.push(r);
+      add('DIRECTION_ALIGNED_SMC');
     }
   }
 
@@ -344,12 +204,14 @@ export function generateMacroOutcomeAnalytics(
   horizonMap.set('SCALP_INTRADAY (< 4 Saat)', []);
   horizonMap.set('SWING_4H_24H (4 - 24 Saat)', []);
   horizonMap.set('MULTI_DAY (> 24 Saat)', []);
+  horizonMap.set('UNKNOWN (Plan Kaydı Yok)', []);
 
   for (const r of effectiveRecords) {
-    const horizon = r.exAnteForecastHorizon ?? 'SCALP_INTRADAY';
+    const horizon = r.exAnteForecastHorizon ?? 'UNKNOWN';
     if (horizon === 'SCALP_INTRADAY') horizonMap.get('SCALP_INTRADAY (< 4 Saat)')!.push(r);
     else if (horizon === 'SWING_4H_24H') horizonMap.get('SWING_4H_24H (4 - 24 Saat)')!.push(r);
-    else horizonMap.get('MULTI_DAY (> 24 Saat)')!.push(r);
+    else if (horizon === 'MULTI_DAY') horizonMap.get('MULTI_DAY (> 24 Saat)')!.push(r);
+    else horizonMap.get('UNKNOWN (Plan Kaydı Yok)')!.push(r);
   }
   const byForecastHorizon = Array.from(horizonMap.entries())
     .filter(([, list]) => list.length > 0)
@@ -477,6 +339,12 @@ export function generateMacroOutcomeAnalytics(
     .filter(([, list]) => list.length > 0)
     .map(([k, list]) => computeGroupMetrics(k, list));
 
+  const allGroups = [overall, ...byMacroContribution, ...byAssetClass, ...byForecastHorizon,
+    ...byExecutionSource, ...byRegime, ...byVixBucket, ...byScoreTier, ...byNewsProximity,
+    ...byDerivativesRegime, ...byCryptoSector, ...bySymbolDirection, ...byCryptoFactors];
+  const adjusted = holmAdjusted(allGroups.map(g => g.pValueExpectancy));
+  allGroups.forEach((g, i) => Object.assign(g, { adjustedPValueExpectancy: adjusted[i] }));
+
   return {
     overall,
     byMacroContribution,
@@ -497,15 +365,18 @@ export function generateMacroOutcomeAnalytics(
 export function formatMacroOutcomeReport(summary: MacroOutcomeReportSummary): string {
   const lines: string[] = [];
   lines.push('═════════════════════════════════════════════════════════════════════════════════════════════════════');
-  lines.push('                   BEGONYA MAKRO-SMC DOĞRULANMIŞ İCRA VE NEDENSEL KANIT RAPORU                       ');
+  lines.push('                   BEGONYA MAKRO-SMC BETİMSEL PAPER / LIVE ÖLÇÜM RAPORU                       ');
   lines.push('═════════════════════════════════════════════════════════════════════════════════════════════════════');
   lines.push(`TOPLAM ADAY SİNYAL    : ${summary.overall.candidateCount}`);
   lines.push(`GERÇEKLEŞEN İŞLEM (Fill): ${summary.overall.filledTradesCount} (Dolum Oranı: %${summary.overall.fillRatePct})`);
   lines.push(`VADESİ DOLAN / İPTAL   : ${summary.overall.expiredCount} Expired, ${summary.overall.cancelledCount} Cancelled`);
+  lines.push(`ÇÖZÜLEN / BELİRSİZ    : ${summary.overall.resolvedTradesCount} / ${summary.overall.unresolvedFilledCount} | Net ölçülen: ${summary.overall.netMeasuredCount}`);
+  lines.push('Çıkarım: haftalık küme bootstrap; segmentler keşifseldir. Holm düzeltmesi uygulanır.');
+  lines.push('Makro grupları yalnızca aynı v3 paper politikası içinde karşılaştırılır; bağımsız macro-only strateji içermez.');
   lines.push(`KAZANMA ORANI (WinRate): %${summary.overall.winRatePct.toFixed(1)} [95% CI: %${summary.overall.winRateLower95} - %${summary.overall.winRateUpper95}] (p=${summary.overall.pValueWinRate})`);
-  lines.push(`BRÜT BEKLENTİ (Gross R): ${summary.overall.expectancyR.toFixed(2)}R | NET BEKLENTİ: ${summary.overall.netExpectancyR.toFixed(2)}R [95% CI: ${summary.overall.netExpectancyLower95}R - ${summary.overall.netExpectancyUpper95}R]`);
+  lines.push(`BRÜT BEKLENTİ (Gross R): ${summary.overall.expectancyR.toFixed(2)}R | NET BEKLENTİ: ${summary.overall.netExpectancyR.toFixed(2)}R [95% CI: ${summary.overall.netExpectancyLower95}R - ${summary.overall.netExpectancyUpper95}R] (Holm p=${summary.overall.adjustedPValueExpectancy ?? "N/A"})`);
   lines.push(`İŞLEM MALİYETİ (Ort.)  : -${summary.overall.avgCostR.toFixed(2)}R | NET GERÇEKLEŞEN TOPLAM: ${summary.overall.totalNetRealizedR.toFixed(1)}R`);
-  lines.push(`ÖRNEKLEM YETERLİLİĞİ  : ${summary.overall.sampleAdequacy} (N=${summary.overall.filledTradesCount})`);
+  lines.push(`ÖRNEKLEM YETERLİLİĞİ  : ${summary.overall.sampleAdequacy} (Net N=${summary.overall.netMeasuredCount}, hafta=${summary.overall.independentWeeks}; edge onayı değildir)`);
   lines.push('');
 
   const renderTable = (title: string, groups: readonly GroupPerformanceMetrics[]) => {
@@ -547,7 +418,7 @@ export function formatMacroOutcomeReport(summary: MacroOutcomeReportSummary): st
     lines.push('');
   };
 
-  renderTable('A. NEDENSEL MAKRO ABLASYON ANALİZİ (Baseline vs. Makro Onaylı vs. Engellenen)', summary.byMacroContribution);
+  renderTable('A. MAKRO GÖLGE KARŞILAŞTIRMASI (Baseline vs. Makro Onaylı vs. Engellenen)', summary.byMacroContribution);
   renderTable('B. VARLIK SINIFI AYRIMI (Forex ve Kripto Ayrı Ölçüm)', summary.byAssetClass);
   renderTable('C. EX-ANTE TAHMİN UFKUNA GÖRE PERFORMANS (Setup Anındaki Plan)', summary.byForecastHorizon);
   renderTable('D. İCRA KAYNAĞINA GÖRE PERFORMANS (Paper vs. Live)', summary.byExecutionSource);
@@ -561,5 +432,5 @@ export function formatMacroOutcomeReport(summary: MacroOutcomeReportSummary): st
   renderTable('7. ENSTRÜMAN VE YÖNLERE GÖRE PERFORMANS', summary.bySymbolDirection);
 
   lines.push('═════════════════════════════════════════════════════════════════════════════════════════════════════');
-  return lines.join('\n');
+  return lines.join('\n').replace(/null/g, 'N/A');
 }

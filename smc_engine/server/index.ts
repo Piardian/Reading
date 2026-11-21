@@ -1,3 +1,4 @@
+import './readingRuntimeGuard';
 import 'dotenv/config';
 import type { Server } from 'http';
 import { app, configureDeliveryQueueMetrics, updateRuntimeReadiness } from './webhookServer';
@@ -16,12 +17,18 @@ import { MacroGateAdapter } from './macroGateAdapter';
 import { CryptoRotationEngine } from './cryptoRotationEngine';
 import { ActivePoiWatchlist } from './activePoiWatchlist';
 import { PaperOutcomeTracker } from './paperOutcomeTracker';
+import { nextAlignedPollAt } from './pollSchedule';
+import { CANDLE_FRESHNESS_THRESHOLDS_MS } from './poller';
+import { initializeSignalFlowMeasurement } from './signalFlowMeasurement';
 
 const port = environmentInteger('PORT', 3010);
 const symbols: Symbol[] = [...ALL_SYMBOLS];
 const timeframes: Timeframe[] = ['4h', '1h', '15m'];
 const latestPollResults = new Map<string, PollAndProcessResult>();
 const activePolls = new Map<string, Promise<PollAndProcessResult>>();
+const activeSymbolCycles = new Map<Symbol, Promise<void>>();
+let onDemandCycle: Promise<void> | null = null;
+let watchlistCursor = 0;
 
 let initialPollingComplete = false;
 let initialPollingCompletedAt: string | null = null;
@@ -32,6 +39,12 @@ let activeDeliveryQueue: SignalDeliveryQueue | null = null;
 async function start(): Promise<void> {
   runtimeLock = acquireRuntimeInstanceLock();
   process.once('exit', () => runtimeLock?.release());
+  try {
+    const measurement = initializeSignalFlowMeasurement();
+    if (measurement) console.log(`[SignalFlowMeasurement] Recording run ${measurement.protocol.runId} in ${measurement.directory}`);
+  } catch (error) {
+    console.error('[SignalFlowMeasurement] Measurement blocked; runtime continues without a forward claim:', error);
+  }
 
   const candleStore = new CandleStore();
   const notifiedStore = new NotifiedStore();
@@ -99,7 +112,7 @@ async function initializeBackgroundServices(
       const existing = candleStore.getCandles(symbol, timeframe);
       const threshold = timeframe === '15m' ? 13 * 60 * 1000 : (timeframe === '1h' ? 55 * 60 * 1000 : 230 * 60 * 1000);
       const isFresh = candleStore.isFresh(symbol, timeframe, threshold);
-      if (existing.length >= 50 && (timeframe !== '15m' || isFresh)) {
+      if (existing.length >= 50 && isFresh) {
         console.log(`[Startup] ${symbol} (${timeframe}) has ${existing.length} cached candles (fresh: ${isFresh}), using cache.`);
         continue;
       }
@@ -132,21 +145,20 @@ function scheduleNextAlignedPoll(
   deliveryQueue: SignalDeliveryQueue
 ): void {
   const now = Date.now();
-  const fifteenMinutesMs = 15 * 60 * 1000;
   const pollOffsetMs = environmentInteger('POLL_ALIGN_OFFSET_MS', 35000);
-  const nextTargetMs = Math.ceil((now + pollOffsetMs) / fifteenMinutesMs) * fifteenMinutesMs + pollOffsetMs;
+  const nextTargetMs = nextAlignedPollAt(now, pollOffsetMs);
   const delayMs = Math.max(1000, nextTargetMs - now);
 
   const nextDate = new Date(nextTargetMs).toISOString();
   console.log(`[Scheduler] Next aligned polling scheduled for ${nextDate} (in ${Math.round(delayMs / 1000)}s)`);
 
   setTimeout(async () => {
+    // Register the next slot now; slow on-demand work must not move the scan clock.
+    scheduleNextAlignedPoll(candleStore, notifiedStore, deliveryQueue);
     try {
       await executeAlignedPollingCycle(candleStore, notifiedStore, deliveryQueue);
     } catch (err) {
       console.error('[Scheduler] Error during aligned polling cycle:', err);
-    } finally {
-      scheduleNextAlignedPoll(candleStore, notifiedStore, deliveryQueue);
     }
   }, delayMs);
 }
@@ -170,13 +182,21 @@ async function executeAlignedPollingCycle(
       // Market is closed (e.g. weekend, Friday post-close) -> skip to preserve TwelveData API quota
       continue;
     }
-    if (is4HourClose) {
-      void runTrackedPoll(symbol, '4h', candleStore, notifiedStore, deliveryQueue);
+    if (!activeSymbolCycles.has(symbol)) {
+      // Refresh stale HTF even after a missed hourly slot, before evaluating the M15 setup.
+      const cycle = (async () => {
+        for (const timeframe of ['4h', '1h'] as const) {
+          const due = timeframe === '4h' ? is4HourClose : isHourClose;
+          if (due || !candleStore.isFresh(symbol, timeframe, CANDLE_FRESHNESS_THRESHOLDS_MS[timeframe])) {
+            const result = await runTrackedPoll(symbol, timeframe, candleStore, notifiedStore, deliveryQueue);
+            if (!result.success) return;
+          }
+        }
+        await runTrackedPoll(symbol, '15m', candleStore, notifiedStore, deliveryQueue);
+      })().catch(error => console.warn(`[Scheduler] ${symbol} cycle failed:`, error))
+        .finally(() => { activeSymbolCycles.delete(symbol); });
+      activeSymbolCycles.set(symbol, cycle);
     }
-    if (isHourClose) {
-      void runTrackedPoll(symbol, '1h', candleStore, notifiedStore, deliveryQueue);
-    }
-    void runTrackedPoll(symbol, '15m', candleStore, notifiedStore, deliveryQueue);
     // Pacing delay to avoid burst queue spikes
     await new Promise(resolve => setTimeout(resolve, 150));
   }
@@ -184,7 +204,10 @@ async function executeAlignedPollingCycle(
   // ON-DEMAND ALTCOIN SMC BRIDGE ("Sıra SMC'ye Geldiğinde İstek At"):
   // Yalnızca Makro motoru onay verdikten ve 8-Faktör Rotasyon Motoru en güçlü 1-2 hedef coini
   // (Skor >= 65, Veto = Yok) seçtikten sonra o hedef coinler için 4h/1h/15m grafik verisi çekilir ve SMC çalıştırılır.
-  await executeOnDemandRotationSmcPolling(candleStore, notifiedStore, deliveryQueue);
+  if (!onDemandCycle) {
+    onDemandCycle = executeOnDemandRotationSmcPolling(candleStore, notifiedStore, deliveryQueue)
+      .finally(() => { onDemandCycle = null; });
+  }
 }
 
 async function executeOnDemandRotationSmcPolling(
@@ -217,14 +240,21 @@ async function executeOnDemandRotationSmcPolling(
       `Retest Memory Watchlist: [${watchlistSymbols.join(', ') || 'Yok'}]`
     );
 
-    for (const targetSym of allTargetSymbols) {
-      if ((ALL_SYMBOLS as readonly string[]).includes(targetSym)) {
-        // Zaten ana döngüde taranan sembol (örn. SOLUSD, ETHUSD, LTCUSD)
-        continue;
-      }
+    const eligible = [...allTargetSymbols].filter(symbol => !(ALL_SYMBOLS as readonly string[]).includes(symbol));
+    // Binance-backed altcoins do not consume Twelve Data credits. Keep full coverage by default.
+    const configuredBudget = environmentInteger('ON_DEMAND_MAX_SYMBOLS_PER_CYCLE', 0);
+    const budget = configuredBudget > 0 ? configuredBudget : eligible.length;
+    // Round-robin across leaders and watchlist: no permanent starvation at the budget boundary.
+    const selected = Array.from({ length: Math.min(budget, eligible.length) }, (_, i) =>
+      eligible[(watchlistCursor + i) % eligible.length]);
+    if (eligible.length > 0) watchlistCursor = (watchlistCursor + selected.length) % eligible.length;
+    console.log(`[OnDemandRotation] This cycle: ${selected.length}/${eligible.length}; budget=${budget}.`);
+    for (const targetSym of selected) {
       // On-demand hedef coin için önce 4h ve 1h HTF yapısını hazırla, ardından 15m SMC tetikleyicisini çalıştır
-      await runTrackedPoll(targetSym, '4h', candleStore, notifiedStore, deliveryQueue);
-      await runTrackedPoll(targetSym, '1h', candleStore, notifiedStore, deliveryQueue);
+      const h4 = await runTrackedPoll(targetSym, '4h', candleStore, notifiedStore, deliveryQueue);
+      if (!h4.success) continue;
+      const h1 = await runTrackedPoll(targetSym, '1h', candleStore, notifiedStore, deliveryQueue);
+      if (!h1.success) continue;
       await runTrackedPoll(targetSym, '15m', candleStore, notifiedStore, deliveryQueue);
     }
   } catch (err) {

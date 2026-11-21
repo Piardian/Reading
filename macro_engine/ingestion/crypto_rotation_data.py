@@ -343,7 +343,7 @@ class CryptoRotationDataIngestion:
                     "futures_quote_volume_24h": float(
                         f_tick.get("quoteVolume", 0.0) or 0.0
                     ),
-                    "funding_rate": float(p_tick.get("lastFundingRate", 0.0) or 0.0),
+                    "funding_rate": float(p_tick["lastFundingRate"]) if p_tick.get("lastFundingRate") is not None else None,
                     "mark_price": float(p_tick.get("markPrice", last_spot_price) or 0.0),
                     "bars_1h": [],
                     "bars_4h": [],

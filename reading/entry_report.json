@@ -1,0 +1,15 @@
+{
+  "generated_utc_ms": 1794048254236,
+  "setups": 0,
+  "states": {},
+  "touched_setups": 0,
+  "proposal_setups": 0,
+  "touched_without_proposal": 0,
+  "paired_quote_observations": [],
+  "control_scope": "FIRST_TOUCH_QUOTE_REFERENCE_NOT_ORIGINAL_BEGONYA_ENTRY_STRATEGY",
+  "slippage": null,
+  "commission": null,
+  "net_pnl": null,
+  "edge_proven": false,
+  "warning": "Paired proposals alone are selection-biased; include no-entry cases and unknown outcomes. No broker fills."
+}

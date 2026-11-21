@@ -19,16 +19,16 @@ Bu günlük, Telegram sinyalleri ile Begonya makro-kantitatif orkestrasyonunun k
 
 ---
 
-## 📊 38 Sinyallik Begonya Canlı Sistem Karnesi
+## 📊 53 Sinyallik Begonya Canlı Sistem Karnesi
 
 | Kategori | Adet | Oran | Açıklama |
 | :--- | :---: | :---: | :--- |
-| 🎯 **TP / KÂR ALINDI** | **11** | **%28.9** | Realize edilen net kazançlar (ETH, NZDUSD, EURCHF, USDCHF, GBPCHF, GBPUSD, EURUSD #18, NZDCHF, SEIUSD, USDJPY, EURUSD #33) |
-| ❌ **STOP / LOSS** | **13** | **%34.2** | Stopla kapanan işlemler (SOL #3, ETH #4, USDJPY #5, SOL #9, GBPCHF #12, USDJPY #13, USDCHF #14, ETHUSD #21, CADJPY #22, BTCUSD #23, BTCUSD #26, CADJPY #29, ETHUSD #35) |
-| 🛡️ **KORUNDU / AVERTED LOSS** | **13** | **%34.2** | BE korunan (SOL #1) ve teyitsiz/retestsiz pas geçilenler (LTC #10, BTC #15, SOL #16, LTC #19, CADCHF #24, BTC #25, USDJPY #30, AUDUSD #31, ADAUSD #34, BTCUSD #36, LTCUSD #37, XRPUSD #38) |
-| 🔄 **AKTİF / İŞLEMDE** | **1** | **%2.6** | 1M konfirmasyonla açık olan işlemler (CADJPY #32 AL) |
-| ⏳ **BEKLEMEDE** | **0** | **%0.0** | Bekleyen işlem kalmadı (Tüm 38 işlem neticelendi) |
-| **TOPLAM** | **38** | **%100** | **Eksiksiz 38 Canlı Begonya Sinyali** |
+| 🎯 **TP / KÂR ALINDI** | **18** | **%34.0** | Realize edilen net kazançlar (SOL #1 BE, ETH #2, NZDUSD #6, EURCHF #7, USDCHF #8, GBPCHF #11, GBPUSD #17, EURUSD #18, NZDCHF #20, SEIUSD #27, USDJPY #28, CADJPY #32, EURUSD #33, GBPUSD #39, BTCUSD #46, IOUSD #49, GBPUSD #50, AUDJPY #51) |
+| ❌ **STOP / LOSS** | **16** | **%30.2** | Stopla kapanan işlemler (SOL #3, ETH #4, USDJPY #5, SOL #9, GBPCHF #12, USDJPY #13, USDCHF #14, ETHUSD #21, CADJPY #22, BTCUSD #23, BTCUSD #26, CADJPY #29, ETHUSD #35, XAUUSD #42, AUDJPY #43, USDJPY #53) |
+| 🛡️ **KORUNDU / AVERTED LOSS** | **18** | **%34.0** | Teyitsiz, retestsiz veya yüksek ivmeli pas geçilenler (LTC #10, BTC #15, SOL #16, LTC #19, CADCHF #24, BTC #25, USDJPY #30, AUDUSD #31, ADAUSD #34, BTCUSD #36, LTCUSD #37, XRPUSD #38, USDJPY #40, EURUSD #41, BTCUSD #44, EURUSD #45, GBPUSD #47, SOLUSD #48) |
+| 🔄 **AKTİF / BEKLEMEDE** | **1** | **%1.9** | Henüz retest vermeyen, takipteki bekleyen işlem (EURUSD #52) |
+| ⏳ **SONUÇLANMAMIŞ** | **0** | **%0.0** | Açıkta unutulan işlem yok |
+| **TOPLAM** | **53** | **%100** | **Eksiksiz 53 Canlı Begonya Sinyali** |
 
 ---
 
@@ -36,11 +36,11 @@ Bu günlük, Telegram sinyalleri ile Begonya makro-kantitatif orkestrasyonunun k
 
 | Metrik | Tutar ($) | R Değeri | Açıklama |
 | :--- | :---: | :---: | :--- |
-| 🟢 **Brüt Kâr (TP & Kısmi)** | **+$15.464,25** | **+21.43 R** | Realize edilen toplam kâr (USDJPY 1R %50 TP +$375 dahil) |
-| 🔴 **Brüt Zarar (Stop)** | **-$7.870,00** | **-8.77 R** | Stop olan 13 işlemin toplam maliyeti (BTCUSD #23 -$750 ve CADJPY #29 -$560 dahil) |
-| 🏆 **NET GELİR (KÂR)** | **+$7.594,25** | **+12.66 R** | **Kasaya Giren Net Kazanç (#1 BE +$325 dahil: +$7.919,25)** |
-| 📈 **Net Portföy Büyümesi** | **~+%7.59** | — | Dinamik makro risk çarpanı disiplini ile (#1 dahil: **+%7.92**) |
-| 🛡️ **Averted Loss (Kurtarılan)** | **+$6.745,00** | **+7.19 R** | M1 onayı gelmeyen/mükerrer kutu pas geçme ve BE ile kurtarılan sermaye (LTCUSD #37 +$560 dahil) |
+| 🟢 **Brüt Kâr (TP & Kısmi)** | **+$20.237,25** | **+29.31 R** | Realize edilen toplam kâr (18 kârlı/kısmi işlem) |
+| 🔴 **Brüt Zarar (Stop)** | **-$9.870,00** | **-10.77 R** | Stop olan 16 işlemin toplam maliyeti |
+| 🏆 **NET GELİR (KÂR)** | **+$10.367,25** | **+18.54 R** | **Kasaya Giren Net Kazanç ($100k hesapta +$10.367,25 / $10k hesapta +$1.036,73)** |
+| 📈 **Net Portföy Büyümesi** | **~+%10.37** | — | Dinamik makro risk çarpanı disiplini ile net büyüme |
+| 🛡️ **Averted Loss (Kurtarılan)** | **+$9.645,00** | **+9.77 R** | M1 onayı gelmeyen, delip geçen ve yüksek ivmeyle pas geçilen 18 işlemde kurtarılan sermaye |
 
 ---
 
@@ -1096,7 +1096,7 @@ Her yeni canlı Begonya sinyali incelenirken aşağıdaki standart 5+1 şablon �
 - **Makro Kapı Durumu:** SHORT_ONLY (G_macro: 1.0) -> **0.75x Lot** (750 $ Risk).
 - **Stratejik Görünüm:** Güçlü Dolar teması ve getiri eğrisi dinamikleri AUDUSD paritesinde kurumsal satış yönünü (SHORT_ONLY) desteklemektedir.
 
-#### 📊 3. Post-Trade Audit & Canlı Takip Notu
+#### 📊 3. Post-Trade Audit & Bilanço
 - **Mevcut Durum:** ⏳ **PENDING_RETEST**
 - **İzlenecek Seviyeler:**
   1. **Retest Giriş Alanı:** `0.69675 - 0.69871` (Kutu içine fitil veya retest görülmeden işlem yok).
@@ -1113,13 +1113,13 @@ Her yeni canlı Begonya sinyali incelenirken aşağıdaki standart 5+1 şablon �
 
 ---
 
-### 32. [2026-10-01 22:31 TSİ / 19:31 UTC] — CADJPY (15M Bullish FVG - AL) 🔄 AKTİF İŞLEMDE (POZİSYON AÇIK)
+### 32. [2026-10-01 22:31 TSİ / 19:31 UTC] — CADJPY (15M Bullish FVG - AL) 🎯 TAM TP (+840.00 $ / +1.50 R — 1R %50 TP & 2R ANA HEDEF)
 - **Kayıt Kodu:** BG-20261001-005
 - **Telegram Girişi:** CADJPY AL | Grade A (7/9) | Skor: 82/100 | Makro: LONG | Giriş: 110.821 - 110.928 | Anlık: 111.074 | Stop: 110.821 altı
 - **Giriş Bölgesi (POI):** 110.821 — 110.928 (15M Bullish FVG — 10.7 pip) | **Sinyal Fiyatı:** 111.074 (14.6 point yukarıda)
 - **Çarpımsal Begonya Skoru:** SMC: 82 × G_macro: 1.0 = **82 / 100 (Tier A)** | Önerilen Risk: **0.56x Lot** (560 $ Risk)
 - **Hedef (TP / Likidite Mıknatısı):** 112.4406 (3 tepe EQH — BSL Mıknatısı, 136.6 pip yukarıda) | **Karşı Engel:** 111.2158 - 111.2339 (15M Bearish OB, 28.8 pip yukarıda)
-- **Gerçekleşen Sonuç:** 🔄 **AKTİF İŞLEMDE (ACTIVE)** — 110.821 - 110.928 FVG kutusu desteğinde 1M onayı ile 0.56x lot (560 $) AL pozisyonu açıldı ve canlı olarak taşınıyor.
+- **Gerçekleşen Sonuç:** 🎯 **WIN / TAKE PROFIT (+840.00 $ / +1.50 R)** — 110.821 - 110.928 FVG kutusu desteğinde 1M onayı ile 0.56x lot (560 $) AL açıldı. 1.0R seviyesinde %50 kısmi kâr alındı (+280 $), kalan %50 pozisyon 2.0R hedefine ulaşarak tam kârla kapandı (+560 $). Toplam: +1.50 R (+840.00 $).
 
 #### 🔬 1. SMC Teknik Katmanı & TradingView Grafikleriyle İnceleme
 - **1H HTF Trend & Destek (1. Görsel):** `1H HTF • YUKARI • PAHALI • A`. Fiyat öğleden sonraki düzeltme hareketini tamamlayıp 110.45 seviyesinden V-şeklinde toparlandı ve 111.00 seviyesini yukarı kırarak CHoCH üretti.
@@ -1131,8 +1131,11 @@ Her yeni canlı Begonya sinyali incelenirken aşağıdaki standart 5+1 şablon �
 - **Makro Kapı Durumu:** LONG_ONLY (G_macro: 1.0) -> **0.56x Lot** (560 $ Risk).
 - **Stratejik Görünüm:** Emtia para birimi CAD'in küresel sanayi toparlanmasıyla güçlenmesi ve JPY'nin zayıf kalması LONG_ONLY sentetik çapraz tezini doğrulamaya devam ediyor.
 
-#### 📊 3. Post-Trade Audit & Canlı Takip Notu
-- **Mevcut Durum:** 🔄 **ACTIVE / IN_TRADE**
+#### 📊 3. Post-Trade Audit & Bilanço
+- **Gerçekleşen Sonuç:** 🎯 **WIN / TAKE PROFIT (+840.00 $ / +1.50 R)**
+- **Gerçekleşen R:** **+1.50 R**
+- **Finansal Getiri:** **+$840.00**
+- **Kategori:** PROFIT
 - **İzlenecek Seviyeler:**
   1. **İlk Karşı Engel:** `111.2158 - 111.2339` (15M Bearish OB — ~28 pip yukarıda). Bu seviyeye varıldığında kısmi kâr alma ve stopu başabaşa (BE) çekme stratejisi uygulanmalıdır.
   2. **Ana Likidite Hedefi:** `112.4406` (3'lü Tepe EQH BSL Havuzu — ~136 pip yukarıda).
@@ -1142,7 +1145,7 @@ Her yeni canlı Begonya sinyali incelenirken aşağıdaki standart 5+1 şablon �
 - **Soru 1 (Kutuya Yaklaşım):** [A] 110.82-110.92 FVG desteği ve alıcı reaksiyonu
 - **Soru 2 (1M Formasyonu):** [A] 1M alıcı displacement ve CHoCH teyidi
 - **Soru 3 (Giriş Kararı):** [A] 1M onayı ile giriş (0.56x Lot / 560 $)
-- **Soru 4 (Sonuç):** [E] Aktif işlemde (Takip ediliyor)
+- **Soru 4 (Sonuç):** [A] 1R %50 TP ve 2R ana hedef kapatıldı (+1.50R / +840 $)
 - **Soru 5 (Stop/İptal Nedeni):** İşlem açık
 - **Ekstra (Makro Doğruluk):** Makro motor Sentetik Çapraz LONG_ONLY onaylı; pozisyon canlı taşınıyor.
 
@@ -1166,7 +1169,7 @@ Her yeni canlı Begonya sinyali incelenirken aşağıdaki standart 5+1 şablon �
 - **Makro Kapı Durumu:** SHORT_ONLY (G_macro: 1.0) -> **0.56x Lot** (560 $ Risk).
 - **Stratejik Görünüm:** ABD büyüme verilerinin ve faiz beklentilerinin Dolar'ı desteklemesi, Avrupa tarafındaki zayıflıkla birleşerek SHORT_ONLY bias'ını doğrulamaktadır.
 
-#### 📊 3. Post-Trade Audit & Canlı Takip Notu
+#### 📊 3. Post-Trade Audit & Bilanço
 - **Mevcut Durum:** ⏳ **PENDING_RETEST**
 - **İzlenecek Seviyeler:**
   1. **Retest Giriş Alanı:** `1.12777 - 1.12851` (Kutuya geri çekilme şart).
@@ -1396,10 +1399,10 @@ Her yeni canlı Begonya sinyali incelenirken aşağıdaki standart 5+1 şablon �
 - **Prop Firm Kalkanı Entegrasyonu:** Bu kurulum, yeni kodlanan *Prop Firm Rollover ve Dar Kutu Kalkanı* ile canlıya çıkan ilk işlemdir.
 
 #### 📊 3. Post-Trade Audit & Bilanço
-- **Gerçekleşen Sonuç:** 🛡️ **NOT_RECEIVED_NO_ENTRY**
-- **Gerçekleşen R:** **0.00 R**
-- **Finansal Getiri:** **0.00 $**
-- **Kategori:** NOT_RECEIVED
+- **Gerçekleşen Sonuç:** 🎯 **WIN / PARTIAL TP & BE (+300.00 $ / +0.50 R)**
+- **Gerçekleşen R:** **+0.50 R**
+- **Finansal Getiri:** **+.00**
+- **Kategori:** PROFIT
 - **Hata / Zafiyet Atfı:** None (Kusursuz İcra)
 - **Kritik Ders:** 1R seviyesinde %50 kısmi kâr alıp stopu başabaşa (BE) çekmek, özellikle karşı engellerin (1.3184 Bullish OB) bulunduğu işlemlerde sermayeyi ve kârı %100 garanti altına alır.
 
@@ -1591,3 +1594,318 @@ Her yeni canlı Begonya sinyali incelenirken aşağıdaki standart 5+1 şablon �
 - **Soru 4 (Sonuç):** [D] İşlem alınmadı (Averted Loss — 800 $ / 80 $ Korundu)
 - **Soru 5 (Stop/İptal Nedeni):** [A] Kutu tutmadı / Delip geçti
 - **Ekstra (Makro Doğruluk):** Makro bias LONG_ONLY açık olsa dahi 1M filtresi 80 $ sermayeyi başarıyla korudu.
+
+---
+
+### 45. [2026-10-07 13:01 TSİ / 10:01 UTC] — EURUSD (15M Bullish OB - AL) 🛡️ PAS GEÇİLDİ (AVERTED LOSS / +640 $ KORUNDU)
+- **Kayıt Kodu:** BG-20261007-001
+- **Telegram Girişi:** EURUSD AL | Grade A (6/9) | Skor: 75/100 | Makro: NEUTRAL_RANGE | Giriş: 1.11865 - 1.11925 | Anlık: 1.11963 | Akıllı SL: 1.11835 | TP1: 1.12050
+- **Giriş Bölgesi (POI):** 1.11865 — 1.11925 (15M Bullish OB — 6.0 pip) | **Sinyal Fiyatı:** 1.11963 (3.8 pip yukarıda)
+- **Çarpımsal Begonya Skoru:** SMC: 75 × G_macro: 1.0 = **75 / 100 (Tier A)** | Önerilen Risk: **Defansif Risk (%0.5R) | 0.64x Lot** (100k'da 640 $, 10k'da 64.00 $ Risk)
+- **Hedef (TP / Likidite Mıknatısı):** 1.12095 (BSL Tepeler Mıknatısı, 13.2 pip yukarıda) | Karşı Engel: 15M Bearish FVG @ 1.12080 - 1.12150
+- **Prop Firm Kalkanı:** 🛡️ **Aktif** (Spread tamponlu | London Core seansı)
+- **Gerçekleşen Sonuç:** 🛡️ **PAS GEÇİLDİ / AVERTED LOSS (+640 $ / +64.00 $ Sermaye Korundu)** — Fiyat 1.11865 - 1.11925 Bullish OB kutusuna aşırı yüksek ivme ve hızla (High Kinetic Energy) yaklaşmıştır. Operatör kural gereği ("çok hızlı geldi kutuya girilmedi işleme") 1M zaman diliminde kurumsal alıcı teyidi (CHoCH / pin bar / displacement) oluşmadığını görerek işleme girmemiş ve pas geçmiştir. Fiyat daha sonra kutuyu aşağı delip 1.11657 seviyesine kadar düşmüş; operatör kesin bir stop kaybından 640 $ (10k hesapta 64.00 $) sermayeyi korumuştur.
+
+#### 🔬 1. SMC Teknik Katmanı & Çoklu Zaman Dilimi Analizi
+- **Kinetik Enerji & İvme Filtresi:** Fiyat kutuya sakin bir düzeltme ile değil, sert momentum mumlarıyla dikey inmiştir. Yüksek kinetik enerji kuralı uyarınca, kurumsal reaksiyon teyit edilmeden kutuya limit emir bırakmak bıçak tutmak anlamına geleceğinden 1M LTF onayı zorunludur.
+- **1M İcra Disiplini:** Kutu temasında 1 dakikalık grafikte hiçbir alıcı dönüşü (MSS/CHoCH) görülmemiş, kutu hacimli kırmızı mumlarla aşağı delinmiştir. Operatörün pas geçme disiplini -0.64 R tam stop kaybını sıfırlamıştır.
+
+#### 🌐 2. Makroekonomik Katman & Prop Firm Kalkanı
+- **Birincil Rejim:** *Reflationary Growth*.
+- **Makro Kapı Durumu:** NEUTRAL_RANGE (G_macro: 1.0) -> Önerilen risk: **0.64x Lot**.
+- **Savunma Mekanizması:** Makro filtre nötr-aralık izin verse de, 1M icra kapısı ve ivme kuralı hatalı kurulumdan kaçınarak sermayeyi korumuştur.
+
+#### 📊 3. Post-Trade Audit & Bilanço
+- **Gerçekleşen Sonuç:** 🛡️ **INVALID_NO_ENTRY (AVERTED LOSS)**
+- **Gerçekleşen R:** **0.00 R (0.64 R Risk Önlendi)**
+- **Finansal Getiri:** **0.00 $ (100k hesapta 640.00 $, 10k hesapta 64.00 $ Sermaye Korundu)**
+- **Kategori:** AVERTED_LOSS
+- **Hata / Zafiyet Atfı:** High_Kinetic_Approach_Skipped
+- **Kritik Ders:** Kutuya yaklaşım hızı yüksek olduğunda reaksiyon beklenmeden girilmemeli; LTF teyit filtresi 17. kez sermayeyi doğrudan korumuştur.
+
+#### 📋 Standart 5+1 Doğrulama Anketi
+- **Soru 1 (Kutuya Yaklaşım):** [B] Agresif haber/momentum mumu (Kutuya çok hızlı/sert geldi)
+- **Soru 2 (1M Formasyonu):** [C] Delip geçti / Onay yok (1M grafiğinde alıcı teyidi oluşmadı)
+- **Soru 3 (Giriş Kararı):** [D] Girmedim (Pas — Kutuya çok hızlı geldiği ve 1M onayı vermediği için girilmedi)
+- **Soru 4 (Sonuç):** [D] İşlem alınmadı (Averted Loss — 640 $ / 64 $ Korundu)
+- **Soru 5 (Stop/İptal Nedeni):** [A] Kutu tutmadı / Yüksek ivmeyle delindi
+- **Ekstra (Makro Doğruluk):** Makro kapı açık olsa da 1M ve momentum filtresi 64 $ sermayeyi başarıyla korudu.
+
+---
+
+### 46. [2026-10-16 16:47 TSİ / 13:47 UTC] — BTCUSD (15M Bullish OB - AL) ✅ KISMİ TP & BE KORUNDU (+400 $ / +0.50 R)
+- **Kayıt Kodu:** BG-20261016-001
+- **Telegram Girişi:** BTCUSD AL | Grade A (8/9) | Skor: 85/100 | Makro: NEUTRAL_RANGE | Giriş: 15M Bullish OB Retest | Akıllı SL: Tamponlu | TP1: 1.0R (%50 Kâr)
+- **Giriş Bölgesi (POI):** 15M Bullish OB | **Seans:** London / NY Çakışması
+- **Çarpımsal Begonya Skoru:** SMC: 85 × G_macro: 1.0 = **85 / 100 (Tier A)** | Önerilen Risk: **0.80x Lot** (100k'da 800 $, 10k'da 80.00 $ Risk)
+- **Prop Firm Kalkanı:** 🛡️ **Aktif** (Spread tamponlu | Kısmi kâr & BE koruma kuralı)
+- **Gerçekleşen Sonuç:** ✅ **WIN / PARTIAL TP & BE (+400.00 $ / +0.50 R | 10k Hesapta: +40.00 $)** — 15M Bullish OB bölgesinde 1M grafiğinde alıcı teyidi görüldü ve 0.80x Lot (800 $ risk) ile AL pozisyonuna girildi. Fiyat 1.0R seviyesine ulaştığında kural gereği pozisyonun %50'si realize edildi (+400 $ / +0.50 R kâr kasaya alındı) ve stop seviyesi başabaşa (BE / giriş noktası) çekildi. Fiyat daha sonra geri çekilerek kalan pozisyonu BE noktasında kapattı.
+
+#### 🔬 1. SMC Teknik Katmanı & Çoklu Zaman Dilimi Analizi
+- **Tetik & Onay Mekaniği:** Retest anında 1 dakikalık grafikte alıcı yönlü likidite süpürmesi ve CHoCH dönüş teyidi oluştuğu için kural gereği emre girildi.
+- **Asimetrik Yönetim:** Fiyatın 1.0R hedefine ulaşmasıyla birlikte risk sıfırlandı; kâr realize edilip stop BE'ye taşınarak olası sert dönüşe karşı kâr kilitlendi.
+
+#### 🌐 2. Makroekonomik Katman & Prop Firm Kalkanı
+- **Birincil Rejim:** *Reflationary Growth*.
+- **Makro Kapı Durumu:** NEUTRAL_RANGE -> Önerilen risk: **0.80x Lot**.
+- **Pozisyon Güvencesi:** 1R'de %50 kâr alarak stopu BE'ye çekmek sermaye büyümesini deterministik olarak korumuştur.
+
+#### 📊 3. Post-Trade Audit & Bilanço
+- **Gerçekleşen Sonuç:** ✅ **WIN (PARTIAL TP & BE)**
+- **Gerçekleşen R:** **+0.50 R**
+- **Finansal Getiri:** **+400.00 $ (10k hesapta: +40.00 $)**
+- **Kategori:** PROFIT
+- **Hata / Zafiyet Atfı:** None
+
+#### 📋 Standart 5+1 Doğrulama Anketi
+- **Soru 1 (Kutuya Yaklaşım):** [A] Kutuya retest verdi
+- **Soru 2 (1M Formasyonu):** [A] 1M grafiğinde alıcı reaksiyonu ve giriş teyidi oluştu
+- **Soru 3 (Giriş Kararı):** [A] Onayla LONG girildi (0.80x Lot)
+- **Soru 4 (Sonuç):** [A/C] 1.0R'de %50 Kâr Alındı (+0.50 R) / Kalan BE ile kapandı
+- **Soru 5 (Stop/İptal Nedeni):** [D] Yok (1R kâr kilitlendi, kalan BE)
+- **Ekstra (Makro Doğruluk):** Makro bias açık; pozisyon asimetrik risk kuralıyla kusursuz yönetildi.
+
+---
+
+### 47. [2026-10-19 10:00 TSİ / 07:00 UTC] — GBPUSD (15M POI) 🛡️ PAS GEÇİLDİ (AVERTED LOSS / +600 $ KORUNDU)
+- **Kayıt Kodu:** BG-20261019-001
+- **Telegram Girişi:** GBPUSD | Grade A (7/9) | Skor: 80/100 | Makro: NEUTRAL_RANGE / SHORT | Giriş: 15M POI | 10:00 TSİ London Open
+- **Giriş Bölgesi (POI):** 15M POI Kutusu | **Seans:** London Seans Açılışı (London Open)
+- **Çarpımsal Begonya Skoru:** SMC: 80 × G_macro: 1.0 = **80 / 100 (Tier A)** | Önerilen Risk: **0.60x Lot** (100k'da 600 $, 10k'da 60.00 $ Risk)
+- **Prop Firm Kalkanı:** 🛡️ **Aktif** (Spread tamponlu | London Open filtresi)
+- **Gerçekleşen Sonuç:** 🛡️ **PAS GEÇİLDİ / AVERTED LOSS (+600 $ / +60.00 $ Sermaye Korundu)** — London seans açılışında fiyat 15M POI kutusuna ulaştığında 1 dakikalık grafikte (LTF) hiçbir kurumsal dönüş teyidi üretmemiş ve kutuyu delip geçmiştir ("ltf confirme vermedi deldi geçti"). Operatör kural gereği emri tetiklemeyerek pas geçmiş ve kesin bir stop kaybından 600 $ (10k hesapta 60.00 $) sermayeyi korumuştur.
+
+#### 🔬 1. SMC Teknik Katmanı & Çoklu Zaman Dilimi Analizi
+- **London Açılış Volatilitesi:** London seans açılış mumlarındaki yüksek kurumsal emir akışı 15M kutusunu tanımayarak doğrudan yardı geçti.
+- **1M İcra Disiplini:** Kutu bölgesinde 1M alıcı/satıcı dönüş formasyonu (CHoCH / pin bar / displacement) oluşmadığı için operatör bıçak tutmamış ve pozisyon açmamıştır.
+
+#### 🌐 2. Makroekonomik Katman & Prop Firm Kalkanı
+- **Birincil Rejim:** *Reflationary Growth*.
+- **Makro Kapı Durumu:** NEUTRAL_RANGE -> Önerilen risk: **0.60x Lot**.
+- **Savunma Mekanizması:** 1M icra kapısı 18. kez hatalı kurulumdan kaçınarak sermayeyi tam korumaya almıştır.
+
+#### 📊 3. Post-Trade Audit & Bilanço
+- **Gerçekleşen Sonuç:** 🛡️ **INVALID_NO_ENTRY (AVERTED LOSS)**
+- **Gerçekleşen R:** **0.00 R (0.60 R Risk Önlendi)**
+- **Finansal Getiri:** **0.00 $ (100k hesapta 600.00 $, 10k hesapta 60.00 $ Sermaye Korundu)**
+- **Kategori:** AVERTED_LOSS
+- **Hata / Zafiyet Atfı:** Slice_Through_No_LTF_Confirmation
+- **Kritik Ders:** Seans açılışlarındaki yüksek volatilitede retest kutularına kör emir bırakılmamalı; 1M LTF onayı olmadan girilmeyen işlemler sermayeyi korur.
+
+#### 📋 Standart 5+1 Doğrulama Anketi
+- **Soru 1 (Kutuya Yaklaşım):** [B] Agresif seans açılış mumu (London Open)
+- **Soru 2 (1M Formasyonu):** [C] Delip geçti (Onay yok — 1M grafiğinde kutu delindi)
+- **Soru 3 (Giriş Kararı):** [D] Girmedim (Pas — LTF onay vermediği için girilmedi)
+- **Soru 4 (Sonuç):** [D] İşlem alınmadı (Averted Loss — 600 $ / 60 $ Korundu)
+- **Soru 5 (Stop/İptal Nedeni):** [A] Kutu tutmadı / Delip geçti
+- **Ekstra (Makro Doğruluk):** 1M teyit filtresi operatörü tam bir stop zararından korudu.
+
+---
+
+### 48. [2026-10-19 18:49 TSİ / 15:49 UTC] — SOLUSD (15M Bullish OB - AL) 🛡️ PAS GEÇİLDİ (AVERTED LOSS / +750 $ KORUNDU)
+- **Kayıt Kodu:** BG-20261019-002
+- **Telegram Girişi:** SOLUSD AL | Grade A (7/9) | Skor: 78/100 | Makro: NEUTRAL_RANGE | Giriş: 15M Bullish OB | 18:49 TSİ NY Core
+- **Giriş Bölgesi (POI):** 15M Bullish OB | **Seans:** New York Seansı (NY Core)
+- **Çarpımsal Begonya Skoru:** SMC: 78 × G_macro: 1.0 = **78 / 100 (Tier A)** | Önerilen Risk: **0.75x Lot** (100k'da 750 $, 10k'da 75.00 $ Risk)
+- **Prop Firm Kalkanı:** 🛡️ **Aktif** (Spread tamponlu | Kripto seans filtresi)
+- **Gerçekleşen Sonuç:** 🛡️ **PAS GEÇİLDİ / AVERTED LOSS (+750 $ / +75.00 $ Sermaye Korundu)** — Fiyat 15M Bullish OB bölgesine indiğinde 1 dakikalık grafikte (LTF) hiçbir kurumsal alıcı teyidi üretmemiş ve kutuyu delip geçmiştir ("ltf confirme vermedi deldi geçti"). Operatör kural gereği emri tetiklemeyerek pas geçmiş ve 750 $ (10k hesapta 75.00 $) sermayeyi korumuştur.
+
+#### 🔬 1. SMC Teknik Katmanı & Çoklu Zaman Dilimi Analizi
+- **NY Seansı Satış Baskısı:** New York seansındaki kurumsal satış akışı 15M OB kutusunu tanımayarak aşağı yardı geçti.
+- **1M İcra Disiplini:** Kutu temasında 1 dakikalık grafikte alıcı yönlü dönüş (CHoCH / pin bar / displacement) oluşmadığı için operatör bıçak tutmamış ve pozisyona girmemiştir.
+
+#### 🌐 2. Makroekonomik Katman & Prop Firm Kalkanı
+- **Birincil Rejim:** *Reflationary Growth*.
+- **Makro Kapı Durumu:** NEUTRAL_RANGE -> Önerilen risk: **0.75x Lot**.
+- **Savunma Mekanizması:** 1M icra kapısı 19. kez hatalı kurulumdan kaçınarak sermayeyi tam korumaya almıştır.
+
+#### 📊 3. Post-Trade Audit & Bilanço
+- **Gerçekleşen Sonuç:** 🛡️ **INVALID_NO_ENTRY (AVERTED LOSS)**
+- **Gerçekleşen R:** **0.00 R (0.75 R Risk Önlendi)**
+- **Finansal Getiri:** **0.00 $ (100k hesapta 750.00 $, 10k hesapta 75.00 $ Sermaye Korundu)**
+- **Kategori:** AVERTED_LOSS
+- **Hata / Zafiyet Atfı:** Slice_Through_No_LTF_Confirmation
+- **Kritik Ders:** Kripto varlıklarda seans içi dikey düşüşlerde 1M dönüşü görülmeden asla emir girilmemelidir; operatörün disiplinli pas geçişi sermayeyi doğrudan korumuştur.
+
+#### 📋 Standart 5+1 Doğrulama Anketi
+- **Soru 1 (Kutuya Yaklaşım):** [B] Agresif satış mumu (NY Core)
+- **Soru 2 (1M Formasyonu):** [C] Delip geçti (Onay yok — 1M grafiğinde kutu delindi)
+- **Soru 3 (Giriş Kararı):** [D] Girmedim (Pas — LTF onay vermediği için girilmedi)
+- **Soru 4 (Sonuç):** [D] İşlem alınmadı (Averted Loss — 750 $ / 75 $ Korundu)
+- **Soru 5 (Stop/İptal Nedeni):** [A] Kutu tutmadı / Delip geçti
+- **Ekstra (Makro Doğruluk):** 1M teyit filtresi operatörü kesin bir tam stop kaybından korudu.
+
+---
+
+### 49. [2026-10-20 09:01 TSİ / 06:01 UTC] — IOUSD (15M Bullish OB - AL) ✅ KISMİ TP & BE KORUNDU (+300 $ / +0.50 R)
+- **Kayıt Kodu:** BG-20261020-001
+- **Telegram Girişi:** IOUSD AL | Grade A (7/9) | Skor: 80/100 | Makro: NEUTRAL_RANGE | Giriş: 15M Bullish OB | 09:01 TSİ Frankfurt Open | TP1: 1.0R (%50 Kâr)
+- **Giriş Bölgesi (POI):** 15M Bullish OB | **Seans:** Frankfurt Açılışı / London Öncesi
+- **Çarpımsal Begonya Skoru:** SMC: 80 × G_macro: 1.0 = **80 / 100 (Tier A)** | Önerilen Risk: **0.60x Lot** (100k'da 600 $, 10k'da 60.00 $ Risk)
+- **Prop Firm Kalkanı:** 🛡️ **Aktif** (Spread tamponlu | Kısmi kâr & BE koruma kuralı)
+- **Gerçekleşen Sonuç:** ✅ **WIN / PARTIAL TP & BE (+300.00 $ / +0.50 R | 10k Hesapta: +30.00 $)** — 15M Bullish OB bölgesinde 1M grafiğinde alıcı teyidi görüldü ve 0.60x Lot (600 $ risk) ile AL pozisyonuna girildi. Fiyat 1.0R seviyesine ulaştığında kural gereği pozisyonun %50'si realize edildi (+300 $ / +0.50 R kâr kasaya alındı) ve stop seviyesi başabaşa (BE / giriş noktası) çekildi. Fiyat daha sonra geri çekilerek kalan pozisyonu BE noktasında kapattı.
+
+#### 🔬 1. SMC Teknik Katmanı & Çoklu Zaman Dilimi Analizi
+- **Tetik & Onay Mekaniği:** Retest anında 1 dakikalık grafikte kurumsal alıcı reaksiyonu ve CHoCH dönüş teyidi teyit edildiği için emre girildi.
+- **Asimetrik Yönetim:** Fiyatın 1.0R hedefine ulaşmasıyla birlikte risk anında sıfırlandı; kâr realize edilip stop BE'ye taşınarak olası sert dönüşe karşı kâr cebe atıldı.
+
+#### 🌐 2. Makroekonomik Katman & Prop Firm Kalkanı
+- **Birincil Rejim:** *Reflationary Growth*.
+- **Makro Kapı Durumu:** NEUTRAL_RANGE -> Önerilen risk: **0.60x Lot**.
+- **Pozisyon Güvencesi:** 1R'de %50 kâr alarak stopu BE'ye çekmek sermaye büyümesini deterministik olarak korumuştur.
+
+#### 📊 3. Post-Trade Audit & Bilanço
+- **Gerçekleşen Sonuç:** ✅ **WIN (PARTIAL TP & BE)**
+- **Gerçekleşen R:** **+0.50 R**
+- **Finansal Getiri:** **+300.00 $ (10k hesapta: +30.00 $)**
+- **Kategori:** PROFIT
+- **Hata / Zafiyet Atfı:** None
+
+#### 📋 Standart 5+1 Doğrulama Anketi
+- **Soru 1 (Kutuya Yaklaşım):** [A] Kutuya retest verdi
+- **Soru 2 (1M Formasyonu):** [A] 1M grafiğinde alıcı reaksiyonu ve giriş teyidi oluştu
+- **Soru 3 (Giriş Kararı):** [A] Onayla LONG girildi (0.60x Lot)
+- **Soru 4 (Sonuç):** [A/C] 1.0R'de %50 Kâr Alındı (+0.50 R) / Kalan BE ile kapandı
+- **Soru 5 (Stop/İptal Nedeni):** [D] Yok (1R kâr kilitlendi, kalan BE)
+- **Ekstra (Makro Doğruluk):** Makro bias açık; pozisyon asimetrik risk kuralıyla kusursuz yönetildi.
+
+---
+
+### 50. [2026-10-22 15:46 TSİ / 12:46 UTC] — GBPUSD (15M Bullish OB - AL) 🎯 BÜYÜK HEDEF TP (+1.398 $ / +2.33 R)
+- **Kayıt Kodu:** BG-20261022-001
+- **Telegram Girişi:** GBPUSD AL | Grade A (8/9) | Skor: 85/100 | Makro: NEUTRAL_RANGE | Giriş: 15M Bullish OB | 15:46 TSİ London/NY Overlap | TP1: 1.0R (%50 Kâr) | TP2: 3.66R
+- **Giriş Bölgesi (POI):** 15M Bullish OB | **Seans:** London / New York Çakışması
+- **Çarpımsal Begonya Skoru:** SMC: 85 × G_macro: 1.0 = **85 / 100 (Tier A)** | Önerilen Risk: **0.60x Lot** (100k'da 600 $, 10k'da 60.00 $ Risk)
+- **Prop Firm Kalkanı:** 🛡️ **Aktif** (Spread tamponlu | Kısmi kâr & runner hedef protokolü)
+- **Gerçekleşen Sonuç:** 🎯 **WIN (+1.398.00 $ / +2.33 R | 10k Hesapta: +139.80 $)** — 15M Bullish OB bölgesinde 1M alıcı teyidi görüldü ve 0.60x Lot (600 $ risk) ile AL pozisyonu açıldı. Fiyat 1.0R seviyesine ulaştığında %50 kısmi kâr alındı (+300 $ / +0.50 R kâr kilitlendi) ve stop seviyesi başabaşa (BE) çekildi. Kalan %50 pozisyon kurumsal likidite havuzunu süpürerek 3.66R hedefine ulaştı (+1098 $ / +1.83 R). Toplam realize edilen getiri: **+2.33 R / +1.398.00 $** (Eğer 3.66R doğrudan net getiri olarak baz alınırsa: +3.66 R / +2.196.00 $).
+
+#### 🔬 1. SMC Teknik Katmanı & Çoklu Zaman Dilimi Analizi
+- **Tetik & Likidite Akışı:** 15M OB kutusuna verilen sakin retest sonrası 1 dakikalık grafikte net alıcı CHoCH kırılımı ile pozisyon açıldı.
+- **Asimetrik Hedef:** 1R'de risk sıfırlanıp kalan pozisyonun 3.66R likidite mıknatısına kadar koşmasına izin verilmesi, trendin tüm suyunu sıkmıştır.
+
+#### 🌐 2. Makroekonomik Katman & Prop Firm Kalkanı
+- **Birincil Rejim:** *Reflationary Growth*.
+- **Makro Kapı Durumu:** NEUTRAL_RANGE -> Önerilen risk: **0.60x Lot**.
+- **Portföy Büyümesi:** Kasaya tek bir işlemden +1.398 $ katarak toplam portföy kârını 10.000 $'ın üzerine fırlatmıştır.
+
+#### 📊 3. Post-Trade Audit & Bilanço
+- **Gerçekleşen Sonuç:** 🎯 **WIN (BÜYÜK HEDEF TP)**
+- **Gerçekleşen R:** **+2.33 R**
+- **Finansal Getiri:** **+1.398.00 $ (10k hesapta: +139.80 $)**
+- **Kategori:** PROFIT
+- **Hata / Zafiyet Atfı:** None
+
+#### 📋 Standart 5+1 Doğrulama Anketi
+- **Soru 1 (Kutuya Yaklaşım):** [A] Kutuya retest verdi
+- **Soru 2 (1M Formasyonu):** [A] 1M grafiğinde alıcı reaksiyonu ve giriş teyidi oluştu
+- **Soru 3 (Giriş Kararı):** [A] Onayla LONG girildi (0.60x Lot)
+- **Soru 4 (Sonuç):** [A] TP (+2.33 R / +1.398 $) — 1. TP %50 + Runner 3.66R
+- **Soru 5 (Stop/İptal Nedeni):** [D] Yok (Hedefe ulaştı)
+- **Ekstra (Makro Doğruluk):** Makro bias ve seans likiditesi işlemi 3.66R hedefine kadar taşıdı.
+
+---
+
+### 51. [2026-10-23 18:46 TSİ / 15:46 UTC] — AUDJPY (15M Bullish OB - AL) ✅ KISMİ TP & BE KORUNDU (+300 $ / +0.50 R)
+- **Kayıt Kodu:** BG-20261023-001
+- **Telegram Girişi:** AUDJPY AL | Grade A (7/9) | Skor: 78/100 | Makro: NEUTRAL_RANGE | Giriş: 15M Bullish OB | 18:46 TSİ NY Core | TP1: 1.0R (%50 Kâr)
+- **Giriş Bölgesi (POI):** 15M Bullish OB | **Seans:** New York Seansı (NY Core)
+- **Çarpımsal Begonya Skoru:** SMC: 78 × G_macro: 1.0 = **78 / 100 (Tier A)** | Önerilen Risk: **0.60x Lot** (100k'da 600 $, 10k'da 60.00 $ Risk)
+- **Prop Firm Kalkanı:** 🛡️ **Aktif** (Spread tamponlu | Kısmi kâr & BE koruma kuralı)
+- **Gerçekleşen Sonuç:** ✅ **WIN / PARTIAL TP & BE (+300.00 $ / +0.50 R | 10k Hesapta: +30.00 $)** — 15M Bullish OB bölgesinde 1M grafiğinde alıcı teyidi görüldü ve 0.60x Lot (600 $ risk) ile AL pozisyonuna girildi. Fiyat 1.0R seviyesine ulaştığında kural gereği pozisyonun %50'si realize edildi (+300 $ / +0.50 R kâr kasaya alındı) ve stop seviyesi başabaşa (BE / giriş noktası) çekildi. Fiyat daha sonra geri çekilerek kalan pozisyonu BE noktasında kapattı.
+
+#### 🔬 1. SMC Teknik Katmanı & Çoklu Zaman Dilimi Analizi
+- **Tetik & Onay Mekaniği:** Retest anında 1 dakikalık grafikte kurumsal alıcı reaksiyonu ve CHoCH dönüş teyidi teyit edildiği için emre girildi.
+- **Asimetrik Yönetim:** Fiyatın 1.0R hedefine ulaşmasıyla birlikte risk sıfırlandı; kâr realize edilip stop BE'ye taşınarak olası sert dönüşe karşı kâr kilitlendi.
+
+#### 🌐 2. Makroekonomik Katman & Prop Firm Kalkanı
+- **Birincil Rejim:** *Reflationary Growth*.
+- **Makro Kapı Durumu:** NEUTRAL_RANGE -> Önerilen risk: **0.60x Lot**.
+- **Pozisyon Güvencesi:** 1R'de %50 kâr alarak stopu BE'ye çekmek sermaye büyümesini deterministik olarak korumuştur.
+
+#### 📊 3. Post-Trade Audit & Bilanço
+- **Gerçekleşen Sonuç:** ✅ **WIN (PARTIAL TP & BE)**
+- **Gerçekleşen R:** **+0.50 R**
+- **Finansal Getiri:** **+300.00 $ (10k hesapta: +30.00 $)**
+- **Kategori:** PROFIT
+- **Hata / Zafiyet Atfı:** None
+
+#### 📋 Standart 5+1 Doğrulama Anketi
+- **Soru 1 (Kutuya Yaklaşım):** [A] Kutuya retest verdi
+- **Soru 2 (1M Formasyonu):** [A] 1M grafiğinde alıcı reaksiyonu ve giriş teyidi oluştu
+- **Soru 3 (Giriş Kararı):** [A] Onayla LONG girildi (0.60x Lot)
+- **Soru 4 (Sonuç):** [A/C] 1.0R'de %50 Kâr Alındı (+0.50 R) / Kalan BE ile kapandı
+- **Soru 5 (Stop/İptal Nedeni):** [D] Yok (1R kâr kilitlendi, kalan BE)
+- **Ekstra (Makro Doğruluk):** Makro bias açık; pozisyon asimetrik risk kuralıyla kusursuz yönetildi.
+
+---
+
+### 52. [2026-10-30 12:00 TSİ / 09:00 UTC] — EURUSD (15M POI) ⏳ BEKLEMEDE (PENDING RETEST)
+- **Kayıt Kodu:** BG-20261030-001
+- **Telegram Girişi:** EURUSD | Grade A (7/9) | Skor: 82/100 | Makro: NEUTRAL_RANGE | Giriş: 15M POI | 30 Ekim Seansı | Henüz Retest Gelmedi
+- **Giriş Bölgesi (POI):** 15M POI Kutusu | **Seans:** London Core
+- **Çarpımsal Begonya Skoru:** SMC: 82 × G_macro: 1.0 = **82 / 100 (Tier A)** | Planlanan Risk: **0.64x Lot** (100k'da 640 $, 10k'da 64.00 $ Risk)
+- **Prop Firm Kalkanı:** 🛡️ **Aktif** (Spread tamponlu | Retest ve 1M onay protokolü)
+- **Gerçekleşen Sonuç:** ⏳ **BEKLEMEDE / PENDING RETEST (0.00 R / Henüz Tetiklenmedi)** — Sinyal üretildikten sonra fiyat henüz 15M POI giriş kutusuna geri çekilme (retest) vermemiştir ("işlem gelmedi daha"). Operatörün kuralı uyarınca acele edilmeden kutu retesti ve ardından 1 dakikalık grafikte kurumsal onay aranmak üzere canlı takipte BEKLEMEDE tutulmaktadır.
+
+#### 🔬 1. SMC Teknik Katmanı & Çoklu Zaman Dilimi Analizi
+- **Bekleme Disiplini:** Fiyat POI bölgesine ulaşmadan piyasayı kovalamamak (FOMO yapmamak) profesyonel risk yönetiminin ayrılmaz bir parçasıdır. Kutuya retest gelene kadar hiçbir emir aktif edilmez.
+- **İcra Şartı:** Fiyat kutuya temas ettiğinde 1 dakikalık grafikte kurumsal dönüş (CHoCH / pin bar / displacement) oluşursa 0.64x Lot ile işleme girilecek, doğrudan delip geçerse pas geçilecektir.
+
+#### 🌐 2. Makroekonomik Katman & Prop Firm Kalkanı
+- **Birincil Rejim:** *Reflationary Growth*.
+- **Makro Kapı Durumu:** NEUTRAL_RANGE -> Planlanan risk: **0.64x Lot**.
+- **Pozisyon Güvencesi:** Kutuya temas gerçekleşmeden kasadan tek kuruş riske atılmamıştır.
+
+#### 📊 3. Post-Trade Audit & Bilanço
+- **Gerçekleşen Sonuç:** ⏳ **PENDING_EXECUTION**
+- **Gerçekleşen R:** **0.00 R**
+- **Finansal Getiri:** **0.00 $ (Henüz tetiklenmedi)**
+- **Kategori:** PENDING
+- **Hata / Zafiyet Atfı:** None
+
+#### 📋 Standart 5+1 Doğrulama Anketi
+- **Soru 1 (Kutuya Yaklaşım):** [C] Kutuya henüz ulaşmadı (İşlem gelmedi daha)
+- **Soru 2 (1M Formasyonu):** [D] Beklemede (Henüz temas yok)
+- **Soru 3 (Giriş Kararı):** [D] Girmedim (Kutuya ulaşması bekleniyor)
+- **Soru 4 (Sonuç):** [E] Beklemede / Takipte
+- **Soru 5 (Stop/İptal Nedeni):** [D] Yok (Henüz tetiklenmedi)
+- **Ekstra (Makro Doğruluk):** Makro bias açık; sabırla retest beklenmektedir.
+
+---
+
+### 53. [2026-11-02 10:00 TSİ / 07:00 UTC] — USDJPY (15M Bullish OB - AL) ❌ STOP LOSS (-600 $ / -0.60 R)
+- **Kayıt Kodu:** BG-20261102-001
+- **Telegram Girişi:** USDJPY AL | Grade A (6/9) | Skor: 75/100 | Makro: SHORT_ONLY (Çelişkili) | Giriş: 15M POI | 2 Kasım Seansı | Akıllı SL: 152.150
+- **Giriş Bölgesi (POI):** 152.400 — 152.650 (15M Bullish OB) | **Seans:** London Seansı
+- **Çarpımsal Begonya Skoru:** SMC: 75 × G_macro: 0.8 = **60 / 100 (Tier B+)** | Önerilen Risk: **0.60x Lot** (100k'da 600 $, 10k'da 60.00 $ Risk)
+- **Prop Firm Kalkanı:** 🛡️ **Aktif** (Defansif risk | -0.60R sınırlaması)
+- **Gerçekleşen Sonuç:** ❌ **STOP LOSS (-600.00 $ / -0.60 R | 10k Hesapta: -60.00 $)** — 15M Bullish OB bölgesinde 1M onayı ile 0.60x Lot pozisyon açıldı. Ancak küresel makro rüzgarların (US 2Y tahvil faizlerindeki sert düşüş ve Carry Trade çözülmesi) Japon Yenini aşırı güçlendirmesi sebebiyle fiyat 152.150 SL seviyesini delerek stop olmuştur.
+
+#### 🔬 1. SMC Teknik Katmanı & Çoklu Zaman Dilimi Analizi
+- **HTF P/D Çelişkisi:** 4H ve 1H grafiklerde USDJPY aşırı Pahalı (Premium) bölgedeydi. Büyük zaman dilimindeki kurumsal kâr realizasyonu dalgası 15M OB kutusunu tutamadı.
+- **Likidite Süpürmesi:** Fiyat alttaki Sell-Side Liquidity (SSL) havuzunu temizlemek üzere dikey kırmızı mumlarla indi ve stop avı gerçekleştirdi.
+
+#### 🌐 2. Makroekonomik Katman & Adli Otopsi (Stopun Temel Nedeni)
+- **Birincil Rejim:** *Reflationary Growth with Carry Trade Unwind*.
+- **Makro Kapı Durumu:** **SHORT_ONLY** (USD skoru: -1.333, JPY skoru: +1.136).
+- **Temel Neden:** 
+  1. **US 2Y Tahvil Faizi Çöküşü:** ABD 2 yıllık tahvil getirileri tek seansta **-13.0 baz puan** düşerek Doların getiri avantajını eritti.
+  2. **Carry Trade Tasfiyesi:** VIX 20.9 seviyesine sıçrayarak piyasada riskten kaçış başlattı; fonlar ucuz fonlama aracı olan Yen borçlarını kapatmak için agresif Yen alımı yaptı.
+  3. **Karşıt Makro Hatası:** Makro motorun SHORT_ONLY kapısına rağmen AL yönlü işlem açılması stopun birincil sebebidir.
+
+#### 📊 3. Post-Trade Audit & Bilanço
+- **Gerçekleşen Sonuç:** ❌ **LOSS**
+- **Gerçekleşen R:** **-0.60 R**
+- **Finansal Getiri:** **-600.00 $ (10k hesapta: -60.00 $)**
+- **Kategori:** LOSS
+- **Hata / Zafiyet Atfı:** Macro_Conflict_And_Carry_Trade_Unwind
+- **Kritik Ders:** Makro motor SHORT_ONLY kapısı verdiğinde teknik 15M AL kurulumları asla zorlanmamalıdır; defansif risk çarpanı (0.60x) olası tam stop kaybını (-1.0R yerine -0.60R) sınırlandırarak sermayeyi korumuştur.
+
+#### 📋 Standart 5+1 Doğrulama Anketi
+- **Soru 1 (Kutuya Yaklaşım):** [A] Kutuya retest verdi
+- **Soru 2 (1M Formasyonu):** [A] 1M grafiğinde alıcı reaksiyonu oluştu
+- **Soru 3 (Giriş Kararı):** [A] Onayla LONG girildi (0.60x Lot)
+- **Soru 4 (Sonuç):** [B] Stop Loss (-0.60 R / -600 $ [-60 $])
+- **Soru 5 (Stop/İptal Nedeni):** [B] JPY genel güçlenmesi & US faiz getiri erozyonu
+- **Ekstra (Makro Doğruluk):** Makro motor SHORT_ONLY kapısıyla düşüş yönünü doğru öngörmüştü; teknik AL kurulumu makro akıntıya karşı kürek çektiği için stop oldu.
+

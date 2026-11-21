@@ -5,6 +5,7 @@ import type { ExecutionCardView } from './telegramFormatter';
 import type { SetupAssessment } from '../src/setupAssessment';
 import { recordRuntimeTrace } from './runtimeTrace';
 import { MacroGateAdapter, MacroGateEvaluation } from './macroGateAdapter';
+import { describeEntryRange } from './entryRangeDisplay';
 
 export interface CommunicationLayerInput {
   readonly candidate: NotificationCandidate;
@@ -129,8 +130,11 @@ function buildSections(
 ): readonly CommunicationSection[] {
   const grade = candidate.gradeResult.grade;
   const totalScore = candidate.gradeResult.totalScore;
-  const actionLine = normalizeRequiredAction(signal, executionView.requiredAction);
-  const confirmationLine = normalizeRequiredConfirmation(executionView.requiredConfirmation, actionLine);
+  const entryRange = describeEntryRange(candidate);
+  const blocked = executionView.executionStatus === 'BLOCKED' || executionView.executionStatus === 'CANCELLED';
+  const actionLine = blocked ? 'İşlem yok.' : entryRange?.requiredAction ?? normalizeRequiredAction(signal, executionView.requiredAction);
+  const confirmationLine = blocked ? 'Sinyal işlem için uygun değil.'
+    : entryRange?.requiredConfirmation ?? normalizeRequiredConfirmation(executionView.requiredConfirmation, actionLine);
   const actionSummary = buildActionSummary(executionView, signal);
   const reasonSummary = buildReasonSummary(candidate, executionView, signal, narrative);
   const statusSummary = buildStatusSummary(executionView, signal);
@@ -216,22 +220,35 @@ function buildSections(
         : []),
     ]),
     ...(candidate.expectancyPlan ? [
-      section('QUANT ASİMETRİK HEDEF PLANI (R:R)', [
+      section('HEDEF VE RİSK PLANI (R:R)', [
         field('Giriş Referansı', formatPrice(candidate.expectancyPlan.entryPrice, candidate.symbol)),
+        ...(entryRange ? [
+          field('Net R:R Giriş Aralığı', `${entryRange.text} | en az ${candidate.expectancyPlan.entryRange!.minimumNetRR.toFixed(1)}R (tahmini maliyetle)`),
+          field('Giriş Koşulu', 'Aralık dışında işlem yok. Gerçek dolumda maliyet ve oran yeniden kontrol edilmeli; M1 kararı kullanıcıda.'),
+          ...(candidate.expectancyPlan.admissionBasis === 'CONDITIONAL_ENTRY' ? [
+            field('Koşullu Kutu', `İlk referansta net R:R ${candidate.expectancyPlan.referenceNetRiskRewardRatio?.toFixed(2)}; yalnızca belirtilen giriş aralığında uygun.`),
+          ] : []),
+        ] : []),
         field('Akıllı SL (Tamponlu)', `${formatPrice(candidate.expectancyPlan.stopLoss, candidate.symbol)} (Tampon: ${candidate.expectancyPlan.smartStopBufferPips}p | Risk: ${candidate.expectancyPlan.riskDistancePips}p)`),
-        field('TP1 (Kısmi & BE)', `${formatPrice(candidate.expectancyPlan.tp1.price, candidate.symbol)} (+${candidate.expectancyPlan.tp1.pips}p | 1:${candidate.expectancyPlan.tp1.rr}R) -> %50 Kâr Al & Stop Girişe`),
-        field('TP2 (Ana Hedef)', `${formatPrice(candidate.expectancyPlan.tp2.price, candidate.symbol)} (+${candidate.expectancyPlan.tp2.pips}p | 1:${candidate.expectancyPlan.tp2.rr}R) -> Ana Likidite Havuzu`),
-        field('TP3 (Runner)', `${formatPrice(candidate.expectancyPlan.tp3.price, candidate.symbol)} (+${candidate.expectancyPlan.tp3.pips}p | 1:${candidate.expectancyPlan.tp3.rr}R) -> 4H Makro Trend Sürüşü`),
+        field('TP1 (Kısmi & BE)', `${formatPrice(candidate.expectancyPlan.tp1.price, candidate.symbol)} (+${candidate.expectancyPlan.tp1.pips}p | 1:${candidate.expectancyPlan.tp1.rr}R) -> ${candidate.expectancyPlan.tp1.action ?? "Kullanıcı yönetimi"}`),
+        field('TP2 (Ana Hedef)', `${formatPrice(candidate.expectancyPlan.tp2.price, candidate.symbol)} (+${candidate.expectancyPlan.tp2.pips}p | 1:${candidate.expectancyPlan.tp2.rr}R) -> ${candidate.expectancyPlan.tp2.action ?? "Ana hedef"}`),
+        ...(candidate.expectancyPlan.tp3.actionable !== false ? [field('TP3 (Runner)', `${formatPrice(candidate.expectancyPlan.tp3.price, candidate.symbol)} (+${candidate.expectancyPlan.tp3.pips}p | 1:${candidate.expectancyPlan.tp3.rr}R) -> Koşullu trend devamı`)] : []),
         field('Matematiksel R:R', `1:${candidate.expectancyPlan.primaryRR.toFixed(1)}`),
-        field('Beklenen Değer (Expectancy)', `+${candidate.expectancyPlan.expectedValueR.toFixed(2)}R (Kazanma Olasılığı: %${Math.round(candidate.expectancyPlan.winProbability * 100)})`),
-        field('Kelly Boyutlandırması', `Önerilen Risk: %${candidate.expectancyPlan.recommendedRiskPct} (Kelly: ${candidate.expectancyPlan.kellyFraction.toFixed(2)}x)`),
+        ...((candidate.expectancyPlan.poiRiskFlags?.length ?? 0) > 0 ? [field('Bölge Kalitesi', candidate.expectancyPlan.poiRiskFlags!.map(flag => ({
+          AGED_RETESTED_POI: 'Yaşlanmış ve tekrar test edilmiş bölge',
+          RETEST_WITH_FAST_APPROACH: 'Tekrar teste sert momentumla yaklaşım',
+          STALE_POI: 'Eski bölge',
+        } as Record<string, string>)[flag] ?? 'Bölge riski').join('; '))] : []),
+        field('Maliyet Sonrası Hedef', `${candidate.expectancyPlan.netRewardR?.toFixed(2) ?? 'Ölçülmedi'}R (maliyet tahmini: ${candidate.expectancyPlan.estimatedCostR?.toFixed(3) ?? 'Yok'}R)`),
+        field('Maliyet Sonrası R:R', `1:${candidate.expectancyPlan.netRiskRewardRatio?.toFixed(2) ?? 'Ölçülmedi'}`),
+        field('Risk Bütçesi', `%${candidate.expectancyPlan.recommendedRiskPct}; ölçülmüş kazanma olasılığı henüz yok.`),
       ])
     ] : []),
     section('NE YAPMALIYIM?', [
-      field('Aksiyon', candidate.approachVelocity?.isHighKineticEnergy
-        ? '⚠️ Yüksek kinetik enerji / haber mumuyla yaklaşım. Kutu içinde 1M taban/tavan oluşturmadan kesinlikle işlem yok.'
+      field('Aksiyon', blocked ? actionLine : candidate.approachVelocity?.isHighKineticEnergy
+        ? `⚠️ Yüksek kinetik enerji / haber mumuyla yaklaşım. Kutu içinde 1M taban/tavan oluşturmadan kesinlikle işlem yok. ${entryRange?.requiredAction ?? ''}`
         : actionLine),
-      field('Onay', candidate.approachVelocity?.isHighKineticEnergy
+      field('Onay', blocked ? confirmationLine : candidate.approachVelocity?.isHighKineticEnergy
         ? 'Fiyat agresif yaklaştı; önce bölgede momentumun durulması ve 1M CHoCH/FVG teyidi zorunludur.'
         : confirmationLine),
       field('Kâr Yönetimi', candidate.expectancyPlan
@@ -454,6 +471,8 @@ function buildReasonSummary(
   if (signal.requiredAction === 'Geri çekilmeyi bekle') {
     return `${direction} yönü destekleniyor; ancak fiyat henüz giriş bölgesinde değil. ${htf} / ${pd} / ${setup} uyumu ${narrativeText}.`;
   }
+  const range = describeEntryRange(candidate);
+  if (range?.inRange === false) return `${direction} yönü destekleniyor; net R:R giriş aralığı bekleniyor. ${htf} / ${pd} / ${setup} uyumu ${narrativeText}.`;
   return `${direction} yönü destekleniyor; giriş bölgesi aktif. ${htf} / ${pd} / ${setup} uyumu ${narrativeText}.`;
 }
 

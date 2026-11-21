@@ -1,8 +1,12 @@
 {
-  "last_morning_briefing_date": "2026-10-18",
-  "last_london_session_date": "2026-10-18",
-  "last_ny_session_date": "2026-10-18",
-  "last_daily_close_date": "2026-10-18",
-  "last_cycle_timestamp": 1792356957.885828,
-  "executed_news_events": []
+  "last_morning_briefing_date": "2026-11-06",
+  "last_london_session_date": "2026-11-07",
+  "last_ny_session_date": "2026-11-06",
+  "last_daily_close_date": "2026-11-04",
+  "last_cycle_timestamp": 1793984691.5826416,
+  "executed_news_events": [],
+  "last_morning_briefing_attempt_timestamp": 1794043296.4411988,
+  "last_morning_briefing_status": "FAILED_RETRY_PENDING",
+  "last_morning_briefing_error": "Market data unavailable for EUR_BOND; synthetic fallback is disabled.",
+  "last_morning_briefing_success_timestamp": 1793952263.9175699
 }

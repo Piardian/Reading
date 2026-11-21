@@ -2,6 +2,7 @@ import { Symbol, Timeframe } from './candleStore';
 import {
   ProviderError,
   ProviderRateLimitError,
+  ProviderRequestExpiredError,
   ProviderRequest,
   ProviderSuccess,
 } from './providerTypes';
@@ -17,6 +18,10 @@ export interface ProviderQueueMetrics {
   readonly completedJobs: number;
   readonly retryCount: number;
   readonly failedJobs: number;
+  readonly coalescedRequests: number;
+  readonly expiredJobs: number;
+  readonly dailyBlockedKeys: number;
+  readonly nextDailyRetryAt: string | null;
 }
 
 export interface ProviderQueueJobView {
@@ -33,6 +38,10 @@ interface QueueJob {
   readonly id: number;
   readonly request: ProviderRequest;
   retryCount: number;
+  networkAttempts: number;
+  readonly enqueuedAtMs: number;
+  readonly expiresAtMs: number;
+  readonly requestKey: string;
   readonly resolve: (value: ProviderSuccess) => void;
   readonly reject: (reason: unknown) => void;
 }
@@ -44,6 +53,7 @@ export interface DeterministicProviderQueueOptions {
   readonly safetyMargin?: number;
   readonly maxRetries?: number;
   readonly windowBufferMs?: number;
+  readonly priorityAgingMs?: number;
   readonly now?: () => number;
   readonly sleep?: (durationMs: number) => Promise<void>;
 }
@@ -52,46 +62,18 @@ interface KeyWindowState {
   windowStartMs: number;
   creditsUsed: number;
   cooldownUntilMs: number;
+  dailyBlockedUntilMs: number;
 }
+
+const MAX_QUEUE_AGE_MS: Readonly<Record<Timeframe, number>> = Object.freeze({
+  '1m': 50_000, '15m': 14 * 60_000, '1h': 55 * 60_000, '4h': 230 * 60_000,
+});
 
 const TIMEFRAME_PRIORITY: Readonly<Record<Timeframe, number>> = Object.freeze({
   '15m': 0,
   '1h': 1,
   '4h': 2,
   '1m': 3,
-});
-
-const SYMBOL_PRIORITY: Readonly<Partial<Record<Symbol, number>>> = Object.freeze({
-  EURUSD: 0,
-  GBPUSD: 1,
-  AUDUSD: 2,
-  USDCAD: 3,
-  USDJPY: 4,
-  NZDUSD: 5,
-  USDCHF: 6,
-  EURJPY: 7,
-  AUDCAD: 8,
-  EURGBP: 9,
-  GBPJPY: 10,
-  EURCHF: 11,
-  GBPCHF: 12,
-  AUDCHF: 13,
-  CADCHF: 14,
-  NZDCHF: 15,
-  CHFJPY: 16,
-  CADJPY: 17,
-  AUDJPY: 18,
-  EURAUD: 19,
-  NZDCAD: 20,
-  NAS100: 21,
-  XAUUSD: 22,
-  BTCUSD: 23,
-  BTCEUR: 24,
-  ETHUSD: 25,
-  ETHEUR: 26,
-  LTCUSD: 27,
-  LTCEUR: 28,
-  SOLUSD: 29,
 });
 
 export class DeterministicProviderQueue {
@@ -101,16 +83,20 @@ export class DeterministicProviderQueue {
   private readonly safetyMargin: number;
   private readonly maxRetries: number;
   private readonly windowBufferMs: number;
+  private readonly priorityAgingMs: number;
   private readonly now: () => number;
   private readonly sleep: (durationMs: number) => Promise<void>;
   private readonly waiting: QueueJob[] = [];
   private readonly keyWindows: KeyWindowState[];
+  private readonly pending = new Map<string, { promise: Promise<ProviderSuccess>; jobId: number; expiresAtMs: number }>();
   private active: QueueJob | null = null;
   private drainScheduled = false;
   private sequence = 0;
   private completedJobs = 0;
   private retries = 0;
   private failedJobs = 0;
+  private coalescedRequests = 0;
+  private expiredJobs = 0;
   private keyRoundRobin = 0;
 
   constructor(options: DeterministicProviderQueueOptions) {
@@ -120,12 +106,14 @@ export class DeterministicProviderQueue {
     this.safetyMargin = nonNegativeInteger(options.safetyMargin, 1);
     this.maxRetries = nonNegativeInteger(options.maxRetries, 2);
     this.windowBufferMs = nonNegativeInteger(options.windowBufferMs, 250);
+    this.priorityAgingMs = positiveInteger(options.priorityAgingMs, 60_000);
     this.now = options.now ?? Date.now;
     this.sleep = options.sleep ?? (durationMs => new Promise(resolve => setTimeout(resolve, durationMs)));
     this.keyWindows = Array.from({ length: this.keyCount }, () => ({
       windowStartMs: -1,
       creditsUsed: 0,
       cooldownUntilMs: 0,
+      dailyBlockedUntilMs: 0,
     }));
     if (this.availableCreditsPerMinute < 1) {
       throw new Error('Provider queue safety margin must leave at least one usable credit per minute.');
@@ -133,11 +121,27 @@ export class DeterministicProviderQueue {
   }
 
   enqueue(request: ProviderRequest): Promise<ProviderSuccess> {
-    return new Promise<ProviderSuccess>((resolve, reject) => {
+    // Share only identical requests in the same bar slot; a new close needs fresh data.
+    const intervalMs = request.timeframe === '1m' ? 60_000 : request.timeframe === '15m' ? 900_000
+      : request.timeframe === '1h' ? 3_600_000 : 14_400_000;
+    const requestKey = `${request.endpoint}:${request.symbol}:${request.timeframe}:${request.outputSize}:${request.maxQueueAgeMs ?? 'default'}:${Math.floor(this.now() / intervalMs)}`;
+    const existing = this.pending.get(requestKey);
+    if (existing && existing.expiresAtMs > this.now()) {
+      this.coalescedRequests += 1;
+      return existing.promise;
+    }
+    const id = ++this.sequence;
+    const enqueuedAtMs = this.now();
+    const expiresAtMs = enqueuedAtMs + positiveInteger(request.maxQueueAgeMs, MAX_QUEUE_AGE_MS[request.timeframe]);
+    const promise = new Promise<ProviderSuccess>((resolve, reject) => {
       const job: QueueJob = {
-        id: ++this.sequence,
+        id,
         request,
         retryCount: 0,
+        networkAttempts: 0,
+        enqueuedAtMs,
+        expiresAtMs,
+        requestKey,
         resolve,
         reject,
       };
@@ -146,6 +150,8 @@ export class DeterministicProviderQueue {
       this.emitQueueTelemetry('ENQUEUED', job);
       this.scheduleDrain();
     });
+    this.pending.set(requestKey, { promise, jobId: id, expiresAtMs });
+    return promise;
   }
 
   getMetrics(): ProviderQueueMetrics {
@@ -156,6 +162,12 @@ export class DeterministicProviderQueue {
       completedJobs: this.completedJobs,
       retryCount: this.retries,
       failedJobs: this.failedJobs,
+      coalescedRequests: this.coalescedRequests,
+      expiredJobs: this.expiredJobs,
+      dailyBlockedKeys: this.keyWindows.filter(key => key.dailyBlockedUntilMs > this.now()).length,
+      nextDailyRetryAt: this.keyWindows.some(key => key.dailyBlockedUntilMs > this.now())
+        ? new Date(Math.min(...this.keyWindows.filter(key => key.dailyBlockedUntilMs > this.now()).map(key => key.dailyBlockedUntilMs))).toISOString()
+        : null,
     });
   }
 
@@ -174,6 +186,7 @@ export class DeterministicProviderQueue {
 
   private async drain(): Promise<void> {
     if (this.active) return;
+    this.sortWaitingJobs();
     const job = this.waiting.shift();
     if (!job) return;
     this.active = job;
@@ -181,26 +194,35 @@ export class DeterministicProviderQueue {
 
     try {
       const result = await this.executeWithRetry(job);
+      this.assertUseful(job);
       this.completedJobs += 1;
       this.emitQueueTelemetry('COMPLETED', job);
       job.resolve(result);
     } catch (error) {
       this.failedJobs += 1;
-      this.emitQueueTelemetry('FAILED', job);
+      if (error instanceof ProviderRequestExpiredError) this.expiredJobs += 1;
+      this.emitQueueTelemetry('FAILED', job, error);
       job.reject(error);
     } finally {
+      if (this.pending.get(job.requestKey)?.jobId === job.id) this.pending.delete(job.requestKey);
       this.active = null;
       this.scheduleDrain();
     }
   }
 
   private async executeWithRetry(job: QueueJob): Promise<ProviderSuccess> {
-    let currentKeyIndex: number | undefined = undefined;
     for (;;) {
-      const keyIdx = await this.acquireKeyAndCredit(currentKeyIndex);
-      currentKeyIndex = undefined;
+      const keyIdx = await this.acquireKeyAndCredit(job);
+      this.assertUseful(job);
       try {
+        job.networkAttempts += 1;
         const result = await this.transport(job.request, job.retryCount, keyIdx);
+        // Provider headers reflect other consumers using the same key as well.
+        const key = this.keyWindows[keyIdx];
+        if (Number.isFinite(result.metadata.apiCreditsUsed) && result.metadata.apiCreditsUsed !== null)
+          key.creditsUsed = Math.max(key.creditsUsed, result.metadata.apiCreditsUsed);
+        if (result.metadata.apiCreditsLeft === 0)
+          key.cooldownUntilMs = Math.max(key.cooldownUntilMs, minuteWindowStart(this.now()) + 60_000 + this.windowBufferMs);
         recordProviderTelemetry({
           type: 'provider',
           provider: 'TWELVE_DATA',
@@ -212,37 +234,36 @@ export class DeterministicProviderQueue {
         return result;
       } catch (error) {
         recordProviderTelemetry(providerFailureTelemetry(job, error));
-        if (!(error instanceof ProviderRateLimitError) || job.retryCount >= this.maxRetries) {
-          throw error;
+        if (!(error instanceof ProviderRateLimitError)) throw error;
+        const now = this.now();
+        const key = this.keyWindows[keyIdx];
+        if (error.limitScope === 'DAY') {
+          // Twelve Data's daily reset is midnight UTC. Do not occupy the queue until then.
+          key.dailyBlockedUntilMs = Math.max((Math.floor(now / 86_400_000) + 1) * 86_400_000 + this.windowBufferMs,
+            now + (error.retryAfterMs ?? 0));
+        } else {
+          key.cooldownUntilMs = Math.max(minuteWindowStart(now) + 60_000 + this.windowBufferMs,
+            now + (error.retryAfterMs ?? 0));
         }
-
-        const cooldownDuration = error.retryAfterMs ?? (60_000 + this.windowBufferMs);
-        this.keyWindows[keyIdx].cooldownUntilMs = this.now() + cooldownDuration;
+        // Apply cooldown even to the last failed attempt, so following jobs do not hammer the key.
+        if (job.retryCount >= this.maxRetries) throw error;
 
         job.retryCount += 1;
         this.retries += 1;
         this.emitQueueTelemetry('RETRY_WAIT', job);
 
-        const otherKeyAvailable = this.keyWindows.some((kw, i) => i !== keyIdx && this.now() >= kw.cooldownUntilMs);
-        if (otherKeyAvailable && this.keyCount > 1) {
-          currentKeyIndex = (keyIdx + 1) % this.keyCount;
-          continue;
-        }
-
-        await this.waitForNextCreditWindow(error.retryAfterMs);
+        // acquireKeyAndCredit selects another usable key, waits briefly, or fails explicitly.
       }
     }
   }
 
-  private async acquireKeyAndCredit(preferredKeyIndex?: number): Promise<number> {
+  private async acquireKeyAndCredit(job: QueueJob): Promise<number> {
     for (;;) {
+      this.assertUseful(job);
       this.refreshAllWindows();
       const now = this.now();
 
       const candidateKeys: number[] = [];
-      if (preferredKeyIndex !== undefined && preferredKeyIndex >= 0 && preferredKeyIndex < this.keyCount) {
-        candidateKeys.push(preferredKeyIndex);
-      }
       for (let i = 0; i < this.keyCount; i++) {
         const k = (this.keyRoundRobin + i) % this.keyCount;
         if (!candidateKeys.includes(k)) candidateKeys.push(k);
@@ -250,14 +271,22 @@ export class DeterministicProviderQueue {
 
       for (const keyIdx of candidateKeys) {
         const kw = this.keyWindows[keyIdx];
-        if (now >= kw.cooldownUntilMs && kw.creditsUsed < this.availableCreditsPerMinute) {
+        if (now >= kw.dailyBlockedUntilMs && now >= kw.cooldownUntilMs && kw.creditsUsed < this.availableCreditsPerMinute) {
           kw.creditsUsed += 1;
           this.keyRoundRobin = (keyIdx + 1) % this.keyCount;
           return keyIdx;
         }
       }
 
-      await this.waitForNextCreditWindow(null);
+      const dailyAvailable = this.keyWindows.filter(key => now >= key.dailyBlockedUntilMs);
+      if (dailyAvailable.length === 0) {
+        const retryAfterMs = Math.min(...this.keyWindows.map(key => key.dailyBlockedUntilMs)) - now;
+        throw new ProviderRateLimitError('All configured provider keys have exhausted their daily quota; scan deferred until reset.',
+          job.request, job.retryCount, retryAfterMs, null, null, 'DAY');
+      }
+      const earliest = Math.min(...dailyAvailable.map(key => Math.max(key.cooldownUntilMs,
+        key.creditsUsed >= this.availableCreditsPerMinute ? minuteWindowStart(now) + 60_000 + this.windowBufferMs : now)));
+      await this.sleep(Math.min(Math.max(1, earliest - now), job.expiresAtMs - now));
     }
   }
 
@@ -271,25 +300,25 @@ export class DeterministicProviderQueue {
     }
   }
 
-  private async waitForNextCreditWindow(providerRetryAfterMs: number | null): Promise<void> {
-    const now = this.now();
-    const boundaryWaitMs = minuteWindowStart(now) + 60_000 - now + this.windowBufferMs;
-    const waitMs = Math.max(boundaryWaitMs, providerRetryAfterMs ?? 0);
-    await this.sleep(Math.max(0, waitMs));
-    this.refreshAllWindows();
+  private assertUseful(job: QueueJob): void {
+    if (this.now() >= job.expiresAtMs) throw new ProviderRequestExpiredError(job.request, job.retryCount);
   }
 
   private sortWaitingJobs(): void {
+    const now = this.now();
+    // Aging lets H1/H4 catch up; FIFO removes permanent preference for the first symbols.
+    const priority = (job: QueueJob) => TIMEFRAME_PRIORITY[job.request.timeframe]
+      - Math.floor((now - job.enqueuedAtMs) / this.priorityAgingMs);
     this.waiting.sort((left, right) =>
-      TIMEFRAME_PRIORITY[left.request.timeframe] - TIMEFRAME_PRIORITY[right.request.timeframe] ||
-      (SYMBOL_PRIORITY[left.request.symbol] ?? 30) - (SYMBOL_PRIORITY[right.request.symbol] ?? 30) ||
+      priority(left) - priority(right) ||
       left.id - right.id
     );
   }
 
   private emitQueueTelemetry(
     event: 'ENQUEUED' | 'STARTED' | 'RETRY_WAIT' | 'COMPLETED' | 'FAILED',
-    job: QueueJob
+    job: QueueJob,
+    error?: unknown
   ): void {
     const metrics = this.getMetrics();
     recordProviderQueueTelemetry({
@@ -301,12 +330,22 @@ export class DeterministicProviderQueue {
       symbol: job.request.symbol,
       timeframe: job.request.timeframe,
       jobRetryCount: job.retryCount,
+      networkAttempts: job.networkAttempts,
       queueLength: metrics.queueLength,
       activeRequest: metrics.activeRequest,
       waitingJobs: metrics.waitingJobs,
       completedJobs: metrics.completedJobs,
       retryCount: metrics.retryCount,
       failedJobs: metrics.failedJobs,
+      queueAgeMs: Math.max(0, this.now() - job.enqueuedAtMs),
+      deadlineAt: new Date(job.expiresAtMs).toISOString(),
+      coalescedRequests: metrics.coalescedRequests,
+      expiredJobs: metrics.expiredJobs,
+      dailyBlockedKeys: metrics.dailyBlockedKeys,
+      nextDailyRetryAt: metrics.nextDailyRetryAt,
+      errorType: error instanceof Error ? error.name : null,
+      errorMessage: error instanceof Error ? error.message : null,
+      limitScope: error instanceof ProviderRateLimitError ? error.limitScope : null,
     });
   }
 }

@@ -60,6 +60,8 @@ describe('MacroOutcomeAnalytics', () => {
     snapshotOverrides?: any
   ): MacroOutcomeEvidenceRecord => ({
     schemaVersion: 2,
+    measurementVersion: 3,
+    executionPolicyId: 'fixture-common-policy',
     signalId: id,
     symbol: 'BTCUSD',
     direction: 'long',
@@ -168,7 +170,7 @@ describe('MacroOutcomeAnalytics', () => {
     const records = [dummyRecord('t1', 'TP', 2.0)];
     const analytics = generateMacroOutcomeAnalytics(records);
     const report = formatMacroOutcomeReport(analytics);
-    expect(report).toContain('BEGONYA MAKRO-SMC DOĞRULANMIŞ İCRA VE NEDENSEL KANIT RAPORU');
+    expect(report).toContain('BEGONYA MAKRO-SMC BETİMSEL PAPER / LIVE ÖLÇÜM RAPORU');
     expect(report).toContain('GERÇEKLEŞEN İŞLEM (Fill): 1');
     expect(report).toContain('MAKRO PİYASA REJİMLERİNE GÖRE PERFORMANS');
   });
@@ -229,7 +231,7 @@ describe('MacroOutcomeAnalytics', () => {
 
     // 4. Report includes new cost columns and sections
     const report = formatMacroOutcomeReport(analytics);
-    expect(report).toContain('NEDENSEL MAKRO ABLASYON ANALİZİ');
+    expect(report).toContain('MAKRO GÖLGE KARŞILAŞTIRMASI');
     expect(report).toContain('VARLIK SINIFI AYRIMI (Forex ve Kripto Ayrı Ölçüm)');
     expect(report).toContain('EX-ANTE TAHMİN UFKUNA GÖRE PERFORMANS');
     expect(report).toContain('Net R');

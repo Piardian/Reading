@@ -81,6 +81,7 @@ class MacroWorkflowEngine(_LegacyMacroWorkflowEngine):
         processed["policy_expectations"] = build_policy_expectations(
             raw_fred,
             market_data=raw_market,
+            as_of_datetime=as_of_datetime or dt.datetime.now(dt.timezone.utc),
         )
 
         # 8-Faktörlü Kripto Rotasyon Radarı (Canlı çalışmada veya test verisi sağlandığında)

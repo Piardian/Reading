@@ -1,0 +1,79 @@
+{
+  "generated_utc_ms": 1794215132597,
+  "state": "BRIDGE_HEARTBEAT_FRESH",
+  "heartbeat_age_ms": 632,
+  "connection_state": "Connected",
+  "feed_label": "UNVERIFIED",
+  "observed_event_counts": {
+    "session_start": 1,
+    "subscription_requested": 8,
+    "heartbeat": 184,
+    "quote": 4475,
+    "trade": 1778
+  },
+  "roots": {
+    "6E": {
+      "provider_symbol": "F.US.EU6Z26",
+      "trade_events": 373,
+      "quote_events": 665,
+      "depth_events": 0
+    },
+    "6B": {
+      "provider_symbol": "F.US.BP6Z26",
+      "trade_events": 262,
+      "quote_events": 648,
+      "depth_events": 0
+    },
+    "6A": {
+      "provider_symbol": "F.US.DA6Z26",
+      "trade_events": 127,
+      "quote_events": 703,
+      "depth_events": 0
+    },
+    "6N": {
+      "provider_symbol": "F.US.NE6Z26",
+      "trade_events": 0,
+      "quote_events": 0,
+      "depth_events": 0
+    },
+    "6J": {
+      "provider_symbol": "F.US.JY6Z26",
+      "trade_events": 244,
+      "quote_events": 655,
+      "depth_events": 0
+    },
+    "6C": {
+      "provider_symbol": "F.US.CA6Z26",
+      "trade_events": 151,
+      "quote_events": 602,
+      "depth_events": 0
+    },
+    "6S": {
+      "provider_symbol": "F.US.SF6Z26",
+      "trade_events": 64,
+      "quote_events": 458,
+      "depth_events": 0
+    },
+    "GC": {
+      "provider_symbol": "F.US.GCEZ26",
+      "trade_events": 557,
+      "quote_events": 744,
+      "depth_events": 0
+    }
+  },
+  "recent_subscription_errors": [],
+  "malformed_lines": 0,
+  "dropped_total": 0,
+  "provider_refusals_observed": {
+    "6N": {
+      "provider_root": "NE6",
+      "last_observed_utc": "2026-11-09T08:59:35.2387717Z",
+      "status": "REFUSAL_OBSERVED_IN_TODAYS_PLATFORM_LOG_NOT_A_FRESH_ENTITLEMENT_QUERY"
+    }
+  },
+  "live_verified": false,
+  "order_routing": false,
+  "execution_allowed": false,
+  "net_pnl": null,
+  "diagnostic_scope": "LATEST_TWO_FILES_MAX_16_MIB_EACH_NOT_ENTITLEMENT_OR_CLOCK_PROOF"
+}

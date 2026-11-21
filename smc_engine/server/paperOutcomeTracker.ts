@@ -1,9 +1,11 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { JsonlEvidenceStore } from './evidenceStore';
+import { JsonlEvidenceStore, EvidenceStore } from './evidenceStore';
 import type { NotificationCandidate } from './pipeline';
 import type { StoredCandle } from './candleStore';
 import type { OrderBlock, FVG } from '../src/types';
+import type { FeasibleEntryRange } from '../src/tradeExpectancyEngine';
+import { recordSignalFlowEvent } from './signalFlowMeasurement';
 import { detectAssetClass, getPipSize } from '../src/assetMetrics';
 import { selectPaperTarget } from '../src/paperOutcomeTracker';
 import { FileSignalLedger } from './signalLedger';
@@ -17,6 +19,7 @@ import {
   estimateDynamicTransactionCost,
   ForecastHorizonType,
   MacroGatingCohortType,
+  classifyPlannedHorizon,
 } from './macroOutcomeEvidence';
 
 export type PaperOutcomeType = 'TP' | 'SL' | 'BE' | 'EXPIRED' | 'CANCELLED' | 'UNKNOWN';
@@ -58,6 +61,15 @@ export interface TrackedSignal {
   isShadowCounterfactual: boolean;
   ambiguousIntracandleConflict: boolean;
   signalGeneratedAt: string;
+  signalAvailableAtMs?: number;
+  candleClosedAt?: string;
+  plannedHoldingTimeMs?: number;
+  executionPolicyId?: string;
+  partialTpEnabled?: boolean;
+  executionConfig?: PaperOutcomeTrackerConfig;
+  plannedStopLoss?: number;
+  plannedTakeProfit?: number;
+  plannedEntryRange?: FeasibleEntryRange;
 }
 
 interface TrackerState {
@@ -185,14 +197,14 @@ export class PaperOutcomeTracker {
 
   private readonly config: PaperOutcomeTrackerConfig;
   private readonly statePath: string;
-  private readonly evidenceStore: JsonlEvidenceStore;
+  private readonly evidenceStore: EvidenceStore;
   private readonly macroOutcomeStore: MacroOutcomeStore;
   private readonly signalLedger: FileSignalLedger;
   private state: TrackerState;
 
   constructor(options?: {
     readonly statePath?: string;
-    readonly evidenceStore?: JsonlEvidenceStore;
+    readonly evidenceStore?: EvidenceStore;
     readonly macroOutcomeStore?: MacroOutcomeStore;
     readonly signalLedger?: FileSignalLedger;
     readonly config?: Partial<PaperOutcomeTrackerConfig>;
@@ -211,7 +223,7 @@ export class PaperOutcomeTracker {
 
   public static getInstance(options?: {
     readonly statePath?: string;
-    readonly evidenceStore?: JsonlEvidenceStore;
+    readonly evidenceStore?: EvidenceStore;
     readonly macroOutcomeStore?: MacroOutcomeStore;
     readonly signalLedger?: FileSignalLedger;
     readonly config?: Partial<PaperOutcomeTrackerConfig>;
@@ -229,7 +241,7 @@ export class PaperOutcomeTracker {
   registerCandidate(
     candidate: NotificationCandidate,
     macroSnapshot?: MacroSnapshot,
-    options?: { readonly isShadowCounterfactual?: boolean }
+    options?: { readonly isShadowCounterfactual?: boolean; readonly observedAtMs?: number }
   ): void {
     const signalId = candidate.signalId ?? candidate.uniqueKey;
     const existing = this.state.signals[signalId];
@@ -241,16 +253,20 @@ export class PaperOutcomeTracker {
       : { low: (candidate.poi as FVG).gapLow, high: (candidate.poi as FVG).gapHigh };
     const signalTimestamp = candidate.marketDataTimestamp ?? candidate.signalContext?.timestamp ?? Date.now();
 
-    const snapshot = macroSnapshot ?? captureMacroSnapshot(candidate, signalTimestamp);
+    const registeredAt = options?.observedAtMs ?? Date.now();
+    const snapshot = macroSnapshot ?? captureMacroSnapshot(candidate, registeredAt);
 
     // Ex-ante forecast horizon determined from timeframe structure at signal emission (NOT ex-post holding time)
-    const exAnteForecastHorizon: ForecastHorizonType = 'SCALP_INTRADAY';
+    const plannedHoldingTimeMs = this.config.maxHoldBars * 15 * 60 * 1000;
+    const exAnteForecastHorizon = classifyPlannedHorizon(plannedHoldingTimeMs);
 
-    const isShadow = options?.isShadowCounterfactual ?? (snapshot.macroAction !== 'PROCEED');
-    const macroGatingCohort: MacroGatingCohortType = snapshot.macroAction === 'PROCEED'
+    const macroAllowed = candidate.macroEvaluation?.allowed ?? !['VETO', 'WAIT'].includes(snapshot.macroAction);
+    const isShadow = options?.isShadowCounterfactual ?? !macroAllowed;
+    const macroGatingCohort: MacroGatingCohortType = macroAllowed
       ? 'MACRO_APPROVED'
       : 'MACRO_BLOCKED';
-    const macroDecisionAtSignal = snapshot.macroAction === 'PROCEED' ? 'PROCEED' : 'BLOCK';
+    const macroDecisionAtSignal = macroAllowed ? 'PROCEED'
+      : snapshot.macroAction === 'WAIT' ? 'WAIT' : 'BLOCK';
 
     this.state.signals[signalId] = {
       signalId,
@@ -259,7 +275,7 @@ export class PaperOutcomeTracker {
       signalTimestamp,
       poiType: candidate.poiType,
       grade: candidate.gradeResult?.grade ?? 'B',
-      smcScore: candidate.macroEvaluation?.begonyaScore ?? candidate.gradeResult?.totalScore ?? 80,
+      smcScore: candidate.gradeResult?.totalScore ?? 80,
       macroSnapshot: snapshot,
       liquidityMagnet: candidate.liquidityMagnet,
       opposingObstacle: candidate.opposingObstacle,
@@ -282,11 +298,24 @@ export class PaperOutcomeTracker {
       macroDecisionAtSignal,
       isShadowCounterfactual: isShadow,
       ambiguousIntracandleConflict: false,
-      signalGeneratedAt: new Date(signalTimestamp).toISOString(),
+      signalGeneratedAt: new Date(registeredAt).toISOString(),
+      signalAvailableAtMs: Math.max(signalTimestamp + 15 * 60000, registeredAt),
+      candleClosedAt: new Date(signalTimestamp + 15 * 60000).toISOString(),
+      plannedHoldingTimeMs,
+      partialTpEnabled: Boolean(this.config.enablePartialTp),
+      executionPolicyId: `paper-v3:strict-bar1:sl-first:plan-${candidate.expectancyPlan?.version ?? 'fallback'}${candidate.expectancyPlan?.version === 'v1.2' ? ':fixed-entry-band:closed-m15' : ''}:${JSON.stringify(this.config)}`,
+      executionConfig: this.config,
+      plannedStopLoss: candidate.expectancyPlan?.version === 'v1.1' || candidate.expectancyPlan?.version === 'v1.2' ? candidate.expectancyPlan.stopLoss : undefined,
+      plannedTakeProfit: candidate.expectancyPlan?.version === 'v1.1' || candidate.expectancyPlan?.version === 'v1.2' ? candidate.expectancyPlan.tp2.price : undefined,
+      plannedEntryRange: candidate.expectancyPlan?.entryRange ?? undefined,
     };
     this.persist();
 
     // Record base SIGNAL_ISSUED
+    recordSignalFlowEvent('PAPER_REGISTERED', { signalId, symbol: candidate.symbol,
+      poiId: candidate.dedupeKey ?? candidate.uniqueKey, signalGeneratedAt: new Date(registeredAt).toISOString(),
+      executionPolicyId: this.state.signals[signalId].executionPolicyId, macroAllowed,
+      plan: candidate.expectancyPlan ?? null, macroSnapshot: snapshot });
     void this.signalLedger.ensureSignalIssued({
       signalId,
       symbol: candidate.symbol,
@@ -303,7 +332,7 @@ export class PaperOutcomeTracker {
       score: candidate.gradeResult?.totalScore ?? 0,
       entryAllowed: candidate.gradeResult?.entryAllowed ?? true,
       macro: snapshot ? {
-        allowed: snapshot.macroAction === 'PROCEED',
+        allowed: macroAllowed,
         action: snapshot.macroAction,
         mappedMacroKey: candidate.symbol,
         tradeDirection: candidate.tradeDirection,
@@ -327,7 +356,9 @@ export class PaperOutcomeTracker {
       if (signal.symbol !== symbol || signal.status === 'CLOSED') continue;
 
       const newCandles = candles
-        .filter(candle => candle.timestamp > signal.lastProcessedCandleTimestamp)
+        .filter(candle => candle.timestamp > signal.lastProcessedCandleTimestamp &&
+          candle.timestamp >= (signal.signalAvailableAtMs ?? signal.signalTimestamp) &&
+          (!signal.executionPolicyId?.includes('plan-v1.2') || candle.timestamp + 15 * 60_000 <= Date.now()))
         .sort((a, b) => a.timestamp - b.timestamp);
 
       for (const candle of newCandles) {
@@ -350,13 +381,22 @@ export class PaperOutcomeTracker {
   }
 
   private processCandle(signal: TrackedSignal, candle: StoredCandle): { changed: boolean; closed: boolean } {
+    const config = signal.executionConfig ?? this.config;
     if (signal.status === 'WAITING_ENTRY') {
-      if (candle.timestamp - signal.signalTimestamp >= this.config.entryExpiryMs) {
+      if (candle.timestamp - signal.signalTimestamp >= config.entryExpiryMs) {
         this.close(signal, 'EXPIRED', candle.timestamp, 'Entry zone was not triggered before the configured entry window expired.');
         return { changed: true, closed: true };
       }
 
-      if (!touchesZoneWithSpread(candle, signal.zoneLow, signal.zoneHigh, signal.direction, signal.symbol)) {
+      const range = signal.plannedEntryRange;
+      if (signal.executionPolicyId?.includes('plan-v1.2') &&
+          (signal.direction === 'long' ? candle.close < signal.zoneLow : candle.close > signal.zoneHigh)) {
+        this.close(signal, 'CANCELLED', candle.timestamp, 'Completed M15 close invalidated the original POI before paper entry.');
+        return { changed: true, closed: true };
+      }
+      const entryLow = range?.low ?? signal.zoneLow;
+      const entryHigh = range?.high ?? signal.zoneHigh;
+      if (!touchesZoneWithSpread(candle, entryLow, entryHigh, signal.direction, signal.symbol)) {
         return { changed: false, closed: false };
       }
 
@@ -383,17 +423,34 @@ export class PaperOutcomeTracker {
         return { changed: false, closed: false };
       }
 
-      const entryPrice = resolveEntryPrice(signal.direction, signal.zoneLow, signal.zoneHigh, candle.open, signal.poiType);
+      const entryPrice = resolveEntryPrice(signal.direction, entryLow, entryHigh, candle.open, signal.poiType);
+      // A touch of part of the box is not proof that the selected paper entry traded.
+      if (range && (entryPrice < candle.low || entryPrice > candle.high)) return { changed: false, closed: false };
       const buffer = calculateAssetCalibratedStopBuffer(signal.symbol, signal.zoneLow, signal.zoneHigh);
-      const stopLoss = signal.direction === 'long' ? signal.zoneLow - buffer : signal.zoneHigh + buffer;
+      const stopLoss = signal.plannedStopLoss ?? (signal.direction === 'long' ? signal.zoneLow - buffer : signal.zoneHigh + buffer);
+      if (signal.direction === 'long' ? stopLoss >= entryPrice : stopLoss <= entryPrice) {
+        this.close(signal, 'CANCELLED', candle.timestamp, 'Planned stop is no longer on the risk side of the simulated entry.');
+        return { changed: true, closed: true };
+      }
       const rawRiskDistance = Math.abs(entryPrice - stopLoss);
-      // Ensure risk distance has a safe floor based on pip buffer to prevent microscopic stops from triggering instant whipsaw conflicts
-      const riskDistance = Math.max(rawRiskDistance, buffer * 1.5);
+      // R must use the actual distance to the structural stop.
+      const riskDistance = rawRiskDistance;
 
       if (!Number.isFinite(riskDistance) || riskDistance <= 0) {
         this.close(signal, 'UNKNOWN', candle.timestamp, 'Invalid synthetic risk distance prevented deterministic outcome calculation.');
         return { changed: true, closed: true };
       }
+      const initialCosts = estimateDynamicTransactionCost({
+        symbol: signal.symbol, riskDistance, entryPrice,
+        vixLevel: signal.macroSnapshot?.vixLevel,
+        newsFreezeActive: signal.macroSnapshot?.newsFreezeActive,
+        minutesToNewsEvent: signal.macroSnapshot?.minutesToNewsEvent,
+      });
+      const entryCostDistance = Math.max(range?.nominalCostDistance ?? 0,
+        initialCosts.spreadDistance + initialCosts.slippageDistance + initialCosts.commissionDistance);
+      if (range && (signal.direction === 'long' ? range.targetPrice - entryPrice : entryPrice - range.targetPrice)
+          - entryCostDistance < range.minimumNetRR * (riskDistance + entryCostDistance))
+        return { changed: false, closed: false };
 
       const targetSelection = selectPaperTarget({
         entryPrice,
@@ -404,7 +461,13 @@ export class PaperOutcomeTracker {
         opposingObstacle: signal.opposingObstacle,
       });
 
-      const targetR = Math.max(2.0, Math.min(5.0, targetSelection.targetR));
+      const targetR = signal.plannedTakeProfit !== undefined
+        ? (signal.direction === 'long' ? signal.plannedTakeProfit - entryPrice : entryPrice - signal.plannedTakeProfit) / riskDistance
+        : Math.max(2.0, Math.min(5.0, targetSelection.targetR));
+      if (!Number.isFinite(targetR) || targetR <= 0) {
+        this.close(signal, 'CANCELLED', candle.timestamp, 'Planned target is no longer on the reward side of the simulated entry.');
+        return { changed: true, closed: true };
+      }
       const takeProfit = signal.direction === 'long'
         ? entryPrice + riskDistance * targetR
         : entryPrice - riskDistance * targetR;
@@ -416,15 +479,9 @@ export class PaperOutcomeTracker {
       signal.targetR = targetR;
       signal.entryTriggeredAt = candle.timestamp;
       signal.status = 'OPEN';
-
-      const initialCosts = estimateDynamicTransactionCost({
-        symbol: signal.symbol,
-        riskDistance,
-        entryPrice,
-        vixLevel: signal.macroSnapshot?.vixLevel,
-        newsFreezeActive: signal.macroSnapshot?.newsFreezeActive,
-        minutesToNewsEvent: signal.macroSnapshot?.minutesToNewsEvent,
-      });
+      recordSignalFlowEvent('PAPER_ENTERED', { signalId: signal.signalId, symbol: signal.symbol,
+        entryTimestamp: candle.timestamp, entryPrice, stopLoss, takeProfit, riskDistance,
+        executionPolicyId: signal.executionPolicyId });
 
       void this.signalLedger.recordEntry(signal.signalId, {
         executionSource: 'PAPER',
@@ -437,7 +494,7 @@ export class PaperOutcomeTracker {
         console.warn(`[PaperOutcomeTracker] Ledger recordEntry failed for ${signal.signalId}:`, err);
       });
 
-      const exit = evaluateOpenCandle(signal, candle, true, this.config);
+      const exit = evaluateOpenCandle(signal, candle, true, config);
       if (exit) {
         this.close(signal, exit.type, candle.timestamp, exit.reason);
         return { changed: true, closed: true };
@@ -455,33 +512,32 @@ export class PaperOutcomeTracker {
     const rawAdverse = signal.direction === 'long'
       ? Math.max(0, signal.entryPrice - candle.low)
       : Math.max(0, candle.high - signal.entryPrice);
-    // Cap MAE at 1.05R to reflect true position risk without recording post-stop external market drift
-    const cappedAdverse = Math.min(rawAdverse, signal.riskDistance * 1.05);
-
-    signal.maximumFavorableExcursion = Math.max(signal.maximumFavorableExcursion, favorable / signal.riskDistance);
-    signal.maximumAdverseExcursion = Math.max(signal.maximumAdverseExcursion, cappedAdverse / signal.riskDistance);
-
-    const isPartialTpActive = Boolean(this.config.enablePartialTp || signal.isShadowCounterfactual);
-    const partialTpTarget = this.config.partialTpAtR ?? 1.2;
-    if (isPartialTpActive && !signal.partialTpTaken && favorable >= signal.riskDistance * partialTpTarget) {
+    const isPartialTpActive = signal.partialTpEnabled ?? Boolean(config.enablePartialTp);
+    const partialTpTarget = config.partialTpAtR ?? 1.2;
+    const activeStop = signal.beArmed ? signal.entryPrice : signal.stopLoss;
+    const stoppedInCandle = signal.direction === 'long' ? candle.low <= activeStop : candle.high >= activeStop;
+    // Stop-bar favorable extremes may occur after the position was closed.
+    if (!stoppedInCandle) signal.maximumFavorableExcursion = Math.max(signal.maximumFavorableExcursion, favorable / signal.riskDistance);
+    signal.maximumAdverseExcursion = Math.max(signal.maximumAdverseExcursion, Math.min(rawAdverse / signal.riskDistance, 1));
+    if (isPartialTpActive && !stoppedInCandle && !signal.partialTpTaken && favorable >= signal.riskDistance * partialTpTarget) {
       signal.partialTpTaken = true;
     }
 
     // Evaluate exit on candle first to prevent same-candle whipsaw from being marked as BE when hitting SL on the very same candle
-    const exit = evaluateOpenCandle(signal, candle, false, this.config);
+    const exit = evaluateOpenCandle(signal, candle, false, config);
     if (exit) {
       this.close(signal, exit.type, candle.timestamp, exit.reason);
       return { changed: true, closed: true };
     }
 
     // Arm BE only if the candle closed or progressed favorably without hitting SL first
-    if (!signal.beArmed && favorable >= signal.riskDistance * this.config.breakEvenAtR) {
+    if (!signal.beArmed && favorable >= signal.riskDistance * config.breakEvenAtR) {
       signal.beArmed = true;
     }
 
-    const maxHoldMs = this.config.maxHoldBars * 15 * 60 * 1000;
+    const maxHoldMs = config.maxHoldBars * 15 * 60 * 1000;
     if (signal.entryTriggeredAt !== null && candle.timestamp - signal.entryTriggeredAt >= maxHoldMs) {
-      this.close(signal, 'EXPIRED', candle.timestamp, 'Maximum configured holding period elapsed before TP, SL or BE.');
+      this.close(signal, 'EXPIRED', candle.timestamp, 'Maximum configured holding period elapsed; outcome unresolved without an observed exit.');
       return { changed: true, closed: true };
     }
 
@@ -489,6 +545,7 @@ export class PaperOutcomeTracker {
   }
 
   private close(signal: TrackedSignal, outcome: PaperOutcomeType, timestamp: number, reason: string): void {
+    const config = signal.executionConfig ?? this.config;
     signal.status = 'CLOSED';
     signal.outcome = outcome;
     signal.exitTimestamp = timestamp;
@@ -496,10 +553,10 @@ export class PaperOutcomeTracker {
 
     const isFilledTrade = signal.entryTriggeredAt !== null;
     const exitPrice = resolveSyntheticExitPrice(signal, outcome);
-    const targetMultiplier = signal.targetR ?? this.config.riskReward;
-    const isPartialTpActive = Boolean(this.config.enablePartialTp || signal.isShadowCounterfactual);
-    const partialRatio = this.config.partialTpRatio ?? 0.5;
-    const partialR = this.config.partialTpAtR ?? 1.2;
+    const targetMultiplier = signal.targetR ?? config.riskReward;
+    const isPartialTpActive = signal.partialTpEnabled ?? Boolean(config.enablePartialTp);
+    const partialRatio = config.partialTpRatio ?? 0.5;
+    const partialR = config.partialTpAtR ?? 1.2;
 
     // Realized R with Partial TP (TP1) support:
     let rrAchieved: number | null = null;
@@ -568,7 +625,7 @@ export class PaperOutcomeTracker {
       void this.signalLedger.recordExit(signal.signalId, {
         executionSource: 'PAPER',
         exitTimestamp: timestamp,
-        exitPrice: exitPrice ?? (signal.entryPrice ?? 0),
+        exitPrice,
         outcome: exitOutcome,
         realizedR: rrAchieved,
         holdingTimeMs,
@@ -585,7 +642,7 @@ export class PaperOutcomeTracker {
     // 2. Append enriched Macro Outcome Evidence Record (Schema v2)
     const executionSource: 'TEST' | 'PAPER' | 'LIVE' = process.env.NODE_ENV === 'test'
       ? 'TEST'
-      : (process.env.EXECUTION_SOURCE === 'LIVE' ? 'LIVE' : 'PAPER');
+      : 'PAPER';
 
     const macroOutcomeRecord: MacroOutcomeEvidenceRecord = {
       schemaVersion: 2,
@@ -613,28 +670,35 @@ export class PaperOutcomeTracker {
 
       executionSource,
       entryConfirmed: isFilledTrade,
-      fillModel: 'STRICT_BID_ASK',
+      fillModel: 'CONSERVATIVE_SL_FIRST',
       spreadCostR: dynamicCosts.spreadCostR,
       slippageCostR: dynamicCosts.slippageCostR,
       commissionCostR: dynamicCosts.commissionCostR,
       totalCostR: dynamicCosts.totalCostR,
       netRealizedR,
       assetClass: detectAssetClass(signal.symbol),
-      exAnteForecastHorizon: signal.exAnteForecastHorizon ?? 'SCALP_INTRADAY',
+      exAnteForecastHorizon: signal.exAnteForecastHorizon ?? 'UNKNOWN',
       realizedHoldingDuration,
       macroGatingCohort: signal.macroGatingCohort ?? 'SMC_ONLY',
       macroDecisionAtSignal: signal.macroDecisionAtSignal ?? 'PROCEED',
 
       signalGeneratedAt: signal.signalGeneratedAt ?? new Date(signal.signalTimestamp).toISOString(),
-      candleClosedAt: new Date(signal.signalTimestamp).toISOString(),
+      candleClosedAt: signal.candleClosedAt ?? new Date(signal.signalTimestamp + 15 * 60000).toISOString(),
       entryTriggeredAt: signal.entryTriggeredAt ? new Date(signal.entryTriggeredAt).toISOString() : null,
       exitOccurredAt: new Date(timestamp).toISOString(),
       recordedAt: new Date().toISOString(),
-      pipelineLatencyMs: 0,
-      decisionEngineVersion: 'v2.1.0',
+      pipelineLatencyMs: signal.signalGeneratedAt && signal.candleClosedAt
+        ? Math.max(0, Date.parse(signal.signalGeneratedAt) - Date.parse(signal.candleClosedAt)) : null,
+      decisionEngineVersion: 'paper-measurement-v3',
       ambiguousIntracandleConflict: signal.ambiguousIntracandleConflict,
+      measurementVersion: signal.executionPolicyId ? 3 : 2,
+      executionPolicyId: signal.executionPolicyId,
+      plannedHoldingTimeMs: signal.plannedHoldingTimeMs,
+      costModel: 'ESTIMATED',
+      evidenceScope: 'SMC_PAPER_WITH_ECONOMIC_MACRO',
     };
 
+    recordSignalFlowEvent('PAPER_CLOSED', macroOutcomeRecord);
     void this.macroOutcomeStore.appendRecord(macroOutcomeRecord).catch(error => {
       console.warn(`[PaperOutcomeTracker] Macro outcome evidence write failed for ${signal.signalId}:`, error);
     });
@@ -713,7 +777,7 @@ function resolveSyntheticExitPrice(signal: TrackedSignal, outcome: PaperOutcomeT
   if (outcome === 'TP') return signal.takeProfit;
   if (outcome === 'SL') return signal.stopLoss;
   if (outcome === 'BE') return signal.entryPrice;
-  return signal.entryPrice;
+  return null;
 }
 
 function evaluateOpenCandle(
@@ -737,7 +801,8 @@ function evaluateOpenCandle(
       ambiguousConflict: true,
     };
   }
-  if (hitsTP) return { type: 'TP', reason: `Synthetic take-profit reached at ${signal.targetR ?? config.riskReward}R (Liquidity Target).` };
+  // Entry-bar favorable extremes may precede the fill. Only adverse execution is counted on that bar.
+  if (hitsTP && !entryCandle && !hitsBE) return { type: 'TP', reason: `Synthetic take-profit reached at ${signal.targetR ?? config.riskReward}R (Liquidity Target).` };
   if (hitsSL) return { type: signal.beArmed ? 'BE' : 'SL', reason: signal.beArmed ? 'Break-even stop was hit after the BE threshold was armed.' : 'Synthetic stop-loss reached before break-even activation.' };
   if (hitsBE && !entryCandle) return { type: 'BE', reason: 'Break-even threshold was armed and price returned to the synthetic entry.' };
   return null;

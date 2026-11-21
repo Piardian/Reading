@@ -1,0 +1,465 @@
+{
+  "checked_utc_ms": 1794347660190,
+  "service": {
+    "state": "RUNNING",
+    "pid": 3148,
+    "status_age_ms": 7051,
+    "errors": [],
+    "loop_ms": 671,
+    "owned_processes": [
+      {
+        "pid": 3148,
+        "parent_pid": 26460
+      },
+      {
+        "pid": 26804,
+        "parent_pid": 3148
+      },
+      {
+        "pid": 28728,
+        "parent_pid": 3148
+      }
+    ]
+  },
+  "mt5": {
+    "terminal": "C:\\Program Files\\Five Percent Online MetaTrader 5\\terminal64.exe",
+    "connection": "CONNECTED",
+    "error": null,
+    "candle_series": 88,
+    "smc_states": {
+      "NO_SETUP": 21
+    },
+    "smc_errors": {}
+  },
+  "crypto": {
+    "universe": 40,
+    "connection": "CONNECTED",
+    "collector_pid": 18116,
+    "ipc_queue_batches": 5,
+    "source_pending_events": 0,
+    "source_errors": {},
+    "ready_symbols": [
+      "BTCUSD",
+      "ETHUSD",
+      "LTCUSD",
+      "SOLUSD",
+      "BNBUSD",
+      "SUIUSD",
+      "AVAXUSD",
+      "NEARUSD",
+      "XRPUSD",
+      "FETUSD",
+      "VIRTUALUSD",
+      "AAVEUSD",
+      "INJUSD",
+      "DOGEUSD",
+      "PEPEUSD"
+    ],
+    "details": {
+      "BTCUSD": {
+        "state": "RESEARCH_FEATURES_READY",
+        "reasons": [],
+        "bbo_age_ms": 125,
+        "last_trade_age_ms": 189,
+        "faults": {}
+      },
+      "ETHUSD": {
+        "state": "RESEARCH_FEATURES_READY",
+        "reasons": [],
+        "bbo_age_ms": 132,
+        "last_trade_age_ms": 204,
+        "faults": {}
+      },
+      "LTCUSD": {
+        "state": "RESEARCH_FEATURES_READY",
+        "reasons": [],
+        "bbo_age_ms": 462,
+        "last_trade_age_ms": 3016,
+        "faults": {}
+      },
+      "SOLUSD": {
+        "state": "RESEARCH_FEATURES_READY",
+        "reasons": [],
+        "bbo_age_ms": 190,
+        "last_trade_age_ms": 1261,
+        "faults": {}
+      },
+      "BNBUSD": {
+        "state": "RESEARCH_FEATURES_READY",
+        "reasons": [],
+        "bbo_age_ms": 117,
+        "last_trade_age_ms": 187,
+        "faults": {}
+      },
+      "SUIUSD": {
+        "state": "RESEARCH_FEATURES_READY",
+        "reasons": [],
+        "bbo_age_ms": 243,
+        "last_trade_age_ms": 1056,
+        "faults": {}
+      },
+      "AVAXUSD": {
+        "state": "RESEARCH_FEATURES_READY",
+        "reasons": [],
+        "bbo_age_ms": 128,
+        "last_trade_age_ms": 224,
+        "faults": {}
+      },
+      "NEARUSD": {
+        "state": "RESEARCH_FEATURES_READY",
+        "reasons": [],
+        "bbo_age_ms": 167,
+        "last_trade_age_ms": 345,
+        "faults": {}
+      },
+      "APTUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH",
+          "CRYPTO_BBO_NOT_FRESH"
+        ],
+        "bbo_age_ms": 5196,
+        "last_trade_age_ms": 15454,
+        "faults": {}
+      },
+      "SEIUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH",
+          "CRYPTO_BBO_NOT_FRESH"
+        ],
+        "bbo_age_ms": 4051,
+        "last_trade_age_ms": 15959,
+        "faults": {}
+      },
+      "ARBUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH",
+          "CRYPTO_BBO_NOT_FRESH"
+        ],
+        "bbo_age_ms": 3061,
+        "last_trade_age_ms": 8767,
+        "faults": {}
+      },
+      "OPUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH"
+        ],
+        "bbo_age_ms": 146,
+        "last_trade_age_ms": null,
+        "faults": {}
+      },
+      "XRPUSD": {
+        "state": "RESEARCH_FEATURES_READY",
+        "reasons": [],
+        "bbo_age_ms": 215,
+        "last_trade_age_ms": 1260,
+        "faults": {}
+      },
+      "ADAUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH",
+          "CRYPTO_BBO_NOT_FRESH"
+        ],
+        "bbo_age_ms": 5073,
+        "last_trade_age_ms": 23223,
+        "faults": {}
+      },
+      "DASHUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH"
+        ],
+        "bbo_age_ms": 190,
+        "last_trade_age_ms": 16634,
+        "faults": {}
+      },
+      "BCHUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH"
+        ],
+        "bbo_age_ms": 186,
+        "last_trade_age_ms": 16953,
+        "faults": {}
+      },
+      "LINKUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH"
+        ],
+        "bbo_age_ms": 200,
+        "last_trade_age_ms": 5106,
+        "faults": {}
+      },
+      "DOTUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH"
+        ],
+        "bbo_age_ms": 228,
+        "last_trade_age_ms": 23395,
+        "faults": {}
+      },
+      "FETUSD": {
+        "state": "RESEARCH_FEATURES_READY",
+        "reasons": [],
+        "bbo_age_ms": 187,
+        "last_trade_age_ms": 213,
+        "faults": {}
+      },
+      "RENDERUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH"
+        ],
+        "bbo_age_ms": 191,
+        "last_trade_age_ms": 6396,
+        "faults": {}
+      },
+      "TAOUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH"
+        ],
+        "bbo_age_ms": 184,
+        "last_trade_age_ms": 6448,
+        "faults": {}
+      },
+      "VIRTUALUSD": {
+        "state": "RESEARCH_FEATURES_READY",
+        "reasons": [],
+        "bbo_age_ms": 597,
+        "last_trade_age_ms": 2978,
+        "faults": {}
+      },
+      "WLDUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_BBO_NOT_FRESH"
+        ],
+        "bbo_age_ms": 2531,
+        "last_trade_age_ms": 3820,
+        "faults": {}
+      },
+      "ARKMUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH",
+          "CRYPTO_BBO_NOT_FRESH"
+        ],
+        "bbo_age_ms": 11081,
+        "last_trade_age_ms": null,
+        "faults": {}
+      },
+      "IOUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH",
+          "CRYPTO_BBO_NOT_FRESH"
+        ],
+        "bbo_age_ms": 12843,
+        "last_trade_age_ms": 23425,
+        "faults": {}
+      },
+      "UNIUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH"
+        ],
+        "bbo_age_ms": 135,
+        "last_trade_age_ms": 5278,
+        "faults": {}
+      },
+      "AAVEUSD": {
+        "state": "RESEARCH_FEATURES_READY",
+        "reasons": [],
+        "bbo_age_ms": 179,
+        "last_trade_age_ms": 241,
+        "faults": {}
+      },
+      "PENDLEUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH"
+        ],
+        "bbo_age_ms": 1272,
+        "last_trade_age_ms": 1272,
+        "faults": {}
+      },
+      "INJUSD": {
+        "state": "RESEARCH_FEATURES_READY",
+        "reasons": [],
+        "bbo_age_ms": 503,
+        "last_trade_age_ms": 533,
+        "faults": {}
+      },
+      "CHZUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH"
+        ],
+        "bbo_age_ms": 133,
+        "last_trade_age_ms": 4065,
+        "faults": {}
+      },
+      "RVNUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH"
+        ],
+        "bbo_age_ms": 222,
+        "last_trade_age_ms": null,
+        "faults": {}
+      },
+      "GALAUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH",
+          "CRYPTO_BBO_NOT_FRESH"
+        ],
+        "bbo_age_ms": 22463,
+        "last_trade_age_ms": 23420,
+        "faults": {}
+      },
+      "SANDUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH",
+          "CRYPTO_BBO_NOT_FRESH"
+        ],
+        "bbo_age_ms": 15291,
+        "last_trade_age_ms": 20941,
+        "faults": {}
+      },
+      "DOGEUSD": {
+        "state": "RESEARCH_FEATURES_READY",
+        "reasons": [],
+        "bbo_age_ms": 128,
+        "last_trade_age_ms": 1967,
+        "faults": {}
+      },
+      "PEPEUSD": {
+        "state": "RESEARCH_FEATURES_READY",
+        "reasons": [],
+        "bbo_age_ms": 189,
+        "last_trade_age_ms": 2163,
+        "faults": {}
+      },
+      "SHIBUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_BBO_NOT_FRESH"
+        ],
+        "bbo_age_ms": 3061,
+        "last_trade_age_ms": 3060,
+        "faults": {}
+      },
+      "WIFUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH",
+          "CRYPTO_BBO_NOT_FRESH"
+        ],
+        "bbo_age_ms": 23206,
+        "last_trade_age_ms": 23377,
+        "faults": {}
+      },
+      "BONKUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH",
+          "CRYPTO_BBO_NOT_FRESH"
+        ],
+        "bbo_age_ms": 5782,
+        "last_trade_age_ms": 5782,
+        "faults": {}
+      },
+      "FLOKIUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_TRADES_NOT_FRESH",
+          "CRYPTO_BBO_NOT_FRESH"
+        ],
+        "bbo_age_ms": 10934,
+        "last_trade_age_ms": 13060,
+        "faults": {}
+      },
+      "PENGUUSD": {
+        "state": "DATA_NOT_READY",
+        "reasons": [
+          "CRYPTO_BBO_NOT_FRESH"
+        ],
+        "bbo_age_ms": 2060,
+        "last_trade_age_ms": 2059,
+        "faults": {}
+      }
+    },
+    "raw_storage": {
+      "mode": "ROTATING_GZIP_64MIB_OR_5MIN",
+      "total_budget_bytes": 5368709120,
+      "active_file": "2026-11-10.part1794347457999894000.jsonl.gz",
+      "raw_bbo_depth_sampling_ms": 1000,
+      "all_trades_recorded": true
+    }
+  },
+  "paxg": {
+    "state": "RUNNING",
+    "status_age_ms": 7507,
+    "mt5_connected": true,
+    "websocket_connected": true,
+    "quote_state": "STALE_OR_CLOCK_UNVALIDATED",
+    "counts": {
+      "recorder_started": 1,
+      "mt5_session": 1,
+      "xau_quote_state": 1,
+      "stream_session": 1,
+      "clock_check": 1,
+      "paxg_depth5": 46,
+      "paxg_agg_trade": 5
+    },
+    "errors": {},
+    "storage": {
+      "state": "READY",
+      "archived": 0,
+      "bytes_saved": 0,
+      "archive_bytes": 18156747,
+      "archive_budget_bytes": 8589934592,
+      "retention": "LOSSLESS_ARCHIVES_NOT_AUTO_DELETED",
+      "updated_utc_ms": 1794347638265
+    }
+  },
+  "preserved_policy": {
+    "minimum_smc_grade": "A",
+    "trade_management": {
+      "version": "SHADOW_100USD_HALF_1R_BE_LIQUIDITY_V1",
+      "risk_usd": 100.0,
+      "partial_at_r": 1.0,
+      "partial_fraction": 0.5,
+      "move_remaining_to_entry": true,
+      "minimum_target_rr": 2.0,
+      "require_liquidity_target": true
+    },
+    "order_routing": false,
+    "forex_universe": 21,
+    "cross_context_only": 14
+  },
+  "ledger_state_counts": {},
+  "tests": {
+    "reading": 127,
+    "paxg_recorder": 5
+  },
+  "edge_proven": false,
+  "net_pnl": null,
+  "code_sha256": {
+    "service.py": "e3b3c7488e5a6ecb0eb4d9f4e7c7634bc0804887221f442a378225f83a5be827",
+    "crypto_process.py": "b9a83810b42f3ca279d9092caa329e731bbf4cb94b10e83239b62bf86f50f39a",
+    "crypto_feed.py": "2f614d547b140de37125441df8fcd9c870c8303496fa3ba7e25dd654a56215bf",
+    "crypto_live.py": "c18e20116cc6e073a1243d6ba37e2f2aa79b8cb088e18a885b35adf037983009",
+    "forex_quotes.py": "4c388ccb20372fb650a44ae15a82d4f6b053576348a7b1f79d7eba1b341de7b1",
+    "config.json": "0591366c47cefe496b214e9273ac4ae3b1af0ca27e45347a8097b8189cbe1c9a"
+  }
+}

@@ -78,6 +78,7 @@
       "quote_currency": "USD"
     },
     "SUIUSD": { "macro_key": "BTC", "macro_type": "CRYPTO_ROTATION", "base_currency": "SUI", "quote_currency": "USD" },
+    "BNBUSD": { "macro_key": "BTC", "macro_type": "CRYPTO_ROTATION", "base_currency": "BNB", "quote_currency": "USD" },
     "AVAXUSD": { "macro_key": "BTC", "macro_type": "CRYPTO_ROTATION", "base_currency": "AVAX", "quote_currency": "USD" },
     "NEARUSD": { "macro_key": "BTC", "macro_type": "CRYPTO_ROTATION", "base_currency": "NEAR", "quote_currency": "USD" },
     "APTUSD": { "macro_key": "BTC", "macro_type": "CRYPTO_ROTATION", "base_currency": "APT", "quote_currency": "USD" },

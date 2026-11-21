@@ -7,6 +7,8 @@ export interface ProviderRequest {
   readonly symbol: Symbol;
   readonly timeframe: Timeframe;
   readonly outputSize: number;
+  /** Maximum useful age in the queue, before making a network request. */
+  readonly maxQueueAgeMs?: number;
 }
 
 export interface ProviderResponseMetadata {
@@ -56,6 +58,7 @@ export class ProviderRateLimitError extends ProviderError {
   readonly retryAfterMs: number | null;
   readonly apiCreditsUsed: number | null;
   readonly apiCreditsLeft: number | null;
+  readonly limitScope: 'DAY' | 'MINUTE';
 
   constructor(
     message: string,
@@ -63,12 +66,22 @@ export class ProviderRateLimitError extends ProviderError {
     retryCount: number,
     retryAfterMs: number | null,
     apiCreditsUsed: number | null,
-    apiCreditsLeft: number | null
+    apiCreditsLeft: number | null,
+    limitScope?: 'DAY' | 'MINUTE'
   ) {
     super('ProviderRateLimitError', message, request, 429, retryCount);
     this.retryAfterMs = retryAfterMs;
     this.apiCreditsUsed = apiCreditsUsed;
     this.apiCreditsLeft = apiCreditsLeft;
+    this.limitScope = limitScope ?? (/\b(for the day|daily|per day|next day)\b/i.test(message) ? 'DAY' : 'MINUTE');
+  }
+}
+
+export class ProviderRequestExpiredError extends ProviderError {
+  constructor(request: ProviderRequest, retryCount: number) {
+    super('ProviderRequestExpiredError',
+      `Provider queue deadline exceeded for ${request.symbol} ${request.timeframe}; no stale scan was fetched.`,
+      request, null, retryCount);
   }
 }
 

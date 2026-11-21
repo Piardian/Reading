@@ -1,4 +1,4 @@
-import { OrderBlock, FVG } from './types';
+import { OrderBlock, FVG, Candle } from './types';
 import { getPipSize, detectAssetClass } from './assetMetrics';
 
 export interface OpposingObstacle {
@@ -19,6 +19,8 @@ export interface ObstacleCheckInput {
   activeOrderBlocks1h?: readonly OrderBlock[];
   activeFVGs1h?: readonly FVG[];
   minClearancePips?: number;
+  closedCandles15m?: readonly Candle[];
+  closedCandles1h?: readonly Candle[];
 }
 
 function getDefaultClearancePips(symbol: string): number {
@@ -37,81 +39,29 @@ function getDefaultClearancePips(symbol: string): number {
 
 export function detectOpposingObstacle(input: ObstacleCheckInput): OpposingObstacle {
   const pip = getPipSize(input.symbol);
-  const clearancePips = input.minClearancePips ?? getDefaultClearancePips(input.symbol);
-  const clearanceUnits = clearancePips * pip;
-
-  const noObstacle: OpposingObstacle = {
-    hasObstacle: false,
-    obstacleType: null,
-    timeframe: '15m',
-    level: null,
-    distancePips: 0,
-    warningText: '',
+  const clearance = input.minClearancePips ?? getDefaultClearancePips(input.symbol);
+  const candidates: OpposingObstacle[] = [];
+  const direction = input.tradeDirection === 'long' ? 1 : -1;
+  const boundary = direction === 1 ? input.entryZone.high : input.entryZone.low;
+  const add = (type: 'OB' | 'FVG', timeframe: '15m' | '1h', low: number, high: number, bullish: boolean, availableIndex: number) => {
+    if (bullish === (direction === 1) || !Number.isFinite(low) || !Number.isFinite(high) || low > high) return;
+    const edge = direction === 1 ? low : high;
+    const candles = timeframe === '15m' ? input.closedCandles15m : input.closedCandles1h;
+    if (candles && Number.isInteger(availableIndex) && candles.slice(availableIndex + 1).some(c => bullish ? c.close < low : c.close > high)) return;
+    const overlaps = low <= boundary && high >= boundary;
+    const distance = overlaps ? 0 : direction * (edge - boundary) / pip;
+    if (distance < 0 || distance > clearance) return;
+    candidates.push({ hasObstacle: true, obstacleType: type, timeframe, level: { low, high },
+      distancePips: distance,
+      warningText: `Karsi Engel: ${distance.toFixed(1)} pip ${direction === 1 ? 'yukarida' : 'asagida'} ${timeframe.toUpperCase()} ${bullish ? 'Bullish' : 'Bearish'} ${type} mevcut (${low.toFixed(4)} - ${high.toFixed(4)})`,
+    });
   };
-
-  if (input.tradeDirection === 'long') {
-    const entryTop = input.entryZone.high;
-    const maxObstaclePrice = entryTop + clearanceUnits;
-
-    for (const ob of input.activeOrderBlocks15m) {
-      if (ob.direction === 'bearish' && ob.low > entryTop && ob.low <= maxObstaclePrice) {
-        const dist = Math.round(((ob.low - entryTop) / pip) * 10) / 10;
-        return {
-          hasObstacle: true,
-          obstacleType: 'OB',
-          timeframe: '15m',
-          level: { low: ob.low, high: ob.high },
-          distancePips: dist,
-          warningText: 'Karsi Engel: ' + dist + ' pip yukarida 15M Bearish OB mevcut (' + ob.low.toFixed(4) + ' - ' + ob.high.toFixed(4) + ')',
-        };
-      }
-    }
-
-    for (const fvg of input.activeFVGs15m) {
-      if (fvg.direction === 'bearish' && fvg.gapLow > entryTop && fvg.gapLow <= maxObstaclePrice) {
-        const dist = Math.round(((fvg.gapLow - entryTop) / pip) * 10) / 10;
-        return {
-          hasObstacle: true,
-          obstacleType: 'FVG',
-          timeframe: '15m',
-          level: { low: fvg.gapLow, high: fvg.gapHigh },
-          distancePips: dist,
-          warningText: 'Karsi Engel: ' + dist + ' pip yukarida 15M Bearish FVG mevcut (' + fvg.gapLow.toFixed(4) + ' - ' + fvg.gapHigh.toFixed(4) + ')',
-        };
-      }
-    }
-  } else {
-    const entryBottom = input.entryZone.low;
-    const minObstaclePrice = entryBottom - clearanceUnits;
-
-    for (const ob of input.activeOrderBlocks15m) {
-      if (ob.direction === 'bullish' && ob.high < entryBottom && ob.high >= minObstaclePrice) {
-        const dist = Math.round(((entryBottom - ob.high) / pip) * 10) / 10;
-        return {
-          hasObstacle: true,
-          obstacleType: 'OB',
-          timeframe: '15m',
-          level: { low: ob.low, high: ob.high },
-          distancePips: dist,
-          warningText: 'Karsi Engel: ' + dist + ' pip asagida 15M Bullish OB mevcut (' + ob.low.toFixed(4) + ' - ' + ob.high.toFixed(4) + ')',
-        };
-      }
-    }
-
-    for (const fvg of input.activeFVGs15m) {
-      if (fvg.direction === 'bullish' && fvg.gapHigh < entryBottom && fvg.gapHigh >= minObstaclePrice) {
-        const dist = Math.round(((entryBottom - fvg.gapHigh) / pip) * 10) / 10;
-        return {
-          hasObstacle: true,
-          obstacleType: 'FVG',
-          timeframe: '15m',
-          level: { low: fvg.gapLow, high: fvg.gapHigh },
-          distancePips: dist,
-          warningText: 'Karsi Engel: ' + dist + ' pip asagida 15M Bullish FVG mevcut (' + fvg.gapLow.toFixed(4) + ' - ' + fvg.gapHigh.toFixed(4) + ')',
-        };
-      }
-    }
+  for (const tf of ['15m', '1h'] as const) {
+    for (const ob of (tf === '15m' ? input.activeOrderBlocks15m : input.activeOrderBlocks1h ?? []))
+      add('OB', tf, ob.low, ob.high, ob.direction === 'bullish', Math.max(ob.formedAtIndex, ob.relatedEvent.breakCandleIndex));
+    for (const fvg of (tf === '15m' ? input.activeFVGs15m : input.activeFVGs1h ?? []))
+      add('FVG', tf, fvg.gapLow, fvg.gapHigh, fvg.direction === 'bullish', Math.max(fvg.middleCandleIndex + 1, fvg.relatedEvent.breakCandleIndex));
   }
-
-  return noObstacle;
+  candidates.sort((a, b) => a.distancePips - b.distancePips || a.timeframe.localeCompare(b.timeframe) || String(a.obstacleType).localeCompare(String(b.obstacleType)));
+  return candidates[0] ?? { hasObstacle: false, obstacleType: null, timeframe: '15m', level: null, distancePips: 0, warningText: '' };
 }

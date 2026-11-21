@@ -1,0 +1,138 @@
+import * as fs from 'fs';
+import * as path from 'path';
+import { Symbol } from './universe';
+export type { Symbol } from './universe';
+
+export type Timeframe = '1m' | '15m' | '1h' | '4h';
+
+export interface StoredCandle {
+  timestamp: number;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+}
+
+export class CandleStore {
+  private dataDir: string;
+
+  constructor(dataDir?: string) {
+    const rawDir = dataDir ?? process.env.CANDLE_DATA_DIR ?? 'data';
+    this.dataDir = path.isAbsolute(rawDir) ? rawDir : path.resolve(process.cwd(), rawDir);
+  }
+
+  getDataDir(): string {
+    return this.dataDir;
+  }
+
+  getFilePath(symbol: Symbol, timeframe: Timeframe): string {
+    return path.join(this.dataDir, `${symbol}_${timeframe}.json`);
+  }
+
+  getFileMtime(symbol: Symbol, timeframe: Timeframe): number | null {
+    const filePath = this.getFilePath(symbol, timeframe);
+    if (!fs.existsSync(filePath)) {
+      return null;
+    }
+    try {
+      return fs.statSync(filePath).mtimeMs;
+    } catch {
+      return null;
+    }
+  }
+
+  isFresh(symbol: Symbol, timeframe: Timeframe, maxAgeMs: number, minCandles = 20): boolean {
+    if (maxAgeMs <= 0) return false;
+    const mtime = this.getFileMtime(symbol, timeframe);
+    if (!mtime) return false;
+    const now = Date.now();
+    const age = Math.max(0, now - mtime);
+    if (age >= maxAgeMs) return false;
+
+    const candles = this.getCandles(symbol, timeframe);
+    const intervalMs = timeframe === '1m' ? 60_000 : timeframe === '15m' ? 900_000
+      : timeframe === '1h' ? 3_600_000 : 14_400_000;
+    const last = candles[candles.length - 1];
+    const requiredClosedBar = Math.floor(now / intervalMs) * intervalMs - intervalMs;
+    // A recently rewritten file can still contain yesterday's bars.
+    return candles.length >= minCandles && Number.isFinite(last?.timestamp)
+      && last.timestamp >= requiredClosedBar && last.timestamp <= now;
+  }
+
+  appendCandle(symbol: Symbol, timeframe: Timeframe, candle: StoredCandle): void {
+    if (!fs.existsSync(this.dataDir)) {
+      fs.mkdirSync(this.dataDir, { recursive: true });
+    }
+
+    const filePath = this.getFilePath(symbol, timeframe);
+    let candles = this.getCandles(symbol, timeframe);
+
+    if (candles.length === 0) {
+      candles.push(candle);
+    } else {
+      const lastCandle = candles[candles.length - 1];
+      if (candle.timestamp > lastCandle.timestamp) {
+        candles.push(candle);
+      } else if (candle.timestamp === lastCandle.timestamp) {
+        // Overwrite last candle
+        candles[candles.length - 1] = candle;
+      } else {
+        // Older timestamp: ignore completely
+        return;
+      }
+    }
+
+    // Limit to 500 candles
+    if (candles.length > 500) {
+      candles = candles.slice(candles.length - 500);
+    }
+
+    // Safe atomic write logic
+    const tempFilePath = `${filePath}.${Date.now()}.${Math.random().toString(36).substring(2, 6)}.tmp`;
+    try {
+      fs.writeFileSync(tempFilePath, JSON.stringify(candles, null, 2), 'utf8');
+      try {
+        fs.renameSync(tempFilePath, filePath);
+      } catch {
+        fs.copyFileSync(tempFilePath, filePath);
+        try { fs.unlinkSync(tempFilePath); } catch {}
+      }
+    } catch {
+      fs.writeFileSync(filePath, JSON.stringify(candles, null, 2), 'utf8');
+    }
+
+    if (timeframe === '15m') {
+      void this.processOutcomeTracking(symbol, candles);
+    }
+  }
+
+  private async processOutcomeTracking(symbol: string, candles: readonly StoredCandle[]): Promise<void> {
+    try {
+      const { PaperOutcomeTracker } = await import('./paperOutcomeTracker');
+      PaperOutcomeTracker.getInstance().update(symbol, candles);
+    } catch (error) {
+      console.warn(`[PaperOutcomeTracker] Processing failed for ${symbol}:`, error);
+    }
+
+    try {
+      const { ShadowCohortTracker } = await import('./shadowCohortTracker');
+      ShadowCohortTracker.getInstance().process(symbol, candles as unknown as import('../src/types').Candle[]);
+    } catch (shadowErr) {
+      console.warn(`[ShadowCohortTracker] Processing failed for ${symbol}:`, shadowErr);
+    }
+  }
+
+  getCandles(symbol: Symbol, timeframe: Timeframe): StoredCandle[] {
+    const filePath = this.getFilePath(symbol, timeframe);
+    if (!fs.existsSync(filePath)) {
+      return [];
+    }
+
+    try {
+      const content = fs.readFileSync(filePath, 'utf8');
+      return JSON.parse(content);
+    } catch (e) {
+      return [];
+    }
+  }
+}

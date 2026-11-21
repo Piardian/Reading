@@ -1,0 +1,7 @@
+# 03.00 açılış kontrolü — araştırma verisi doğrulaması
+
+9 Kasım 2026 00:01 UTC'de veri-only köprüsü kontrollü durdurulup başlatıldı. Eski CQG bağlantısında heartbeat geldiği halde gerçek işlem yoktu. Yeni aboneliklerden sonra 6E, 6B, 6A, 6J, 6C, 6S ve GC gerçekleşmiş işlem olayları gözlendi. Bu işlem hesap veya emir yöntemine başvurmadı. 6N henüz gözlenmemiştir; abonelik onayı varsayılmaz.
+
+Ham veri etiketi UNVERIFIED olarak korunur. Yeni ölçüm yalnızca gölge araştırması için OBSERVED_FRESH_RESEARCH üretir: aynı kontratın son 60 saniyesinde en az 20 trade ve en az 30 saniye kapsama; her trade'de Connected ve provider_delay_ms=0; platform zamanı ile yerel alınış arasında -250..2000 ms; en az üç açık UTC zamanlı olay ve bunların sonuncusu en fazla 15 saniyelik olmalıdır. Unspecified saatli olaylar işletim sistemi saat dilimine göre çevrilmez; sayısal UTC yorumu aynı kontratın açık UTC olaylarıyla tutarlı olmalıdır. Bu bir sağlayıcı saat sözleşmesi veya borsa gecikme sertifikası değildir. Belirsiz/uyuşmayan zaman, replay, gecikme veya düşük örnek sayısı kapalı kalır.
+
+Mevcut sıra, kesinti/kontrat değişimi sonrası 60 saniye ısınma, heartbeat, en az beş trade, son trade yaşı beş saniye, en az %80 yönü bilinen hacim, veri yönü ters çevirme ve makro/SMC şartları ayrıca geçerlidir. On dört çapraz için doğrudan bant onayı yoktur. Emir açılmaz, L2/MBO/spoofing niyeti doğrulanmış sayılmaz. Bu protokol strateji kârlılığı veya veri hesabının kalıcılığı iddiası değildir.

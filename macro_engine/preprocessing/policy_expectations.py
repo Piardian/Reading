@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 from typing import Any, Dict, Mapping, Optional
+import datetime as dt
+import math
+from preprocessing.relative_policy import build_relative_policy_repricing
 
 
 
 def _number(value: Any) -> Optional[float]:
-    if isinstance(value, bool) or not isinstance(value, (int, float)):
+    if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
         return None
     return float(value)
 
@@ -169,6 +172,7 @@ def _usd_ois_curve(market_data: Optional[Mapping[str, Any]]) -> Dict[str, Any]:
 def build_policy_expectations(
     fred: Mapping[str, Any],
     market_data: Optional[Mapping[str, Any]] = None,
+    as_of_datetime: Optional[dt.datetime] = None,
 ) -> Dict[str, Any]:
     """Build a deterministic policy-expectations panel without inventing forward rates."""
     dff = _number(fred.get("DFF"))
@@ -188,6 +192,7 @@ def build_policy_expectations(
         "front_fed_funds_future": front,
         "fed_funds_futures_curve": curve,
         "usd_ois_curve": ois,
+        "relative_repricing": build_relative_policy_repricing(market_data or {}, as_of_datetime),
         "interpretation_guardrails": {
             "no_meeting_probability_inference": True,
             "no_synthetic_ois": True,

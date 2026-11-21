@@ -16,6 +16,7 @@ ve On-Demand Seçici SMC Hedef Belirleme Motoru.
 from __future__ import annotations
 
 import time
+import math
 from typing import Any, Dict, List, Mapping, Optional
 
 ROTATION_SCORE_THRESHOLD = 65
@@ -97,6 +98,23 @@ def _compute_bar_metrics(
     }
 
 
+def derivatives_data_issues(data: Mapping[str, Any]) -> List[str]:
+    def finite(v: Any) -> bool:
+        return isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v)
+    issues = []
+    history = data.get("oi_history_1h") or []
+    if not finite(data.get("funding_rate")):
+        issues.append("FUNDING_UNAVAILABLE")
+    if len(history) < 25 or any(not finite(p.get("sum_open_interest")) or p["sum_open_interest"] <= 0 for p in history):
+        issues.append("OI_24H_HISTORY_UNAVAILABLE")
+    if not all(finite(data.get(k)) and data[k] > 0 for k in ("spot_quote_volume_24h", "futures_quote_volume_24h")):
+        issues.append("SPOT_FUTURES_VOLUME_UNAVAILABLE")
+    if any("timestamp" in p for p in history):
+        if any(not finite(p.get("timestamp")) or p["timestamp"] <= 0 or (i > 0 and (not finite(history[i - 1].get("timestamp")) or abs(p["timestamp"] - history[i - 1]["timestamp"] - 3600000) > 60000)) for i, p in enumerate(history)):
+            issues.append("OI_WINDOW_MISALIGNED")
+    return issues
+
+
 def _compute_oi_metrics(oi_hist_1h: List[Dict[str, float]]) -> Dict[str, float]:
     if not oi_hist_1h:
         return {"oi_value_usd": 0.0, "oi_change_4h_pct": 0.0, "oi_change_24h_pct": 0.0}
@@ -107,7 +125,7 @@ def _compute_oi_metrics(oi_hist_1h: List[Dict[str, float]]) -> Dict[str, float]:
         if len(oi_hist_1h) >= 5
         else oi_hist_1h[0].get("sum_open_interest", curr_oi)
     )
-    oi_24h_ago = oi_hist_1h[0].get("sum_open_interest", curr_oi)
+    oi_24h_ago = oi_hist_1h[max(0, len(oi_hist_1h) - 25)].get("sum_open_interest", curr_oi)
     return {
         "oi_value_usd": round(curr_val, 2),
         "oi_change_4h_pct": _pct_change(curr_oi, oi_4h_ago),
@@ -192,6 +210,7 @@ def evaluate_crypto_rotation(
         parsed_coins[coin] = {
             **bar_m,
             **oi_m,
+            "derivatives_data_reasons": derivatives_data_issues(data),
             "coin": coin,
             "spot_symbol": data.get("spot_symbol", f"{coin}USDT"),
             "futures_symbol": data.get("futures_symbol", f"{coin}USDT"),
@@ -409,7 +428,7 @@ def evaluate_crypto_rotation(
         is_short_buildup_distribution = (
             (rs_btc_24h <= -0.8 or rs_btc_4h <= -0.3)
             and (price_4h < 0.0 or price_24h < 0.0)
-            and oi_4h >= -1.5
+            and oi_4h >= 0.5
             and rvol >= 1.20
             and not is_short_squeeze_danger
             and not is_capitulation_oi_flushed
@@ -435,6 +454,14 @@ def evaluate_crypto_rotation(
             derivatives_regime = "ORGANIC_DISTRIBUTION_FLUSH"
         else:
             derivatives_regime = "NEUTRAL_DERIVATIVES"
+
+        data_issues = cm["derivatives_data_reasons"]
+        if data_issues:
+            derivatives_regime = "UNAVAILABLE_DERIVATIVES"
+        elif oi_4h < 0 and price_4h > 0 and not is_short_squeeze_danger:
+            derivatives_regime = "SHORT_COVERING"
+        elif oi_4h < 0 and price_4h < 0 and not is_capitulation_oi_flushed:
+            derivatives_regime = "LONG_LIQUIDATION"
 
         # --- Hacim Anomalisi ve Fiyat-Hacim Emilimi (Stealth Accumulation) ---
         is_stealth_accumulation = (
@@ -584,6 +611,9 @@ def evaluate_crypto_rotation(
             deriv_long_pts = 9 if funding <= 0.015 else 5
             deriv_short_pts = 8 if funding >= 0.0 else 4
 
+        if derivatives_regime in {"UNAVAILABLE_DERIVATIVES", "SHORT_COVERING", "LONG_LIQUIDATION"}:
+            deriv_long_pts = deriv_short_pts = 0
+
         # 7. Sector Breadth (Max 10 Puan)
         if coin == "ETH":
             sec_long_pts = 10 if eth_btc_24h > 0 else 4
@@ -647,6 +677,10 @@ def evaluate_crypto_rotation(
         # MUTLAK VETO KALKANLARI
         veto_reasons_long: List[str] = []
         veto_reasons_short: List[str] = []
+        if data_issues:
+            message = "DERIVATIVES_DATA_UNAVAILABLE (" + ", ".join(data_issues) + ")"
+            veto_reasons_long.append(message)
+            veto_reasons_short.append(message)
 
         if rs_btc_24h < -0.5 and rs_btc_4h < -0.25:
             veto_reasons_long.append(
@@ -768,6 +802,8 @@ def evaluate_crypto_rotation(
             "funding_rate_pct": funding,
             "spot_to_futures_vol_ratio": spot_fut_ratio,
             "derivatives_regime": derivatives_regime,
+            "derivatives_data_status": "UNAVAILABLE" if data_issues else "COMPLETE",
+            "derivatives_data_reasons": data_issues,
             "is_single_coin_outlier": is_single_coin_outlier,
             "long_rotation_score": long_score,
             "short_rotation_score": short_score,

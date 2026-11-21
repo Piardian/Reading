@@ -4,6 +4,7 @@ import { createHash } from 'crypto';
 import { monitorEventLoopDelay } from 'perf_hooks';
 import { Symbol, Timeframe } from './candleStore';
 import { ALL_SYMBOLS, universeCohort, UNIVERSE_VERSION } from './universe';
+import { recordSignalFlowEvent } from './signalFlowMeasurement';
 
 type JsonRecord = Record<string, unknown>;
 
@@ -386,6 +387,16 @@ export interface ProviderQueueTelemetryRecord extends JsonRecord {
   readonly completedJobs: number;
   readonly retryCount: number;
   readonly failedJobs: number;
+  readonly queueAgeMs?: number;
+  readonly deadlineAt?: string;
+  readonly coalescedRequests?: number;
+  readonly expiredJobs?: number;
+  readonly dailyBlockedKeys?: number;
+  readonly nextDailyRetryAt?: string | null;
+  readonly errorType?: string | null;
+  readonly errorMessage?: string | null;
+  readonly limitScope?: 'DAY' | 'MINUTE' | null;
+  readonly networkAttempts?: number;
 }
 
 export interface DeliveryQueueTelemetryRecord extends JsonRecord {
@@ -712,10 +723,12 @@ function elapsedBetween(start: number | null, end: number | null): number | null
 
 export function recordProviderTelemetry(record: ProviderTelemetryRecord): void {
   writeJsonl('provider.jsonl', record);
+  recordSignalFlowEvent('PROVIDER_REQUEST', record);
 }
 
 export function recordProviderQueueTelemetry(record: ProviderQueueTelemetryRecord): void {
   writeJsonl('provider-queue.jsonl', record);
+  recordSignalFlowEvent('PROVIDER_QUEUE', record);
 }
 
 export function startRuntimeTelemetryMonitor(): void {

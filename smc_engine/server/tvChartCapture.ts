@@ -169,7 +169,8 @@ export async function captureLightweightChartWithMetadata(
     try {
       await page.setViewport({ width, height, deviceScaleFactor });
       await page.setContent(html, { waitUntil: 'load' });
-      await page.waitForFunction(() => (globalThis as any).TV_CHART_METADATA !== null, { timeout: 5000 });
+      const chartTimeoutMs = Number(process.env.CHART_RENDER_TIMEOUT_MS ?? 15000);
+      await page.waitForFunction(() => (globalThis as any).TV_CHART_METADATA !== null, { timeout: chartTimeoutMs });
       const chart = await page.$('#chart');
       if (!chart) throw new Error('Chart element not found');
       // Force Chromium compositor paint pass so LightweightCharts sizes the right price scale before final metadata read

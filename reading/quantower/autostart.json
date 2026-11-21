@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "connection_name": "AMP/CQG",
+  "contracts": "EU6Z26,BP6Z26,DA6Z26,NE6Z26,JY6Z26,CA6Z26,SF6Z26,GCEZ26",
+  "export_depth": false,
+  "mode": "DATA_ONLY_UNVERIFIED_NO_ORDERS"
+}

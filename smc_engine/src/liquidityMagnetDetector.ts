@@ -1,5 +1,10 @@
 import { SwingPoint } from './types';
-import { getPipSize, detectAssetClass } from './assetMetrics';
+import { getPipSize, detectAssetClass, getEstimatedSpreadPips, getDecimalPrecision } from './assetMetrics';
+
+export interface InducementMagnetOptions {
+  readonly atr15mPips?: number | null;
+  readonly maxDistancePips?: number;
+}
 
 export interface LiquidityMagnet {
   type: 'EQH' | 'EQL';
@@ -115,23 +120,115 @@ export function detectLiquidityMagnet(
   return null;
 }
 
+export function resolveMaxInducementDistancePips(
+  symbol: string,
+  zone: { low: number; high: number },
+  candles?: readonly { high: number; low: number; timestamp: number }[],
+  currentIndex?: number,
+  options?: InducementMagnetOptions
+): number {
+  if (options?.maxDistancePips !== undefined && Number.isFinite(options.maxDistancePips) && options.maxDistancePips >= 0) {
+    return options.maxDistancePips;
+  }
+
+  const pip = getPipSize(symbol);
+  const assetClass = detectAssetClass(symbol);
+  const midPrice = Math.max(pip, (zone.low + zone.high) / 2);
+  const zoneHeightPips = Math.max(0, (zone.high - zone.low) / pip);
+
+  let effectiveAtrPips: number;
+  if (options?.atr15mPips !== undefined && options.atr15mPips !== null && Number.isFinite(options.atr15mPips) && options.atr15mPips > 0) {
+    effectiveAtrPips = options.atr15mPips;
+  } else {
+    const endSlice = currentIndex !== undefined && currentIndex >= 0 ? currentIndex + 1 : (candles?.length ?? 0);
+    const ranges = (candles ?? [])
+      .slice(0, endSlice)
+      .slice(-20)
+      .map(c => (c.high - c.low) / pip)
+      .filter(v => Number.isFinite(v) && v > 0)
+      .sort((a, b) => a - b);
+    if (ranges.length >= 5) {
+      effectiveAtrPips = ranges[Math.floor(ranges.length / 2)];
+    } else {
+      switch (assetClass) {
+        case 'FOREX':
+          effectiveAtrPips = 12.0;
+          break;
+        case 'FOREX_JPY':
+          effectiveAtrPips = 18.0;
+          break;
+        case 'COMMODITY':
+          effectiveAtrPips = (midPrice * 0.0018) / pip;
+          break;
+        case 'INDEX':
+          effectiveAtrPips = (midPrice * 0.0020) / pip;
+          break;
+        case 'CRYPTO':
+          effectiveAtrPips = (midPrice * 0.0038) / pip;
+          break;
+        default:
+          effectiveAtrPips = 12.0;
+      }
+    }
+  }
+
+  const spreadPips = getEstimatedSpreadPips(symbol);
+  const smartStopBufferPips = Math.max(2, effectiveAtrPips * 0.35, spreadPips * 1.5 + 1);
+  const stopSweepReachPips = Math.max(effectiveAtrPips * 0.90, zoneHeightPips * 0.75);
+  const dynamicMaxPips = smartStopBufferPips + stopSweepReachPips;
+
+  let floorPips: number;
+  let ceilingPips: number;
+  switch (assetClass) {
+    case 'FOREX':
+      floorPips = 10.0;
+      ceilingPips = 25.0;
+      break;
+    case 'FOREX_JPY':
+      floorPips = 12.0;
+      ceilingPips = 35.0;
+      break;
+    case 'COMMODITY':
+      floorPips = (midPrice * 0.0012) / pip;
+      ceilingPips = (midPrice * 0.0040) / pip;
+      break;
+    case 'INDEX':
+      floorPips = (midPrice * 0.0012) / pip;
+      ceilingPips = (midPrice * 0.0045) / pip;
+      break;
+    case 'CRYPTO':
+      floorPips = (midPrice * 0.0025) / pip;
+      ceilingPips = (midPrice * 0.0085) / pip;
+      break;
+    default:
+      floorPips = 10.0;
+      ceilingPips = 25.0;
+  }
+
+  const clamped = Math.min(ceilingPips, Math.max(floorPips, dynamicMaxPips));
+  return Math.round(clamped * 10) / 10;
+}
+
 export function detectInducementMagnet(
   swings: readonly SwingPoint[],
   zone: { low: number; high: number },
   tradeDirection: 'long' | 'short',
   symbol: string,
   candles?: readonly { high: number; low: number; timestamp: number }[],
-  currentIndex?: number
+  currentIndex?: number,
+  options?: InducementMagnetOptions
 ): LiquidityMagnet | null {
   if (!swings || swings.length < 2) return null;
 
   const pip = getPipSize(symbol);
+  const precision = getDecimalPrecision(symbol);
   const midPrice = (zone.low + zone.high) / 2;
   const tolerance = getTolerance(symbol, midPrice);
+  const maxDistancePips = resolveMaxInducementDistancePips(symbol, zone, candles, currentIndex, options);
 
   if (tradeDirection === 'long') {
     // For LONG: Invalidation stop is below zone.low.
-    // Inducement trap is an untaken EQL cluster situated below zone.low.
+    // Inducement trap is an untaken EQL cluster situated right behind zone.low / stop loss (within maxDistancePips).
     const lows = swings.filter(s => s.type === 'low' && s.price < zone.low);
     if (lows.length < 2) return null;
 
@@ -147,6 +244,9 @@ export function detectInducementMagnet(
       if (cluster.length >= 2) {
         const avgPrice = cluster.reduce((sum, s) => sum + s.price, 0) / cluster.length;
         const distancePips = Math.round(((zone.low - avgPrice) / pip) * 10) / 10;
+        if (distancePips > maxDistancePips) {
+          continue;
+        }
         const firstTakenAt = findTakenAt('EQL', avgPrice, cluster, candles, currentIndex);
         candidates.push({
           type: 'EQL',
@@ -157,14 +257,14 @@ export function detectInducementMagnet(
           status: firstTakenAt === null ? 'ACTIVE' : 'TAKEN',
           firstTakenAt,
           sourceSwingTimestamps: cluster.map(point => point.timestamp),
-          description: `EQL Inducement Tuzagi: ${cluster.length} dip @ ${avgPrice.toFixed(4)} (${distancePips} pip stop altinda)`,
+          description: `EQL Inducement Tuzagi: ${cluster.length} dip @ ${avgPrice.toFixed(precision)} (${distancePips} pip stop altinda)`,
         });
       }
     }
     return selectBestMagnet(candidates);
   } else {
     // For SHORT: Invalidation stop is above zone.high.
-    // Inducement trap is an untaken EQH cluster situated above zone.high.
+    // Inducement trap is an untaken EQH cluster situated right behind zone.high / stop loss (within maxDistancePips).
     const highs = swings.filter(s => s.type === 'high' && s.price > zone.high);
     if (highs.length < 2) return null;
 
@@ -180,6 +280,9 @@ export function detectInducementMagnet(
       if (cluster.length >= 2) {
         const avgPrice = cluster.reduce((sum, s) => sum + s.price, 0) / cluster.length;
         const distancePips = Math.round(((avgPrice - zone.high) / pip) * 10) / 10;
+        if (distancePips > maxDistancePips) {
+          continue;
+        }
         const firstTakenAt = findTakenAt('EQH', avgPrice, cluster, candles, currentIndex);
         candidates.push({
           type: 'EQH',
@@ -190,7 +293,7 @@ export function detectInducementMagnet(
           status: firstTakenAt === null ? 'ACTIVE' : 'TAKEN',
           firstTakenAt,
           sourceSwingTimestamps: cluster.map(point => point.timestamp),
-          description: `EQH Inducement Tuzagi: ${cluster.length} tepe @ ${avgPrice.toFixed(4)} (${distancePips} pip stop ustunde)`,
+          description: `EQH Inducement Tuzagi: ${cluster.length} tepe @ ${avgPrice.toFixed(precision)} (${distancePips} pip stop ustunde)`,
         });
       }
     }

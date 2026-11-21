@@ -1,0 +1,964 @@
+{
+  "capturedAt": "2026-10-24T09:28:52.214133+00:00",
+  "scope": "DIAGNOSTIC_JOURNAL_AND_SOURCE_REVIEW_NOT_PROFITABILITY_VALIDATION",
+  "sourceHashes": {
+    "smc_engine/evidence/signals/smc-journal.md": "8b792bab5660dafa1d95bd90b589fb4d72a863b1f9c67de8d2641e28e38c3ad3",
+    "smc_engine/evidence/outcomes/macro-outcome-evidence.jsonl": "d21bbc8ff92ab92a53842d426cedce0b0b2d797d043e64b769e7c927e08855c5",
+    "smc_engine/server/paperOutcomeTracker.ts": "b2174f6781edc6a07d3af2dfa79e95b1c0a448e27a7af73d59a203cd779861ca",
+    "smc_engine/server/communicationLayer.ts": "a9b1e2ef6d09065235118bcd1e9321212e4f7d216c75a08ac37ab517fbdd66a4",
+    "smc_engine/src/tradeExpectancyEngine.ts": "e5b6ccc5d4ab16631a691ac0ab0ccc9af7a6776e155398d8a80f32c7b3412a67",
+    "smc_engine/src/poiConsolidator.ts": "31a38e4509d8b45773572c369eaa2da62244cd624325d092a85b770e13716d4a",
+    "smc_engine/src/obDetector.ts": "ce03d292208ec47532bad55cb7583c45a4d3ee374a93f589cce2ac2ad3f90402",
+    "research/signal_flow_measurement/signal-flow-2026-10-23T14-48-17-622Z/report.json": "ea455c82e12802db4af993b70b1cc0ca2a3f853d468ca251cb099f9cf4a0bb3d"
+  },
+  "journal": {
+    "numberedEntries": 89,
+    "historicalEntries": 5,
+    "lastNumberedEntry": {
+      "number": "89",
+      "header": "[2026-10-09 17:31 TSİ / 14:31 UTC] — ETHUSD (15M FVG - SAT)\r",
+      "sourceLine": 1587,
+      "reportedUserLabel": "🛡️ **GİRİLMEDİ / KORUNDU (1M Onay Vermedi / Deldi Geçti)**\r",
+      "reportedBenchmarkLabel": "⏳ **EXPIRED (0 R / Zaman Aşımı)**\r",
+      "signalIds": [
+        "ETHUSD_15m_FVG_1791471600000_1791472500000"
+      ]
+    }
+  },
+  "legacyLedger": {
+    "rows": 97,
+    "uniqueSignalIds": 97,
+    "outcomes": {
+      "EXPIRED": 60,
+      "SL": 17,
+      "BE": 10,
+      "TP": 7,
+      "CANCELLED": 3
+    },
+    "missingPolicyId": 96,
+    "resolvedFilled": 34,
+    "resolvedBreakdown": {
+      "TP": {
+        "n": 7,
+        "negativeNet": 0,
+        "mfeAtLeast1R": 6,
+        "sameBarExit": 1,
+        "missingPolicyId": 7
+      },
+      "SL": {
+        "n": 17,
+        "negativeNet": 17,
+        "mfeAtLeast1R": 0,
+        "sameBarExit": 4,
+        "missingPolicyId": 17
+      },
+      "BE": {
+        "n": 10,
+        "negativeNet": 8,
+        "mfeAtLeast1R": 10,
+        "sameBarExit": 0,
+        "missingPolicyId": 10
+      }
+    },
+    "journal76ConflictingLedgerRow": [
+      {
+        "signalId": "EURJPY_15m_OB_1791178200000_1791181800000",
+        "outcome": "TP",
+        "entryPrice": 176.74524,
+        "stopLoss": 176.84888,
+        "takeProfit": 176.53795999999997,
+        "entryTimestamp": 1791185400000,
+        "exitTimestamp": 1791185400000,
+        "holdingTimeMs": 0,
+        "measurementVersion": null,
+        "executionPolicyId": null
+      }
+    ]
+  },
+  "partialExitArithmetic": [
+    {
+      "journalNumber": 75,
+      "statedFinalTargetR": 2.3,
+      "halfAt1RHalfAtFinalGrossR": 1.65
+    },
+    {
+      "journalNumber": 78,
+      "statedFinalTargetR": 2,
+      "halfAt1RHalfAtFinalGrossR": 1.5
+    }
+  ],
+  "forward": {
+    "generatedAt": "2026-10-24T09:28:36.615Z",
+    "activatedAt": "2026-10-23T14:49:19.412Z",
+    "eligibility": {
+      "planObservations": 1,
+      "uniqueObservedPois": 1,
+      "firstAdmittedPois": 1,
+      "reference": 1,
+      "conditional": 0,
+      "firstAdmittedMacroAllowed": 1,
+      "archivedMarketSnapshots": 2142
+    },
+    "paper": {
+      "reference": {
+        "admittedPaperCandidates": 1,
+        "entered": 0,
+        "closedFilled": 0,
+        "tp": 0,
+        "sl": 0,
+        "be": 0,
+        "tpRateAmongClosedFilled": null,
+        "tpRateWilson95": null,
+        "slRateAmongClosedFilled": null,
+        "estimatedNetR": 0,
+        "meanEstimatedNetR": null,
+        "unfilledCancelledOrExpired": 1,
+        "unresolvedOrUnknown": 0,
+        "ambiguousClosedFills": 0,
+        "independentUtcWeeks": 0
+      },
+      "conditional": {
+        "admittedPaperCandidates": 0,
+        "entered": 0,
+        "closedFilled": 0,
+        "tp": 0,
+        "sl": 0,
+        "be": 0,
+        "tpRateAmongClosedFilled": null,
+        "tpRateWilson95": null,
+        "slRateAmongClosedFilled": null,
+        "estimatedNetR": 0,
+        "meanEstimatedNetR": null,
+        "unfilledCancelledOrExpired": 0,
+        "unresolvedOrUnknown": 0,
+        "ambiguousClosedFills": 0,
+        "independentUtcWeeks": 0
+      },
+      "excludedRegistrations": 0,
+      "registeredMacroBlocked": 0
+    }
+  },
+  "entries": [
+    {
+      "number": "H1",
+      "header": "[2026-08-20 13:15 TSİ / 10:15 UTC] — GBPJPY (15M OB & FVG - AL)\r",
+      "sourceLine": 29,
+      "reportedUserLabel": "⏳ **BEKLEMEDE / UNTESTED** — Fiyat yukarı trendini sürdürdü, 215.57 bölgesine geri dönmedi.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": [
+        "GBPJPY_15m_OB_1787209200000_1787211000000"
+      ]
+    },
+    {
+      "number": "H2",
+      "header": "[2026-08-20 23:24 TSİ / 20:24 UTC] — AUDCHF (15M OB - SAT)\r",
+      "sourceLine": 39,
+      "reportedUserLabel": "❌ **STOP / GEÇERSİZ** — Bölgeden 0.69R zayıf bir reaksiyon verdikten sonra ana yükseliş trendi bölgeyi yukarı delip geçti.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": [
+        "AUDCHF_15m_OB_1787144400000_1787146200000"
+      ]
+    },
+    {
+      "number": "H3",
+      "header": "[2026-08-21 09:15 TSİ / 06:15 UTC] — AUDUSD (15M OB & FVG - AL) [5 Sinyal Spamı]\r",
+      "sourceLine": 49,
+      "reportedUserLabel": "❌ **STOP / GEÇERSİZ** — En üstteki 0.71388 OB'si 1.52R tepki verdi ancak ana düşüş dalgası tüm bölgeleri süpürdü.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "H4",
+      "header": "[2026-08-21 10:45 TSİ / 07:45 UTC] — USDJPY (15M OB & FVG - SAT)\r",
+      "sourceLine": 58,
+      "reportedUserLabel": "❌ **STOP / GEÇERSİZ** — Bölgeden **2.87R muazzam tepki** verdi ancak ana trend yukarı olduğu için nihai olarak stop oldu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "H5",
+      "header": "[2026-08-21 13:45 TSİ / 10:45 UTC] — EURGBP (15M OB - AL)\r",
+      "sourceLine": 65,
+      "reportedUserLabel": "❌ **STOP / GEÇERSİZ** — 0.8564 bölgesinden **2.70R tepki** verdi, ardından ana 4H düşüş trendi bölgeyi deldi.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": [
+        "EURGBP_15m_OB_1787297400000_1787299200000"
+      ]
+    },
+    {
+      "number": "1",
+      "header": "[2026-08-26 01:45 TSİ / 22:45 UTC] — XAUUSD (15M OB - AL)\r",
+      "sourceLine": 76,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M LTF Onayı Vermeden Delindi — İşleme Girilmedi)** — Fiyat POI'yi tutamadı, 1M LTF onayı vermeden delip geçti. Manuel onay filtresi kullanıcıyı korudu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": [
+        "XAUUSD_15m_OB_1787694300000_1787697000000"
+      ]
+    },
+    {
+      "number": "2",
+      "header": "[2026-08-26 04:54 TSİ / 01:54 UTC] — AUDCAD (15M OB - AL)\r",
+      "sourceLine": 100,
+      "reportedUserLabel": "Beklemede (Fiyat giriş bölgesinin 21.3 pip üstünde, re-test bekleniyor)\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": [
+        "AUDCAD_15m_OB_1787706900000_1787707800000"
+      ]
+    },
+    {
+      "number": "3",
+      "header": "[2026-08-26 06:09 TSİ / 01:54 UTC] — NZDCHF (15M OB - SAT)\r",
+      "sourceLine": 122,
+      "reportedUserLabel": "Beklemede (Fiyat giriş bölgesinin 6.6 pip altında, re-test bekleniyor)\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": [
+        "NZDCHF_15m_OB_1787706900000_1787708700000"
+      ]
+    },
+    {
+      "number": "4",
+      "header": "[2026-08-26 12:01 TSİ / 09:01 UTC] — BTCUSD (15M FVG - AL)\r",
+      "sourceLine": 145,
+      "reportedUserLabel": "🎯 **TP / BAŞARILI (FVG Re-test Sonrası Tepki)** — Fiyat 77602 - 77774 FVG bölgesine geri çekilip re-test verdikten sonra yukarı fırlayarak TP oldu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": [
+        "BTCUSD_15m_FVG_1787565600000_1787565600000"
+      ]
+    },
+    {
+      "number": "5",
+      "header": "[2026-08-26 12:01 TSİ / 09:01 UTC] — BTCUSD (15M OB - AL)\r",
+      "sourceLine": 164,
+      "reportedUserLabel": "Beklemede (Fiyat giriş bölgesinin 1480.7 USD / %1.92 üstünde)\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": [
+        "BTCUSD_15m_OB_1787548500000_1787551200000"
+      ]
+    },
+    {
+      "number": "6",
+      "header": "[2026-08-26 12:01 TSİ / 09:01 UTC] — BTCUSD (15M OB - AL)\r",
+      "sourceLine": 185,
+      "reportedUserLabel": "Beklemede (Fiyat giriş bölgesinin **2067.5 USD / %2.70** üstünde)\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": [
+        "BTCUSD_15m_OB_1787298300000_1787300100000"
+      ]
+    },
+    {
+      "number": "7",
+      "header": "[2026-08-26 12:01 TSİ / 09:01 UTC] — BTCUSD (15M FVG - AL)\r",
+      "sourceLine": 204,
+      "reportedUserLabel": "Beklemede (Fiyat giriş bölgesinin **5351.6 USD / %7.30** üstünde!)\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": [
+        "BTCUSD_15m_FVG_1787270400000_1787270400000"
+      ]
+    },
+    {
+      "number": "8",
+      "header": "[2026-08-27 11:03 TSİ / 08:03 UTC] — ETHUSD (15M OB - AL)\r",
+      "sourceLine": 223,
+      "reportedUserLabel": "❌ **STOP / GEÇERSİZ (Bölge Delindi)** — Fiyat bölgeye indikten sonra 2405.97 seviyesine kadar çökerek stop oldu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": [
+        "ETHUSD_15m_OB_1787776200000_1787778000000"
+      ]
+    },
+    {
+      "number": "9",
+      "header": "[2026-08-24 11:30 TSİ] — ETHUSD (15M FVG - AL)\r",
+      "sourceLine": 242,
+      "reportedUserLabel": "🎯 **TP / BAŞARILI (Tam Bölgeden Tepki)** — Fiyat geri çekilmede FVG tavanına (2488) milimetrik temas edip 2510+ hedefine fırlayarak TP oldu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "10",
+      "header": "[2026-08-31 10:00 TSİ / 07:00 UTC] — EURUSD (15M OB - SAT)\r",
+      "sourceLine": 261,
+      "reportedUserLabel": "🎯 **TP / BAŞARILI** — Fiyat 1.1587 seviyesinden 1.16029 OB giriş bölgesine girdi, 1.16206 tepe seviyesine kadar re-test verdi ve 1.16226 stopunu milimetrik koruyarak ana düşüş trendiyle hedefine ulaştı (TP).\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "11",
+      "header": "[2026-08-31 10:01 TSİ / 07:01 UTC] — EURJPY (15M OB - SAT)\r",
+      "sourceLine": 282,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (LTF Onayı Vermeden 400 Pip Düştü — İşleme Girilmedi / Kaçan Fırsat)** — Fiyat 185.18 seviyesinden yukarı tırmanıp 185.772 seviyesine kadar (OB tabanının 2.6 pip yakınına) geldi; ancak 1M LTF grafiğinde net bir satıcı CHoCH onayı üretmeden doğrudan aşağı dönerek **181.78 seviyesine kadar tam 400 piplik devasa bir çöküş yaşadı**.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "12",
+      "header": "[2026-08-31 10:01 TSİ / 07:01 UTC] — LTCUSD (15M OB - SAT)\r",
+      "sourceLine": 301,
+      "reportedUserLabel": "❌ **STOP / GEÇERSİZ** — Fiyat 48.66'dan yukarı çekilip 49.71 OB bölgesine re-test verdi ve işleme girildi; ancak alıcılar 50.00 tepe likiditesine (BSL Sweep) ulaşmak için fiyatı 49.99'a kadar sürdü ve 49.79 stopu patladı.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "13",
+      "header": "[2026-08-31 10:15 TSİ / 07:15 UTC] — LTCUSD (15M OB - SAT)\r",
+      "sourceLine": 320,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M Onay Vermedi - İşleme Girilmedi)** — Fiyat 49.99 seviyesine kadar yükselerek alt Decisional OB'yi süpürdü ancak bu Extreme OB bölgesinde 1M grafiğinde kurumsal bir satıcı dönüş teyidi (LTF CHoCH) üretmedi. Kullanıcı onay görmediği için işleme girmedi ve sermaye korundu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "14",
+      "header": "[2026-08-31 10:30 TSİ / 07:30 UTC] — EURJPY (15M OB - SAT)\r",
+      "sourceLine": 338,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M Onay Vermeden Delindi - İşleme Girilmedi)** — Fiyat 185.03'ten yükselerek 185.73 seviyesine kadar çıktı ve bu ara OB'yi yukarı delip geçti. Ancak 1 dakikalık onay mekanizması onay üretmediği için işleme girilmedi ve kullanıcı stop olmaktan korundu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "15",
+      "header": "[2026-08-31 11:15 TSİ / 08:15 UTC] — BTCUSD (15M OB - SAT)\r",
+      "sourceLine": 358,
+      "reportedUserLabel": "🎯 **TP / BAŞARILI (Sinyal 22 ile Birleşik / Aynı Setup @ +2.3R)** — Operatör notu: *\"hemen hemen 20.45 ile aynı işlem ikisini bir sayabiliriz\"*. 80.6k Extreme bölgesinden başlayan düşüş dalgası 76.4k hedefine akarak kârla realize edildi.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "16",
+      "header": "[2026-08-31 11:15 TSİ / 08:15 UTC] — LTCUSD (15M FVG - SAT)\r",
+      "sourceLine": 372,
+      "reportedUserLabel": "❌ **STOP / GEÇERSİZ (-750$)** — Fiyat 48.60'tan yukarı hareket ederek 48.90 FVG'sine girdi; ancak yukarıdaki asıl tepe likiditesine (50.00 EQH) ulaşmak isteyen alıcılar bölgeyi hiç dinlemeden 49.99'a kadar sürdü ve stop oldu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "17",
+      "header": "[2026-08-31 13:15 TSİ / 10:15 UTC] — BTCUSD (15M OB - SAT)\r",
+      "sourceLine": 390,
+      "reportedUserLabel": "🎯 **TP / BAŞARILI (+1400$)** — Fiyat 78.519 seviyesinden 78.838 OB giriş bölgesine geri çekilip re-test verdikten sonra ana düşüş trendine katılarak **76.420 seviyesine kadar 2.000+ dolarlık sert bir çöküş yaşadı** ve devasa bir kârla (+1400$) TP aldı.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "18",
+      "header": "[2026-08-31 14:15 TSİ / 11:15 UTC] — GBPCHF (15M OB - SAT)\r",
+      "sourceLine": 404,
+      "reportedUserLabel": "❌ **STOP / GEÇERSİZ (-1.000 $)** — Fiyat 1.09472'den yukarı tırmanarak 1.09624 giriş bölgesine girdi ve durmayarak 1.09961 tepe seviyesine kadar fırlayarak stopu patlattı.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "19",
+      "header": "[2026-08-31 15:15 TSİ / 12:15 UTC] — XAUUSD (15M OB - SAT)\r",
+      "sourceLine": 422,
+      "reportedUserLabel": "🎯 **TP / BAŞARILI (+2.0R / +1.500 $ @ %0.75 Risk)** — Operatör bildirimi: *\"1-3 Eylül döneminde gelen 4551-4555 OB içindi o işlem, xau işlemide tp oldu 2 R aldık\"*. Düşüş trendi yönünde taşınan işlem hedefine ulaşarak +2.0R kârla realize edildi.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "20",
+      "header": "[2026-08-31 16:00 TSİ / 13:00 UTC] — XAUUSD (15M OB - SAT)\r",
+      "sourceLine": 445,
+      "reportedUserLabel": "⏳ **BEKLEMEDE (Bayat / Hayalet POI — Fiyat 230 USD / %4.94 Uzakta!)** — Sinyal anında fiyat bölgenin 230.64 USD altındaydı. Fiyat 4438 seviyesinden sonra 4323'e kadar düşüşünü sürdürdü ve bu 5 gün önceki eski zirveye hiç dönmedi.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "21",
+      "header": "[2026-08-31 19:15 TSİ / 16:15 UTC] — ETHUSD (15M OB - SAT)\r",
+      "sourceLine": 462,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M Konfirmasyonu Vermedi — İşleme Girilmedi)** — Operatör bildirimi: *\"confirme vermedi\"*. Fiyat bölgeye re-test verirken 1M üzerinde kurumsal satıcı teyidi üretmediği için kural gereği işleme girilmedi, sermaye korundu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "22",
+      "header": "[2026-08-31 20:45 TSİ / 17:45 UTC] — BTCUSD (15M OB - SAT)\r",
+      "sourceLine": 478,
+      "reportedUserLabel": "🎯 **TP / BAŞARILI (+2.3R @ %0.75 Risk)** — Operatör bildirimi: *\"tp %0.75 risk 2.3 RR\"*. Sinyal 15 ile aynı düşüş kurulumu olarak çalıştı, bölgeden reaksiyon alarak hedefe aktı ve +2.3R kârla realize edildi.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "23",
+      "header": "[2026-09-01 04:15 TSİ / 01:15 UTC] — USDCHF (15M OB - AL)\r",
+      "sourceLine": 494,
+      "reportedUserLabel": "🎯 **TP / BAŞARILI (+2.000 $)** — Fiyat Asya / Midnight seansında 0.80795 - 0.80842 OB bölgesine geri çekilip taban likiditesini (SSL) süpürdükten sonra 1M üzerinde peş peşe boğa mumlarıyla yukarı patlayarak 0.8115+ hedefine uçtu ve büyük bir kârla (+2000$) TP aldı.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "24",
+      "header": "[2026-09-01 05:15 TSİ / 02:15 UTC] — CHFJPY (15M OB - SAT)\r",
+      "sourceLine": 512,
+      "reportedUserLabel": "🎯 **TP / BAŞARILI (+750 $)** — Fiyat 197.393 seviyesinden 197.605 OB giriş bölgesine re-test verdikten sonra kurumsal satıcı tepkisiyle **197.072 seviyesine kadar 50+ pip çöküş yaşadı** ve hedefine ulaşarak (+750$) kârla kapandı.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "25",
+      "header": "[2026-09-01 05:45 TSİ / 02:45 UTC] — XAUUSD (15M OB - SAT)\r",
+      "sourceLine": 526,
+      "reportedUserLabel": "❌ **STOP / GEÇERSİZ (-1.000 $)** — Fiyat 4453 - 4462 giriş bölgesine re-test verdikten sonra stop seviyesini (4462.06 / ~4463) yukarı kırarak stop oldu (Grade A+ kuralı gereği -1.000 $ zarar).\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "26",
+      "header": "[2026-09-01 06:15 TSİ / 03:15 UTC] — NZDUSD (15M OB - SAT)\r",
+      "sourceLine": 543,
+      "reportedUserLabel": "⏳ **BEKLEMEDE (Fiyat Bölgeye Ulaşmadan 0.5887'ye Düştü)** — Sinyal anında fiyat bölgenin 15.6 pip altındaydı. Fiyat en fazla 0.5914'e kadar yükselebildi ve 0.5925 OB bölgesine ulaşamadan güçlü düşüş trendiyle **0.58871 seviyesine kadar 22+ pip düştü**.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "27",
+      "header": "[2026-09-01 07:13 TSİ / 04:13 UTC] — NZDUSD (15M OB - SAT)\r",
+      "sourceLine": 559,
+      "reportedUserLabel": "⏳ **BEKLEMEDE (Bayat / Hayalet POI — Fiyat 54.5 Pip Uzakta & Grafik Bozuk)** — Sinyal anında fiyat bölgenin tam 54.5 pip altındaydı. Fiyat 0.5908 seviyesinden sonra 0.5887'ye kadar düşüşünü sürdürdü ve 4 gün önceki bu eski tepeye hiç dönmedi.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "28",
+      "header": "[2026-09-01 10:01 TSİ / 07:01 UTC] — USDJPY (15M OB - AL)\r",
+      "sourceLine": 573,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M LTF Onayı Vermedi - İşleme Girilmedi)** — Fiyat 159.845 tabanına re-test verdiğinde 1M üzerinde kurumsal bir tepe kırılımı (CHoCH onayı) vermediği için manuel kural gereği işleme girilmedi ve gereksiz riskten kaçınıldı.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "29",
+      "header": "[2026-09-01 15:45 TSİ / 12:45 UTC] — ETHUSD (15M OB - SAT)\r",
+      "sourceLine": 583,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M Onay Vermeden Bölge Üstü Kapanış Yaptı — İşleme Girilmedi)** — Fiyat giriş bölgesine geri çekildiğinde 1M üzerinde hiçbir satıcı teyidi (CHoCH onayı) vermeden doğrudan bölge üstünde mum kapanışı yaptı. Manuel onay kuralı sayesinde işleme girilmedi ve sermaye korundu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "30",
+      "header": "[2026-09-01 15:45 TSİ / 12:45 UTC] — SOLUSD (15M OB - SAT)\r",
+      "sourceLine": 597,
+      "reportedUserLabel": "🎯 **TP / BAŞARILI (+4R @ %0.75 Risk)** — Operatör bildirimi: *\"4 R tp %0.75 risk\"*. Kurulum kusursuz çalıştı ve işlem 4R kazançla TP seviyesine ulaştı.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "31",
+      "header": "[2026-09-01 21:00 TSİ / 18:00 UTC] — ETHUSD (15M OB - SAT)\r",
+      "sourceLine": 607,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M Onay Vermeden Bölge Üstü Kapanış Yaptı — İşleme Girilmedi)** — Fiyat 2432 OB bölgesine çıktığında 1M üzerinde hiçbir dönüş onayı vermeden doğrudan bölge üzerinde mum kapanışı yaptı. Manuel 1M onay kuralı sayesinde işleme girilmedi ve sermaye korundu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "32",
+      "header": "[2026-09-02 03:15 TSİ / 00:15 UTC] — GBPJPY (15M OB - AL)\r",
+      "sourceLine": 617,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M LTF Onayı Vermeden 250 Pip Çöktü - İşleme Girilmedi)** — Fiyat 216.203 tabanına indiğinde 1M üzerinde hiçbir alıcı CHoCH onayı vermeden doğrudan 213.70 seviyesine kadar 250+ pip çöktü. Manuel 1M onay kuralı sayesinde işleme girilmedi ve kullanıcı devasa bir zarardan %100 korundu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "33",
+      "header": "[2026-09-02 06:45 TSİ / 03:45 UTC] — NZDCHF (15M OB - SAT)\r",
+      "sourceLine": 633,
+      "reportedUserLabel": "⏳ **BEKLEMEDE (Fiyat Bölgeye Ulaşmadan 0.473'e Düştü)** — Sinyal anında fiyat bölgenin tam 41.3 pip altındaydı. Fiyat en fazla 0.4757'ye kadar hafif bir düzeltme yapabildi ve 0.4789 OB bölgesine ulaşamadan güçlü düşüş trendiyle **0.473 seviyesine kadar düştü**.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "34",
+      "header": "[2026-09-02 23:15 TSİ / 20:15 UTC] — EURUSD (15M OB - AL)\r",
+      "sourceLine": 647,
+      "reportedUserLabel": "❌ **STOP (-%0.75 Risk / -0.75R / -750 $)** — Operatör bildirimi: *\"açık işlemler arasında eur varsa stop oldu\"*. Fiyat 1.15759 altındaki stop seviyesini kırarak pozisyon stop ile kapandı.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "35",
+      "header": "[2026-09-03 03:30 TSİ / 00:30 UTC] — NZDUSD (15M OB - SAT)\r",
+      "sourceLine": 666,
+      "reportedUserLabel": "✅ **TP (+2,000 $ / Hedef Likidite Alındı)** — Fiyat 0.58895 - 0.58942 OB giriş bölgesine re-test vererek işlemi tetikledikten sonra 4H+1H düşüş trendi doğrultusunda alt hedeflere akarak TP oldu (+2,000 $ kâr realize edildi).\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "36",
+      "header": "[2026-09-03 22:04 TSİ / 19:04 UTC] — EURCHF (15M OB - AL)\r",
+      "sourceLine": 682,
+      "reportedUserLabel": "❌ **STOP / GEÇERSİZ (-750 $)** — Fiyat 0.9416 seviyesinden 0.94060 - 0.94124 OB bölgesine indikten sonra destek bulamayarak 0.94060 stop seviyesini aşağı kırdı (Grade A kuralı gereği -750 $ zarar).\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "37",
+      "header": "[2026-09-03 05:30 TSİ / 02:30 UTC] — BTCUSD (15M OB - SAT)\r",
+      "sourceLine": 697,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M LTF Onayı Vermedi - İşleme Girilmedi)** — Fiyat 78.5k OB bölgesine yaklaştığında 1M üzerinde hiçbir kurumsal satıcı kırılımı (CHoCH onayı) vermediği için manuel onay kuralı gereği işleme girilmedi ve sermaye korundu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "38",
+      "header": "[2026-09-03 06:15 TSİ / 03:15 UTC] — AUDUSD (15M OB - SAT)\r",
+      "sourceLine": 707,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M LTF Onayı Vermedi - İşleme Girilmedi)** — Fiyat bölgeye re-test verdiğinde 1M üzerinde kurumsal satıcı kırılımı (CHoCH onayı) vermediği için manuel kural gereği işleme girilmedi ve sermaye korundu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "39",
+      "header": "[2026-09-03 17:15 TSİ / 14:15 UTC] — NAS100 (15M OB - AL)\r",
+      "sourceLine": 722,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M Konfirmasyonu Vermedi — İşleme Girilmedi)** — Fiyat bölgeye geri çekildiğinde 1M üzerinde kurumsal alıcı onayı (CHoCH / Dönüş yapısı) vermediği için kural gereği işleme girilmedi ve sermaye başarıyla korundu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "40",
+      "header": "[2026-09-03 18:15 TSİ / 15:15 UTC] — NAS100 (15M OB - AL)\r",
+      "sourceLine": 736,
+      "reportedUserLabel": "❌ **STOP** — Fiyat 711.47 - 713.48 taze OB bölgesine geri çekildikten sonra alıcı desteği bulamayarak 711.47 stop seviyesinin altına indi ve pozisyon stop oldu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "41",
+      "header": "[2026-09-04 05:15 TSİ / 02:15 UTC] — CADCHF (15M OB - AL)\r",
+      "sourceLine": 748,
+      "reportedUserLabel": "⏳ **BEKLEMEDE (Giriş Bölgesine Geri Çekilme / Re-test Bekleniyor)** — Sinyal anında fiyat bölgenin 15.9 pip üstündeydi. Fiyat 0.5856 seviyesinde yatay seyrediyor; 0.58379 - 0.58409 OB bölgesine re-test ve 1M onayı bekleniyor.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "42",
+      "header": "[2026-09-04 16:01 TSİ / 13:01 UTC] — GBPUSD (15M OB - SAT)\r",
+      "sourceLine": 758,
+      "reportedUserLabel": "❌ **STOP / GEÇERSİZ (-0.5R / -%0.5 Risk)** — Operatör tarafından Fib 0.5 seviyesine %0.5 risk ile limit emir atıldı. Fiyat geri çekilmede limit emri tetikledikten sonra 1.35330 stop seviyesini yukarı kırarak stop oldu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "43",
+      "header": "[2026-09-04 19:16 TSİ / 16:16 UTC] — CHFJPY (15M OB - SAT)\r",
+      "sourceLine": 774,
+      "reportedUserLabel": "⏳ **BEKLEMEDE (Giriş Bölgesine Geri Çekilme / Re-test Bekleniyor)** — Sinyal anında fiyat bölgenin 48.4 point (48.4 pip) altındaydı. Fiyat 191.40 dip seviyesinden 192.85'e toparlandı; 193.336 - 193.458 OB bölgesine re-test ve 1M onayı bekleniyor.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "44",
+      "header": "[2026-09-04 20:01 TSİ / 17:01 UTC] — CHFJPY (15M OB - SAT)\r",
+      "sourceLine": 784,
+      "reportedUserLabel": "⏳ **BEKLEMEDE (Bayat / Hayalet POI — Fiyat Tam 255 Pip Uzakta)** — Sinyal anında fiyat bölgenin tam **255.0 point (255.0 pip)** altındaydı. Fiyat 191.40 dibinden 192.88'e toparlanmışken 2 gün önceki bu eski tepeye dönmesi beklenmektedir.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "45",
+      "header": "[2026-09-04 20:15 TSİ / 17:15 UTC] — CHFJPY (15M OB - SAT) [Tekrar / Spam]\r",
+      "sourceLine": 795,
+      "reportedUserLabel": "⏳ **BEKLEMEDE (Bayat / Hayalet POI — Fiyat Tam 260 Pip Uzakta)** — 20:01'deki 44. sinyalin 14 dakika sonra hafif revize edilmiş haliyle yeniden fırlatılmış tekrar sinyalidir. Fiyat bölgenin tam **260.4 point (260 pip)** altındadır.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "46",
+      "header": "[2026-09-04 23:45 TSİ / 20:45 UTC] — USDJPY (15M OB - SAT)\r",
+      "sourceLine": 808,
+      "reportedUserLabel": "⏳ **BEKLEMEDE (Bayat / Hayalet POI — Fiyat 139.4 Pip Uzakta)** — Sinyal anında fiyat bölgenin tam **139.4 point (139.4 pip)** altındaydı. Fiyat 155.20 dibinden 156.28'e toparlanmışken 2 gün önceki 157.80 tepesine dönmesi beklenmektedir.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "47",
+      "header": "[2026-09-10 TSİ] — LTCUSD (15M OB - AL)\r",
+      "sourceLine": 825,
+      "reportedUserLabel": "❌ **PAS / İPTAL (Mitigasyon Tükenmiş / Hedef Alınmış / Bayat Kurulum)** — Kutu ve giriş bölgesi fiyattan önce 2 tam döngü yaşayıp 55.80 EQH hedefine ulaşmıştı. Grafik üzerinde anlık fiyat (55.50) ile giriş tavanı (55.49) neredeyse eşit olduğu için etiket çakışması yaşandı. İşlem alınmadı.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "48",
+      "header": "[2026-09-10 TSİ] — USDJPY (15M OB - SAT)\r",
+      "sourceLine": 841,
+      "reportedUserLabel": "🔄 **AKTİF / İŞLEMDE** — Fiyat 153.821 - 153.912 OB kutusuna retest verdi ve operatör tarafından işleme girildi. Pozisyon aktif olarak takip ediliyor.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "49",
+      "header": "[2026-09-10 11:45 TSİ] — GBPCHF (15M OB - SAT)\r",
+      "sourceLine": 860,
+      "reportedUserLabel": "❌ **STOP** — Fiyat 1.09913 - 1.09958 15M OB kutusuna ulaştıktan sonra 1.09958 stop seviyesini yukarı kırarak stop oldu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "50",
+      "header": "[2026-09-10 14:45 TSİ] — XAUUSD (15M FVG - SAT)\r",
+      "sourceLine": 880,
+      "reportedUserLabel": "⏳ **ZAMAN AŞIMI / İPTAL (Giriş Bölgesine Dönmedi — İşlem Alınmadı)** — Operatör teyidiyle bu işlem alınmamıştır. Fiyat sinyal anında kutunun 30.80 USD altında kalmış ve 4416.64 - 4423.52 FVG taze boşluğuna re-test vermeden doğrudan 4368 EQL likiditesine akmıştır. Kutuya temas gerçekleşmediği için kurulum iptal olmuştur.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "51",
+      "header": "[2026-09-10 20:15 TSİ] — ETHUSD (15M OB - SAT)\r",
+      "sourceLine": 900,
+      "reportedUserLabel": "❌ **STOP** — Fiyat 2475.29 - 2484.76 15M Bearish OB kutusuna girdikten sonra satıcı tepkisi bulamayarak 2484.76 stop seviyesini yukarı kırıp stop oldu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "52",
+      "header": "[2026-09-11 TSİ] — NZDUSD (15M OB - SAT)\r",
+      "sourceLine": 921,
+      "reportedUserLabel": "🎯 **TP / BAŞARILI (+1.050 $ / ~+1.4R)** — Operatör bildirimi: *\"nzd işlemi tp oldu 1050 dolara aldık\"*. Fiyat 0.58333 - 0.58364 kutusundan reaksiyon alarak hedef olan 0.5797 EQL likidite mıknatısına aktı ve 1.050 $ kârla realize edildi.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "53",
+      "header": "[2026-09-14 23:06 TSİ] — EURJPY (15M FVG - SAT)\r",
+      "sourceLine": 940,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M Konfirmasyonu Vermedi — İşleme Girilmedi)** — Operatör bildirimi: *\"eylül 14 23.06 mesajı, confirme vermedi\"*. Fiyat 178.05 dip seviyesinden toparlanıp 178.329 - 178.409 15M Bearish FVG bölgesine doğru yaklaştığında, 1 dakikalık grafikte hiçbir satıcı teyidi (1M CHoCH / Bearish Displacement) üretmedi. Operatör 1M onay filtresine sadık kalarak işleme girmedi; sermaye korundu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "54",
+      "header": "[2026-09-15 03:30 TSİ] — USDCHF (15M OB - SAT)\r",
+      "sourceLine": 959,
+      "reportedUserLabel": "🔄 **AKTİF / İŞLEMDE** — Operatör bildirimi: *\"15 eylül 03.30 işlemi, işlemde\"*. Fiyat 0.81767 seviyesinden 0.81897 - 0.81953 15M Bearish OB tavanına geri çekilmiş, 1 dakikalık grafikte kurumsal satıcı teyidi (1M CHoCH / Retest) vererek tetiklenmiştir. Pozisyon açık ve kârda taşınmaktadır.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "55",
+      "header": "[2026-09-15 07:15 TSİ] — BTCUSD (15M OB - AL)\r",
+      "sourceLine": 978,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M Konfirmasyonu Vermedi — İşleme Girilmedi)** — Operatör bildirimi: *\"15 eylül 07.15 işlemi, confirme vermedi\"*. Fiyat 79.300 zirvesinden 77.615 - 77.930 OB kutusuna dikey / agresif kırmızı mumlarla inmiş (şelale düşüşü). Kutu içine girilmiş olmasına rağmen 1 dakikalık grafikte hiçbir kurumsal alıcı teyidi (1M CHoCH / Bullish Displacement / Wick Sweep) oluşmamış, fiyat kutu tabanını delip geçmiştir. Operatör kurala harfiyen uyarak teyitsiz işleme girmemiş, sermaye doğrudan korunmuştur (Averted Loss).\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "56",
+      "header": "[2026-09-15 10:58 TSİ] — SOLUSD (15M OB - AL)\r",
+      "sourceLine": 997,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M Konfirmasyonu Vermedi — İşleme Girilmedi)** — Operatör bildirimi: *\"15 eylül 10.58 mesajı, confirme vermedi\"*. Fiyat 99.18 - 99.72 yükseliş OB bölgesine doğru geri çekilirken 1 dakikalık grafikte hiçbir alıcı teyidi (CHoCH / Dönüş yapısı) üretmedi. Operatör kurala harfiyen uyarak işleme girmedi ve sermaye korundu.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "57",
+      "header": "[2026-09-17 21:31 TSİ / 18:31 UTC] — CADJPY (15M OB - AL)\r",
+      "sourceLine": 1016,
+      "reportedUserLabel": "⏳ **BEKLEMEDE (Kutuya Geri Çekilme Bekleniyor — Henüz Tetiklenmedi)** — Operatör bildirimi: *\"bekliyoruz 17 eylül 21.31\"*. Fiyat 111.557 seviyesinde seyrediyor, giriş bölgesinin 31.5 point üzerinde. Strateji kuralı gereği: Giriş bölgesine geri çekilme (retest) bekleniyor; bölgeye dönmeden kesinlikle işlem alınmayacak.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "58",
+      "header": "[2026-09-18 07:15 TSİ / 04:15 UTC] — USDCAD (15M FVG - AL)\r",
+      "sourceLine": 1039,
+      "reportedUserLabel": "⏳ **BEKLEMEDE (Kutuya Geri Çekilme Bekleniyor — Henüz Tetiklenmedi)** — Operatör bildirimi: *\"bekliyoruz 18 eylül 07.15\"*. Fiyat 1.39771 seviyesinde seyrediyor, giriş bölgesinin 18.9 pip üzerinde. Strateji kuralı: Giriş bölgesine geri çekilme (retest) bekleniyor; bölgeye dönmeden ve 1M teyidi gelmeden kesinlikle işlem alınmayacak.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "59",
+      "header": "[2026-09-18 14:45 TSİ / 11:45 UTC] — GBPCHF (15M OB - AL)\r",
+      "sourceLine": 1062,
+      "reportedUserLabel": "❌ **STOP / GEÇERSİZ (-1R)** — Operatör bildirimi: *\"18 eylül 14.45 stop oldu\"*. Fiyat 1.10167 seviyesinden 1.10100 - 1.10157 aralığındaki 15M Bullish OB bölgesine girmiş, ancak 1M grafiğinde alıcı dönüş teyidi (CHoCH / Retest) oluşturamadan bölgeyi aşağı yönlü kırarak stop seviyesini (1.10100 altı) patlatmıştır.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "60",
+      "header": "[2026-09-18 16:25 TSİ / 13:25 UTC] — GBPUSD (15M OB - SAT)\r",
+      "sourceLine": 1085,
+      "reportedUserLabel": "🎯 **TAKE PROFIT (+2.5R)** — Operatör bildirimi: *\"tp oldu 2.5 RR 18 eylül\"*. Fiyat 1.33774 seviyesinden sakin ve basamaklı bir şekilde 1.34008 - 1.34058 Bearish OB kutusuna geri çekilmiş (retest), 1M zaman diliminde alıcıların tükenmesiyle teyit vererek satış yönlü harekete geçmiş ve 1.3374 seviyesindeki EQL (Eşit Dipler - SSL Mıknatısı) likidite havuzunu süpürerek net **+2.5R** kâra ulaşmıştır.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "61",
+      "header": "[2026-09-21 10:30 TSİ / 07:30 UTC] — USDCAD (15M FVG - AL)\r",
+      "sourceLine": 1108,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M Konfirmasyonu Vermedi — İşleme Girilmedi)** — Operatör bildirimi: *\"confirme vermedi 21 eylül 10.30 işlemi\"*. Fiyat 1.40179 seviyesinden 1.39892 - 1.40030 aralığındaki 15M Bullish FVG bölgesine doğru süzülmüş, ancak 1 dakikalık zaman diliminde beklenen alıcı dönüş yapısı (1M CHoCH / Retest) gerçekleşmemiştir. Operatör sisteme ve kurala sadık kalarak teyit almadan işleme girmemiş, böylece olası stop riski tamamen bertaraf edilerek sermaye korunmuştur.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "62",
+      "header": "[2026-09-21 18:45 TSİ / 15:45 UTC] — USDJPY (15M OB - AL)\r",
+      "sourceLine": 1131,
+      "reportedUserLabel": "❌ **STOP / GEÇERSİZ (-1.0R)** — Operatör bildirimi: *\"21 eylül 18.45 mesajı stop\"*. Fiyat 157.386 seviyesinden 157.304 - 157.345 aralığındaki 15M Bullish OB kutusuna girmiş, ancak 1M grafiğinde alıcı dönüş teyidi oluşturamadan bölgeyi aşağı yönlü kırarak stop seviyesini (157.304 altı) patlatmıştır.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "63",
+      "header": "[2026-09-25 19:17 TSİ / 16:17 UTC] — CADCHF (15M OB - AL) [🌺 BEGONYA]\r",
+      "sourceLine": 1154,
+      "reportedUserLabel": "⏳ **BEKLEMEDE (Kutuya Geri Çekilme Bekleniyor — Henüz Tetiklenmedi)** — Operatör bildirimi: *\"25 eylül 19.17 işlemi bekliyoruz\"*. Fiyat 0.58524 seviyesinde olup giriş kutusunun 13.5 pip üzerindedir. Kural gereği: Fiyatın 0.58349 - 0.58389 kutusuna geri çekilmesi (retest) ve ardından 1 dakikalık manuel onay beklenmektedir.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "64",
+      "header": "[2026-09-25 11:03 TSİ / 08:03 UTC] — BTCUSD (15M OB - SAT) [🌺 BEGONYA]\r",
+      "sourceLine": 1181,
+      "reportedUserLabel": "⏳ **BEKLEMEDE (Kutuya Geri Çekilme Bekleniyor — Henüz Tetiklenmedi)** — Operatör bildirimi: *\"25 eylül 11.03 bekliyoruz, sürekli geliyor diye aralarından bir tanesini seçtim\"*. Fiyat 84043.96 seviyesinde olup 84572.00 - 84881.55 Bearish OB kutusunun 528 USD altındadır. Kutu henüz test edilmediği (unmitigated) için sistem tarafından aktif tutularak bildirilmektedir; en yüksek puanlı (`9/9` ve `98/100 Tier A+`) ana kurulum referans seçilmiştir.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "65",
+      "header": "[2026-09-25 05:02 TSİ / 02:02 UTC] — CADJPY (15M OB - AL) [🌺 BEGONYA]\r",
+      "sourceLine": 1208,
+      "reportedUserLabel": "❌ **STOP / GEÇERSİZ (-0.5R Realized / Kör Limit Emir İhlali)** — Operatör bildirimi: *\"25 eylül 05.02 işlemi stop oldum GRADE A işlemi, normalde 0.75 risk aldım 1m de 0.5 limit emir attım ve stop oldu\"*. Operatör Sinyal Özetindeki *\"önce geri çekilme (retest), sonra 1 dakikalık manuel onay\"* kuralı yerine kutuya **0.5R riskle doğrudan limit emir** bırakmıştır. Fiyat Asya seansında kutuya sert kırmızı mumlarla inerek 1M dönüş yapısı (CHoCH) üretmeden limit emri doldurup doğrudan `111.936` altındaki stopları patlatmıştır.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "66",
+      "header": "[2026-09-24 21:32 & 22:17 TSİ / 18:32 & 19:17 UTC] — ETHUSD (15M OB + FVG Unicorn - SAT) [🌺 BEGONYA]\r",
+      "sourceLine": 1236,
+      "reportedUserLabel": "🔥 **AKTİF İŞLEMDE (1M Konfirmasyonu Alındı — Tek İşlem Olarak Açık)** — Operatör bildirimi: *\"21.32 ve 22.17 24 eylül işlemleri şuan işlemdeyiz 1m confirmasyon arayıp 1 işlem olarak kurguladım\"*. Operatör peş peşe gelen örtüşmeli OB ve FVG sinyallerini çifte risk almak yerine **tek bir Unicorn (OB+FVG) kurumsal bölgesi** olarak birleştirmiş, fiyat bölgeye geri çekildiğinde 1 dakikalık konfirmasyon (1M CHoCH) bularak tek işlem halinde devreye sokmuştur.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "67",
+      "header": "[2026-09-24 16:17 TSİ / 13:17 UTC] — NZDCHF (15M OB - AL) [🌺 BEGONYA]\r",
+      "sourceLine": 1263,
+      "reportedUserLabel": "⏳ **BEKLEMEDE (Kutuya Geri Çekilme Bekleniyor — Henüz Tetiklenmedi)** — Operatör bildirimi: *\"24 eylül 16.17 işlemi bekliyoruz\"*. Fiyat 0.46954 seviyesinde olup 0.46740 - 0.46788 Bullish OB kutusunun 16.6 pip üzerindedir. Kural gereği: Giriş kutusuna geri çekilme (retest) ve ardından 1 dakikalık manuel onay beklenmektedir.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "68",
+      "header": "[2026-09-24 03:17 TSİ / 00:17 UTC] — LTCUSD (15M OB - SAT) [🌺 BEGONYA]\r",
+      "sourceLine": 1290,
+      "reportedUserLabel": "🛡️ **İPTAL / KORUNDU (1M LTF Konfirmasyonu Vermedi — İşleme Girilmedi)** — Operatör bildirimi: *\"ltf confirmasyon vermedi 24 eylül 03.17 işlemi\"*. Fiyat 62.12 seviyesinden 62.63 - 62.98 aralığındaki 15M Bearish OB kutusuna geri çekilirken 1 dakikalık zaman diliminde (LTF) satıcı dönüş teyidi (CHoCH) üretmemiştir. Operatör kurala harfiyen uyarak işleme girmemiş ve **19. kez sermaye %0 kayıpla korunmuştur**.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "69",
+      "header": "[2026-09-30 15:15 TSİ / 12:15 UTC] — SOLUSD (15M OB - SAT)\r",
+      "sourceLine": 1314,
+      "reportedUserLabel": "🎯 **TAKE PROFIT (+2.0R / +2.000 $ @ %1 Risk)** — Operatör bildirimi: *\"30 eylül 15.15 işlemi tp oldu %1 risk 2 rr tp\"*. Fiyat 119.69 seviyesinden 120.34 - 120.93 aralığındaki 15M Bearish OB kutusuna geri çekilmiş (retest), 1 dakikalık manuel onay (1M CHoCH) verdikten sonra %1 tam risk ile işleme girilmiş ve aşağıdaki 5'li EQL (`119.1980`) likidite mıknatısını süpürerek net **2 RR (+2.0R)** kârla hedefe ulaşmıştır.\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": []
+    },
+    {
+      "number": "70",
+      "header": "[2026-09-30 18:01 TSİ / 15:01 UTC] — EURJPY (15M OB - SAT)\r",
+      "sourceLine": 1334,
+      "reportedUserLabel": "✅ **+4.0R TAKE PROFIT (Kullanıcı İcraatı)** / ⏳ **EXPIRED (Bot Benchmarkı)** — Operatör bildirimi: *\"ben bu işlemden yaklaşık 4 r aldım mesela şimdi nasıl yapıcaz\"*. Fiyat bölgeye çekildiğinde (178.792) kullanıcı 1M LTF reaksiyon teyidiyle esnek giriş yaptı; ardından gelen 220 piplik çöküşü sürerek net **+4.0 R** kâr elde edildi. Botun katı simülasyonu ise OB'nin %50 orta noktasını (178.883) beklediği ve fiyat 9 pip kala döndüğü için limiti doldurulamayıp 16 mum sonra iptal edildi (Trader Alpha: +4.0R).\r",
+      "reportedBenchmarkLabel": null,
+      "signalIds": [
+        "EURJPY_15m_OB_1790664300000_1790666100000",
+        "EURJPY_15m_OB_1790664300000_1790666100000"
+      ]
+    },
+    {
+      "number": "71",
+      "header": "[2026-10-01 10:31 TSİ / 07:31 UTC] — LTCUSD (15M OB - SAT)\r",
+      "sourceLine": 1362,
+      "reportedUserLabel": "🛑 **STOP LOSS (-1.0 R)**\r",
+      "reportedBenchmarkLabel": "✅ **+2.0 R (TAKE PROFIT)**\r",
+      "signalIds": [
+        "LTCUSD_15m_OB_1790837100000_1790838900000"
+      ]
+    },
+    {
+      "number": "72",
+      "header": "[2026-10-01 19:15 TSİ / 16:15 UTC] — ETHUSD (15M OB - AL)\r",
+      "sourceLine": 1376,
+      "reportedUserLabel": "❌ **GİRİLMEDİ (LTF Onayı Vermedi / Fiyat Bölge İçi Yatay)**\r",
+      "reportedBenchmarkLabel": "✅ **+2.0 R (TAKE PROFIT)**\r",
+      "signalIds": [
+        "ETHUSD_15m_OB_1790848800000_1790851500000"
+      ]
+    },
+    {
+      "number": "73",
+      "header": "[2026-10-01 20:30 TSİ / 17:30 UTC] — ETHUSD (15M OB - AL)\r",
+      "sourceLine": 1390,
+      "reportedUserLabel": "❌ **GİRİLMEDİ (Grafik Çizimleri Gelmedi / Pas Geçildi)**\r",
+      "reportedBenchmarkLabel": "⏳ **EXPIRED (0 R)**\r",
+      "signalIds": [
+        "ETHUSD_15m_OB_1790873100000_1790874900000"
+      ]
+    },
+    {
+      "number": "74",
+      "header": "[2026-10-02 00:00 TSİ / 2026-10-01 21:00 UTC] — AUDJPY (15M OB - SAT)\r",
+      "sourceLine": 1403,
+      "reportedUserLabel": "❌ **GİRİLMEDİ (Retest ve LTF Teyidi Gelmedi / Pas Geçildi)**\r",
+      "reportedBenchmarkLabel": "⏳ **EXPIRED (0 R)**\r",
+      "signalIds": [
+        "AUDJPY_15m_OB_1790862300000_1790864100000"
+      ]
+    },
+    {
+      "number": "75",
+      "header": "[2026-10-02 19:15 TSİ / 16:15 UTC] — GBPJPY (15M FVG - AL)\r",
+      "sourceLine": 1415,
+      "reportedUserLabel": "✅ **+2.3 R (TAKE PROFIT - Kademeli Kâr Alımı: 1R'de %50 TP, nihai 2.3R)**\r",
+      "reportedBenchmarkLabel": "⏳ **EXPIRED (0 R)**\r",
+      "signalIds": [
+        "GBPJPY_15m_FVG_1790947800000_1790947800000"
+      ]
+    },
+    {
+      "number": "76",
+      "header": "[2026-10-05 10:01 TSİ / 07:01 UTC] — EURJPY (15M OB - SAT)\r",
+      "sourceLine": 1427,
+      "reportedUserLabel": "🛑 **STOP LOSS (-1.0 R)**\r",
+      "reportedBenchmarkLabel": "🛑 **STOP LOSS (-1.0 R)**\r",
+      "signalIds": [
+        "EURJPY_15m_OB_1791178200000_1791181800000"
+      ]
+    },
+    {
+      "number": "77",
+      "header": "[2026-10-05 19:17 TSİ / 16:17 UTC] — GBPJPY (15M OB - AL)\r",
+      "sourceLine": 1439,
+      "reportedUserLabel": "❌ **GİRİLMEDİ (1M LTF Onayı Vermedi / Pas Geçildi)**\r",
+      "reportedBenchmarkLabel": "⏳ **EXPIRED (0 R)**\r",
+      "signalIds": [
+        "GBPJPY_15m_OB_1791186300000_1791189000000"
+      ]
+    },
+    {
+      "number": "78",
+      "header": "[2026-10-05 21:15 TSİ / 18:15 UTC] — XAUUSD (15M OB - AL)\r",
+      "sourceLine": 1450,
+      "reportedUserLabel": "✅ **+2.0 R (TAKE PROFIT - Kademeli Kâr Alımı: 1R'de %50 TP, nihai 2.0R TP)**\r",
+      "reportedBenchmarkLabel": "⏳ **EXPIRED (0 R)**\r",
+      "signalIds": [
+        "XAUUSD_15m_OB_1791219600000_1791222300000"
+      ]
+    },
+    {
+      "number": "79",
+      "header": "[2026-10-06 04:30 TSİ / 01:30 UTC] — XAUUSD (15M OB - AL)\r",
+      "sourceLine": 1461,
+      "reportedUserLabel": "🛡️ **GİRİLMEDİ / KORUNDU (1M LTF Onayı Vermedi / Deldi Geçti)**\r",
+      "reportedBenchmarkLabel": "⏳ **EXPIRED (0 R)**\r",
+      "signalIds": [
+        "XAUUSD_15m_OB_1791246600000_1791247500000"
+      ]
+    },
+    {
+      "number": "80",
+      "header": "[2026-10-06 09:31 TSİ / 06:31 UTC] — XAUUSD (15M OB - AL)\r",
+      "sourceLine": 1472,
+      "reportedUserLabel": "⏳ **GİRİLMEDİ / PAS (Kutuya Değmedi / Retest Gelmedi)**\r",
+      "reportedBenchmarkLabel": "⏳ **EXPIRED (0 R)**\r",
+      "signalIds": [
+        "XAUUSD_15m_OB_1791265500000_1791267300000"
+      ]
+    },
+    {
+      "number": "81",
+      "header": "[2026-10-06 15:16 TSİ / 12:16 UTC] — LTCUSD (15M OB - SAT)\r",
+      "sourceLine": 1483,
+      "reportedUserLabel": "⏳ **GİRİLMEDİ / PAS (Kutuya Gelmedi / Retest Yok)**\r",
+      "reportedBenchmarkLabel": "⏳ **EXPIRED (0 R)**\r",
+      "signalIds": [
+        "LTCUSD_15m_OB_1791213300000_1791214200000"
+      ]
+    },
+    {
+      "number": "82",
+      "header": "[2026-10-06 19:16 TSİ / 16:16 UTC] — BTCUSD (15M OB - AL)\r",
+      "sourceLine": 1494,
+      "reportedUserLabel": "🛡️ **GİRİLMEDİ / KORUNDU (1M LTF Onayı Vermedi / Deldi Geçti)**\r",
+      "reportedBenchmarkLabel": "⏳ **EXPIRED (0 R)**\r",
+      "signalIds": [
+        "BTCUSD_15m_OB_1791270900000_1791276300000"
+      ]
+    },
+    {
+      "number": "83",
+      "header": "[2026-10-07 03:31 TSİ / 00:31 UTC] — CHFJPY (15M FVG - AL)\r",
+      "sourceLine": 1505,
+      "reportedUserLabel": "🛑 **STOP LOSS (-1.0 R / Disiplin İhlali)**\r",
+      "reportedBenchmarkLabel": "🛑 **STOP LOSS (-1.0 R)**\r",
+      "signalIds": [
+        "CHFJPY_15m_FVG_1791331200000_1791331200000"
+      ]
+    },
+    {
+      "number": "84",
+      "header": "[2026-10-07 05:46 TSİ / 02:46 UTC] — EURAUD (15M OB - SAT)\r",
+      "sourceLine": 1523,
+      "reportedUserLabel": "⚠️ **KAÇIRILDI (1M LTF Onayı Geldi, +2.0R TP Aldı, Ancak İşleme Girilemedi)**\r",
+      "reportedBenchmarkLabel": "⏳ **EXPIRED (0 R / Tetiklenmedi)**\r",
+      "signalIds": [
+        "EURAUD_15m_OB_1791333000000_1791335700000"
+      ]
+    },
+    {
+      "number": "85",
+      "header": "[2026-10-08 18:46 TSİ / 15:46 UTC] — GBPJPY (15M OB - AL)\r",
+      "sourceLine": 1537,
+      "reportedUserLabel": "🛡️ **GİRİLMEDİ / KORUNDU (1M Onay Vermedi / Deldi Geçti)**\r",
+      "reportedBenchmarkLabel": "🛑 **STOP LOSS (-1.0 R)**\r",
+      "signalIds": [
+        "GBPJPY_15m_OB_1791465300000_1791468900000"
+      ]
+    },
+    {
+      "number": "86",
+      "header": "[2026-10-08 17:46 TSİ / 14:46 UTC] — EURJPY (15M OB - AL)\r",
+      "sourceLine": 1549,
+      "reportedUserLabel": "🛡️ **GİRİLMEDİ / KORUNDU (1M Onay Vermedi / Deldi Geçti)**\r",
+      "reportedBenchmarkLabel": "🛑 **STOP LOSS (-1.0 R)**\r",
+      "signalIds": [
+        "EURJPY_15m_OB_1791465300000_1791468900000"
+      ]
+    },
+    {
+      "number": "87",
+      "header": "[2026-10-08 18:32 TSİ / 15:32 UTC] — GBPUSD (15M OB - AL)\r",
+      "sourceLine": 1563,
+      "reportedUserLabel": "⏳ **GİRİLMEDİ / PAS (Kutuya Geri Çekilme Olmadı / Retest Gelmedi)**\r",
+      "reportedBenchmarkLabel": "⏳ **EXPIRED (0 R / Tetiklenmedi)**\r",
+      "signalIds": [
+        "GBPUSD_15m_OB_1791459900000_1791460800000"
+      ]
+    },
+    {
+      "number": "88",
+      "header": "[2026-10-09 15:02 TSİ / 12:02 UTC] — SOLUSD (15M OB - SAT)\r",
+      "sourceLine": 1575,
+      "reportedUserLabel": "🛑 **STOP LOSS (-1.0 R)**\r",
+      "reportedBenchmarkLabel": "⏳ **EXPIRED (0 R / Zaman Aşımı)**\r",
+      "signalIds": [
+        "SOLUSD_15m_OB_1791470700000_1791471600000"
+      ]
+    },
+    {
+      "number": "89",
+      "header": "[2026-10-09 17:31 TSİ / 14:31 UTC] — ETHUSD (15M FVG - SAT)\r",
+      "sourceLine": 1587,
+      "reportedUserLabel": "🛡️ **GİRİLMEDİ / KORUNDU (1M Onay Vermedi / Deldi Geçti)**\r",
+      "reportedBenchmarkLabel": "⏳ **EXPIRED (0 R / Zaman Aşımı)**\r",
+      "signalIds": [
+        "ETHUSD_15m_FVG_1791471600000_1791472500000"
+      ]
+    }
+  ],
+  "limitations": [
+    "Narrative outcomes include duplicates, waiting signals, hypothetical benchmarks and operator reports.",
+    "No broker fill archive or verified manual M1 order lifecycle was found in the examined journal.",
+    "Legacy MFE and outcomes lack policy IDs; same-bar exit examples and contradictory labels prevent parameter optimization claims.",
+    "No production source, frozen forward protocol, parameters or running service changed in this audit."
+  ]
+}

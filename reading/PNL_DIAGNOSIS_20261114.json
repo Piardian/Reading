@@ -1,0 +1,201 @@
+{
+  "checked_utc_ms": 1794683435561,
+  "checked_iso_utc": "2026-11-14T19:10:35.561000+00:00",
+  "state": "RUNNING",
+  "pid": 22604,
+  "errors": [],
+  "main_account": {
+    "total": 0,
+    "open": 0,
+    "closed": 0,
+    "tp": 0,
+    "sl": 0,
+    "be": 0,
+    "unresolved": 0,
+    "gross_r": 0,
+    "gross_profit_r": 0,
+    "gross_loss_r": 0,
+    "tp1_hits": 0,
+    "partial_realized_r_not_closed": 0,
+    "realized_total_gross_r": 0,
+    "closed_model_gross_usd": 0,
+    "realized_model_gross_usd": 0,
+    "usd_unavailable_records": 0,
+    "commission": null,
+    "slippage": null,
+    "net_pnl": null,
+    "broker_verified": false
+  },
+  "experiment_accounts": {
+    "A": {
+      "total": 0,
+      "open": 0,
+      "closed": 0,
+      "tp": 0,
+      "sl": 0,
+      "be": 0,
+      "unresolved": 0,
+      "gross_r": 0,
+      "gross_profit_r": 0,
+      "gross_loss_r": 0,
+      "tp1_hits": 0,
+      "partial_realized_r_not_closed": 0,
+      "realized_total_gross_r": 0,
+      "closed_model_gross_usd": 0,
+      "realized_model_gross_usd": 0,
+      "usd_unavailable_records": 0,
+      "commission": null,
+      "slippage": null,
+      "net_pnl": null,
+      "broker_verified": false
+    },
+    "B": {
+      "total": 0,
+      "open": 0,
+      "closed": 0,
+      "tp": 0,
+      "sl": 0,
+      "be": 0,
+      "unresolved": 0,
+      "gross_r": 0,
+      "gross_profit_r": 0,
+      "gross_loss_r": 0,
+      "tp1_hits": 0,
+      "partial_realized_r_not_closed": 0,
+      "realized_total_gross_r": 0,
+      "closed_model_gross_usd": 0,
+      "realized_model_gross_usd": 0,
+      "usd_unavailable_records": 0,
+      "commission": null,
+      "slippage": null,
+      "net_pnl": null,
+      "broker_verified": false
+    },
+    "C": {
+      "total": 0,
+      "open": 0,
+      "closed": 0,
+      "tp": 0,
+      "sl": 0,
+      "be": 0,
+      "unresolved": 0,
+      "gross_r": 0,
+      "gross_profit_r": 0,
+      "gross_loss_r": 0,
+      "tp1_hits": 0,
+      "partial_realized_r_not_closed": 0,
+      "realized_total_gross_r": 0,
+      "closed_model_gross_usd": 0,
+      "realized_model_gross_usd": 0,
+      "usd_unavailable_records": 0,
+      "commission": null,
+      "slippage": null,
+      "net_pnl": null,
+      "broker_verified": false
+    },
+    "D": {
+      "total": 0,
+      "open": 0,
+      "closed": 0,
+      "tp": 0,
+      "sl": 0,
+      "be": 0,
+      "unresolved": 0,
+      "gross_r": 0,
+      "gross_profit_r": 0,
+      "gross_loss_r": 0,
+      "tp1_hits": 0,
+      "partial_realized_r_not_closed": 0,
+      "realized_total_gross_r": 0,
+      "closed_model_gross_usd": 0,
+      "realized_model_gross_usd": 0,
+      "usd_unavailable_records": 0,
+      "commission": null,
+      "slippage": null,
+      "net_pnl": null,
+      "broker_verified": false
+    }
+  },
+  "main_candidates": 24,
+  "main_touches": 5,
+  "main_touch_diagnoses": [
+    {
+      "symbol": "USDJPY",
+      "reason": "TOUCHED_BUT_BLOCKED_BY_PATTERN_SOURCE_NOT_VALIDATED"
+    },
+    {
+      "symbol": "TAOUSD",
+      "reason": "TOUCHED_BUT_BLOCKED_BY_WAITING_POST_TOUCH_SPEED_AND_ABSORPTION_CANDIDATE"
+    },
+    {
+      "symbol": "DASHUSD",
+      "reason": "TOUCHED_BUT_BLOCKED_BY_PATTERN_SOURCE_NOT_VALIDATED"
+    },
+    {
+      "symbol": "EURAUD",
+      "reason": "TOUCHED_BUT_BLOCKED_BY_PATTERN_SOURCE_NOT_VALIDATED"
+    },
+    {
+      "symbol": "EURAUD",
+      "reason": "TOUCHED_BUT_BLOCKED_BY_PATTERN_SOURCE_NOT_VALIDATED"
+    }
+  ],
+  "crypto_readiness": {
+    "RESEARCH_FEATURES_READY": 16,
+    "DATA_NOT_READY": 24
+  },
+  "bridge": {
+    "symbols": 21,
+    "feed_provider": "quantower",
+    "bridge_state": "HEARTBEAT_FRESH",
+    "heartbeat_age_ms": 1534,
+    "feed_faults": {},
+    "entry_rule": "AUTOMATIC_PATTERNS_V1",
+    "human_confirmation_required": false,
+    "macro_smc_gated": true,
+    "order_routing": false
+  },
+  "telegram_state": "READY",
+  "minimum_smc_grade": "B+",
+  "order_routing": false,
+  "management": {
+    "version": "SHADOW_100USD_HALF_1R_BE_LIQUIDITY_V1",
+    "risk_usd": 100.0,
+    "partial_at_r": 1.0,
+    "partial_fraction": 0.5,
+    "move_remaining_to_entry": true,
+    "minimum_target_rr": 2.0,
+    "require_liquidity_target": true
+  },
+  "tests": {
+    "unittest_passed": 136,
+    "javascript_syntax_check": "PASS"
+  },
+  "repairs": [
+    "Causal as-of heartbeat, gap and connection-state history",
+    "Independent persistent B/C/D shadow outcome ledgers; notifications only A",
+    "Same 2-second fresh-quote requirement for ledger admission and exits",
+    "Forex/gold current macro preflight supports retained-box revocation",
+    "Advance all experiment trackers, including when quotes stop",
+    "Record exact source blocker reasons at pattern evaluation",
+    "Remove fake net and averted-loss attribution; undefined zero-trade PF"
+  ],
+  "limits": [
+    "No measured net PnL or edge proof",
+    "14 crosses have context-only legs; no direct tape entry confirmation",
+    "CME currently has no fresh trade events; heartbeat alone is not tape proof",
+    "USDJPY/DASH historical source-block reasons were not archived in sufficient detail to assign a unique cause",
+    "Research B/C/D outcome collection begins prospectively at each SQLite activation timestamp; no historical entries fabricated"
+  ],
+  "hashes": {
+    "service.py": "448155d6af2defe7e1503252249170c8b86c0e89029aacad6c41e5531259b609",
+    "ninja_feed.py": "ea457e06d7bec82908ee824eac93eb9c7a5933619b8828d0a3dd78a8fa8f7dcc",
+    "quantower_feed.py": "39ae913730e8c4b1b302cb4c65fd212dce4bda04adcf65ca0e3547a33ee1b48a",
+    "entry_tracker.py": "be1367d1bfe9d28de260cd3bf587b49f886bee155c23f3d926957429bcb8dc4e",
+    "shadow_arms.py": "2d0bcc31c3628382ccd0e44c15cac0643826f30f8484ca1e6828d420028242ed",
+    "shadow_ledger.py": "87fa84f94efa675e80bd50abc1a6faa2794e982edb20789e3d39d1805ecc774c",
+    "benchmark_recorder.py": "e456047690df72c9352ca6def0b4b08f26830c87ebc51c0d808d062687bb77eb",
+    "benchmark_reporter.py": "2b9116f5b712c4178a8a6060c734dc447f6f2004a7f761243201859594cef243",
+    "smc_shadow.js": "7014c6caa3b25213bfab44bfd1735d70cfeacb92f357e454331ddb2b4469e474"
+  }
+}

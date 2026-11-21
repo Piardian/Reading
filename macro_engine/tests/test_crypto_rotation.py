@@ -37,15 +37,15 @@ def _make_bars(
 
 def _make_oi_hist(change_4h_pct: float, change_24h_pct: float) -> list:
     base_oi = 100_000.0
-    oi_4h_ago = base_oi * (1.0 + (change_24h_pct - change_4h_pct) / 100.0)
-    oi_now = oi_4h_ago * (1.0 + change_4h_pct / 100.0)
+    oi_now = base_oi * (1 + change_24h_pct / 100)
+    oi_4h_ago = oi_now / (1 + change_4h_pct / 100)
     hist = []
-    for i in range(10):
+    for i in range(25):
         if i == 0:
             val = base_oi
-        elif i == 5:
+        elif i == 20:
             val = oi_4h_ago
-        elif i == 9:
+        elif i == 24:
             val = oi_now
         else:
             val = base_oi
@@ -323,3 +323,19 @@ def test_morning_briefing_renders_short_only_altcoin_rotation():
     assert "Altcoin Rotasyonu (SHORT_ONLY):" in msg
     assert "Short-Squeeze Kalkanı" in msg
 
+
+
+def test_price_increase_with_declining_oi_is_short_covering_not_new_inflow():
+    snap = _build_base_snapshot()
+    _set_coin(snap, "TAO", chg24=4, chg4=1.5, rvol=1.5, oi4=-2, oi24=-3, funding_pct=0.01)
+    coin = evaluate_crypto_rotation(snap, macro_btc_gate="LONG_ONLY")["coin_assessments"]["TAO"]
+    assert coin["derivatives_regime"] == "SHORT_COVERING"
+    assert coin["score_breakdown"]["oi_and_funding"] == 0
+
+
+def test_price_decline_with_declining_oi_is_liquidation_not_new_short_buildup():
+    snap = _build_base_snapshot()
+    _set_coin(snap, "TAO", chg24=-4, chg4=-1.5, rvol=1.5, oi4=-2, oi24=-3, funding_pct=0.01)
+    coin = evaluate_crypto_rotation(snap, macro_btc_gate="SHORT_ONLY")["coin_assessments"]["TAO"]
+    assert coin["derivatives_regime"] == "LONG_LIQUIDATION"
+    assert coin["score_breakdown"]["oi_and_funding"] == 0

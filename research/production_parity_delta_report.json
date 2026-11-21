@@ -1,10 +1,10 @@
 {
   "oldTradeCount": 23,
-  "newTradeCount": 38,
+  "newTradeCount": 126,
   "matchedCount": 10,
-  "timingShiftedCount": 4,
-  "eliminatedCount": 9,
-  "newlyDiscoveredCount": 24,
+  "timingShiftedCount": 9,
+  "eliminatedCount": 4,
+  "newlyDiscoveredCount": 107,
   "oldTradesDelta": [
     {
       "oldIndex": 1,
@@ -15,18 +15,18 @@
       "status": "MATCHED_TIME_PARITY",
       "oldNetB": -1.0113276638795161,
       "newNetStruct": -1.0117414516687278,
-      "newNetProd": -0.033547127937191494
+      "newNetProd": 0.4664528720628085
     },
     {
       "oldIndex": 2,
       "symbol": "ETHUSD",
       "direction": "long",
       "oldDt": "2026-04-09 22:45",
-      "newDt": "NONE",
-      "status": "ELIMINATED_BY_DEDUP_OR_CLOSE_TIMING",
+      "newDt": "2026-04-09 18:15",
+      "status": "TIMING_SHIFTED_BAR_CLOSE",
       "oldNetB": 1.951566150442478,
-      "newNetStruct": null,
-      "newNetProd": null
+      "newNetStruct": 1.4500939969604865,
+      "newNetProd": 0.18665887404578846
     },
     {
       "oldIndex": 3,
@@ -36,8 +36,8 @@
       "newDt": "2026-04-11 23:00",
       "status": "MATCHED_TIME_PARITY",
       "oldNetB": -0.1705779196217512,
-      "newNetStruct": -0.17701603698811288,
-      "newNetProd": -0.18324047274858576
+      "newNetStruct": -1.1770160369881129,
+      "newNetProd": -1.1832404727485857
     },
     {
       "oldIndex": 4,
@@ -47,19 +47,19 @@
       "newDt": "2026-04-16 21:15",
       "status": "MATCHED_TIME_PARITY",
       "oldNetB": 1.9692854361711436,
-      "newNetStruct": 1.9687383783061716,
-      "newNetProd": -0.3087394459102932
+      "newNetStruct": 1.4687383783061716,
+      "newNetProd": 0.19126055408970682
     },
     {
       "oldIndex": 5,
       "symbol": "BTCUSD",
       "direction": "long",
       "oldDt": "2026-04-23 17:30",
-      "newDt": "NONE",
-      "status": "ELIMINATED_BY_DEDUP_OR_CLOSE_TIMING",
+      "newDt": "2026-04-23 18:00",
+      "status": "TIMING_SHIFTED_BAR_CLOSE",
       "oldNetB": -1.1333608589801267,
-      "newNetStruct": null,
-      "newNetProd": null
+      "newNetStruct": 0.3630141210687975,
+      "newNetProd": 0.07615025231284717
     },
     {
       "oldIndex": 6,
@@ -70,7 +70,7 @@
       "status": "MATCHED_TIME_PARITY",
       "oldNetB": -1.0800455645161284,
       "newNetStruct": -1.0910610091743116,
-      "newNetProd": -0.4511659090908823
+      "newNetProd": 0.04883409090911772
     },
     {
       "oldIndex": 7,
@@ -80,8 +80,8 @@
       "newDt": "2026-06-06 21:15",
       "status": "TIMING_SHIFTED_BAR_CLOSE",
       "oldNetB": -0.09223717450447108,
-      "newNetStruct": -0.10001106194690451,
-      "newNetProd": -0.21323113207547836
+      "newNetStruct": -1.1000110619469046,
+      "newNetProd": -1.2132311320754783
     },
     {
       "oldIndex": 8,
@@ -91,8 +91,8 @@
       "newDt": "2026-06-07 21:45",
       "status": "MATCHED_TIME_PARITY",
       "oldNetB": -0.09775625,
-      "newNetStruct": -0.100164039408867,
-      "newNetProd": -0.3475777777777778
+      "newNetStruct": -1.100164039408867,
+      "newNetProd": -1.3475777777777778
     },
     {
       "oldIndex": 9,
@@ -102,19 +102,19 @@
       "newDt": "2026-06-21 20:45",
       "status": "MATCHED_TIME_PARITY",
       "oldNetB": -0.19102249070631583,
-      "newNetStruct": -0.22438886462881563,
-      "newNetProd": -0.26624378238341717
+      "newNetStruct": -1.2243888646288157,
+      "newNetProd": -1.2662437823834172
     },
     {
       "oldIndex": 10,
       "symbol": "ETHUSD",
       "direction": "short",
       "oldDt": "2026-06-25 04:45",
-      "newDt": "NONE",
-      "status": "ELIMINATED_BY_DEDUP_OR_CLOSE_TIMING",
+      "newDt": "2026-06-25 00:00",
+      "status": "TIMING_SHIFTED_BAR_CLOSE",
       "oldNetB": 1.9756883683121491,
-      "newNetStruct": null,
-      "newNetProd": null
+      "newNetStruct": 0.48086573060075094,
+      "newNetProd": 0.27475828729281093
     },
     {
       "oldIndex": 11,
@@ -124,8 +124,8 @@
       "newDt": "2026-06-25 22:00",
       "status": "TIMING_SHIFTED_BAR_CLOSE",
       "oldNetB": -0.08822696629213478,
-      "newNetStruct": -0.10611081081081156,
-      "newNetProd": -0.4362333333333169
+      "newNetStruct": 0.39388918918918847,
+      "newNetProd": 0.06376666666668312
     },
     {
       "oldIndex": 12,
@@ -135,8 +135,8 @@
       "newDt": "2026-06-29 15:30",
       "status": "MATCHED_TIME_PARITY",
       "oldNetB": 1.9404215998018817,
-      "newNetStruct": 1.9394995833172124,
-      "newNetProd": -0.19884467205819187
+      "newNetStruct": 1.4394995833172124,
+      "newNetProd": 0.3011553279418081
     },
     {
       "oldIndex": 13,
@@ -165,22 +165,22 @@
       "symbol": "XAUUSD",
       "direction": "long",
       "oldDt": "2026-07-27 10:30",
-      "newDt": "NONE",
-      "status": "ELIMINATED_BY_DEDUP_OR_CLOSE_TIMING",
+      "newDt": "2026-07-27 01:30",
+      "status": "TIMING_SHIFTED_BAR_CLOSE",
       "oldNetB": -1.00614307298899,
-      "newNetStruct": null,
-      "newNetProd": null
+      "newNetStruct": -1.0062627656038892,
+      "newNetProd": -1.016069706817127
     },
     {
       "oldIndex": 16,
       "symbol": "SOLUSD",
       "direction": "long",
       "oldDt": "2026-08-03 03:45",
-      "newDt": "NONE",
-      "status": "ELIMINATED_BY_DEDUP_OR_CLOSE_TIMING",
+      "newDt": "2026-08-03 00:15",
+      "status": "TIMING_SHIFTED_BAR_CLOSE",
       "oldNetB": -0.03966404761904746,
-      "newNetStruct": null,
-      "newNetProd": null
+      "newNetStruct": 0.45728487179487187,
+      "newNetProd": -1.260295312499994
     },
     {
       "oldIndex": 17,
@@ -201,8 +201,8 @@
       "newDt": "2026-08-13 01:30",
       "status": "TIMING_SHIFTED_BAR_CLOSE",
       "oldNetB": -0.07184187582106012,
-      "newNetStruct": -0.07310554070217354,
-      "newNetProd": 1.4419715091299918
+      "newNetStruct": 0.42689445929782643,
+      "newNetProd": 0.9419715091299918
     },
     {
       "oldIndex": 19,
@@ -235,7 +235,7 @@
       "status": "TIMING_SHIFTED_BAR_CLOSE",
       "oldNetB": -1.0981736671649214,
       "newNetStruct": -1.1000917959438852,
-      "newNetProd": -0.7731509658918322
+      "newNetProd": -0.2731509658918322
     },
     {
       "oldIndex": 22,
@@ -246,7 +246,7 @@
       "status": "MATCHED_TIME_PARITY",
       "oldNetB": -1.0425281645569622,
       "newNetStruct": -1.044647508305648,
-      "newNetProd": -0.3952617647058784
+      "newNetProd": 0.10473823529412157
     },
     {
       "oldIndex": 23,
@@ -256,7 +256,7 @@
       "newDt": "2026-09-25 08:00",
       "status": "MATCHED_TIME_PARITY",
       "oldNetB": -0.11567275919372315,
-      "newNetStruct": -0.1807022087832763,
+      "newNetStruct": 0.3192977912167237,
       "newNetProd": -1.1127123218362516
     }
   ],
@@ -267,8 +267,17 @@
       "poiType": "OB",
       "signalDt": "2026-04-01 00:00",
       "entryDt": "2026-04-01 00:15",
-      "netRProd": -0.36633663366322144,
-      "netRStruct": 1.8614232209737918
+      "netRProd": 0.13366336633677856,
+      "netRStruct": 1.3614232209737918
+    },
+    {
+      "symbol": "SOLUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-04-02 00:45",
+      "entryDt": "2026-04-06 00:30",
+      "netRProd": 0.18748278688525288,
+      "netRStruct": 0.4753382276843467
     },
     {
       "symbol": "BTCUSD",
@@ -276,8 +285,8 @@
       "poiType": "OB",
       "signalDt": "2026-04-02 01:45",
       "entryDt": "2026-04-02 02:00",
-      "netRProd": -0.2468118974621157,
-      "netRStruct": -0.09431759492297798
+      "netRProd": 0.25318810253788426,
+      "netRStruct": 0.405682405077022
     },
     {
       "symbol": "XAUUSD",
@@ -285,17 +294,80 @@
       "poiType": "OB",
       "signalDt": "2026-04-02 01:45",
       "entryDt": "2026-04-02 02:00",
-      "netRProd": -0.10604866219610076,
-      "netRStruct": -0.04701509027680501
+      "netRProd": 0.39395133780389924,
+      "netRStruct": 0.452984909723195
     },
     {
       "symbol": "ETHUSD",
       "direction": "long",
       "poiType": "OB",
-      "signalDt": "2026-04-05 03:15",
-      "entryDt": "2026-04-05 05:45",
-      "netRProd": -0.4021629581151661,
-      "netRStruct": -0.3254793432203215
+      "signalDt": "2026-04-02 16:00",
+      "entryDt": "2026-04-03 02:30",
+      "netRProd": 0.2504185667752483,
+      "netRStruct": 0.4436606617647064
+    },
+    {
+      "symbol": "SOLUSD",
+      "direction": "short",
+      "poiType": "FVG",
+      "signalDt": "2026-04-03 01:30",
+      "entryDt": "2026-04-03 12:30",
+      "netRProd": 0.33392767857142924,
+      "netRStruct": -1.0158164115646258
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "short",
+      "poiType": "FVG",
+      "signalDt": "2026-04-03 08:15",
+      "entryDt": "2026-04-06 00:00",
+      "netRProd": -1.1495019088607594,
+      "netRStruct": -1.0843601845679114
+    },
+    {
+      "symbol": "SOLUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-04-05 00:00",
+      "entryDt": "2026-04-06 23:00",
+      "netRProd": 0.08296818181820664,
+      "netRStruct": 0.20404193548387317
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-04-09 18:45",
+      "entryDt": "2026-04-13 00:00",
+      "netRProd": 0.19701084820104597,
+      "netRStruct": 0.21398872925941842
+    },
+    {
+      "symbol": "ETHUSD",
+      "direction": "short",
+      "poiType": "FVG",
+      "signalDt": "2026-04-12 11:30",
+      "entryDt": "2026-04-13 14:45",
+      "netRProd": -1.0304237527312454,
+      "netRStruct": -1.0162063288069836
+    },
+    {
+      "symbol": "EURUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-04-19 23:15",
+      "entryDt": "2026-04-20 07:15",
+      "netRProd": 0.37391304347825915,
+      "netRStruct": 0.37391304347825915
+    },
+    {
+      "symbol": "SOLUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-04-22 08:30",
+      "entryDt": "2026-04-23 00:15",
+      "netRProd": -0.022160526315756712,
+      "netRStruct": -1.0481604368932038
     },
     {
       "symbol": "GBPUSD",
@@ -304,7 +376,7 @@
       "signalDt": "2026-04-23 02:00",
       "entryDt": "2026-04-23 02:15",
       "netRProd": -1.2151162790697467,
-      "netRStruct": -0.5138888888886919
+      "netRStruct": -0.013888888888691886
     },
     {
       "symbol": "BTCUSD",
@@ -312,8 +384,80 @@
       "poiType": "OB",
       "signalDt": "2026-04-24 13:30",
       "entryDt": "2026-04-24 15:00",
-      "netRProd": -1.2270889280505763,
-      "netRStruct": -0.1847278926375886
+      "netRProd": -0.7270889280505763,
+      "netRStruct": 0.3152721073624114
+    },
+    {
+      "symbol": "SOLUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-04-24 21:45",
+      "entryDt": "2026-04-27 06:00",
+      "netRProd": -1.3587790909090836,
+      "netRStruct": -1.270313013698634
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-04-25 11:30",
+      "entryDt": "2026-04-27 15:00",
+      "netRProd": -0.23822225891688387,
+      "netRStruct": 0.09099713344713778
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-04-26 09:15",
+      "entryDt": "2026-04-27 15:15",
+      "netRProd": -1.070836621811837,
+      "netRStruct": -0.7256399523867136
+    },
+    {
+      "symbol": "GBPUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-04-26 20:00",
+      "entryDt": "2026-04-27 01:00",
+      "netRProd": -1.2356687898089065,
+      "netRStruct": -1.1189710610932497
+    },
+    {
+      "symbol": "SOLUSD",
+      "direction": "short",
+      "poiType": "FVG",
+      "signalDt": "2026-04-28 16:15",
+      "entryDt": "2026-04-29 04:30",
+      "netRProd": 0.273316279069771,
+      "netRStruct": -1.3610148148148202
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-04-28 20:00",
+      "entryDt": "2026-04-29 04:30",
+      "netRProd": 0.12632749368219892,
+      "netRStruct": 0.1497568691654093
+    },
+    {
+      "symbol": "EURUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-05-01 18:00",
+      "entryDt": "2026-05-04 10:00",
+      "netRProd": 0.2010309278350939,
+      "netRStruct": -1.0515097690941342
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-05-02 23:30",
+      "entryDt": "2026-05-04 06:00",
+      "netRProd": 0.35362569161860563,
+      "netRStruct": -1.0147430096838637
     },
     {
       "symbol": "SOLUSD",
@@ -321,8 +465,62 @@
       "poiType": "OB",
       "signalDt": "2026-05-04 06:30",
       "entryDt": "2026-05-04 10:15",
-      "netRProd": -0.5493385714285803,
+      "netRProd": -0.049338571428580336,
       "netRStruct": -1.278650000000001
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-05-08 07:30",
+      "entryDt": "2026-05-11 00:00",
+      "netRProd": 0.36588082766432445,
+      "netRStruct": 0.4676466496488043
+    },
+    {
+      "symbol": "ETHUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-05-08 09:45",
+      "entryDt": "2026-05-08 17:30",
+      "netRProd": 0.18991219839140977,
+      "netRStruct": -1.0697463819095478
+    },
+    {
+      "symbol": "EURUSD",
+      "direction": "long",
+      "poiType": "FVG",
+      "signalDt": "2026-05-09 14:30",
+      "entryDt": "2026-05-11 04:30",
+      "netRProd": 1.3209876543209826,
+      "netRStruct": 0.4511784511784498
+    },
+    {
+      "symbol": "ETHUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-05-10 04:15",
+      "entryDt": "2026-05-11 14:30",
+      "netRProd": 0.15007489878542896,
+      "netRStruct": 0.20400171232877445
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-05-10 21:15",
+      "entryDt": "2026-05-12 15:15",
+      "netRProd": -0.38909037478709685,
+      "netRStruct": -0.27089519940919116
+    },
+    {
+      "symbol": "SOLUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-05-12 01:45",
+      "entryDt": "2026-05-12 11:15",
+      "netRProd": 0.20578648648649017,
+      "netRStruct": 0.2633499999999968
     },
     {
       "symbol": "XAUUSD",
@@ -330,8 +528,98 @@
       "poiType": "OB",
       "signalDt": "2026-05-13 10:15",
       "entryDt": "2026-05-13 11:00",
-      "netRProd": -0.0835885104806133,
-      "netRStruct": -0.12806301838842477
+      "netRProd": 0.41641148951938667,
+      "netRStruct": 0.37193698161157523
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "short",
+      "poiType": "FVG",
+      "signalDt": "2026-05-13 13:15",
+      "entryDt": "2026-05-14 14:45",
+      "netRProd": -0.05649777177939397,
+      "netRStruct": 0.38422993437713343
+    },
+    {
+      "symbol": "ETHUSD",
+      "direction": "short",
+      "poiType": "FVG",
+      "signalDt": "2026-05-13 15:00",
+      "entryDt": "2026-05-14 05:45",
+      "netRProd": 1.3132713815789452,
+      "netRStruct": 1.4683110346110906
+    },
+    {
+      "symbol": "GBPUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-05-16 08:30",
+      "entryDt": "2026-05-18 06:45",
+      "netRProd": 0.2932960893854957,
+      "netRStruct": 0.2932960893854957
+    },
+    {
+      "symbol": "SOLUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-05-19 02:00",
+      "entryDt": "2026-05-20 14:45",
+      "netRProd": -1.3943579999999776,
+      "netRStruct": -0.07993823529411181
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-05-19 09:30",
+      "entryDt": "2026-05-20 05:00",
+      "netRProd": 0.1669511652999478,
+      "netRStruct": 0.3049850518069147
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-05-21 04:30",
+      "entryDt": "2026-05-25 00:00",
+      "netRProd": -1.102850442885433,
+      "netRStruct": -1.102850442885433
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-05-25 17:30",
+      "entryDt": "2026-05-26 15:45",
+      "netRProd": 0.28122956403869925,
+      "netRStruct": 0.30504324141182193
+    },
+    {
+      "symbol": "GBPUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-05-26 01:45",
+      "entryDt": "2026-05-26 14:45",
+      "netRProd": 0.2672955974843063,
+      "netRStruct": -1.0613598673300122
+    },
+    {
+      "symbol": "GBPUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-05-27 18:30",
+      "entryDt": "2026-05-29 14:45",
+      "netRProd": 0.18644067796603175,
+      "netRStruct": 0.4324817518248112
+    },
+    {
+      "symbol": "EURUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-05-28 07:00",
+      "entryDt": "2026-05-28 14:00",
+      "netRProd": 0.2070707070706551,
+      "netRStruct": 0.40491803278687133
     },
     {
       "symbol": "XAUUSD",
@@ -339,15 +627,51 @@
       "poiType": "FVG",
       "signalDt": "2026-05-28 14:15",
       "entryDt": "2026-05-28 14:45",
-      "netRProd": -0.06432706740046343,
+      "netRProd": 0.43567293259953654,
       "netRStruct": -1.0116575388137752
+    },
+    {
+      "symbol": "ETHUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-05-29 19:00",
+      "entryDt": "2026-06-01 06:15",
+      "netRProd": -1.2795531865042276,
+      "netRStruct": -1.1140662523900589
+    },
+    {
+      "symbol": "EURUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-05-29 21:45",
+      "entryDt": "2026-06-01 00:45",
+      "netRProd": 1.2128712871287002,
+      "netRStruct": 1.2128712871287002
+    },
+    {
+      "symbol": "GBPUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-05-30 22:15",
+      "entryDt": "2026-06-01 13:15",
+      "netRProd": 0.24657534246579488,
+      "netRStruct": 0.43198529411764847
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-05-30 22:15",
+      "entryDt": "2026-06-01 03:00",
+      "netRProd": 0.401610741483331,
+      "netRStruct": 0.40765555934055286
     },
     {
       "symbol": "XAUUSD",
       "direction": "long",
       "poiType": "FVG",
       "signalDt": "2026-05-31 01:15",
-      "entryDt": "2026-05-31 01:15",
+      "entryDt": "2026-06-01 00:00",
       "netRProd": -1.0165436675619852,
       "netRStruct": -1.018623499877085
     },
@@ -355,10 +679,28 @@
       "symbol": "XAUUSD",
       "direction": "short",
       "poiType": "OB",
+      "signalDt": "2026-06-07 01:15",
+      "entryDt": "2026-06-08 00:00",
+      "netRProd": -1.1980786372189134,
+      "netRStruct": 1.496675879037011
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "short",
+      "poiType": "OB",
       "signalDt": "2026-06-08 15:00",
       "entryDt": "2026-06-08 15:30",
-      "netRProd": -0.060921086209424144,
-      "netRStruct": -0.03009498981953179
+      "netRProd": 0.43907891379057584,
+      "netRStruct": 0.4699050101804682
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-06-10 14:00",
+      "entryDt": "2026-06-11 19:30",
+      "netRProd": 0.4579053122092851,
+      "netRStruct": 0.4579053122092851
     },
     {
       "symbol": "ETHUSD",
@@ -366,8 +708,8 @@
       "poiType": "OB",
       "signalDt": "2026-06-11 16:15",
       "entryDt": "2026-06-11 17:30",
-      "netRProd": -0.2221984902309105,
-      "netRStruct": -0.19157388973966388
+      "netRProd": 0.27780150976908946,
+      "netRStruct": 0.3084261102603361
     },
     {
       "symbol": "XAUUSD",
@@ -375,8 +717,17 @@
       "poiType": "OB",
       "signalDt": "2026-06-11 17:45",
       "entryDt": "2026-06-11 19:00",
-      "netRProd": -0.06757157519102282,
-      "netRStruct": -0.06757157519102282
+      "netRProd": 0.4324284248089772,
+      "netRStruct": 0.4324284248089772
+    },
+    {
+      "symbol": "EURUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-06-15 01:00",
+      "entryDt": "2026-06-17 18:00",
+      "netRProd": 0.33236994219651117,
+      "netRStruct": 0.33236994219651117
     },
     {
       "symbol": "BTCUSD",
@@ -385,7 +736,7 @@
       "signalDt": "2026-06-17 03:15",
       "entryDt": "2026-06-17 06:30",
       "netRProd": -1.2587519739834605,
-      "netRStruct": -0.46684071065162086
+      "netRStruct": 0.03315928934837914
     },
     {
       "symbol": "XAUUSD",
@@ -393,8 +744,8 @@
       "poiType": "FVG",
       "signalDt": "2026-06-18 00:15",
       "entryDt": "2026-06-18 00:30",
-      "netRProd": 1.993392122881845,
-      "netRStruct": 1.9941903032029118
+      "netRProd": 1.493392122881845,
+      "netRStruct": 1.4941903032029118
     },
     {
       "symbol": "XAUUSD",
@@ -403,7 +754,16 @@
       "signalDt": "2026-06-22 00:15",
       "entryDt": "2026-06-22 00:15",
       "netRProd": -1.101650579521236,
-      "netRStruct": -1.4186633039032959
+      "netRStruct": -0.9186633039032959
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "long",
+      "poiType": "FVG",
+      "signalDt": "2026-06-22 03:15",
+      "entryDt": "2026-06-23 01:30",
+      "netRProd": 0.4365518913881195,
+      "netRStruct": -1.0194581888923144
     },
     {
       "symbol": "XAUUSD",
@@ -411,8 +771,116 @@
       "poiType": "OB",
       "signalDt": "2026-06-22 13:45",
       "entryDt": "2026-06-22 13:45",
-      "netRProd": -0.121487328871563,
-      "netRStruct": -0.08431892791292608
+      "netRProd": 0.378512671128437,
+      "netRStruct": 0.41568107208707394
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "long",
+      "poiType": "FVG",
+      "signalDt": "2026-06-22 16:45",
+      "entryDt": "2026-06-23 04:45",
+      "netRProd": 0.12701552562832863,
+      "netRStruct": -1.0941001488602526
+    },
+    {
+      "symbol": "GBPUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-06-22 17:45",
+      "entryDt": "2026-06-23 14:30",
+      "netRProd": -1.1859296482411912,
+      "netRStruct": -1.113846153846139
+    },
+    {
+      "symbol": "EURUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-06-24 06:15",
+      "entryDt": "2026-06-26 08:00",
+      "netRProd": 0.25423728813553836,
+      "netRStruct": -1.0325842696629208
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-06-27 22:30",
+      "entryDt": "2026-06-29 00:15",
+      "netRProd": 0.45245217349039446,
+      "netRStruct": 0.47392163799930226
+    },
+    {
+      "symbol": "ETHUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-07-07 03:00",
+      "entryDt": "2026-07-08 02:15",
+      "netRProd": 0.17521844059405645,
+      "netRStruct": -1.0609153899721449
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-07-07 18:15",
+      "entryDt": "2026-07-08 01:30",
+      "netRProd": 0.35638492550932555,
+      "netRStruct": 0.360782277544354
+    },
+    {
+      "symbol": "ETHUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-07-09 06:30",
+      "entryDt": "2026-07-10 08:15",
+      "netRProd": 0.16180696202530082,
+      "netRStruct": 0.22456443298968554
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "long",
+      "poiType": "FVG",
+      "signalDt": "2026-07-11 03:00",
+      "entryDt": "2026-07-13 02:00",
+      "netRProd": 0.29713721663709664,
+      "netRStruct": -1.0992810843402558
+    },
+    {
+      "symbol": "SOLUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-07-13 11:00",
+      "entryDt": "2026-07-14 13:15",
+      "netRProd": 0.10447666666668176,
+      "netRStruct": -1.097259836065573
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-07-13 11:30",
+      "entryDt": "2026-07-14 12:45",
+      "netRProd": 0.25523063832292975,
+      "netRStruct": -1.0854965917972768
+    },
+    {
+      "symbol": "ETHUSD",
+      "direction": "short",
+      "poiType": "FVG",
+      "signalDt": "2026-07-14 00:00",
+      "entryDt": "2026-07-14 10:45",
+      "netRProd": -1.1224279545454545,
+      "netRStruct": -1.0262056333917104
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-07-17 15:15",
+      "entryDt": "2026-07-20 11:30",
+      "netRProd": 0.4376397043844813,
+      "netRStruct": 0.45491889909948074
     },
     {
       "symbol": "XAUUSD",
@@ -427,10 +895,100 @@
       "symbol": "XAUUSD",
       "direction": "long",
       "poiType": "OB",
+      "signalDt": "2026-07-21 23:00",
+      "entryDt": "2026-07-23 12:30",
+      "netRProd": 0.3411387176717309,
+      "netRStruct": -1.0178558390974626
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-07-28 17:45",
+      "entryDt": "2026-07-28 22:15",
+      "netRProd": -1.0506710821823033,
+      "netRStruct": -1.0506710821823033
+    },
+    {
+      "symbol": "ETHUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-07-28 18:15",
+      "entryDt": "2026-07-29 21:00",
+      "netRProd": 1.3959399296556838,
+      "netRStruct": 1.4214679379715003
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "long",
+      "poiType": "FVG",
+      "signalDt": "2026-07-30 04:45",
+      "entryDt": "2026-07-31 13:30",
+      "netRProd": 0.4408996647040965,
+      "netRStruct": 0.4852527482322962
+    },
+    {
+      "symbol": "EURUSD",
+      "direction": "long",
+      "poiType": "FVG",
+      "signalDt": "2026-07-30 15:15",
+      "entryDt": "2026-07-31 11:00",
+      "netRProd": -1.0788043478260843,
+      "netRStruct": 1.4775193798449615
+    },
+    {
+      "symbol": "GBPUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-07-31 01:45",
+      "entryDt": "2026-07-31 11:30",
+      "netRProd": 0.2412587412587489,
+      "netRStruct": 0.46964725184577505
+    },
+    {
+      "symbol": "GBPUSD",
+      "direction": "long",
+      "poiType": "FVG",
+      "signalDt": "2026-07-31 20:15",
+      "entryDt": "2026-08-03 14:45",
+      "netRProd": -1.0898058252427205,
+      "netRStruct": 0.456470588235295
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-08-02 06:15",
+      "entryDt": "2026-08-03 03:45",
+      "netRProd": -0.9370900774103628,
+      "netRStruct": 1.4282212653778559
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "long",
+      "poiType": "OB",
       "signalDt": "2026-08-03 13:00",
       "entryDt": "2026-08-03 13:00",
-      "netRProd": -0.20568607733795077,
-      "netRStruct": -0.16852102206127278
+      "netRProd": 0.29431392266204925,
+      "netRStruct": 0.3314789779387272
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-08-08 21:15",
+      "entryDt": "2026-08-10 13:30",
+      "netRProd": -0.2349561174622793,
+      "netRStruct": -1.1567995782986724
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-08-17 03:15",
+      "entryDt": "2026-08-18 14:45",
+      "netRProd": 0.39332562117084513,
+      "netRStruct": 0.39332562117084513
     },
     {
       "symbol": "XAUUSD",
@@ -438,8 +996,80 @@
       "poiType": "OB",
       "signalDt": "2026-08-19 10:30",
       "entryDt": "2026-08-19 12:30",
-      "netRProd": -0.077495150095191,
-      "netRStruct": -0.077495150095191
+      "netRProd": 0.42250484990480897,
+      "netRStruct": 0.42250484990480897
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-08-23 13:30",
+      "entryDt": "2026-08-24 12:30",
+      "netRProd": 0.15680872483221475,
+      "netRStruct": 0.19589354742788123
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-08-24 05:00",
+      "entryDt": "2026-08-25 13:15",
+      "netRProd": 0.42301737668880734,
+      "netRStruct": 0.472261749229571
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-08-27 01:00",
+      "entryDt": "2026-08-28 15:45",
+      "netRProd": 0.11101361066544252,
+      "netRStruct": 0.13603954178282784
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "short",
+      "poiType": "FVG",
+      "signalDt": "2026-09-02 08:30",
+      "entryDt": "2026-09-03 12:30",
+      "netRProd": 0.30148138401559454,
+      "netRStruct": -0.03319397905759158
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-09-08 22:00",
+      "entryDt": "2026-09-09 08:15",
+      "netRProd": -1.0437635739854925,
+      "netRStruct": -0.7090410046728151
+    },
+    {
+      "symbol": "GBPUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-09-09 09:00",
+      "entryDt": "2026-09-10 12:00",
+      "netRProd": -1.3936170212766206,
+      "netRStruct": -1.3627450980392082
+    },
+    {
+      "symbol": "ETHUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-09-11 00:30",
+      "entryDt": "2026-09-11 08:30",
+      "netRProd": 0.11530118924509081,
+      "netRStruct": 1.1756724062772521
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-09-11 06:00",
+      "entryDt": "2026-09-11 13:45",
+      "netRProd": -0.14679853882725824,
+      "netRStruct": -0.0805545917496443
     },
     {
       "symbol": "BTCUSD",
@@ -447,8 +1077,35 @@
       "poiType": "OB",
       "signalDt": "2026-09-14 01:00",
       "entryDt": "2026-09-14 02:15",
-      "netRProd": -1.1281201793720501,
-      "netRStruct": -0.9386970149252712
+      "netRProd": -0.6281201793720501,
+      "netRStruct": -0.43869701492527124
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-09-14 07:00",
+      "entryDt": "2026-09-15 08:00",
+      "netRProd": 1.1963787595414193,
+      "netRStruct": 0.3814550141888632
+    },
+    {
+      "symbol": "SOLUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-09-15 05:15",
+      "entryDt": "2026-09-15 14:30",
+      "netRProd": 0.09154464285714448,
+      "netRStruct": 0.2920590909090898
+    },
+    {
+      "symbol": "SOLUSD",
+      "direction": "short",
+      "poiType": "FVG",
+      "signalDt": "2026-09-16 07:00",
+      "entryDt": "2026-09-16 18:00",
+      "netRProd": 0.3845188775510209,
+      "netRStruct": -1.0471547916666668
     },
     {
       "symbol": "XAUUSD",
@@ -456,17 +1113,98 @@
       "poiType": "OB",
       "signalDt": "2026-09-16 18:45",
       "entryDt": "2026-09-16 18:45",
-      "netRProd": -0.10113223151639181,
-      "netRStruct": -0.046997192701019576
+      "netRProd": 0.39886776848360816,
+      "netRStruct": 0.4530028072989804
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-09-18 15:45",
+      "entryDt": "2026-09-21 14:00",
+      "netRProd": 0.362840840511361,
+      "netRStruct": 0.47810174222538937
+    },
+    {
+      "symbol": "SOLUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-09-20 00:45",
+      "entryDt": "2026-09-21 00:15",
+      "netRProd": -0.008412745098019925,
+      "netRStruct": 0.4108967353951889
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-09-23 03:00",
+      "entryDt": "2026-09-23 11:15",
+      "netRProd": 0.41767815818600157,
+      "netRStruct": -1.029083952444506
+    },
+    {
+      "symbol": "ETHUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-09-24 22:45",
+      "entryDt": "2026-09-25 09:30",
+      "netRProd": 0.17283988764045038,
+      "netRStruct": 0.47184407376709503
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-09-25 12:15",
+      "entryDt": "2026-09-28 00:15",
+      "netRProd": 0.28614874152952563,
+      "netRStruct": 1.443964317603012
+    },
+    {
+      "symbol": "ETHUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-09-25 14:15",
+      "entryDt": "2026-09-28 03:15",
+      "netRProd": 0.11563517441859383,
+      "netRStruct": 1.456198708038869
     },
     {
       "symbol": "SOLUSD",
       "direction": "long",
       "poiType": "OB",
       "signalDt": "2026-09-26 01:15",
-      "entryDt": "2026-09-26 03:00",
-      "netRProd": -0.6176011111110877,
-      "netRStruct": -1.2083499999999046
+      "entryDt": "2026-09-28 01:45",
+      "netRProd": -0.11760111111108773,
+      "netRStruct": -0.7083499999999046
+    },
+    {
+      "symbol": "ETHUSD",
+      "direction": "long",
+      "poiType": "OB",
+      "signalDt": "2026-09-27 01:00",
+      "entryDt": "2026-09-28 00:30",
+      "netRProd": 0.2634494696523312,
+      "netRStruct": 0.3379385345175644
+    },
+    {
+      "symbol": "XAUUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-09-28 17:15",
+      "entryDt": "2026-09-29 10:45",
+      "netRProd": -1.0652611351811898,
+      "netRStruct": -1.0252413564480591
+    },
+    {
+      "symbol": "BTCUSD",
+      "direction": "short",
+      "poiType": "OB",
+      "signalDt": "2026-09-29 03:30",
+      "entryDt": "2026-09-30 12:30",
+      "netRProd": 0.30980371329879103,
+      "netRStruct": 0.3155382747068677
     },
     {
       "symbol": "SOLUSD",
@@ -474,8 +1212,17 @@
       "poiType": "FVG",
       "signalDt": "2026-09-29 18:15",
       "entryDt": "2026-09-29 22:00",
-      "netRProd": -0.23711810344827655,
+      "netRProd": 0.26288189655172345,
       "netRStruct": -1.0625129545454548
+    },
+    {
+      "symbol": "GBPUSD",
+      "direction": "long",
+      "poiType": "FVG",
+      "signalDt": "2026-09-30 16:15",
+      "entryDt": "2026-10-01 08:30",
+      "netRProd": -1.1608695652173935,
+      "netRStruct": -1.0745967741935538
     }
   ]
 }

@@ -1,16 +1,17 @@
 {
-  "name": "swing-bos-core",
+  "name": "reading-begonya-shadow",
   "version": "1.0.0",
   "description": "Swing Detection and BOS/CHoCH Core Engine",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/server/index.js",
+    "start": "\"C:\\Users\\piard\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" ../reading/manage.py start",
     "test": "jest",
     "test:notify": "ts-node server/testNotify.ts",
     "demo:preview": "ts-node server/demoPreview.ts",
     "nas100:visualization": "ts-node server/nas100Visualization.ts",
     "report:macro-outcomes": "ts-node scripts/macroOutcomeReport.ts",
+    "report:outcome-readiness": "ts-node scripts/refreshOutcomeReadiness.ts",
     "audit:trade": "ts-node scripts/auditTrade.ts"
   },
   "devDependencies": {

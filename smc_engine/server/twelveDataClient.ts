@@ -42,7 +42,7 @@ export function resetTwelveDataProviderQueueForTests(): void {
 export function getTwelveDataApiKeys(): string[] {
   const rawList = process.env.TWELVE_DATA_API_KEYS;
   if (rawList) {
-    const split = rawList.split(',').map(k => k.trim()).filter(Boolean);
+    const split = [...new Set(rawList.split(',').map(k => k.trim()).filter(Boolean))];
     if (split.length > 0) return split;
   }
   const keys: string[] = [];
@@ -68,6 +68,7 @@ function providerQueue(): DeterministicProviderQueue {
       safetyMargin: envInteger('TWELVE_DATA_RATE_LIMIT_SAFETY_MARGIN', 1),
       maxRetries: envInteger('TWELVE_DATA_MAX_RETRIES', 5),
       windowBufferMs: envInteger('TWELVE_DATA_RATE_LIMIT_WINDOW_BUFFER_MS', 1500),
+      priorityAgingMs: envInteger('TWELVE_DATA_PRIORITY_AGING_MS', 60_000),
     });
   }
   return globalQueue;

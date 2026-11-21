@@ -103,6 +103,11 @@ def run_morning_wake_task():
     logger.info("=" * 60)
     prevent_sleep()
     try:
+        now = datetime.datetime.now()
+        if (now.hour, now.minute) < (8, 59):
+            logger.info("ℹ️ Saat 08:59'dan önce; bugünün bülteni için henüz kontrol zamanı değil.")
+            return True
+
         net_ok = wait_for_network(max_wait_seconds=60)
         if not net_ok:
             logger.warning("⚠️ Ağ bağlantısı olmadan deneniyor...")
@@ -113,16 +118,18 @@ def run_morning_wake_task():
 
         if state.get("last_morning_briefing_date") == today_str:
             logger.info(f"ℹ️ Bugünün ({today_str}) sabah bülteni zaten daha önce gönderilmiş. Mükerrer gönderim yapılmadı.")
-            return
+            return True
 
         logger.info(f"🚀 Sabah bülteni tetikleniyor (Tarih: {today_str})...")
         success = scheduler.send_morning_briefing()
         if success:
             logger.info("🎉 [BAŞARILI] Sabah makro bülteni Telegram'a başarıyla iletildi!")
         else:
-            logger.warning("ℹ️ Sabah makro bülteni iletilemedi veya başka bir işlem tarafından rezerve edildi.")
+            logger.warning("ℹ️ Sabah makro bülteni iletilemedi; sonraki 15 dakikalık kontrolde yeniden denenecek.")
+        return success
     except Exception as e:
         logger.error(f"❌ Wake görevinde beklenmeyen hata: {e}", exc_info=True)
+        return False
     finally:
         allow_sleep()
         logger.info("🏁 [TAMAMLANDI] Sabah uyanma rutini sonlandı.\n")
@@ -178,7 +185,8 @@ def main():
     if args.d1_close:
         run_daily_close_wake_task()
     else:
-        run_morning_wake_task()
+        success = run_morning_wake_task()
+        raise SystemExit(0 if success else 2)
 
 
 if __name__ == "__main__":

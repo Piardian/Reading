@@ -1,0 +1,95 @@
+{
+  "checked_utc_ms": 1794161941627,
+  "unit_tests_passed": 77,
+  "service_state": "RUNNING",
+  "service_errors": [],
+  "connection": "CONNECTED",
+  "feed_errors": {},
+  "actual_raw_counts": {
+    "reset": 1,
+    "depth_snapshot": 2441,
+    "quote": 11997,
+    "trade": 2506
+  },
+  "closed_candle_series": 8,
+  "symbols": {
+    "BTCUSD": {
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "BTCUSDT",
+        "strategy_alias": "BTCUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "RESEARCH_FEATURES_READY",
+      "reasons": [],
+      "actual_trade_events_60s": 355,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO: Tahvil Şoku Kaynaklı Fon Tasfiye Dalgası (Margin Call) Devrede; Long Yasak!",
+          "macroBias": "DEFENSIVE_HOLD",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_WEEKEND_LOW_LIQUIDITY]: CME kapalı hafta sonu likidite tuzağı kalkanı devrede! Düşük hacimli hafta sonu piyasasında işlem için RVOL >= 1.15x ve Rotasyon Skoru >= 75 şarttır. (Mevcut RVOL: 1.00x, Rotasyon Skoru: 70/100)",
+          "macroBias": "DEFENSIVE_HOLD",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "setups": 0,
+      "quote_rejections": {
+        "OLD_OR_FUTURE_RECEIPT": 13
+      }
+    },
+    "ETHUSD": {
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "ETHUSDT",
+        "strategy_alias": "ETHUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "RESEARCH_FEATURES_READY",
+      "reasons": [],
+      "actual_trade_events_60s": 496,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO: Tahvil Şoku Kaynaklı Fon Tasfiye Dalgası (Margin Call) Devrede; Long Yasak!",
+          "macroBias": "DEFENSIVE_HOLD",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_WEEKEND_LOW_LIQUIDITY]: CME kapalı hafta sonu likidite tuzağı kalkanı devrede! Düşük hacimli hafta sonu piyasasında işlem için RVOL >= 1.15x ve Rotasyon Skoru >= 75 şarttır. (Mevcut RVOL: 1.38x, Rotasyon Skoru: 0/100)",
+          "macroBias": "DEFENSIVE_HOLD",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "setups": 0,
+      "quote_rejections": {
+        "OLD_OR_FUTURE_RECEIPT": 16
+      }
+    }
+  },
+  "order_routing": false,
+  "edge_proven": false,
+  "net_pnl": null,
+  "code_hashes": {
+    "crypto_live.py": "69db05635a0f567bf60bd9d32d5e544342fef63ce066f2d685f7a0ab59d1bc63",
+    "crypto_feed.py": "e19009ce07c23d37e45f6debd7a00ef1df4e777a2f89f42208448e4ba4a28082",
+    "smc_shadow.js": "c1c8453cc3e3f8bcfa46cae64388ca761bd93eb0e7273881166ea3eab8a67c8e",
+    "service.py": "ae6f7d6653901820a2ae9681fe638d0c78b8f4b1600e8deb8a7ed1e11942b5d4",
+    "entry_tracker.py": "d060adb6b4775edb30ddfd1aff8fce2a656f9ea15e7ce4cb79a09a3cda36c936",
+    "reading_patterns.py": "2927f335b30e41aebc440be5b6c6b185496caf9189b8f549d3f1450bec729f19",
+    "config.json": "8bda90d06647f92a527dd147e1a787c494570c8bedfb5ef60782ad6a243cbbc0"
+  }
+}

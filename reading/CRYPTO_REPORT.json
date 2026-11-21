@@ -1,0 +1,2820 @@
+{
+  "checked_utc_ms": 1794347660252,
+  "status_age_ms": 234,
+  "connection": "CONNECTED",
+  "clock": {
+    "server_minus_local_midpoint_ms": 24.0,
+    "rtt_ms": 284,
+    "measured_utc_ms": 1794347659489
+  },
+  "feed_errors": {},
+  "raw_counts": {
+    "reset": 1,
+    "depth_snapshot": 25427,
+    "quote": 61122,
+    "trade": 9048
+  },
+  "closed_candle_series": [
+    "BTCUSD_1m",
+    "LTCUSD_1m",
+    "LTCUSD_15m",
+    "LTCUSD_1h",
+    "LTCUSD_4h",
+    "ETHUSD_15m",
+    "ETHUSD_1h",
+    "SOLUSD_1m",
+    "BTCUSD_1h",
+    "ETHUSD_4h",
+    "BTCUSD_4h",
+    "ETHUSD_1m",
+    "BTCUSD_15m",
+    "SOLUSD_15m",
+    "SOLUSD_1h",
+    "SOLUSD_4h",
+    "BNBUSD_15m",
+    "BNBUSD_1m",
+    "BNBUSD_4h",
+    "BNBUSD_1h",
+    "SUIUSD_1m",
+    "SUIUSD_15m",
+    "SUIUSD_1h",
+    "SUIUSD_4h",
+    "AVAXUSD_15m",
+    "AVAXUSD_1m",
+    "AVAXUSD_4h",
+    "AVAXUSD_1h",
+    "NEARUSD_1m",
+    "NEARUSD_15m",
+    "NEARUSD_1h",
+    "NEARUSD_4h",
+    "APTUSD_1m",
+    "APTUSD_15m",
+    "APTUSD_1h",
+    "SEIUSD_1m",
+    "APTUSD_4h",
+    "SEIUSD_15m",
+    "SEIUSD_1h",
+    "SEIUSD_4h",
+    "ARBUSD_1m",
+    "ARBUSD_15m",
+    "ARBUSD_1h",
+    "ARBUSD_4h",
+    "OPUSD_1m",
+    "OPUSD_15m",
+    "OPUSD_1h",
+    "OPUSD_4h",
+    "XRPUSD_1m",
+    "XRPUSD_15m",
+    "XRPUSD_1h",
+    "XRPUSD_4h",
+    "ADAUSD_1m",
+    "ADAUSD_15m",
+    "ADAUSD_1h",
+    "ADAUSD_4h",
+    "DASHUSD_1m",
+    "DASHUSD_15m",
+    "DASHUSD_1h",
+    "DASHUSD_4h",
+    "BCHUSD_1m",
+    "BCHUSD_15m",
+    "BCHUSD_1h",
+    "BCHUSD_4h",
+    "LINKUSD_1m",
+    "LINKUSD_15m",
+    "LINKUSD_1h",
+    "LINKUSD_4h",
+    "DOTUSD_1m",
+    "DOTUSD_15m",
+    "DOTUSD_1h",
+    "DOTUSD_4h",
+    "FETUSD_1m",
+    "FETUSD_15m",
+    "FETUSD_1h",
+    "FETUSD_4h",
+    "RENDERUSD_1m",
+    "RENDERUSD_15m",
+    "RENDERUSD_1h",
+    "RENDERUSD_4h",
+    "TAOUSD_1m",
+    "TAOUSD_15m",
+    "TAOUSD_1h",
+    "TAOUSD_4h",
+    "VIRTUALUSD_1m",
+    "VIRTUALUSD_15m",
+    "VIRTUALUSD_1h",
+    "VIRTUALUSD_4h",
+    "WLDUSD_1m",
+    "WLDUSD_15m",
+    "WLDUSD_1h",
+    "WLDUSD_4h",
+    "ARKMUSD_1m",
+    "ARKMUSD_15m",
+    "ARKMUSD_1h",
+    "ARKMUSD_4h",
+    "IOUSD_1m",
+    "IOUSD_15m",
+    "IOUSD_1h",
+    "IOUSD_4h",
+    "UNIUSD_1m",
+    "UNIUSD_15m",
+    "UNIUSD_1h",
+    "UNIUSD_4h",
+    "AAVEUSD_1m",
+    "AAVEUSD_15m",
+    "AAVEUSD_1h",
+    "AAVEUSD_4h",
+    "PENDLEUSD_1m",
+    "PENDLEUSD_15m",
+    "PENDLEUSD_1h",
+    "PENDLEUSD_4h",
+    "INJUSD_1m",
+    "INJUSD_15m",
+    "INJUSD_1h",
+    "INJUSD_4h",
+    "CHZUSD_1m",
+    "CHZUSD_15m",
+    "CHZUSD_1h",
+    "CHZUSD_4h",
+    "RVNUSD_1m",
+    "RVNUSD_15m",
+    "RVNUSD_1h",
+    "RVNUSD_4h",
+    "GALAUSD_1m",
+    "GALAUSD_15m",
+    "GALAUSD_1h",
+    "GALAUSD_4h",
+    "SANDUSD_1m",
+    "SANDUSD_15m",
+    "SANDUSD_1h",
+    "SANDUSD_4h",
+    "DOGEUSD_1m",
+    "DOGEUSD_15m",
+    "DOGEUSD_1h",
+    "DOGEUSD_4h",
+    "PEPEUSD_1m",
+    "PEPEUSD_15m",
+    "PEPEUSD_1h",
+    "PEPEUSD_4h",
+    "SHIBUSD_1m",
+    "SHIBUSD_15m",
+    "SHIBUSD_1h",
+    "SHIBUSD_4h",
+    "WIFUSD_1m",
+    "WIFUSD_15m",
+    "WIFUSD_1h",
+    "WIFUSD_4h",
+    "BONKUSD_1m",
+    "BONKUSD_1h",
+    "BONKUSD_15m",
+    "FLOKIUSD_1m",
+    "BONKUSD_4h",
+    "FLOKIUSD_1h",
+    "FLOKIUSD_15m",
+    "FLOKIUSD_4h",
+    "PENGUUSD_1m",
+    "PENGUUSD_1h",
+    "PENGUUSD_15m",
+    "PENGUUSD_4h"
+  ],
+  "symbols": [
+    {
+      "strategy_alias": "BTCUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "BTCUSDT",
+        "strategy_alias": "BTCUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "RESEARCH_FEATURES_READY",
+      "tape_reasons": [],
+      "trade_events_60s": 753,
+      "macro_smc_state": "NO_SETUP",
+      "macro_preflight": {
+        "long": {
+          "allowed": true,
+          "multiplier": 1,
+          "message": "⚠️ B MAKRO NÖTR KURULUM (Skor: 10/100) [Makro Kapı Yönsüz / Savunmada (NEUTRAL_RANGE)] -> 0.35x Lot ile Uygula",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": true,
+          "multiplier": 1,
+          "message": "⚠️ B MAKRO NÖTR KURULUM (Skor: 10/100) [Makro Kapı Yönsüz / Savunmada (NEUTRAL_RANGE)] -> 0.35x Lot ile Uygula",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 2827
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 2827
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "ETHUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "ETHUSDT",
+        "strategy_alias": "ETHUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "RESEARCH_FEATURES_READY",
+      "tape_reasons": [],
+      "trade_events_60s": 276,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 57/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_SHORT_SQUEEZE_SHIELD]: RS_CONTRA_SHORT_VETO (ETH piyasaya karşı güçleniyor: ALT/BTC 24s %-1.82, 4s %+0.82, RVOL 1.96x) | SHORT_SQUEEZE_DANGER (ALT/BTC pozitif + Spot RVOL 1.96x + Negatif Funding %-0.0045 -> Short Sıkıştırması!)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 2987
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 2987
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "LTCUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "LTCUSDT",
+        "strategy_alias": "LTCUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 24,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: NO_SECTOR_BREADTH (LEGACY_PAYMENT_INFRA sepetinde tekil hareket; sektör genişliği %0)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 73/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 171
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 171
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "SOLUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "SOLUSDT",
+        "strategy_alias": "SOLUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "RESEARCH_FEATURES_READY",
+      "tape_reasons": [],
+      "trade_events_60s": 66,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 51/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_SHORT_SQUEEZE_SHIELD]: RS_CONTRA_SHORT_VETO (SOL piyasaya karşı güçleniyor: ALT/BTC 24s %-2.25, 4s %+0.56, RVOL 1.73x)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 1639
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 1639
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "BNBUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "BNBUSDT",
+        "strategy_alias": "BNBUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "RESEARCH_FEATURES_READY",
+      "tape_reasons": [],
+      "trade_events_60s": 85,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_REQUIRED]: BNBUSD için aktif 8-Faktör Rotasyon onayı bulunamadı; yalnızca rotasyon onaylı (Skor ≥ 65) altcoinlerde işlem açılır!",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_REQUIRED]: BNBUSD için aktif 8-Faktör Rotasyon onayı bulunamadı; yalnızca rotasyon onaylı (Skor ≥ 65) altcoinlerde işlem açılır!",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 201
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 201
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "SUIUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "SUIUSDT",
+        "strategy_alias": "SUIUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "RESEARCH_FEATURES_READY",
+      "tape_reasons": [],
+      "trade_events_60s": 53,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 60/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 60/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 230
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 230
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "AVAXUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "AVAXUSDT",
+        "strategy_alias": "AVAXUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH",
+        "CRYPTO_BBO_NOT_FRESH"
+      ],
+      "trade_events_60s": 69,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 71/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 71/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 177
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 177
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "NEARUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "NEARUSDT",
+        "strategy_alias": "NEARUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 66,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: MICRO_RS_BREAKDOWN_HOLD (Son 1s ALT/BTC %-0.95 sert aşağı kırıldı; 15m long girişi bekletiliyor)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_SHORT_SQUEEZE_SHIELD]: RS_CONTRA_SHORT_VETO (NEAR piyasaya karşı güçleniyor: ALT/BTC 24s %-0.11, 4s %+0.81, RVOL 2.1x)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 247
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 247
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "APTUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "APTUSDT",
+        "strategy_alias": "APTUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 7,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: RS_UNDERPERFORMING_BTC (ALT/BTC 24s: %-2.46, 4s: %-0.40)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 77/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 151
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 151
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "SEIUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "SEIUSDT",
+        "strategy_alias": "SEIUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH",
+        "CRYPTO_BBO_NOT_FRESH"
+      ],
+      "trade_events_60s": 8,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 53/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 53/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 137
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 137
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "ARBUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "ARBUSDT",
+        "strategy_alias": "ARBUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH",
+        "CRYPTO_BBO_NOT_FRESH"
+      ],
+      "trade_events_60s": 31,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: ALT_BTC_4H_SWING_LOW_BROKEN (CHoCH)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 65/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 229
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 229
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "OPUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "OPUSDT",
+        "strategy_alias": "OPUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 0,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 56/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 56/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 218
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 218
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "XRPUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "XRPUSDT",
+        "strategy_alias": "XRPUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "RESEARCH_FEATURES_READY",
+      "tape_reasons": [],
+      "trade_events_60s": 210,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: MICRO_RS_BREAKDOWN_HOLD (Son 1s ALT/BTC %-1.05 sert aşağı kırıldı; 15m long girişi bekletiliyor) | NO_SECTOR_BREADTH (LEGACY_PAYMENT_INFRA sepetinde tekil hareket; sektör genişliği %0)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 63/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 1876
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 1876
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "ADAUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "ADAUSDT",
+        "strategy_alias": "ADAUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH",
+        "CRYPTO_BBO_NOT_FRESH"
+      ],
+      "trade_events_60s": 4,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: NO_SECTOR_BREADTH (LEGACY_PAYMENT_INFRA sepetinde tekil hareket; sektör genişliği %0)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 73/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 149
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 149
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "DASHUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "DASHUSDT",
+        "strategy_alias": "DASHUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 7,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: RS_UNDERPERFORMING_BTC (ALT/BTC 24s: %-7.34, 4s: %-1.57) | MICRO_RS_BREAKDOWN_HOLD (Son 1s ALT/BTC %-0.66 sert aşağı kırıldı; 15m long girişi bekletiliyor) | ALT_BTC_4H_SWING_LOW_BROKEN (CHoCH) | NO_SECTOR_BREADTH (LEGACY_PAYMENT_INFRA sepetinde tekil hareket; sektör genişliği %0)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 100/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 168
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 168
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "BCHUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "BCHUSDT",
+        "strategy_alias": "BCHUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 6,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: RS_UNDERPERFORMING_BTC (ALT/BTC 24s: %-2.54, 4s: %-0.26) | NO_SECTOR_BREADTH (LEGACY_PAYMENT_INFRA sepetinde tekil hareket; sektör genişliği %0)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 81/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 187
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 187
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "LINKUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "LINKUSDT",
+        "strategy_alias": "LINKUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH",
+        "CRYPTO_BBO_NOT_FRESH"
+      ],
+      "trade_events_60s": 67,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: NO_SECTOR_BREADTH (LEGACY_PAYMENT_INFRA sepetinde tekil hareket; sektör genişliği %0)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 58/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 181
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 181
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "DOTUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "DOTUSDT",
+        "strategy_alias": "DOTUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 12,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: RS_UNDERPERFORMING_BTC (ALT/BTC 24s: %-1.97, 4s: %-0.95) | ALT_BTC_4H_SWING_LOW_BROKEN (CHoCH) | NO_SECTOR_BREADTH (LEGACY_PAYMENT_INFRA sepetinde tekil hareket; sektör genişliği %0)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 81/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 210
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 210
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "FETUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "FETUSDT",
+        "strategy_alias": "FETUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 7,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 47/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_SHORT_SQUEEZE_SHIELD]: RS_CONTRA_SHORT_VETO (FET piyasaya karşı güçleniyor: ALT/BTC 24s %+0.69, 4s %+0.04, RVOL 1.24x)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 148
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 148
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "RENDERUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "RENDERUSDT",
+        "strategy_alias": "RENDERUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH",
+        "CRYPTO_BBO_NOT_FRESH"
+      ],
+      "trade_events_60s": 26,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 53/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_SHORT_SQUEEZE_SHIELD]: RS_CONTRA_SHORT_VETO (RENDER piyasaya karşı güçleniyor: ALT/BTC 24s %-1.34, 4s %+0.77, RVOL 1.54x)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 173
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 173
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "TAOUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "TAOUSDT",
+        "strategy_alias": "TAOUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH",
+        "CRYPTO_BBO_NOT_FRESH"
+      ],
+      "trade_events_60s": 25,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: MICRO_RS_BREAKDOWN_HOLD (Son 1s ALT/BTC %-0.73 sert aşağı kırıldı; 15m long girişi bekletiliyor)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 66/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 176
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 176
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "VIRTUALUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "VIRTUALUSDT",
+        "strategy_alias": "VIRTUALUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH",
+        "CRYPTO_BBO_NOT_FRESH"
+      ],
+      "trade_events_60s": 5,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 51/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 51/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 148
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 148
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "WLDUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "WLDUSDT",
+        "strategy_alias": "WLDUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 32,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: RS_UNDERPERFORMING_BTC (ALT/BTC 24s: %-2.86, 4s: %-0.79) | MICRO_RS_BREAKDOWN_HOLD (Son 1s ALT/BTC %-0.66 sert aşağı kırıldı; 15m long girişi bekletiliyor) | ALT_BTC_4H_SWING_LOW_BROKEN (CHoCH)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 71/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 198
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 198
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "ARKMUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "ARKMUSDT",
+        "strategy_alias": "ARKMUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH",
+        "CRYPTO_BBO_NOT_FRESH"
+      ],
+      "trade_events_60s": 0,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 56/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_SHORT_SQUEEZE_SHIELD]: RS_CONTRA_SHORT_VETO (ARKM piyasaya karşı güçleniyor: ALT/BTC 24s %+0.57, 4s %+0.99, RVOL 1.05x)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 189
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 189
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "IOUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "IOUSDT",
+        "strategy_alias": "IOUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH",
+        "CRYPTO_BBO_NOT_FRESH"
+      ],
+      "trade_events_60s": 8,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: RS_UNDERPERFORMING_BTC (ALT/BTC 24s: %-1.10, 4s: %-1.05) | MICRO_RS_BREAKDOWN_HOLD (Son 1s ALT/BTC %-0.67 sert aşağı kırıldı; 15m long girişi bekletiliyor)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 56/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 190
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 190
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "UNIUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "UNIUSDT",
+        "strategy_alias": "UNIUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "RESEARCH_FEATURES_READY",
+      "tape_reasons": [],
+      "trade_events_60s": 27,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: RS_UNDERPERFORMING_BTC (ALT/BTC 24s: %-3.74, 4s: %-1.34) | MICRO_RS_BREAKDOWN_HOLD (Son 1s ALT/BTC %-0.83 sert aşağı kırıldı; 15m long girişi bekletiliyor) | ALT_BTC_4H_SWING_LOW_BROKEN (CHoCH) | NO_SECTOR_BREADTH (DEFI_GAMING_MIDCAP sepetinde tekil hareket; sektör genişliği %25)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 96/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 213
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 213
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "AAVEUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "AAVEUSDT",
+        "strategy_alias": "AAVEUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "RESEARCH_FEATURES_READY",
+      "tape_reasons": [],
+      "trade_events_60s": 43,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: RS_UNDERPERFORMING_BTC (ALT/BTC 24s: %-5.33, 4s: %-0.60) | ALT_BTC_4H_SWING_LOW_BROKEN (CHoCH) | NO_SECTOR_BREADTH (DEFI_GAMING_MIDCAP sepetinde tekil hareket; sektör genişliği %25)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 65/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 164
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 164
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "PENDLEUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "PENDLEUSDT",
+        "strategy_alias": "PENDLEUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 1,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: NO_SECTOR_BREADTH (DEFI_GAMING_MIDCAP sepetinde tekil hareket; sektör genişliği %25)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 47/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 161
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 161
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "INJUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "INJUSDT",
+        "strategy_alias": "INJUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "RESEARCH_FEATURES_READY",
+      "tape_reasons": [],
+      "trade_events_60s": 201,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: MICRO_RS_BREAKDOWN_HOLD (Son 1s ALT/BTC %-1.05 sert aşağı kırıldı; 15m long girişi bekletiliyor) | NO_SECTOR_BREADTH (DEFI_GAMING_MIDCAP sepetinde tekil hareket; sektör genişliği %25)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_SHORT_SQUEEZE_SHIELD]: RS_CONTRA_SHORT_VETO (INJ piyasaya karşı güçleniyor: ALT/BTC 24s %-0.57, 4s %+1.18, RVOL 1.29x)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 227
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 227
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "CHZUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "CHZUSDT",
+        "strategy_alias": "CHZUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 1,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: RS_UNDERPERFORMING_BTC (ALT/BTC 24s: %-0.70, 4s: %-0.38) | NO_SECTOR_BREADTH (DEFI_GAMING_MIDCAP sepetinde tekil hareket; sektör genişliği %25)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 73/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 177
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 177
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "RVNUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "RVNUSDT",
+        "strategy_alias": "RVNUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 0,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: NO_SECTOR_BREADTH (DEFI_GAMING_MIDCAP sepetinde tekil hareket; sektör genişliği %25)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 35/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 165
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 165
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "GALAUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "GALAUSDT",
+        "strategy_alias": "GALAUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH",
+        "CRYPTO_BBO_NOT_FRESH"
+      ],
+      "trade_events_60s": 2,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: RS_UNDERPERFORMING_BTC (ALT/BTC 24s: %-1.29, 4s: %-0.43) | NO_SECTOR_BREADTH (DEFI_GAMING_MIDCAP sepetinde tekil hareket; sektör genişliği %25)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 74/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 192
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 192
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "SANDUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "SANDUSDT",
+        "strategy_alias": "SANDUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH",
+        "CRYPTO_BBO_NOT_FRESH"
+      ],
+      "trade_events_60s": 5,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: NO_SECTOR_BREADTH (DEFI_GAMING_MIDCAP sepetinde tekil hareket; sektör genişliği %25)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_SHORT_SQUEEZE_SHIELD]: RS_CONTRA_SHORT_VETO (SAND piyasaya karşı güçleniyor: ALT/BTC 24s %+2.96, 4s %+0.89, RVOL 0.96x)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 119
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 119
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "DOGEUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "DOGEUSDT",
+        "strategy_alias": "DOGEUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 79,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: RS_UNDERPERFORMING_BTC (ALT/BTC 24s: %-1.86, 4s: %-0.33)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 75/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 228
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 228
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "PEPEUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "PEPEUSDT",
+        "strategy_alias": "PEPEUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_BBO_NOT_FRESH"
+      ],
+      "trade_events_60s": 8,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: MICRO_RS_BREAKDOWN_HOLD (Son 1s ALT/BTC %-0.69 sert aşağı kırıldı; 15m long girişi bekletiliyor)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_SHORT_SQUEEZE_SHIELD]: RS_CONTRA_SHORT_VETO (PEPE piyasaya karşı güçleniyor: ALT/BTC 24s %+3.52, 4s %+0.04, RVOL 1.55x)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 179
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 179
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "SHIBUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "SHIBUSDT",
+        "strategy_alias": "SHIBUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 6,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 47/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 47/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 154
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 154
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "WIFUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "WIFUSDT",
+        "strategy_alias": "WIFUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 4,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 53/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 53/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 137
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 137
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "BONKUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "BONKUSDT",
+        "strategy_alias": "BONKUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH"
+      ],
+      "trade_events_60s": 9,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 52/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_SHORT_SQUEEZE_SHIELD]: RS_CONTRA_SHORT_VETO (BONK piyasaya karşı güçleniyor: ALT/BTC 24s %+1.38, 4s %+1.24, RVOL 1.78x)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 144
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 144
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "FLOKIUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "FLOKIUSDT",
+        "strategy_alias": "FLOKIUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH",
+        "CRYPTO_BBO_NOT_FRESH"
+      ],
+      "trade_events_60s": 16,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 56/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_SHORT_SQUEEZE_SHIELD]: RS_CONTRA_SHORT_VETO (FLOKI piyasaya karşı güçleniyor: ALT/BTC 24s %+0.71, 4s %+0.39, RVOL 1.05x)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 148
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 148
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    },
+    {
+      "strategy_alias": "PENGUUSD",
+      "market_identity": {
+        "market": "BINANCE_SPOT",
+        "venue_symbol": "PENGUUSDT",
+        "strategy_alias": "PENGUUSD",
+        "quote_asset": "USDT",
+        "broker_usd_execution_equivalent": false
+      },
+      "tape_state": "DATA_NOT_READY",
+      "tape_reasons": [
+        "CRYPTO_TRADES_NOT_FRESH",
+        "CRYPTO_BBO_NOT_FRESH"
+      ],
+      "trade_events_60s": 22,
+      "macro_smc_state": "MACRO_BLOCKED",
+      "macro_preflight": {
+        "long": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SHIELD]: RS_UNDERPERFORMING_BTC (ALT/BTC 24s: %-1.69, 4s: %-0.26) | ALT_BTC_4H_SWING_LOW_BROKEN (CHoCH)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        },
+        "short": {
+          "allowed": false,
+          "multiplier": 0,
+          "message": "🛑 VETO [CRYPTO_ROTATION_SCORE]: Makro BTC Kapısı Yönsüz (NEUTRAL_RANGE); altcoin rotasyonu beklemede. (Skor: 66/100, Eşik: 65)",
+          "macroBias": "NEUTRAL_RANGE",
+          "scope": "DIRECTIONAL_PREFLIGHT_TECHNICAL_SCORE_ZERO_NOT_AN_ENTRY_APPROVAL"
+        }
+      },
+      "smc_errors": [],
+      "speed": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "detected": false
+      },
+      "absorption_candidates": 0,
+      "liquidity_pulls": {
+        "state": "NOT_EVALUATED_NO_APPROVED_SETUP",
+        "candidates": []
+      },
+      "automatic_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "AUTOMATIC_PATTERNS_V1",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 176
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      },
+      "control_entry": {
+        "states": {},
+        "total_setups": 0,
+        "entry_rule": "PRICE_RESPONSE_AND_PRESSURE_CONTROL",
+        "pattern_gates": {},
+        "quote_rejections": {
+          "OLD_OR_FUTURE_RECEIPT": 176
+        },
+        "order_routing": false,
+        "execution_permissions": false,
+        "net_pnl": null
+      }
+    }
+  ],
+  "order_routing": false,
+  "edge_proven": false,
+  "net_pnl": null
+}

@@ -1,3 +1,12 @@
+if __name__ == '__main__':
+    raise SystemExit('READING: use BASLAT_READING.cmd. Original orchestrator is disabled in this copy.')
+
+if __name__ == "__main__" and (True):
+    import runpy as _singleton_runpy
+    from pathlib import Path as _SingletonPath
+    _singleton_guard = _singleton_runpy.run_path(str(_SingletonPath(__file__).with_name("deployment_singleton.py")))
+    _singleton_guard["acquire"](__file__)
+
 import subprocess
 import sys
 import time
@@ -59,7 +68,7 @@ def acquire_orchestrator_lock() -> bool:
 
 def release_orchestrator_lock():
     try:
-        if LOCK_FILE.exists():
+        if LOCK_FILE.exists() and LOCK_FILE.read_text(encoding="utf-8").strip() == str(os.getpid()):
             LOCK_FILE.unlink()
     except Exception:
         pass

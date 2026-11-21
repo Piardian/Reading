@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { createHash } from 'crypto';
 import type { NotificationCandidate } from './pipeline';
 import { MacroGateAdapter } from './macroGateAdapter';
 import { detectAssetClass, getPipSize, AssetClass } from '../src/assetMetrics';
@@ -10,6 +11,10 @@ import {
 } from './cryptoRotationEngine';
 
 export interface CryptoRotationSnapshotData {
+  readonly derivativesDataStatus?: string;
+  readonly oiChange4hPct?: number;
+  readonly oiChange24hPct?: number;
+  readonly spotToFuturesVolumeRatio?: number;
   readonly coin: string;
   readonly sector: string;
   readonly layer: number;
@@ -68,6 +73,11 @@ export interface MacroSnapshot {
   readonly dataVintageTimestamp?: string;
   readonly pointInTimeVerified: boolean;
   readonly dataLatencyMs?: number;
+  readonly provenanceIssues?: readonly string[];
+  readonly inputAvailability?: readonly { source: string; availableAt: string; vintageAt: string }[];
+  readonly payloadHash?: string;
+  readonly inputAvailabilityComplete?: boolean;
+  readonly relativePolicyContext?: import('./relativePolicyContext').RelativePolicyContext;
 }
 
 export interface DynamicCostInputs {
@@ -250,7 +260,7 @@ export function estimateTransactionCost(symbol: string, riskDistance: number, en
   };
 }
 
-export type ForecastHorizonType = 'SCALP_INTRADAY' | 'SWING_4H_24H' | 'MULTI_DAY';
+export type ForecastHorizonType = 'SCALP_INTRADAY' | 'SWING_4H_24H' | 'MULTI_DAY' | 'UNKNOWN';
 export type MacroGatingCohortType = 'MACRO_APPROVED' | 'MACRO_BLOCKED' | 'SMC_ONLY';
 export type MacroActionType = 'PROCEED' | 'WAIT' | 'VETO' | 'BLOCK';
 
@@ -279,7 +289,7 @@ export interface MacroOutcomeEvidenceRecord {
   readonly macroSnapshot: MacroSnapshot;
 
   // Required Execution & Provenance Metrics (Schema v2)
-  readonly executionSource: 'TEST' | 'PAPER' | 'LIVE';
+  readonly executionSource: 'TEST' | 'PAPER' | 'LIVE' | 'UNVERIFIED';
   readonly entryConfirmed: boolean;
   readonly fillModel: 'STRICT_BID_ASK' | 'TOUCH_APPROX' | 'CONSERVATIVE_SL_FIRST';
   readonly spreadCostR: number;
@@ -299,22 +309,35 @@ export interface MacroOutcomeEvidenceRecord {
   readonly entryTriggeredAt: string | null;
   readonly exitOccurredAt: string;
   readonly recordedAt: string;
-  readonly pipelineLatencyMs: number;
+  readonly pipelineLatencyMs: number | null;
   readonly decisionEngineVersion: string;
   readonly ambiguousIntracandleConflict?: boolean;
+  readonly measurementVersion?: number;
+  readonly executionPolicyId?: string;
+  readonly costModel?: 'ESTIMATED' | 'OBSERVED' | 'UNKNOWN';
+  readonly plannedHoldingTimeMs?: number;
+  readonly evidenceScope?: 'SMC_PAPER_WITH_ECONOMIC_MACRO' | 'UNVERIFIED';
+  readonly dataQualityIssues?: readonly string[];
+  readonly independentHoldoutId?: string;
+}
+
+export function classifyPlannedHorizon(durationMs: number): ForecastHorizonType {
+  if (!Number.isFinite(durationMs) || durationMs <= 0) return 'UNKNOWN';
+  return durationMs <= 4 * 3600000 ? 'SCALP_INTRADAY'
+    : durationMs <= 24 * 3600000 ? 'SWING_4H_24H' : 'MULTI_DAY';
 }
 
 export function normalizeMacroOutcomeRecord(raw: any): MacroOutcomeEvidenceRecord {
-  const signalTs = raw.signalTimestamp ?? Date.now();
-  const exitTs = raw.exitTimestamp ?? Date.now();
+  const signalTs = raw.signalTimestamp ?? 0;
+  const exitTs = raw.exitTimestamp ?? 0;
   const entryTs = raw.entryTimestamp ?? null;
   const holdingMs = raw.holdingTimeMs ?? (entryTs ? Math.max(0, exitTs - entryTs) : null);
-  const entryConfirmed = raw.entryConfirmed ?? (entryTs !== null);
+  const entryConfirmed = raw.entryConfirmed === true && Number.isFinite(entryTs);
 
   // Ex-ante forecast horizon determination
-  const exAnteForecastHorizon: ForecastHorizonType = raw.exAnteForecastHorizon ?? (
-    raw.forecastHorizon ?? 'SCALP_INTRADAY'
-  );
+  const exAnteForecastHorizon: ForecastHorizonType = raw.plannedHoldingTimeMs != null
+    ? classifyPlannedHorizon(raw.plannedHoldingTimeMs)
+    : raw.measurementVersion >= 3 ? (raw.exAnteForecastHorizon ?? 'UNKNOWN') : 'UNKNOWN';
 
   let realizedHoldingDuration: ForecastHorizonType | undefined;
   if (holdingMs !== null) {
@@ -329,20 +352,19 @@ export function normalizeMacroOutcomeRecord(raw: any): MacroOutcomeEvidenceRecor
     cohort = 'MACRO_APPROVED';
   }
 
-  const executionSource: 'TEST' | 'PAPER' | 'LIVE' = raw.executionSource ?? (
-    raw.signalId?.startsWith('test_') ? 'TEST' : 'PAPER'
-  );
-
-  const costs = estimateDynamicTransactionCost({
-    symbol: raw.symbol ?? 'EURUSD',
-    riskDistance: raw.riskDistance ?? 0,
-    entryPrice: raw.entryPrice,
-    vixLevel: raw.macroSnapshot?.vixLevel,
-    newsFreezeActive: raw.macroSnapshot?.newsFreezeActive,
-  });
-
-  const grossR = entryConfirmed ? (raw.realizedR ?? null) : null;
-  const netR = grossR !== null ? Math.round((grossR - costs.totalCostR) * 100) / 100 : null;
+  const executionSource = ['TEST', 'PAPER', 'LIVE'].includes(raw.executionSource)
+    ? raw.executionSource : 'UNVERIFIED';
+  const issues: string[] = [...(raw.dataQualityIssues ?? [])];
+  if (executionSource === 'UNVERIFIED') issues.push('MISSING_EXECUTION_PROVENANCE');
+  if (!raw.measurementVersion || raw.measurementVersion < 3) issues.push('LEGACY_EXECUTION_POLICY_UNVERIFIED');
+  // Reading evidence must never apply today's cost model to yesterday's fills.
+  const costsKnown = Number.isFinite(raw.totalCostR) && raw.totalCostR >= 0;
+  const grossR = entryConfirmed && Number.isFinite(raw.realizedR) ? raw.realizedR : null;
+  const netR = grossR === null ? null : Number.isFinite(raw.netRealizedR)
+    ? raw.netRealizedR : costsKnown ? Math.round((grossR - raw.totalCostR) * 1000) / 1000 : null;
+  if (grossR !== null && costsKnown && netR !== null && Math.abs(grossR - raw.totalCostR - netR) > 0.011) {
+    issues.push('INCONSISTENT_GROSS_NET_COST');
+  }
 
   return {
     schemaVersion: 2,
@@ -366,15 +388,23 @@ export function normalizeMacroOutcomeRecord(raw: any): MacroOutcomeEvidenceRecor
     maximumFavorableExcursion: raw.maximumFavorableExcursion ?? 0,
     maximumAdverseExcursion: raw.maximumAdverseExcursion ?? 0,
     exitReason: raw.exitReason ?? 'Recorded outcome',
-    macroSnapshot: raw.macroSnapshot ?? createFallbackMacroSnapshot(raw.symbol, raw.direction, signalTs),
+    macroSnapshot: raw.macroSnapshot ? {
+      ...raw.macroSnapshot,
+      ...verifyMacroProvenance({
+        generated_at_utc: raw.macroSnapshot.dataVintageTimestamp,
+        input_availability: raw.macroSnapshot.inputAvailability,
+        input_availability_complete: raw.macroSnapshot.inputAvailabilityComplete,
+      }, raw.macroSnapshot.timestamp ?? signalTs),
+      payloadHash: raw.macroSnapshot.payloadHash,
+    } : createFallbackMacroSnapshot(raw.symbol ?? '', raw.direction, signalTs),
 
     executionSource,
     entryConfirmed,
-    fillModel: raw.fillModel ?? 'STRICT_BID_ASK',
-    spreadCostR: entryConfirmed ? (raw.spreadCostR ?? costs.spreadCostR) : 0,
-    slippageCostR: entryConfirmed ? (raw.slippageCostR ?? costs.slippageCostR) : 0,
-    commissionCostR: entryConfirmed ? (raw.commissionCostR ?? costs.commissionCostR) : 0,
-    totalCostR: entryConfirmed ? (raw.totalCostR ?? costs.totalCostR) : 0,
+    fillModel: raw.fillModel ?? 'TOUCH_APPROX',
+    spreadCostR: entryConfirmed ? (raw.spreadCostR ?? 0) : 0,
+    slippageCostR: entryConfirmed ? (raw.slippageCostR ?? 0) : 0,
+    commissionCostR: entryConfirmed ? (raw.commissionCostR ?? 0) : 0,
+    totalCostR: entryConfirmed ? (raw.totalCostR ?? 0) : 0,
     netRealizedR: netR,
     assetClass: raw.assetClass ?? detectAssetClass(raw.symbol ?? 'EURUSD'),
     exAnteForecastHorizon,
@@ -386,10 +416,17 @@ export function normalizeMacroOutcomeRecord(raw: any): MacroOutcomeEvidenceRecor
     candleClosedAt: raw.candleClosedAt ?? new Date(signalTs).toISOString(),
     entryTriggeredAt: entryTs ? new Date(entryTs).toISOString() : null,
     exitOccurredAt: raw.exitOccurredAt ?? new Date(exitTs).toISOString(),
-    recordedAt: raw.recordedAt ?? new Date().toISOString(),
-    pipelineLatencyMs: raw.pipelineLatencyMs ?? 0,
-    decisionEngineVersion: raw.decisionEngineVersion ?? 'v2.1.0',
+    recordedAt: raw.recordedAt ?? '',
+    pipelineLatencyMs: raw.pipelineLatencyMs ?? null,
+    decisionEngineVersion: raw.decisionEngineVersion ?? 'UNKNOWN',
     ambiguousIntracandleConflict: raw.ambiguousIntracandleConflict ?? false,
+    measurementVersion: raw.measurementVersion,
+    executionPolicyId: raw.executionPolicyId,
+    plannedHoldingTimeMs: raw.plannedHoldingTimeMs,
+    costModel: costsKnown ? (raw.costModel ?? 'ESTIMATED') : 'UNKNOWN',
+    evidenceScope: raw.evidenceScope ?? 'UNVERIFIED',
+    dataQualityIssues: [...new Set(issues)],
+    independentHoldoutId: raw.independentHoldoutId,
   };
 }
 
@@ -444,6 +481,7 @@ export function captureMacroSnapshot(
 
   const payload = macroGateAdapter.loadGatePayload();
   const rs = payload?.regime_state ?? {};
+  const provenance = verifyMacroProvenance(payload, now);
 
   // News proximity
   const nearestNews = newsGuard.getNearestUpcomingEvent(candidate.symbol, now);
@@ -476,6 +514,10 @@ export function captureMacroSnapshot(
         rotationScore: coinAssessment.active_rotation_score,
         rotationGate: coinAssessment.rotation_gate,
         derivativesRegime: coinAssessment.derivatives_regime,
+        derivativesDataStatus: coinAssessment.derivatives_data_status,
+        oiChange4hPct: coinAssessment.oi_change_4h_pct,
+        oiChange24hPct: coinAssessment.oi_change_24h_pct,
+        spotToFuturesVolumeRatio: coinAssessment.spot_to_futures_vol_ratio,
         fundingRatePct: coinAssessment.funding_rate_pct,
         effectiveRvol: coinAssessment.effective_rvol,
         rsVsBtc24hPct: coinAssessment.rs_vs_btc_24h_pct,
@@ -498,6 +540,7 @@ export function captureMacroSnapshot(
     smcTechnicalScore: evalResult.smcTechnicalScore,
     macroBias: evalResult.macroBias,
     macroAction: evalResult.action,
+    relativePolicyContext: evalResult.relativePolicyContext,
 
     // Sovereign Yield Spreads
     spreadDeUs2yBps: typeof rs.spread_de_us_2y_bps === 'number' ? rs.spread_de_us_2y_bps : null,
@@ -527,9 +570,33 @@ export function captureMacroSnapshot(
     ...(cryptoRotation ? { cryptoRotation } : {}),
 
     // Point-in-time provenance
-    dataVintageTimestamp: (rs as any)?.vintage_timestamp ?? (payload as any)?.generated_at_utc,
-    pointInTimeVerified: Boolean((payload as any)?.generated_at_utc),
-    dataLatencyMs: (payload as any)?.generated_at_utc ? Math.max(0, now - new Date((payload as any).generated_at_utc).getTime()) : undefined,
+    ...provenance,
+  };
+}
+
+export function verifyMacroProvenance(payload: any, cutoffMs: number): Pick<MacroSnapshot,
+  'dataVintageTimestamp' | 'pointInTimeVerified' | 'dataLatencyMs' | 'inputAvailability' | 'inputAvailabilityComplete' | 'provenanceIssues' | 'payloadHash'> {
+  const generated = Date.parse(payload?.generated_at_utc ?? '');
+  const inputs = Array.isArray(payload?.input_availability) ? payload.input_availability : [];
+  const issues: string[] = [];
+  if (!Number.isFinite(generated) || generated > cutoffMs) issues.push('PAYLOAD_NOT_AVAILABLE_AT_SIGNAL');
+  // Producers must explicitly attest complete input coverage; a payload timestamp alone is insufficient.
+  if (payload?.input_availability_complete !== true || inputs.length === 0) issues.push('INCOMPLETE_INPUT_PROVENANCE');
+  for (const input of inputs) {
+    if (!input || typeof input !== 'object') { issues.push('INPUT_NOT_AVAILABLE_AT_SIGNAL'); continue; }
+    const available = Date.parse(input.availableAt);
+    const vintage = Date.parse(input.vintageAt);
+    if (!input.source || !Number.isFinite(available) || !Number.isFinite(vintage) ||
+        available > cutoffMs || vintage > available || available > generated) issues.push('INPUT_NOT_AVAILABLE_AT_SIGNAL');
+  }
+  return {
+    dataVintageTimestamp: Number.isFinite(generated) ? new Date(generated).toISOString() : undefined,
+    dataLatencyMs: Number.isFinite(generated) && generated <= cutoffMs ? cutoffMs - generated : undefined,
+    pointInTimeVerified: issues.length === 0,
+    inputAvailability: inputs,
+    inputAvailabilityComplete: payload?.input_availability_complete === true,
+    provenanceIssues: [...new Set(issues)],
+    payloadHash: payload ? createHash('sha256').update(JSON.stringify(payload)).digest('hex') : undefined,
   };
 }
 

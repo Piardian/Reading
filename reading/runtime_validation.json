@@ -1,0 +1,11 @@
+{
+  "second_instance": "REJECTED",
+  "graceful_stop": "PASS",
+  "restart": "PASS",
+  "active_pid": 26408,
+  "active_smc_pid": 7280,
+  "mode": "READ_ONLY_SHADOW",
+  "order_routing": false,
+  "telegram_enabled": false,
+  "provider_calls_enabled": false
+}

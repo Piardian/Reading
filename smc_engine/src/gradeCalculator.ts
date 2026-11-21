@@ -3,6 +3,7 @@ import { ModelState } from './modelDeterminer';
 import { POITestResult } from './poiTestCounter';
 import { LiquidityMagnet } from './liquidityMagnetDetector';
 import { OpposingObstacle } from './opposingObstacleDetector';
+import { acceptsEntryGrade, MinimumEntryGrade } from './entryGradePolicy';
 
 export interface GradeInput {
   tradeDirection: 'long' | 'short';
@@ -172,7 +173,7 @@ export function scorePOIQuality(
 /**
  * Main function to evaluate a trade setup grade.
  */
-export function calculateGrade(input: GradeInput): GradeResult {
+export function calculateGrade(input: GradeInput, minimumEntryGrade: MinimumEntryGrade = 'A'): GradeResult {
   const htfBiasPD = scoreHTFBiasPD(input.bias4H, input.pd4H, input.bias1H, input.tradeDirection);
   const displacement = scoreDisplacement(input.displacementQuality15m);
   const structure = scoreStructure(input.has15mEvent, input.displacementQuality15m);
@@ -250,8 +251,10 @@ export function calculateGrade(input: GradeInput): GradeResult {
   if (input.displacementQuality15m?.quality === 'zayıf' || input.displacementQuality15m?.quality === 'yok') {
     if (grade === 'A+' || grade === 'A') grade = 'B+';
   }
-  // - Over-tested POI (>= 2 tests): Cap at B+ (no entry)
-  if (input.poiTestCount >= 2) {
+  const allowContinuationPD = Boolean(input.allowTrendContinuationPD);
+
+  // - Over-tested POI (>= 3 tests): Cap at B+ (no entry; 2nd touch receives -1 score penalty above)
+  if (input.poiTestCount >= 3) {
     if (grade === 'A+' || grade === 'A') grade = 'B+';
   }
   // - 1H opposite in Model 2 continuation: Cap at B+
@@ -260,12 +263,16 @@ export function calculateGrade(input: GradeInput): GradeResult {
   if (is1HOpposite && input.modelState.model === 'model2_continuation') {
     if (grade === 'A+' || grade === 'A') grade = 'B+';
   }
-  // - Double Intraday P/D Conflict (Both 1H and 15M opposite): Cap at B+ (no entry)
+  // - Double Intraday P/D Conflict (Both 1H and 15M opposite): Always cap at B+ (never chase local tops/bottoms)
   if (is1HPDDirectlyOpposite && is15MPDOpposite) {
     if (grade === 'A+' || grade === 'A') grade = 'B+';
   }
-  // - 1H opposite with 4H Equilibrium: Cap at B+ (no entry)
-  if (is1HPDDirectlyOpposite && input.pd4H.status === 'eq') {
+  // - 4H opposite without verified trend continuation: Cap at B+
+  if (is4HPDDirectlyOpposite && !allowContinuationPD) {
+    if (grade === 'A+' || grade === 'A') grade = 'B+';
+  }
+  // - 1H opposite when 4H is not in ideal zone (EQ or opposite) without verified trend continuation: Cap at B+
+  if (is1HPDDirectlyOpposite && (input.pd4H.status === 'eq' || is4HPDDirectlyOpposite) && !allowContinuationPD) {
     if (grade === 'A+' || grade === 'A') grade = 'B+';
   }
 
@@ -284,12 +291,11 @@ export function calculateGrade(input: GradeInput): GradeResult {
   if (is1HOpposite && input.modelState.model === 'model2_continuation') {
     blockReasons.push('1H bias is not aligned with 4H bias for continuation model');
   }
-  const allowContinuationPD = Boolean(input.allowTrendContinuationPD);
 
   if (is4HPDDirectlyOpposite && !allowContinuationPD) {
     blockReasons.push('4H premium/discount context conflicts with the trade');
   }
-  if (is1HPDDirectlyOpposite && (input.pd4H.status === 'eq' || (is4HPDDirectlyOpposite && !allowContinuationPD))) {
+  if (is1HPDDirectlyOpposite && (input.pd4H.status === 'eq' || is4HPDDirectlyOpposite) && !allowContinuationPD) {
     blockReasons.push('1H and HTF premium/discount context conflicts with the trade');
   }
   if (is1HPDDirectlyOpposite && is15MPDOpposite) {
@@ -301,9 +307,6 @@ export function calculateGrade(input: GradeInput): GradeResult {
   if (input.displacementQuality15m === null || input.displacementQuality15m.gradePoints < 1) {
     blockReasons.push('15M displacement quality is insufficient');
   }
-  if (input.poiTestCount >= 2) {
-    blockReasons.push('POI is already tested multiple times; fresh POIs required for entry');
-  }
   if (input.modelState.model === 'none') {
     blockReasons.push('liquidity/model confirmation is missing');
   }
@@ -314,16 +317,16 @@ export function calculateGrade(input: GradeInput): GradeResult {
   // Category minimums check for entryAllowed
   const meetsCategoryMinimums =
     !(is4HPDDirectlyOpposite && !allowContinuationPD) &&
-    !(is1HPDDirectlyOpposite && (input.pd4H.status === 'eq' || (is4HPDDirectlyOpposite && !allowContinuationPD))) &&
+    !(is1HPDDirectlyOpposite && (input.pd4H.status === 'eq' || is4HPDDirectlyOpposite) && !allowContinuationPD) &&
     !(is1HPDDirectlyOpposite && is15MPDOpposite) &&
     input.bias4H === expected4HBias &&
     input.modelState.model !== 'none' &&
     (input.displacementQuality15m !== null && input.displacementQuality15m.gradePoints >= 1) &&
-    input.poiTestCount <= 1 &&
+    input.poiTestCount <= 2 &&
     input.has15mEvent &&
     !(input.opposingObstacle && input.opposingObstacle.hasObstacle && input.opposingObstacle.distancePips <= 15);
 
-  const entryAllowed = blockReasons.length === 0 && (grade === 'A+' || grade === 'A') && meetsCategoryMinimums;
+  const entryAllowed = blockReasons.length === 0 && acceptsEntryGrade(grade, minimumEntryGrade) && meetsCategoryMinimums;
 
   return {
     totalScore,
